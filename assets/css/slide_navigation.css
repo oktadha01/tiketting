@@ -1,0 +1,172 @@
+.btn-group {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	height: auto;
+	width: auto;
+}
+
+.btn-group {
+	display: inline-block;
+	margin: 5px;
+	padding: 15px 25px;
+	background-color: #222;
+	color: #fff;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+
+
+.nav {
+	position: fixed;
+	background: whitesmoke;
+	-webkit-transition: .5s;
+	-moz-transition: .5s;
+	-o-transition: .5s;
+	transition: .5s;
+}
+
+.nav .ul {
+	margin: 0;
+	padding: 0;
+}
+
+.nav .ul .li {
+	list-style-type: none;
+}
+
+.nav .ul .li .a {
+	text-decoration: none;
+	/* color: #fff; */
+	display: block;
+	padding: 10px 20px;
+	text-align: center;
+	font-size: 20px;
+}
+
+
+
+
+.nav.left,
+.nav.right {
+	height: 100%;
+	width: 250px;
+}
+
+.nav.left {
+	top: 0;
+	left: -250px;
+}
+
+.nav.left.active {
+	left: 0;
+}
+
+.nav.right {
+	top: 0;
+	right: -250px;
+}
+
+.nav.right.active {
+	right: 0;
+}
+
+
+
+.nav.top,
+.nav.bottom {
+	height: max-content;
+	width: 100%;
+	border: 4px solid #d6d6d6;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.nav.top {
+	top: -100px;
+	left: 0px;
+}
+
+.nav.top.active {
+	top: 0;
+	display: block;
+
+}
+
+.nav.bottom {
+	bottom: -100px;
+	left: 0;
+}
+
+.nav.bottom.active {
+	bottom: 0;
+}
+
+.nav.top .ul,
+.nav.bottom .ul {
+	text-align: center;
+}
+
+.nav.top .ul .li,
+.nav.bottom .ul .li {
+	display: inline-block;
+	padding: 20px 25px;
+}
+
+/* Habib Pro Tag */
+.habibpro {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	padding: 15px 30px;
+	background-color: #212121;
+	color: #fff;
+	box-shadow: -2.5px 5px 5px #555;
+	font-family: 'Raleway', sans-serif;
+	letter-spacing: 3px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.habibpro:hover {
+	background-color: #FFC107;
+	color: #222;
+	-webkit-transition: .5s;
+	-moz-transition: .5s;
+	-o-transition: .5s;
+	transition: .5s;
+}
+
+.p-table-inv {
+	padding-top: 6px
+}
+
+.size-poster {
+	width: 5rem
+}
+
+.hr {
+	display: none;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
+	.size-poster {
+		width: 9rem
+	}
+
+	.p-table-inv {
+		padding-top: 0px
+	}
+
+	.hr {
+		display: block;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}

@@ -1,90 +1,162 @@
-<nav class="navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-brand">
-            <button type="button" class="btn-toggle-offcanvas"><i class="fa fa-bars"></i></button>
-            <button type="button" class="btn-toggle-fullwidth"><i class="fa fa-bars"></i></button>
-            <a href="index.html">ABSENSI KANPA</a>
+<div class="header" id="header">
+    <nav class="navbar container">
+        <a href="./index.html" class="brand">Brand</a>
+        <div class="menu" id="menu">
+            <ul class="menu-list">
+                <li class="menu-item t-top">
+                    <a href="#" class="menu-link is-active">
+                        <i class="menu-icon ion-md-home"></i>
+                        <span class="menu-name">Home</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="menu-icon ion-md-search"></i>
+                        <span class="menu-name">Search</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="menu-icon ion-md-cart"></i>
+                        <span class="menu-name">Cart</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="menu-icon ion-md-heart"></i>
+                        <span class="menu-name">Favorite</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <i class="menu-icon ion-md-contact"></i>
+                        <?php
+                        $id_customer = $this->input->cookie('session');
+                        $service = "(SELECT * FROM customer WHERE email = '$id_customer')";
+                        $query = $this->db->query($service);
+                        foreach ($query->result() as $rows) {
+                        ?>
+
+                            <span class="menu-name">Account <?= $rows->email; ?></span>
+                        <?php } ?>
+                    </a>
+                </li>
+            </ul>
         </div>
+    </nav>
+    <div class="nav top">
+        <div class="row bg-cornflowerblue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <button class="close-top">close</button>
+                    </div>
+                    <div class="col-6">
+                        <span class="float-right">Transaction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div id="data-transaksi" class="row">
+                <div class="card box-shadow">
+                    <div class="card-body">
+                        <div class="row">
 
-        <div class="navbar-right">
-            <!-- <form id="navbar-search" class="navbar-form search-form">
-                <input value="" class="form-control" placeholder="Search here..." type="text">
-                <button type="button" class="btn btn-default"><i class="icon-magnifier"></i></button>
-            </form> -->
-
-            <div id="navbar-menu">
-                <ul class="nav navbar-nav">
-                    <!-- <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-                            <i class="fa fa-bell"></i>
-                            <span class="notification-dot"></span>
-                        </a>
-                        <ul class="dropdown-menu notifications">
-                            <li class="header"><strong>You have 4 new Notifications</strong></li>
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="icon-info text-warning"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="text">Campaign <strong>Holiday Sale</strong> is nearly
-                                                reach budget limit.</p>
-                                            <span class="timestamp">10:00 AM Today</span>
+                            <div class="col-lg-1 col-md-2 col-5">
+                                <img src="<?= base_url('assets'); ?>/images/poster.png" class="img-fluid size-poster">
+                            </div>
+                            <div class="col-lg-8 col-md-10 col-7 p-table-inv">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div style="display:grid;">
+                                            <span class="smal">Invoice Number</span>
+                                            <span class="font-weight-bold">INV-#CB-12334-0001</span>
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="icon-like text-success"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="text">Your New Campaign <strong>Holiday Sale</strong> is
-                                                approved.</p>
-                                            <span class="timestamp">11:30 AM Today</span>
+                                    <div class="col-lg-4">
+                                        <div style="display:grid;">
+                                            <span class="smal">Buy At</span>
+                                            <span class="font-weight-bold">Jan 5, 2024 | 11:39</span>
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="icon-pie-chart text-info"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="text">Website visits from Twitter is 27% higher than last
-                                                week.</p>
-                                            <span class="timestamp">04:00 PM Today</span>
+                                    <div class="col-lg-2">
+                                        <div style="display:grid;">
+                                            <span class="smal">Total</span>
+                                            <span class="font-weight-bold">Rp 100.100</span>
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <i class="icon-info text-danger"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <p class="text">Error on website analytics configurations</p>
-                                            <span class="timestamp">Yesterday</span>
+                                    <div class="col-lg-2">
+                                        <div style="display:grid;">
+                                            <span class="smal">Status</span>
+                                            <span class="font-weight-bold">Expired</span>
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li class="footer"><a href="javascript:void(0);" class="more">See all
-                                    notifications</a></li>
-                        </ul>
-                    </li> -->
-                    <li>
-                        <a href="<?= base_url('Auth/logout'); ?>" class="icon-menu"><i class="fa fa-power-off"></i></a>
-                    </li>
-                </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 p-table-inv">
+                                <hr class="hr">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="button" class="col-12 btn btn-sm btn-info">Detail</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="col-12 btn btn-sm btn-info">Pay Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card box-shadow">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-1 col-md-2 col-5">
+                                <img src="<?= base_url('assets'); ?>/images/poster.png" class="img-fluid size-poster">
+                            </div>
+                            <div class="col-lg-8 col-md-10 col-7 p-table-inv">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div style="display:grid;">
+                                            <span class="smal">Invoice Number</span>
+                                            <span class="font-weight-bold">INV-#CB-12334-0001</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div style="display:grid;">
+                                            <span class="smal">Buy At</span>
+                                            <span class="font-weight-bold">Jan 5, 2024 | 11:39</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div style="display:grid;">
+                                            <span class="smal">Total</span>
+                                            <span class="font-weight-bold">Rp 100.100</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div style="display:grid;">
+                                            <span class="smal">Status</span>
+                                            <span class="font-weight-bold">Expired</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 p-table-inv">
+                                <hr class="hr">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="button" class="col-12 btn btn-sm btn-info">Detail</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="col-12 btn btn-sm btn-info">Pay Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</nav>
+</div>

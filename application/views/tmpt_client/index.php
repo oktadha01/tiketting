@@ -1,5 +1,6 @@
-<?php $this->load->view('templates/header'); ?>
+<?php $this->load->view('tmpt_client/header'); ?>
 
+<?php $this->load->view('tmpt_client/navbar'); ?>
 <body data-theme="light" class="font-nunito">
     <div id="wrapper" class="theme-cyan">
         <!-- Page Loader -->
@@ -10,17 +11,15 @@
             </div>
         </div>
         <!-- Top navbar div start -->
-        <?php $this->load->view('templates/navbar'); ?>
         <!-- main left menu -->
-        <?php $this->load->view('templates/sidebar'); ?>
         <!-- mani page content body part -->
-        <div id="main-content" class="">
-            <div class="container-fluid">
+        <!-- <div id="main-content" class=""> -->
+            <!-- <div class="container-fluid"> -->
                 <?php $this->load->view($content); ?>
-            </div>
-        </div>
+            <!-- </div> -->
+        <!-- </div> -->
     </div>
-    <?php $this->load->view('templates/footer'); ?>
+    <?php $this->load->view('tmpt_client/footer'); ?>
     <?php $this->load->view($script); ?>
     
 </body>

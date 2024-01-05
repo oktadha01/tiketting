@@ -17,18 +17,13 @@
 <!-- Javascript -->
 
 <!-- page vendor js file -->
-<script src="<?= base_url('assets'); ?>/vendor/toastr/toastr.js"></script>
-
-<!-- <script src="<?= base_url('assets'); ?>/bundles/libscripts.bundle.js"></script>
-    <script src="<?= base_url('assets'); ?>/bundles/vendorscripts.bundle.js"></script>
-    <script src="<?= base_url('assets'); ?>/bundles/c3.bundle.js"></script> -->
-
 <script src="<?= base_url('assets'); ?>/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/jquery-inputmask/jquery.inputmask.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/jquery.maskedinput/jquery.maskedinput.min.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/multi-select/js/jquery.multi-select.js"></script> <!-- Multi Select Plugin Js -->
 <script src="<?= base_url('assets'); ?>/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-<script src="<?= base_url('assets'); ?>/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script> 
+<script src="<?= base_url('assets'); ?>/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="<?= base_url('assets'); ?>/vendor/toastr/toastr.js"></script>
 <!-- select2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <!-- daterange -->
@@ -39,19 +34,42 @@
 <script src="<?= base_url('assets'); ?>/vendor/nouislider/nouislider.js"></script>
 <script src="<?= base_url('assets'); ?>/bundles/mainscripts.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/js/advanced-form-elements.js"></script>
+<script src="<?= base_url('assets'); ?>/js/slide_navigation.js"></script>
 <script src="<?= base_url('assets'); ?>/js/index.js"></script>
 
-<script>
-     $(function() {
-        var url = window.location.href;
+<!-- add Plugin -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-        // passes on every "a" tag
-        $("#main-menu a").each(function() {
-            // checks if its the same on the address bar
-            if (url == (this.href)) {
-                $(this).closest(".menu").addClass("active");
-            }
+
+<script>
+    // $(function() {
+    //     var url = window.location.href;
+
+    //     // passes on every "a" tag
+    //     $("#main-menu a").each(function() {
+    //         // checks if its the same on the address bar
+    //         if (url == (this.href)) {
+    //             $(this).closest(".menu").addClass("active");
+    //         }
+    //     });
+    //     // this will get the full URL at the address bar
+    // });
+    // $(function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
         });
-        // this will get the full URL at the address bar
+    // });
+    const menuLinks = document.querySelectorAll(".menu-link");
+
+    menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            menuLinks.forEach((link) => {
+                link.classList.remove("is-active");
+            });
+            link.classList.add("is-active");
+        });
     });
 </script>
