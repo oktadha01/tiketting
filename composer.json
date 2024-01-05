@@ -14,12 +14,15 @@
 		"php": ">=5.3.7",
 		"illuminate/database": "5.0.28",
         "illuminate/events": "5.0.28",
-		"dompdf/dompdf": "^2.0"
+		"dompdf/dompdf": "^2.0",
+		"xendit/xendit-php": "^2.19",
+		"phpmailer/phpmailer": "^6.9",
+		"nesbot/carbon": "^2.70"
 	},
 	"autoload": {
 		"psr-4": {
 			"Controllers\\": "application/controllers/",
-			"Models\\": "application/models/" 
+			"Models\\": "application/models/"
 		}
 	},
 	"suggest": {

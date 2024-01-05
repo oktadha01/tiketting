@@ -8,14 +8,14 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	// Offline development
-	// 'username' => 'root',
-	// 'password' => '',
+	'username' => 'root',
+	'password' => '',
 
 	// Online Production
-	'username' => 'kina3126_absensi',
-	'password' => 'kanpa2020',
+	// 'username' => 'kina3126_absensi',
+	// 'password' => 'kanpa2020',
 
-	'database' => 'kina3126_absensi',
+	'database' => 'tiketing',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

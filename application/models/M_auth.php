@@ -1,13 +1,17 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_auth extends CI_Model {
-	public function login($user, $pass) {
+class M_auth extends CI_Model
+{
+	public function login($email, $password)
+	{
 		$this->db->select('*');
-		$this->db->from('admin');
-		$this->db->where('username', $user);
-		$this->db->where('password', md5($pass)
-	);
+		$this->db->from('user');
+		$this->db->where('email', $email);
+		$this->db->where(
+			'password',
+			md5($password)
+		);
 
 		$data = $this->db->get();
 
@@ -18,6 +22,3 @@ class M_auth extends CI_Model {
 		}
 	}
 }
-
-/* End of file M_auth.php */
-/* Location: ./application/models/M_auth.php */
