@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+use Carbon\Carbon;
+use Xendit\Invoice;
 
 class Buynow extends CI_Controller
 {
@@ -423,24 +424,76 @@ class Buynow extends CI_Controller
                 };
             };
         }
-        $data_transaksi = [
-            'id_customer' => $id_customer,
-            // edit okta
-            'id_event' => $id_event,
-            // end
-            'code_bayar' => $code_bayar,
-            'jumlah_tiket' => $jmlh,
-            'nominal' => $nominal,
-            'bank' => $payment,
-            // edit okta
-            'tgl_transaksi' => date('d-m-Y H:i:s'),
-            'status_transaksi' => '0',
-            // end
-        ];
-        $this->M_buynow->insert_transaksi($data_transaksi);
-        // Redirect(base_url('Transaction/CB/') . $code_bayar);
+
+        xendit_loaded();
+        $this->db->trans_begin();
+
+        try {
+
+            // code xendit
+            $data_faktur = [
+                "external_id"       => $code_bayar,
+                "description"       => "Pembayaran Tiket Wisdil $code_bayar $nama",
+                "amount"            => preg_replace('/[Rp. ]/', '', $nominal),
+                'invoice_duration'  => 3600,
+                'customer' => [
+                    'given_names'   => $nama,
+                    'surname'       => $code_bayar,
+                    'mobile_number' => $code_tiket,
+                    'mobile_number' => $kontak,
+                ],
+            ];
+
+            $tgl_trx = date('d-m-Y H:i:s');
+            $createInvoice  = Invoice::create($data_faktur);
+            $payment_url    = $createInvoice['invoice_url'];
+
+            $data_transaksi = [
+
+                'id_customer'       => $id_customer,
+                'id_event'          => $id_event,
+                'code_bayar'        => $code_bayar,
+                'jumlah_tiket'      => $jmlh,
+                'nominal'           => preg_replace('/[Rp. ]/', '', $nominal),
+                'tgl_transaksi'     => $tgl_trx,
+                'url_payment'       => $payment_url,
+
+            ];
+            $this->M_buynow->insert_transaksi($data_transaksi);
+            $this->db->trans_commit();
+
+            redirect($payment_url);
+            // Redirect(base_url('Transaction/CB/') . $code_bayar);
+
+
+        } catch (\Xendit\Exceptions\ApiException $e) {
+            $this->db->trans_rollback();
+            $response = [
+                'status'       => false,
+                'errors'       => [
+                    'message'  => $e->getMessage(),
+                    'type'     => 'xendit',
+                ],
+                'detail'       => [],
+            ];
+        } catch (Exception $e) {
+            $this->db->trans_rollback();
+            $response = [
+                'status' => false,
+                'errors' => [
+                    'message' => $e->getMessage(),
+                    'type' => 'input',
+                ],
+                'detail' => [],
+            ];
+        }
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
     }
 }
+
+
 // code tiket
 // id_event-id_customer-id_price-tgl-code
 // 1           1           1           3
@@ -452,4 +505,4 @@ class Buynow extends CI_Controller
 // 1         10-10-2023           1
 
 // date('l, d-m-Y')
-// <img src="<?= base_url('upload/qr/'); 
+// <img src="<?= base_url('upload/qr/');

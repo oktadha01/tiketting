@@ -2,74 +2,93 @@
     <button type="button" class="btn-toggle-offcanvas"><i class="fa fa-arrow-left"></i></button>
     <div class="sidebar-scroll">
         <div class="user-account">
-            <img src="<?= base_url('assets'); ?>/images/user.png" class="rounded-circle user-photo" alt="User Profile Picture">
+            <img src="<?= base_url('assets'); ?>/images/user/<?php echo $userdata->fot_profil; ?>"
+                class="rounded-circle user-photo" alt="User Profile Picture">
             <div class="dropdown">
                 <span>Welcome,</span>
-                <a href="javascript:void(0);" class=" user-name"><strong><?= $this->session->userdata('userdata')->nama; ?></strong></a>
-                <!-- <ul class="dropdown-menu dropdown-menu-right account">
-                    <li><a href="page-profile2.html"><i class="icon-user"></i>My Profile</a></li>
-                    <li><a href="app-inbox.html"><i class="icon-envelope-open"></i>Messages</a></li>
-                    <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
-                    <li class="divider"></li>
-                    <li><a href="page-login.html"><i class="icon-power"></i>Logout</a></li>
-                </ul> -->
+                <a href="javascript:void(0);"
+                    class=" user-name"><strong><?= $this->session->userdata('userdata')->agency; ?></strong></a>
             </div>
             <hr>
-            <!-- <ul class="row list-unstyled">
-                <li class="col-3">
-                    <small>Sales</small>
-                    <h6>561</h6>
-                </li>
-                <li class="col-3">
-                    <small>Order</small>
-                    <h6>920</h6>
-                </li>
-                <li class="col-3">
-                    <small>Revenue</small>
-                    <h6>$23B</h6>
-                </li>
-                <li class="col-3">
-                    <small>Revenue</small>
-                    <h6>$23B</h6>
-                </li>
-            </ul> -->
         </div>
-        <!-- Nav tabs -->
-        <!-- <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#menu">Menu</a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Chat"><i class="icon-book-open"></i></a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#setting"><i class="icon-settings"></i></a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#question"><i class="icon-question"></i></a></li>
-        </ul> -->
-
+        <?php if ($userdata->privilage == 'Admin') : ?>
         <!-- Tab panes -->
         <div class="tab-content padding-0">
             <div class="tab-pane active" id="menu">
                 <nav id="left-sidebar-nav" class="sidebar-nav">
                     <ul id="main-menu" class="metismenu li_animation_delay">
-                        <!-- <li class="menu">
-                            <a href="<?= site_url('dashboard'); ?>" class=""><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
-                        </li> -->
                         <li class="menu">
-                            <a href="<?= site_url('dashboard'); ?>" class=""><i class="fa fa-dashboard"></i><span>Absensi</span></a>
+                            <a href="<?= site_url('dashboard'); ?>" class=""><i
+                                    class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="menu">
+                            <a href="<?= site_url('Event'); ?>" class=""><i
+                                    class="fa fa-file-movie-o "></i><span>Event</span></a>
+                        </li>
+                        <li class="menu">
+                            <a href="<?= site_url('Perform'); ?>" class=""><i
+                                    class="fa fa-weibo"></i><span>Perform</span></a>
+                        </li>
+                        <li class="menu">
+                            <a href="<?= site_url('Prices'); ?>" class=""><i
+                                    class="fa fa-money"></i><span>Prices</span></a>
+                        </li>
+                        <li class="menu">
+                            <a href="<?= site_url('Scan_tiket/data_scan'); ?>" class=""><i
+                                    class="fa fa-ticket"></i><span> Data
+                                    Scan
+                                    Tiket</span></a>
+                        </li>
+                        <li class="menu">
+                            <a href="<?= site_url('Banner_upload'); ?>" class=""><i class="fa fa-flag"></i><span>
+                                    Banner</span></a>
+                        </li>
+                        <li class="menu active">
+                            <a href="#setting" class="has-arrow"><i class="fa fa-gears"></i><span>Setting</span></a>
+                            <ul class="submenu">
+                                <li><a href="<?= site_url('User'); ?>"
+                                        class="<?= ($this->uri->segment(1) == 'User') ? 'active' : ''; ?>"> User</a>
+                                </li>
+                                <li><a href="<?= site_url('Xendit'); ?>"
+                                        class="<?= ($this->uri->segment(1) == 'Xendit') ? 'active' : ''; ?>">API
+                                        Xendit</a></li>
+                            </ul>
+                        </li>
 
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if ($userdata->privilage == 'User') : ?>
+        <div class="tab-content padding-0">
+            <div class="tab-pane active" id="menu">
+                <nav id="left-sidebar-nav" class="sidebar-nav">
+                    <ul id="main-menu" class="metismenu li_animation_delay">
+                        <li class="menu">
+                            <a href="<?= site_url('dashboard'); ?>" class=""><i
+                                    class="fa fa-dashboard"></i><span>Dashboard</span></a>
                         </li>
                         <li class="menu">
-                            <form action="<?= site_url('Kehadiran'); ?>">
-                                <input type="text" name="id">
-                                <button type="submit"><i class="fa fa-dashboard"></i><span>Kehadiran</span></button>
-                            </form>
-
+                            <a href="<?= site_url('Event'); ?>" class=""><i
+                                    class="fa fa-file-movie-o "></i><span>Event</span></a>
                         </li>
                         <li class="menu">
-                            <a href="<?= site_url('Karyawan'); ?>" class=""><i class="fa fa-dashboard"></i><span>Karyawan</span></a>
+                            <a href="<?= site_url('Perform'); ?>" class=""><i
+                                    class="fa fa-weibo"></i><span>Perform</span></a>
                         </li>
                         <li class="menu">
-                            <a href="<?= site_url('Izin'); ?>" class=""><i class="fa fa-dashboard"></i><span>Izin</span></a>
+                            <a href="<?= site_url('Prices'); ?>" class=""><i
+                                    class="fa fa-money"></i><span>Prices</span></a>
+                        </li>
+                        <li class="menu">
+                            <a href="<?= site_url('Scan_tiket'); ?>" class=""><i class="fa fa-ticket"></i><span>Scan
+                                    Tiket</span></a>
                         </li>
                     </ul>
                 </nav>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 </div>
