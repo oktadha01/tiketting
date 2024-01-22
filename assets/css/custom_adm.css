@@ -1,0 +1,286 @@
+:root {
+	--color-black: hsl(0, 0%, 10%);
+	--color-white: hsl(0, 0%, 100%);
+	--color-darken: hsl(0, 0%, 20%);
+	--color-teal-100: hsl(160, 85%, 87%);
+	--color-teal-200: hsl(162, 78%, 77%);
+	--color-teal-300: hsl(162, 72%, 65%);
+	--color-teal-400: hsl(162, 68%, 54%);
+	--color-teal-500: hsl(162, 73%, 46%);
+	--color-teal-600: hsl(162, 82%, 40%);
+	--color-teal-700: hsl(162, 87%, 35%);
+	--color-teal-800: hsl(162, 88%, 30%);
+	--shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	--shadow-medium: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
+		0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	--shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+		0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 40em) {
+	main {
+		display: flex;
+	}
+
+	aside {
+		flex: 0 1 20vw;
+		order: 1;
+		border-right: 1px solid #ddd;
+	}
+
+	.primary {
+		order: 2;
+	}
+}
+
+.demo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+.input-wrapper {
+    position: relative;
+    line-height: 14px;
+    margin: 0 5px;
+    display: grid;
+}
+
+/* .label-select {
+    color: #bbb;
+    font-size: 11px;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    top: 14px;
+    padding: 0 2px;
+    pointer-events: none;
+    background: #fff;
+    -webkit-transition: -webkit-transform 100ms ease;
+    -moz-transition: -moz-transform 100ms ease;
+    -o-transition: -o-transform 100ms ease;
+    -ms-transition: -ms-transform 100ms ease;
+    transition: transform 100ms ease;
+    -webkit-transform: translateY(-20px);
+    -moz-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+} */
+
+.label-select {
+    color: #59C4BC;
+    font-size: 11px;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    top: 14px;
+    padding: 0 2px;
+    pointer-events: none;
+    background: #fff;
+    -webkit-transition: -webkit-transform 100ms ease;
+    -moz-transition: -moz-transform 100ms ease;
+    -o-transition: -o-transform 100ms ease;
+    -ms-transition: -ms-transform 100ms ease;
+    transition: transform 100ms ease;
+    -webkit-transform: translateY(-20px);
+    -moz-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+}
+
+.label-select2 {
+    color: #59C4BC;
+    font-size: 11px;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    top: 14px;
+    padding: 0 2px;
+    pointer-events: none;
+    background: #fff;
+    -webkit-transition: -webkit-transform 100ms ease;
+    -moz-transition: -moz-transform 100ms ease;
+    -o-transition: -o-transform 100ms ease;
+    -ms-transition: -ms-transform 100ms ease;
+    transition: transform 100ms ease;
+    -webkit-transform: translateY(-20px);
+    -moz-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+}
+
+.label-in {
+    color: #bbb;
+    font-size: 11px;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    top: 14px;
+    padding: 0 2px;
+    pointer-events: none;
+    background: #fff;
+    -webkit-transition: -webkit-transform 100ms ease;
+    -moz-transition: -moz-transform 100ms ease;
+    -o-transition: -o-transform 100ms ease;
+    -ms-transition: -ms-transform 100ms ease;
+    transition: transform 100ms ease;
+    -webkit-transform: translateY(-20px);
+    -moz-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+}
+
+.label-up {
+    color: #59C4BC;
+    font-size: 12px;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 2;
+    left: 20px;
+    top: 14px;
+    padding: 0 2px;
+    pointer-events: none;
+    background: #fff;
+    -webkit-transition: -webkit-transform 100ms ease;
+    -moz-transition: -moz-transform 100ms ease;
+    -o-transition: -o-transform 100ms ease;
+    -ms-transition: -ms-transform 100ms ease;
+    transition: transform 100ms ease;
+    -webkit-transform: translateY(-20px);
+    -moz-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+}
+
+input,
+select,
+textarea,
+.select2{
+    font-size: 13px;
+    color: #555;
+    outline: none;
+    border: 1px solid #bbb;
+    padding: 15px 20px 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+input:invalid+label,
+select:invalid+label,
+textarea:invalid+label,
+.select2:invalid+label{
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -o-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.select2:focus {
+    border-color: #21A8FD;
+}
+
+input:focus+label,
+select:focus+label,
+textarea:focus+label,
+.select2:focus+label{
+    color: #59C4BC;
+    -webkit-transform: translateY(-20px);
+    -moz-transform: translateY(-20px);
+    -o-transform: translateY(-20px);
+    -ms-transform: translateY(-20px);
+    transform: translateY(-20px);
+}
+
+.toggle-password {
+	color: #59C4BC;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.modal-header {
+    color: var(--font-white);
+    background: var(--primary-gradient);
+}
+
+.poster-column img {
+    width: auto;
+    height: 100%;
+    max-width: none;
+}
+
+.header-column img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* #reader {
+    width: 500px;
+} */
+
+.result {
+    background-color: green;
+    color: #fff;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+}
+
+#reader__scan_region {
+    background: white;
+}
+
+/* @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+  } */
+
+
+
