@@ -37,8 +37,30 @@ class Detail extends CI_Controller
         $this->load->view('client/detail/detail', $data);
         $this->load->view('client/detail/detail_js');
     }
+    function cek_transaksi()
+    {
+        $email = $this->input->cookie('session');
+        $this->db->select("*");
+        $this->db->where("email", $email);
+        // $this->db->order_by('code_tiket', 'DESC');
+        // $this->db->limit(1);
+
+        $query_ = $this->db->get('customer');
+        if ($query_->num_rows() <> 0) {
+            $data_ = $query_->row();
+            $id_customer = $data_->id_customer;
+        }
+        $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->input->post('event'));
+        $cek_transaki        = $this->M_detail->m_cek_transaksi($nm_event, $id_customer);
+        if ($cek_transaki['num_rows'] > 0) {
+            echo 'no';
+        } else {
+            echo 'buy';
+        }
+    }
     function buynow()
     {
+        $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
         if ($this->input->cookie('session') == '') {
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -46,7 +68,7 @@ class Detail extends CI_Controller
             if ($password == '') {
                 $this->reg_email($email, $action);
             } else {
-                $this->login($email, $password);
+                $this->login($email, $password, $nm_event);
             }
         } else {
             // echo'ya';
@@ -63,7 +85,7 @@ class Detail extends CI_Controller
     }
 
 
-    function login($email, $password)
+    function login($email, $password, $nm_event)
     {
         $post_email = trim($email);
         $post_pass = trim($password);
@@ -90,8 +112,13 @@ class Detail extends CI_Controller
                 $msg = 'Data cookie berhasil disimpan';
             }
             $this->reg_email($email, $action, $id_customer);
-
-
+            // $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->input->post('event'));
+            $cek_transaki        = $this->M_detail->m_cek_transaksi($nm_event);
+            if ($cek_transaki['num_rows'] > 0) {
+                echo 'no';
+            } else {
+                echo 'buy';
+            }
         }
         // redirect('Dashboard');
     }

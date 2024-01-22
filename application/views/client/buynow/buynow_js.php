@@ -1,5 +1,10 @@
 <script>
     $(document).ready(function() {
+        window.addEventListener('popstate', () => {
+            const currentUrl = '<?= base_url('detail/event/'); ?><?= $this->uri->segment(3); ?>';
+            window.history.pushState({}, '', currentUrl);
+            detail_event();
+        });
         <?php foreach ($customer as $data) { ?>
             $('.email-2').val('<?= $data->email; ?>');
             $('.nama-2').val('<?= $data->nm_customer; ?>');
@@ -81,13 +86,14 @@
         '</select>' +
         '</div>' +
         '</div>';
+    // EDIT OKTA
     $('.row-payment').hide();
     $('#select-metode').change(function() {
         var val_select = $('#select-metode').find(":selected").val();
         if (val_select == 'bank transfer') {
             $('.row-payment').show();
-            $('.label-pembayaran').text('Pilih Bank Pembayaran');
             $('.row-payment').html(bank);
+            $('.label-pembayaran').text('Pilih Bank Pembayaran');
             $('#payment').val('');
 
         } else if (val_select == 'qris') {
@@ -98,17 +104,35 @@
         } else if (val_select == 'ewallet') {
 
             $('.row-payment').show();
-            $('.label-pembayaran').text('Pilih Ewallet Pembayaran');
             $('.row-payment').html(ewallet);
+            $('.label-pembayaran').text('Pilih Ewallet Pembayaran');
             $('#payment').val('');
         }
         $("#select-metode, #select-payment").select2({
             placeholder: "Pilih ...",
             allowClear: true
         });
+        $('#select-payment').change(function() {
+            var val_select_payment = $('#select-payment').find(":selected").val();
+            $('#payment').val(val_select_payment);
+        });
     });
-    $('#select-payment').change(function() {
-        var val_select = $('#select-payment').find(":selected").val();
-        $('#payment').val(val_select);
+    $('#btn-submit').click(function() {
+
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            data: form.serialize(),
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+
+            },
+            error: function() {
+                alert("Data Gagal Diupload");
+            }
+        });
     });
+    // END EDIT OKTA
 </script>

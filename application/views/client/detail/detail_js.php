@@ -2,6 +2,24 @@
 
 <script>
     $(document).ready(function() {
+
+        let addurl;
+        $('.t-right').click(function() {
+            $('.right').toggleClass('nav-active');
+            let addurl = '/tiket';
+            const newPageUrl = '<?= base_url('detail/event/'); ?><?= $this->uri->segment(3); ?>' + addurl;
+            window.history.pushState({}, null, newPageUrl);
+            window.addEventListener('popstate', () => {
+                $('.btn-close-tiket').trigger('click');
+                const currentUrl = '<?= base_url('detail/event/'); ?><?= $this->uri->segment(3); ?>';
+                window.history.pushState({}, '', currentUrl);
+            });
+        });
+        $('.btn-close-tiket').click(function() {
+            $('.right').toggleClass('nav-active');
+        })
+
+
         $('.btn-add-tiket').click(function() {
             $(this).hide()
             $('#count-tiket' + $(this).data('tiket')).removeAttr('hidden', true);
@@ -15,31 +33,58 @@
             $input.val(count);
             $input.change();
             if (count == 0) {
-                // alert('ya');
-                $('#btn-add-' + $(this).data('tiket')).show()
-                $('#count-' + $(this).data('tiket')).attr('hidden', true);
-                $('.btn-checkout').attr('disabled', true);
+                $('#btn-add-tiket' + $(this).data('tiket')).show();
+                $('#count-tiket' + $(this).data('tiket')).attr('hidden', true);
             }
             var subtotal = parseInt($('#in-subtotal').val()) - harga;
             $('#in-subtotal').val(subtotal);
             let rupiahFormat = subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
             $('#subtotal').text('Rp.' + rupiahFormat + ',-');
+            if ($('#in-subtotal').val() <= '0') {
+                $('.btn-checkout').attr('disabled', true);
+            }
             return false;
         });
         $('.plus').click(function() {
             var $input = $(this).parent().find('.input-count');
             var count = parseInt($input.val()) + 1;
             var harga = $(this).data('harga');
+            var status = $(this).data('status');
+            var tiket = $(this).data('tiket');
             count = count <= 0 ? 0 : count;
-            $input.val(count);
-            $input.change();
-            $('.btn-checkout').removeAttr('disabled', true);
-            var subtotal = parseInt($('#in-subtotal').val()) + harga;
-            $('#in-subtotal').val(subtotal);
-            let rupiahFormat = subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            $('#subtotal').text('Rp.' + rupiahFormat + ',-');
-            return false;
+            if (status == '1' && count > '1') {
+                var delayInMilliseconds = 1800; //1 second
+                $('#load-max-' + tiket).html('<span class="infomax">Maaf! Max 1 tiket</span>')
+                setTimeout(function() {
+                    $('#load-max-' + tiket).html('')
+                }, delayInMilliseconds);
+
+                // alert('bundling')
+                $input.val('1');
+                $input.change();
+            } else if (status == '0' && count > '5') {
+                var delayInMilliseconds = 1800; //1 second
+                $('#load-max-' + tiket).html('<span class="infomax">Maaf! Max 5 tiket</span>')
+                setTimeout(function() {
+                    $('#load-max-' + tiket).html('')
+                }, delayInMilliseconds);
+
+                // alert('standar')
+                $input.val('5');
+                $input.change();
+            } else {
+                $input.val(count);
+                $input.change();
+
+                $('.btn-checkout').removeAttr('disabled', true);
+                var subtotal = parseInt($('#in-subtotal').val()) + harga;
+                $('#in-subtotal').val(subtotal);
+                let rupiahFormat = subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                $('#subtotal').text('Rp.' + rupiahFormat + ',-');
+                return false;
+            }
         });
+
         $('#form-pass').hide();
         $('.remember').hide();
         $('#remember').click(function() {
@@ -47,11 +92,69 @@
                 $(this).val('1')
             }
         });
+        $('#email').keypress(function() {
+            if ($(this).attr('class') == 'form-control valid') {
+                $('#btn-next').removeAttr('disabled')
+            } else {
+                $('#btn-next').attr('disabled')
 
-        $('#btn-sumbmit').click(function() {
-            buynow_event();
-            window.history.pushState({}, null, null);
+            }
         });
+        $('#btn-next').click(function() {
+            if ($('#email').val() == '') {
+                $('#btn-next').attr('disabled')
+            } else {
+                $('#btn-next').removeAttr('disabled')
+                buynow_event();
+
+            }
+
+        });
+        $('#btn-submit').click(function() {
+            cek_transaksi();
+        });
+
+        function cek_transaksi() {
+            let formData = new FormData();
+            formData.append('event', '<?= $this->uri->segment(3); ?>');
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('Detail/cek_transaksi'); ?>",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    if (data == 'buy') {
+                        buynow_event();
+                        let addurl = '/buynow';
+                        const newPageUrl = '<?= base_url('detail/event/'); ?><?= $this->uri->segment(3); ?>' + addurl;
+                        window.history.pushState({}, null, newPageUrl);
+                    } else {
+                        swal_vali_transaksi()
+                    }
+                },
+                error: function() {
+                    alert("Data Gagal Diupload");
+                }
+            });
+        }
+
+        function swal_vali_transaksi() {
+            Swal.fire({
+                title: "Maaf! Anda masih memiliki transaksi sebelumnya",
+                text: "selesaikan transaksi dahulu atau batalkan transaksi sebelumnya!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "lihat transaksi anda"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('.transaksi').trigger('click');
+                }
+            });
+        }
 
         function buynow_event() {
             var kategori_tiket = [];
@@ -84,7 +187,7 @@
                     if (data == 'show') {
                         $('#form-pass').show();
                         $('.remember').show();
-                        $('#btn-sumbmit').text('submit');
+                        $('#btn-next').text('submit');
                     } else if (data == 'gagal-login') {
                         $('#password').addClass('invalid')
                         $('.valid_pass').text('Wrong Password !!')
@@ -94,14 +197,14 @@
                         var delayInMilliseconds = 500; //1 second
                         setTimeout(function() {
                             $('#page-load-detail-event').html(data);
-                            window.history.pushState({}, null, null);
+                            // window.history.pushState({}, null, null);
                         }, delayInMilliseconds);
 
                     }
                     $('#email').on('keypress', function() {
                         $('#form-pass').hide();
                         $('.remember').hide().prop("checked", false).val('');
-                        $('#btn-sumbmit').text('Next');
+                        $('#btn-next').text('Next');
                         $('#password').removeClass('invalid').val('')
                         $('.valid_pass').text('')
                     });

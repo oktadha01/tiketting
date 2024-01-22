@@ -36,32 +36,23 @@
 <script src="<?= base_url('assets'); ?>/js/advanced-form-elements.js"></script>
 <script src="<?= base_url('assets'); ?>/js/slide_navigation.js"></script>
 <script src="<?= base_url('assets'); ?>/js/index.js"></script>
-
 <!-- add Plugin -->
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 <script>
-    // $(function() {
-    //     var url = window.location.href;
+    var url_transaksi = '<?php echo site_url('Transaction/data'); ?>';
+    var url_tiket = '<?php echo site_url('E_tiket/data'); ?>';
+    var url_detail_trans = '<?php echo site_url('transaction/detail_trans'); ?>';
+    var url_detail_tiket = '<?php echo site_url('E_tiket/detail_tiket'); ?>';
+    var url_download_tiket = '<?= site_url('upload/pdf/'); ?>'
+    var url_qr = '<?= base_url('upload/qr/'); ?>'
+    var url = '<?= base_url(); ?>';
 
-    //     // passes on every "a" tag
-    //     $("#main-menu a").each(function() {
-    //         // checks if its the same on the address bar
-    //         if (url == (this.href)) {
-    //             $(this).closest(".menu").addClass("active");
-    //         }
-    //     });
-    //     // this will get the full URL at the address bar
-    // });
-    // $(function() {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
-    // });
+    // Panggil fungsi saat halaman dimuat atau saat ukuran jendela berubah
+    window.addEventListener('resize', cekTipePerangkat);
+    cekTipePerangkat(); // Panggil fungsi saat halaman dimuat
     const menuLinks = document.querySelectorAll(".menu-link");
 
     menuLinks.forEach((link) => {
@@ -72,4 +63,5 @@
             link.classList.add("is-active");
         });
     });
+
 </script>

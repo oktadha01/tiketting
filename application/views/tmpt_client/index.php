@@ -1,6 +1,7 @@
 <?php $this->load->view('tmpt_client/header'); ?>
 
 <?php $this->load->view('tmpt_client/navbar'); ?>
+<?php $this->load->view('tmpt_client/slide_navigasi'); ?>
 <body data-theme="light" class="font-nunito">
     <div id="wrapper" class="theme-cyan">
         <!-- Page Loader -->

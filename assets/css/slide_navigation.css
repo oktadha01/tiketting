@@ -53,10 +53,9 @@
 
 
 
-.nav.left,
-.nav.right {
+.nav.left {
 	height: 100%;
-	width: 250px;
+	width: 100%;
 }
 
 .nav.left {
@@ -64,18 +63,11 @@
 	left: -250px;
 }
 
-.nav.left.active {
+.nav.left.nav-active {
 	left: 0;
 }
 
-.nav.right {
-	top: 0;
-	right: -250px;
-}
 
-.nav.right.active {
-	right: 0;
-}
 
 
 
@@ -93,9 +85,10 @@
 	left: 0px;
 }
 
-.nav.top.active {
+.nav.top.nav-active {
 	top: 0;
 	display: block;
+	z-index: 999;
 
 }
 
@@ -104,8 +97,10 @@
 	left: 0;
 }
 
-.nav.bottom.active {
+.nav.bottom.nav-active {
 	bottom: 0;
+	display: block;
+	z-index: 999;
 }
 
 .nav.top .ul,
@@ -143,8 +138,20 @@
 	transition: .5s;
 }
 
+.bg-cornflowerblue {
+
+	background: cornflowerblue;
+
+}
+
+.nav-transaksi {
+	font-size: xx-large;
+	color: white;
+	font-weight: bold;
+}
+
 .p-table-inv {
-	padding-top: 6px
+	padding-top: 16px
 }
 
 .size-poster {
@@ -155,7 +162,47 @@
 	display: none;
 }
 
+.nav-tiket {
+	width: 100%;
+	position: relative;
+	background: none;
+	
+}
+.btn-close-tiket{
+	display: none;
+}
+
 @media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
+	.btn-close-tiket{
+		display: initial;
+	}
+	.f-size-tik {
+		font-size: large;
+	}
+
+	.card-footer-tiket-detail {
+		position: absolute;
+		width: inherit;
+		bottom: 5px;
+	}
+	
+	.nav-tiket {
+		position: fixed;
+		z-index: 9999;
+		top: 0;
+		right: -100%;
+	}
+
+	.nav.right.nav-active {
+		right: 0;
+		z-index: 9999;
+	}
+
+	.nav.right {
+		height: 100%;
+		width: 100%;
+	}
+
 	.size-poster {
 		width: 9rem
 	}
@@ -167,6 +214,23 @@
 	.hr {
 		display: block;
 	}
+
+	.code-tiket {
+		display: none;
+	}
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+	.code-tiket {
+		display: none;
+	}
+}
+
+
+.num-tiket {
+	background: blanchedalmond;
+	font-weight: bold;
+	padding: 3px 14px;
+	border-radius: 4px;
+	font-size: x-large;
+}

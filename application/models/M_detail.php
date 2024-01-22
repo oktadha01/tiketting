@@ -6,6 +6,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_detail extends CI_Model
 {
+    function m_cek_transaksi($nm_event, $id_customer)
+    {
+        $this->db->select('transaksi.id_event, transaksi.id_customer');
+        $this->db->from('transaksi');
+        $this->db->Join('event', 'event.id_event = transaksi.id_event');
+        $this->db->where('event.nm_event', $nm_event);
+        $this->db->where('transaksi.id_customer', $id_customer);
+        $this->db->where('transaksi.status_transaksi', 'PENDING');
+        // $this->db->where_not_in('password', '');
+        $query = $this->db->get();
+        $q['result'] = $query->result();
+        $q['num_rows'] = $query->num_rows();
+        return $q;
+    }
 
     function m_perform($nm_event)
     {

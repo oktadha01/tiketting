@@ -5,6 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Buynow extends CI_Controller
 {
     public $M_buynow;
+    public $M_detail;
     public $db;
     public $uri;
     public $session;
@@ -18,6 +19,7 @@ class Buynow extends CI_Controller
         parent::__construct();
         $this->load->library('tcpdf');
         $this->load->model('M_buynow');
+        $this->load->model('M_detail');
         $this->load->model('M_pdf');
     }
     function checkout()
@@ -27,21 +29,13 @@ class Buynow extends CI_Controller
         $this->db->limit(1);
 
         $query_ = $this->db->get('tiket');
-        // $kode_max_ = [];
         if ($query_->num_rows() <> 0) {
             $data_ = $query_->row();
-            // for ($i = 1; $i < 2; $i++) {
             $kode_ = intval($data_->kode) + 1;
             $kode_max_     = str_pad($kode_, 4, "0", STR_PAD_LEFT);
-            // echo $kode_max_;
-            // }
         } else {
             $kode_ = 1;
-            // for ($i = 1; $i < 2; $i++) {
             $kode_max_     = str_pad($kode_, 4, "0", STR_PAD_LEFT);
-            // echo $kode_max_;
-
-            // }
         }
         $customer = $_POST['akun'];
         $email = $_POST['email']; // Ambil data email dan masukkan ke variabel email
@@ -55,42 +49,184 @@ class Buynow extends CI_Controller
         $kota = $_POST['kota']; // Ambil data gender dan masukkan ke variabel gender
         $code = $_POST['code']; // Ambil data gender dan masukkan ke variabel gender
         $payment = $_POST['payment']; // Ambil data gender dan masukkan ke variabel gender
-
-        // $kode_max = $_POST[$kode_max_];
-        // $start_value = 1; // or any other starting value
-        $data = array();
-
+        // edit okta
+        $status = $_POST['status'];
+        // end edit
+        $data_in = array();
+        // edit okta
         $index = 0; // Set index array awal dengan 0
         foreach ($email as $dataemail) { // Kita buat perulangan berdasarkan email sampai data terakhir
-            array_push($data, array(
-                'email' => $dataemail,
-                'id_customer' => $customer,
-                'id_price' => $id_price[$index],  // Ambil dan set data nama sesuai index array dari $index
-                'id_event' => $id_event,
-                'nama' => $nama[$index],  // Ambil dan set data nama sesuai index array dari $index
-                'tgl_lahir' => $tgl_lahir[$index],  // Ambil dan set data telepon sesuai index array dari $index
-                'gender' => $gender[$index],  // Ambil dan set data alamat sesuai index array dari $index
-                'kontak' => $kontak[$index],  // Ambil dan set data alamat sesuai index array dari $index
-                'no_identitas' => $no_identitas[$index],  // Ambil dan set data alamat sesuai index array dari $index
-                'kota' => $kota[$index],  // Ambil dan set data alamat sesuai index array dari $index
-                'code_bayar' => 'CB-' . $id_event . date('md') . $customer . '-' . $kode_max_,  // Ambil dan set data alamat sesuai index array dari $index
-                'kota' => $kota[$index],  // Ambil dan set data alamat sesuai index array dari $index
-                'code_tiket' => 'CT-' . $id_event . $id_price[$index] . date('md') . '-' . sprintf('%04d', $kode_max_++),  // Ambil dan set data alamat sesuai index array dari $index
-            ));
+            $tiket = "(SELECT * FROM price WHERE id_price = '$id_price[$index]')";
+            $query = $this->db->query($tiket);
+            foreach ($query->result() as $rows) {
+                if ($rows->status_bundling == '1') {
+
+                    for ($i = 0; $i < $rows->tiket_bundling; $i++) {
+                        array_push($data_in, array(
+                            'email' => $dataemail,
+                            'id_customer' => $customer,
+                            'id_price' => $id_price[$index],  // Ambil dan set data nama sesuai index array dari $index
+                            'id_event' => $id_event,
+                            'nama' => $nama[$index],  // Ambil dan set data nama sesuai index array dari $index
+                            'tgl_lahir' => $tgl_lahir[$index],  // Ambil dan set data telepon sesuai index array dari $index
+                            'gender' => $gender[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                            'kontak' => $kontak[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                            'no_identitas' => $no_identitas[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                            'kota' => $kota[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                            // edit okta
+                            'code_bayar' => 'CB-' . $id_event . date('md') . $customer . '-' . str_pad($kode_, 4, "0", STR_PAD_LEFT),  // Ambil dan set data alamat sesuai index array dari $index
+                            // and edit
+                            'kota' => $kota[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                            'code_tiket' => 'CT-' . $id_event . $id_price[$index] . date('md') . '-' . sprintf('%04d', $kode_max_++),  // Ambil dan set data alamat sesuai index array dari $index
+                            // edit okta
+                            'status' => 'bundling',
+                            // end edit
+                        ));
+                    }
+                } else {
+                    array_push($data_in, array(
+                        'email' => $dataemail,
+                        'id_customer' => $customer,
+                        'id_price' => $id_price[$index],  // Ambil dan set data nama sesuai index array dari $index
+                        'id_event' => $id_event,
+                        'nama' => $nama[$index],  // Ambil dan set data nama sesuai index array dari $index
+                        'tgl_lahir' => $tgl_lahir[$index],  // Ambil dan set data telepon sesuai index array dari $index
+                        'gender' => $gender[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                        'kontak' => $kontak[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                        'no_identitas' => $no_identitas[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                        'kota' => $kota[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                        // edit okta
+                        'code_bayar' => 'CB-' . $id_event . date('md') . $customer . '-' . str_pad($kode_, 4, "0", STR_PAD_LEFT),  // Ambil dan set data alamat sesuai index array dari $index
+                        // and edit
+                        'kota' => $kota[$index],  // Ambil dan set data alamat sesuai index array dari $index
+                        'code_tiket' => 'CT-' . $id_event . $id_price[$index] . date('md') . '-' . sprintf('%04d', $kode_max_++),  // Ambil dan set data alamat sesuai index array dari $index
+                        // edit okta
+                        'status' => $status[$index],
+                        // end edit
+                    ));
+                }
+            };
             // var_dump($data);
             $index++;
-        }
-        $this->M_buynow->save_tiket($data);
+        };
+        $this->cek_stock_ready($data_in, $payment);
+    }
 
+    function cek_stock_ready($data_in, $payment)
+    {
+        $tiketCounts = array();
+
+        foreach ($data_in as $item) {
+            $id_price = $item['id_price'];
+
+            if (isset($tiketCounts[$id_price])) {
+                $tiketCounts[$id_price]++;
+            } else {
+                $tiketCounts[$id_price] = 1;
+            }
+            // edit okta
+
+        }
+        $action = 'cetak';
+        $data_kategori = "";
+        $data_count = "";
+        $data_kategori_sold = "";
+        $data_count_sold = "";
+        foreach ($tiketCounts as $id_price => $count) {
+            $tiket = "(SELECT event.nm_event,  price.stock_tiket, price.status_bundling, price.beli, price.gratis, price.id_price FROM event,price WHERE price.id_price = $id_price AND event.id_event = price.id_event)";
+            $query = $this->db->query($tiket);
+            foreach ($query->result() as $rows) {
+                $nm_event = $rows->nm_event;
+                $stock_tiket = $rows->stock_tiket - $count;
+                if ($count > $rows->stock_tiket) {
+                    $action = 'stop';
+                    if ($rows->status_bundling == '1') {
+                        $count = '0';
+                    } else {
+                        if ($rows->stock_tiket >= $rows->beli + $rows->gratis) {
+                            $count = $rows->stock_tiket - $rows->gratis;
+                        } else {
+                            $count = '0';
+                        }
+                    }
+
+                    $data_kategori_sold .= "$id_price, ";
+                    $data_count_sold .= "$count, ";
+
+                    $data_kategori .= "$id_price, ";
+                    $data_count .= "$count, ";
+                    // echo $action;
+                } else {
+                    // $action = 'cetak';
+                    if ($rows->status_bundling == '1') {
+                        $count = '1';
+                    } else {
+                        $count = $rows->stock_tiket;
+                    }
+                    $data_kategori .= "$id_price, ";
+                    $data_count .= "$count, ";
+                }
+                echo 'cek_stock_ready';
+                echo "id: $id_price, Count: $count stock: $stock_tiket<br>";
+            }
+        }
+        if ($action == 'cetak') {
+            $this->M_buynow->save_tiket($data_in);
+            $this->cetak_e_tiket($data_in);
+            $this->insert_transaksi($data_in, $payment);
+            $this->update_stock_tiket($tiketCounts);
+        } else {
+            $this->callback_stock_ready($data_kategori, $data_count, $data_kategori_sold, $data_count_sold, $nm_event);
+        }
+    }
+
+    function callback_stock_ready($data_kategori, $data_count, $data_kategori_sold, $data_count_sold, $nm_event)
+    {
+        $data_kategori = $data_kategori;
+        $data_count = $data_count;
+        echo $data_kategori;
+        echo $data_count;
+        $email = $this->input->cookie('session');
+        $nm_event = preg_replace("![^a-z0-9]+!i", " ", $nm_event);
+        $data['event']        = $this->M_detail->m_event($nm_event);
+        $data['customer']        = $this->M_detail->m_customer($email);
+        $data['data_kategori'] = $data_kategori;
+        $data['data_count'] = $data_count;
+        $data['data_kategori_sold'] = $data_kategori_sold;
+        $data['data_count_sold'] = $data_count_sold;
+        $data['content']         = "client/buynow/buynow";
+        $data['script']         = 'client/buynow/buynow_js';
+        $this->load->view($this->template, $data);
+    }
+    function update_stock_tiket($tiketCounts)
+    {
+        foreach ($tiketCounts as $id_price => $count) {
+            $tiket = "(SELECT * FROM price WHERE id_price = $id_price)";
+            $query = $this->db->query($tiket);
+            foreach ($query->result() as $rows) {
+                $stock_tiket = $rows->stock_tiket - $count;
+                // if($stock_tiket < 0){
+                //     $stock_tiket = $rows->stock_tiket
+                // }
+                $this->M_buynow->update_stok_tiket($id_price, $stock_tiket);
+            }
+            echo "id_price: $id_price, Count: $count <br>";
+        }
+    }
+    function cetak_e_tiket($data_in)
+    {
         $no = '1';
         $jmlh = '0';
-        $nominal = '0';
-        foreach ($data as $item) {
+        foreach ($data_in as $item) {
+
             // Access individual elements of $item using their keys
             $id = $no++;
             $jmlh++;
             $email = $item['email'];
             $id_customer = $item['id_customer'];
+            // edit okta
+            $id_event = $item['id_event'];
+            // end edit
             $id_price = $item['id_price'];
             $code_bayar = $item['code_bayar'];
             $code_tiket = $item['code_tiket'];
@@ -101,27 +237,19 @@ class Buynow extends CI_Controller
             $kontak = $item['kontak'];
             $no_identitas = $item['no_identitas'];
             $kota = $item['kota'];
-            if ($id == '1') {
-                $this->M_buynow->update_customer($id_customer, $email, $nama, $tgl_lahir, $gender, $kontak, $no_identitas, $kota);
-            } else {
-            }
-
+            // edit okta
+            $status = $item['status'];
+            // End edit
             $tiket = "(SELECT * FROM price WHERE id_price = $id_price)";
             $query = $this->db->query($tiket);
             foreach ($query->result() as $rows) {
-                $nominal = $rows->harga + $nominal;
                 $kategori_price = $rows->kategori_price;
             };
-
+            // end edit
             require_once(dirname(__FILE__) . '/../libraries/phpqrcode/qrlib.php');
             $tempDir = './upload/qr/';
             $codeContents = $code_tiket;
             QRcode::png($codeContents, $tempDir . 'qr-' . $code_tiket . '.png', QR_ECLEVEL_L, 5);
-
-            // echo '<img src="' . base_url("upload/qr/") . $code . '.png" alt="">';
-            // $html = $this->load->view('client/pdf/pdf', $code, true);
-
-            // $pdf = new TCPDF();
             // create new PDF document
             $pdf = new TCPDF('L', 'mm', 'A6');
             $pdf->AddPage();
@@ -217,28 +345,100 @@ class Buynow extends CI_Controller
             $pdfFilePath = FCPATH . 'upload/pdf' . '/pdf-' . $code_tiket . '.pdf';
             $pdf->Output($pdfFilePath, 'F');
 
-            // $this->M_pdf->saveToDatabase($pdfFilePath);
-
+            // edit okta
             echo 'PDF generated and saved to the database.';
 
-            echo "id: $id,<br>Email: $email,<br> ID Customer: $id_customer,<br> Name: $nama || $code_bayar, etc.";
+            echo "id: $id,<br>Email: $email,<br> ID Customer: $status,<br> Name: $nama || $code_tiket, etc.";
             echo '<br><br>';
-        }
-        $currentDateTime = date('m-d-Y H:i:s');
-        $newDateTime = date('m-d-Y H:i:s', strtotime($currentDateTime . ' +1 hours'));
+            // Increment the count for the id$id_price
 
-        
+
+            //    end edit
+
+        }
+        // } else {
+
+
+        // }
+
+
+    }
+    function insert_transaksi($data_in, $payment)
+    {
+        // Access individual elements of $item using their keys
+        $no = '1';
+        $jmlh = '0';
+        $nominal = '0';
+        // edit okta
+        $counter = 0;
+        // end edit
+        foreach ($data_in as $item) {
+
+            $id = $no++;
+            $jmlh++;
+            $email = $item['email'];
+            $id_customer = $item['id_customer'];
+            // edit okta
+            $id_event = $item['id_event'];
+            // end edit
+            $id_price = $item['id_price'];
+            $code_bayar = $item['code_bayar'];
+            $code_tiket = $item['code_tiket'];
+            $code['code'] = $item['code_tiket'];
+            $nama = $item['nama'];
+            $tgl_lahir = $item['tgl_lahir'];
+            $gender = $item['gender'];
+            $kontak = $item['kontak'];
+            $no_identitas = $item['no_identitas'];
+            $kota = $item['kota'];
+            // edit okta
+            $status = $item['status'];
+            // End edit
+            if ($id == '1') {
+
+                // echo "id: $id,<br>Email: $email,<br> ID Customer: $id_customer,<br> Name: $nama || $code_bayar, etc.";
+                // echo '<br><br>';
+
+                $this->M_buynow->update_customer($id_customer, $email, $nama, $tgl_lahir, $gender, $kontak, $no_identitas, $kota);
+            } else {
+            };
+            // edit okta
+            if ($status == 'free') {
+            } else if ($status == 'bundling') {
+                $counter++;
+                if ($counter == '1') {
+                    $tiket = "(SELECT * FROM price WHERE id_price = $id_price)";
+                    $query = $this->db->query($tiket);
+                    foreach ($query->result() as $rows) {
+                        $nominal = $rows->harga + $nominal;
+                        $kategori_price = $rows->kategori_price;
+                    };
+                }
+            } else {
+                $tiket = "(SELECT * FROM price WHERE id_price = $id_price)";
+                $query = $this->db->query($tiket);
+                foreach ($query->result() as $rows) {
+                    $nominal = $rows->harga + $nominal;
+                    $kategori_price = $rows->kategori_price;
+                };
+            };
+        }
         $data_transaksi = [
             'id_customer' => $id_customer,
+            // edit okta
+            'id_event' => $id_event,
+            // end
             'code_bayar' => $code_bayar,
             'jumlah_tiket' => $jmlh,
             'nominal' => $nominal,
-            'jumlah_tiket' => $jmlh,
             'bank' => $payment,
-            'tgl_transaksi' => $newDateTime,
+            // edit okta
+            'tgl_transaksi' => date('d-m-Y H:i:s'),
+            'status_transaksi' => '0',
+            // end
         ];
         $this->M_buynow->insert_transaksi($data_transaksi);
-        Redirect(base_url('Transaction/CB/') . $code_bayar);
+        // Redirect(base_url('Transaction/CB/') . $code_bayar);
     }
 }
 // code tiket

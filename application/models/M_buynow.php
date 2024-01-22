@@ -6,6 +6,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_buynow extends CI_Model
 {
+
+    function m_cek_stock()
+    {
+        $this->db->select('*');
+        $this->db->from('price');
+        // $this->db->where('id_price', );
+        $query = $this->db->get();
+        $q['result'] = $query->result();
+        $q['num_rows'] = $query->num_rows();
+        return $q;
+    }
+
     public function save_tiket($data)
     {
         $this->db->insert_batch('tiket', $data);
@@ -29,4 +41,12 @@ class M_buynow extends CI_Model
         $this->db->insert('transaksi', $data_transaksi);
         return $this->db->affected_rows();
     }
+    function update_stok_tiket($id_price, $stock_tiket)
+    {
+        $update = $this->db->set('stock_tiket', $stock_tiket)
+        ->where('id_price', $id_price)
+        ->update('price');
+        return $update;
+    }
+
 }

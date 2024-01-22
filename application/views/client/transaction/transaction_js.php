@@ -1,35 +1,35 @@
 <script>
-    // Set the date we're counting down to
-    <?php foreach ($transaksi as $data) { ?>
+    $(document).ready(function() {
+        // Set the date we're counting down to
+        var tgl_transaksi = $('#batas-waktu').val();
+        // var tgl_transaksi = '01-08-2024 11:30:49'
 
-    <?php
-    }
-    ?>
-    var countDownDate = new Date("<?= $data->tgl_transaksi; ?>").getTime();
+        var end = new Date(tgl_transaksi);
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
 
-    // Update the count down every 1 second
-    var x = setInterval(function() {
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
 
-        // Get today's date and time
-        var now = new Date().getTime();
+            document.getElementById("demo").innerHTML = "00:" + minutes + ":" + seconds;
 
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="demo"
-        document.getElementById("demo").innerHTML = "00:" +
-            minutes + ":" + seconds;
-
-        // If the count down is finished, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("demo").innerHTML = "EXPIRED!";
+                delete_tagihan();
+                return;
+            }
         }
-    }, 1000);
+        timer = setInterval(showRemaining, 1000);
+
+        
+    });
 </script>
