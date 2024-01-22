@@ -1,4 +1,4 @@
-<?php $this->load->view('templates/header'); ?>
+<?php $this->load->view('tmpt_admin/header'); ?>
 
 <body data-theme="light" class="font-nunito">
     <div id="wrapper" class="theme-cyan">
@@ -9,18 +9,15 @@
                 <p>Please wait...</p>
             </div>
         </div>
-        <!-- Top navbar div start -->
-        <?php $this->load->view('templates/navbar'); ?>
-        <!-- main left menu -->
-        <?php $this->load->view('templates/sidebar'); ?>
-        <!-- mani page content body part -->
-        <div id="main-content" class="">
+        <?php $this->load->view('tmpt_admin/navbar'); ?>
+        <?php $this->load->view('tmpt_admin/sidebar'); ?>
+        <div id="main-content">
             <div class="container-fluid">
                 <?php $this->load->view($content); ?>
             </div>
         </div>
     </div>
-    <?php $this->load->view('templates/footer'); ?>
+    <?php $this->load->view('tmpt_admin/footer'); ?>
     <?php $this->load->view($script); ?>
-    
+
 </body>
