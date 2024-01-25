@@ -161,7 +161,7 @@
                             <input type="text" id="password" class="form-control" required="">
                             <span class="valid_pass"></span>
                         </div>
-                        <div class="remember">
+                        <div class="remember" hidden>
                             <input type="checkbox" id="remember" name="remember" value="" />
                             <label for="remember"> Remember</label>
                         </div>

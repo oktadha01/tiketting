@@ -15,7 +15,7 @@ $db['default'] = array(
 	// 'username' => 'kina3126_absensi',
 	// 'password' => 'kanpa2020',
 
-	'database' => 'tiketing',
+	'database' => 'tiketting',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

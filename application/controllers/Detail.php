@@ -91,7 +91,7 @@ class Detail extends CI_Controller
         $post_pass = trim($password);
         // echo $post_email, $post_pass;
 
-        $data = $this->M_auth->login($post_email, $post_pass);
+        $data = $this->M_auth->login_customer($post_email, $post_pass);
         $action = $data;
         if ($data == false) {
             // echo 'gagal-login';
@@ -112,13 +112,6 @@ class Detail extends CI_Controller
                 $msg = 'Data cookie berhasil disimpan';
             }
             $this->reg_email($email, $action, $id_customer);
-            // $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->input->post('event'));
-            $cek_transaki        = $this->M_detail->m_cek_transaksi($nm_event);
-            if ($cek_transaki['num_rows'] > 0) {
-                echo 'no';
-            } else {
-                echo 'buy';
-            }
         }
         // redirect('Dashboard');
     }
