@@ -108,7 +108,7 @@ class Transaction extends CI_Controller
                 }
             }
         } else {
-            echo '<span>No transactions</span>';
+            echo '<span>Tidak Ada Transaksi</span>';
         }
     }
     function detail_trans()

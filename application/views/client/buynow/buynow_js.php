@@ -6,6 +6,7 @@
             detail_event();
         });
         <?php foreach ($customer as $data) { ?>
+            $('#email-login').val('<?= $data->email; ?>');
             $('.email-2').val('<?= $data->email; ?>');
             $('.nama-2').val('<?= $data->nm_customer; ?>');
             $('.tgl-lahir-2').val('<?= $data->tgl_lahir; ?>');
@@ -26,9 +27,9 @@
         var get_gender = $('#gender-2').val();
         var get_no_wa = $('.kontak-2').val();
         var get_no_identitas = $('.no-identitas-2').val();
-        var get_kota = $('.kota-2').val()
-        $("#gender-male-" + $(this).val()).prop("checked", false)
-        $("#gender-female-" + $(this).val()).prop("checked", false)
+        var get_kota = $('.kota-2').val();
+        $("#gender-male-" + $(this).val()).prop("checked", false);
+        $("#gender-female-" + $(this).val()).prop("checked", false);
         if ($(this).is(":checked")) {
             // alert($(this).val())
             $('.email-' + $(this).val()).val(get_email);
@@ -117,8 +118,42 @@
             $('#payment').val(val_select_payment);
         });
     });
-    $('#btn-submit').click(function() {
+    $('.notif-call-log').hide();
+    $('#submit').hide();
+    $('#btn-submit-login').click(function() {
+        // alert('ya')
+        $('.show-modal-pass').trigger('click');
 
+    });
+
+    $('#btn-login').click(function() {
+
+        let formData = new FormData();
+        formData.append('email', $('#email-login').val());
+        formData.append('password', $('#password-login').val());
+        formData.append('remember', $('#remember').val());
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo site_url('Auth/insert_password'); ?>",
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                alert(data);
+                $('.notif-call-log').show(200);
+                $('#btn-login, #btn-close-modal').hide();
+                $('#submit').show(200);
+                $('#password-login').attr('readonly');
+            },
+            error: function() {
+                alert("Data Gagal Diupload");
+            }
+        });
+
+    });
+
+    $('#submit, #btn-submit').click(function() {
         $.ajax({
             type: 'POST',
             url: form.attr('action'),
@@ -134,5 +169,6 @@
             }
         });
     });
+
     // END EDIT OKTA
 </script>

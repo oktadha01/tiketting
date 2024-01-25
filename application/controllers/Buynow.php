@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+
 use Carbon\Carbon;
 use Xendit\Invoice;
 
@@ -12,6 +13,7 @@ class Buynow extends CI_Controller
     public $session;
     public $input;
     public $M_pdf;
+    public $output;
 
     var $template = 'tmpt_client/index';
 
@@ -38,6 +40,8 @@ class Buynow extends CI_Controller
             $kode_ = 1;
             $kode_max_     = str_pad($kode_, 4, "0", STR_PAD_LEFT);
         }
+
+
         $customer = $_POST['akun'];
         $email = $_POST['email']; // Ambil data email dan masukkan ke variabel email
         $id_price = $_POST['id_price']; // Ambil data nama dan masukkan ke variabel nama

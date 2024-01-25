@@ -26,7 +26,7 @@ class Auth extends CI_Controller
 		}
 	}
 
-	public function login()
+	public function login_adm()
 	{
 		$this->form_validation->set_rules('email', 'Email', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
@@ -53,6 +53,56 @@ class Auth extends CI_Controller
 			redirect('Auth');
 		}
 	}
+	function insert_password()
+	{
+		$password = $_POST['password'];
+		$email = $_POST['email'];
+		// $remember = $_POST['remember'];
+		// $id_customer = $_POST['akun'];
+
+		if ($_POST) {
+			$email = $_POST['email'];
+		} else {
+			if (isset($_COOKIE['id-customer'])) {
+				$_POST['email'] = $email  = $_COOKIE['id-customer'];
+			}
+		}
+		// Set Cookie 7  hari 
+		if (isset($_POST['remember'])) {
+			setcookie('session', $_POST['email'], strtotime('+7 days'), '/');
+			$msg = 'Data cookie berhasil disimpan';
+			echo $msg . '--' . $email;
+		}
+		// $this->M_auth->m_insert_password($password, $email);
+	}
+	function login()
+	{
+		// $post_email = trim($email);
+		// $post_pass = trim($password);
+		// // echo $post_email, $post_pass;
+
+		// $data = $this->M_auth->login_customer($post_email, $post_pass);
+		// $action = $data;
+		// if ($data == false) {
+		// 	echo 'gagal-login';
+		// 	$this->session->set_flashdata('result_login', '<br>Email atau Password yang anda masukkan salah.');
+		// 	redirect('Auth');
+		// } else {
+		// 	// echo 'login-berhasil ';
+		// 	if ($_POST) {
+		// 		$id_customer = $data->email;
+		// 	} else {
+		// 		if (isset($_COOKIE['id-customer'])) {
+		// 			$data->email = $id_customer  = $_COOKIE['id-customer'];
+		// 		}
+		// 	}
+		// 	// Set Cookie 7  hari 
+		// 	if (isset($_POST['remember'])) {
+		// 		setcookie('session', $data->email, strtotime('+7 days'), '/');
+		// 		$msg = 'Data cookie berhasil disimpan';
+		// 	}
+		// }
+	}
 
 	// function logout()
 	// {
@@ -63,7 +113,7 @@ class Auth extends CI_Controller
 	function logout()
 	{
 		// if (isset($_POST['hapus_cookie'])) {
-			setcookie('session', '', 1, '/');
+		setcookie('session', '', 1, '/');
 		// }
 	}
 	function logout_adm()

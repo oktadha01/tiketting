@@ -6,6 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_detail extends CI_Model
 {
+
     function m_cek_transaksi($nm_event, $id_customer)
     {
         $this->db->select('transaksi.id_event, transaksi.id_customer');

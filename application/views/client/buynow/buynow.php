@@ -338,23 +338,6 @@
                     <h4 class="font-weight-bold">Detail Pembayaran</h4>
                 </div>
                 <div class="card-body pt-2 pb-2" style="background: #80808012;">
-                    <div class="row bg-white">
-                        <div class="col">
-                            <label>pilih metode pembayaran</label>
-                            <div class="form-group">
-                                <select type="text" id="select-metode" required="" class="form-control">
-                                    <option value=""></option>
-                                    <option value="bank transfer">Bank Transfer</option>
-                                    <option value="qris">QRIS</option>
-                                    <option value="ewallet">Ewallet</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row row-payment bg-white">
-
-                    </div>
-                    <input type="text" id="payment" name="payment" value="" hidden>
                     <?php
                     $arr_kategori = array_map('trim', explode(",", $data_kategori));
 
@@ -387,7 +370,7 @@
                                     </div>
                                 </div>
                     <?php
-                            } 
+                            }
                         }
                     }
                     ?>
@@ -401,12 +384,61 @@
                     </div>
                     <div class="row">
                         <!-- <div class="col"> -->
-                        <button id="btn-submit" class="col-12 btn bg-w-orange">Bayar</button>
+                        <?php if ($this->input->cookie('session') == '') { ?>
+                            <button type="button" id="btn-submit-login" class="col-12 btn bg-w-orange">Bayar</button>
+                        <?php
+                        } else { ?>
+                        <?php
+                        } ?>
+                        <button type="" id="btn-submit" class="col-12 btn bg-w-orange">Bayar</button>
                         <!-- </div> -->
                     </div>
                 </div>
             </div>
         <?php } else {
         } ?>
+        <?php if ($this->input->cookie('session') == '') { ?>
+            <div class="modal fade" id="modal-pass" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="title" id="defaultModalLabel">Password</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group" hidden>
+                                        <label>Email</label>
+                                        <input type="email" id="email-login" name="email-login" class="form-control" required="">
+                                        <span class="valid_info"></span>
+
+                                    </div>
+                                    <div id="form-pass" class="form-group">
+                                        <label>Password</label>
+                                        <input type="text" id="password-login" name="password-login" class="form-control" required="">
+                                    </div>
+                                    <div class="remember" hidden>
+                                        <input type="checkbox" id="remember" name="remember" value="" checked="true">
+                                        <label for="remember"> Remember</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col" style="text-align-last: center;display: grid;">
+                                    <span class="notif-call-log bg-w-blue text-light" style="border-radius: 3px;">Passwod akun berhail di tambahkan</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="" id="submit" class="btn btn-primary">Oke</button>
+                            <button type="button" id="btn-login" class="btn btn-primary">Next</button>
+                            <button type="button" id="btn-close-modal" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
     </form>
 </section>
+<!-- no delete trigger-->
+<button class="btn show-modal-pass" data-toggle="modal" data-target="#modal-pass"></button>

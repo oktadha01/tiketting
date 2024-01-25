@@ -86,7 +86,7 @@
         });
 
         $('#form-pass').hide();
-        $('.remember').hide();
+        // $('.remember').hide();
         $('#remember').click(function() {
             if ($(this).is(":checked")) {
                 $(this).val('1')
@@ -186,8 +186,10 @@
                     // alert(data);
                     if (data == 'show') {
                         $('#form-pass').show();
-                        $('.remember').show();
+                        // $('.remember').show();
                         $('#btn-next').text('submit');
+                        $("#remember").prop("checked", true);
+
                     } else if (data == 'gagal-login') {
                         $('#password').addClass('invalid')
                         $('.valid_pass').text('Wrong Password !!')
@@ -203,7 +205,7 @@
                     }
                     $('#email').on('keypress', function() {
                         $('#form-pass').hide();
-                        $('.remember').hide().prop("checked", false).val('');
+                        // $('.remember').hide().prop("checked", false).val('');
                         $('#btn-next').text('Next');
                         $('#password').removeClass('invalid').val('')
                         $('.valid_pass').text('')
