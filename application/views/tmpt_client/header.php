@@ -25,12 +25,12 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/multi-select/css/multi-select.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/toastr/toastr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    
-    
+
+
+
     <!-- MAIN Project CSS file -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/main.css">
-    
+
     <!-- add plugin -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
@@ -45,7 +45,7 @@
     <script src="<?= base_url('assets'); ?>/bundles/libscripts.bundle.js"></script>
     <script src="<?= base_url('assets'); ?>/bundles/vendorscripts.bundle.js"></script>
     <script src="<?= base_url('assets'); ?>/bundles/c3.bundle.js"></script>
-    
-    
-    
+
+
+
 </head>

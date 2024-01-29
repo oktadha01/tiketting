@@ -10,6 +10,7 @@ class M_tiket extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('customer');
+        $this->db->join('transaksi', 'transaksi.id_customer = customer.id_customer');
         $this->db->join('tiket', 'tiket.id_customer = customer.id_customer');
         $this->db->join('price', 'price.id_price = tiket.id_price');
         $this->db->where('customer.email', $email);
@@ -19,7 +20,7 @@ class M_tiket extends CI_Model
         $q['num_rows'] = $query->num_rows();
         return $q;
     }
-    
+
     function m_detail_tiket($email, $code_tiket)
     {
         // $bulan = '10';

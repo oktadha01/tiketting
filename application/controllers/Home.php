@@ -10,15 +10,15 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // $this->load->model('M_dashboard');
+        $this->load->model('M_home');
     }
     function index()
     {
-        $data['tittle']          = 'Dashboard';
-        // $data['absen']        = $this->M_dashboard->m_absen();
-        // $data['izin']        = $this->M_dashboard->m_izin();
+        $data['tittle']          = 'Wisdil.com';
+        $data['event_data']      = $this->M_home->data_event();
+        $data['banner']          = $this->M_home->data_banner();
         $data['content']         = 'client/home/home';
-        $data['script']         = 'client/home/home_js';
+        $data['script']          = 'client/home/home_js';
         $this->load->view($this->template, $data);
     }
 }

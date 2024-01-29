@@ -20,7 +20,7 @@ class Transaction extends CI_Controller
     {
         $email = $this->input->cookie('session');
         $code_bayar = $this->uri->segment(3);
-        $data['tittle']          = 'Detail Event';
+        $data['tittle']          = 'Status Pembayaran';
         $data['script1']          = 'Detail Event';
         $data['transaksi']        = $this->M_transaksi->m_paynow($email, $code_bayar);
         $data['content']         = 'client/transaction/transaction';
@@ -54,12 +54,35 @@ class Transaction extends CI_Controller
                     $this->M_transaksi->m_delete_transaksi_tiket($code_bayar);
                     echo '<span>No transactions</span>';
                 } else {
+                    // code status
+                    $status_transaksi = '';
+                        if ($data_transaksi->status_transaksi == '0') {
+                            $status_transaksi = '<td class="font-weight-medium ml-0"><div class="badge badge-info shadow l-parpl text-white rounded ">Panding</div></td>';
+                        } elseif ($data_transaksi->status_transaksi == '1') {
+                            $status_transaksi = '<td class="font-weight-medium"><div class="badge badge-info shadow l-green text-dark rounded">Lunas</div></td>';
+                        }
+
+                    // code tombol
+                        if ($data_transaksi->status_transaksi == '0') {
+                            $actionButton = '<div class="col-6">
+                                                <button type="button" class="col-12 btn btn-sm bg-w-blue text-light btn-detail-trans-m" data-cb="' . $data_transaksi->code_bayar . '" data-toggle="modal" data-target="#detail-transaksi">Detail</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <a href="' . base_url('Transaction/CB/') . $data_transaksi->code_bayar . '">
+                                                    <button type="button" class="col-12 btn btn-sm bg-w-orange">Pay Now</button>
+                                                </a>
+                                            </div>';
+                        } elseif ($data_transaksi->status_transaksi == '1') {
+                            $actionButton = ' <div class="col-6">
+                                                <button type="button" class="col-12 btn btn-sm bg-w-blue text-light btn-detail-trans-m" data-cb="' . $data_transaksi->code_bayar . '" data-toggle="modal" data-target="#detail-transaksi">Detail</button>
+                                              </div>';
+                        }
 
                     echo '<div class="card box-shadow">
                     <div class="card-body">
                     <div class="row">
                         <div class="col-lg-1 col-md-2 col-5">
-                            <img src="' . base_url("assets") . '/images/poster.png" class="img-fluid size-poster">
+                            <img src="'.base_url('upload/event/') .$data_transaksi->poster.'" class="img-fluid size-poster">
                         </div>
                         <div class="col-lg-8 col-md-10 col-7 p-table-inv">
                             <div class="row">
@@ -84,27 +107,19 @@ class Transaction extends CI_Controller
                                 <div class="col-lg-2">
                                     <div style="display:grid;">
                                         <span class="smal">Status</span>
-                                        <span class="font-weight-bold">Expired</span>
+                                        <span class="font-weight-bold"> '.$status_transaksi.'</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 p-table-inv">
                             <hr class="hr">
-                            <div class="row">
-                                <div class="col-6">
-                                    <button type="button" class="col-12 btn btn-sm bg-w-blue text-light btn-detail-trans-m" data-cb="' . $data_transaksi->code_bayar . '" data-toggle="modal" data-target="#detail-transaksi">Detail</button>
-                                </div>
-                                <div class="col-6">
-                    <a href="' . base_url('Transaction/CB/') . $data_transaksi->code_bayar . '">
-                                        <button type="button" class="col-12 btn btn-sm bg-w-orange">Pay Now</button>
-                                    </a>
-                                    </div>
-                                    </div>
+                            <div class="row">'.$actionButton.'</div>
+                            </div>
                         </div>
-                        </div>
-                        </div>
-                        </div>';
+                    </div>
+                </div>
+            </div>';
                 }
             }
         } else {
@@ -114,37 +129,42 @@ class Transaction extends CI_Controller
     function detail_trans()
     {
         $code_bayar = $_POST['code_bayar'];
-        $data['detail_tiket']        = $this->M_transaksi->m_detail_tiket($code_bayar);
+        $data['detail_tiket']                 = $this->M_transaksi->m_detail_tiket($code_bayar);
         $data['detail_tiket_bundling']        = $this->M_transaksi->m_detail_tiket_bundling($code_bayar);
-        $data['detail_trans']        = $this->M_transaksi->m_detail_trans($code_bayar);
-        $data['detail_buyer']        = $this->M_transaksi->m_detail_buyer($code_bayar);
-        echo '<span class="font-weight-bold">Event Details</span>
-        <div class="card box-shadow">
-            <div class="card-body p-1" style="    background: #00000008;">
-                <ul class="mb-0" style="display: flex;">
-                    <li>
-                        <img src="' . base_url('assets') . '/images/poster.png" alt="" class="img-fluid" style="width: 5rem;border-radius: 6px;">
-                    </li>
-                    <li>
-                        <table class="ml-3">
-                            <thead>
-                                <tr>
-                                    <th>Kanpa Fest</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <p class="small mb-0"><i class="fa fa-calendar"></i> 10-10-2024 | 19:00</p>
-                                        <p class="small mb-0"><i class="fa fa-map-marker"></i> Sampokong | Kota Semarang</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </li>
-                </ul>
-            </div>
-        </div>';
+        $data['detail_trans']                 = $this->M_transaksi->m_detail_trans($code_bayar);
+        $data['detail_buyer']                 = $this->M_transaksi->m_detail_buyer($code_bayar);
+        $data['detail_event']                 = $this->M_transaksi->m_detail_event($code_bayar);
+
+        echo '<span class="font-weight-bold">Event Details</span>';
+        foreach ($data['detail_event'] as $data_event) {
+            echo '<div class="card box-shadow">
+                    <div class="card-body p-1" style="background: #00000008;">
+                        <ul class="mb-0" style="display: flex;">
+                            <li>
+                                <img src="' . base_url('upload/event/') . $data_event->poster . '" class="img-fluid" style="width: 5rem; border-radius: 6px;">
+                            </li>
+                            <li>
+                                <table class="ml-3">
+                                    <thead>
+                                        <tr>
+                                            <th>' . $data_event->nm_event . '</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p class="small mb-0"><i class="fa fa-calendar"></i> ' . $data_event->tgl_event . ' | ' .  $data_event->jam_event . '</p>
+                                                <p class="small mb-0"><i class="fa fa-map-marker"></i> ' .  $data_event->lokasi . '</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                </div>';
+        }
+
         echo '<span class="font-weight-bold">Ticket Details</span>';
         echo '<div class="card box-shadow">
             <div class="card-body">
@@ -192,7 +212,7 @@ class Transaction extends CI_Controller
             </div>
             <div class="col-lg-6 col-md-6 col-6">
             <p class="small mb-0">Payment</p>
-            <p id="text-file" class="medium mb-0 font-weight-bold">BCA</p>
+            <p id="text-file" class="medium mb-0 font-weight-bold">'. $data_trans->bank .'</p>
             </div>
             <div class="col-lg-6 col-md-6 col-6">
             <p class="small mb-0">Total</p>
@@ -254,7 +274,25 @@ class Transaction extends CI_Controller
             </div>
         </div>
         ';
-                echo '<input type="text" id="del-code_transaksi" value="' . $code_bayar . '" hidden>';
+             // code tombol modal footer
+                    if ($data_event->status_transaksi == '0') {
+                        $modalButton = '<div class="row">
+                                            <div class="col pl-0">
+                                                <button id="" type="button" class="btn bg-w-orange btn-btl-trans" data-dismiss="modal">Batalkan
+                                                    Transaksi</button>
+                                            </div>
+                                            <div class="col pr-0">
+                                                <a href="' . base_url('Transaction/CB/') . $data_event->code_bayar . '">
+                                                    <button type="button" class="btn bg-w-blue text-light float-right">Bayar Sekarang</button>
+                                                </a>
+                                            </div>
+                                        </div>';
+                    } elseif ( $data_event->status_transaksi == '1') {
+                        $modalButton = '';
+                    }
+
+                    echo ' <div class="modal-footer" style="display: block;">'.$modalButton.'</div>';
+                    echo '<input type="text" id="del-code_transaksi" value="' . $code_bayar . '" hidden>';
             }
         }
     }
@@ -265,7 +303,6 @@ class Transaction extends CI_Controller
         $code_bayar = $this->input->post('code-bayar');
         $data['tiket'] = $this->M_transaksi->m_select_tiket($code_bayar);
         foreach ($data['tiket'] as $file) {
-            // echo 'id:' . $file->id_price;
             $id_price = $file->id_price;
 
             if (isset($tiketCounts[$id_price])) {
@@ -292,5 +329,3 @@ class Transaction extends CI_Controller
         }
     }
 }
-// for ($i = 0; $i < 3; $i++) {
-// }

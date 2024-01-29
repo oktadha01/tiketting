@@ -67,13 +67,13 @@ class Auth extends CI_Controller
 				$_POST['email'] = $email  = $_COOKIE['id-customer'];
 			}
 		}
-		// Set Cookie 7  hari 
+		// Set Cookie 7  hari
 		if (isset($_POST['remember'])) {
 			setcookie('session', $_POST['email'], strtotime('+7 days'), '/');
 			$msg = 'Data cookie berhasil disimpan';
 			echo $msg . '--' . $email;
 		}
-		// $this->M_auth->m_insert_password($password, $email);
+
 	}
 	function login()
 	{
@@ -96,7 +96,7 @@ class Auth extends CI_Controller
 		// 			$data->email = $id_customer  = $_COOKIE['id-customer'];
 		// 		}
 		// 	}
-		// 	// Set Cookie 7  hari 
+		// 	// Set Cookie 7  hari
 		// 	if (isset($_POST['remember'])) {
 		// 		setcookie('session', $data->email, strtotime('+7 days'), '/');
 		// 		$msg = 'Data cookie berhasil disimpan';

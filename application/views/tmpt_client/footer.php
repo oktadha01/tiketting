@@ -30,10 +30,10 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-lg-3 text-center">
-                <a class="text-light" href="<?= base_url('Syarat_ketentuan'); ?>">
-                    <h5>Syarat dan ketentuan</h5>
-                </a>
+            <div class="col-lg-3 text-center"><a class="text-light" href="<?= base_url('Syarat_ketentuan'); ?>">
+                    <a class="text-light" href="">
+                        <h5>Syarat dan ketentuan</h5>
+                    </a>
             </div>
             <div class="col-lg-3 text-center">
                 <a class="text-light" href="">
@@ -112,7 +112,8 @@
 <script src="<?= base_url('assets'); ?>/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/jquery-inputmask/jquery.inputmask.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/jquery.maskedinput/jquery.maskedinput.min.js"></script>
-<script src="<?= base_url('assets'); ?>/vendor/multi-select/js/jquery.multi-select.js"></script> <!-- Multi Select Plugin Js -->
+<script src="<?= base_url('assets'); ?>/vendor/multi-select/js/jquery.multi-select.js"></script>
+<!-- Multi Select Plugin Js -->
 <script src="<?= base_url('assets'); ?>/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/toastr/toastr.js"></script>
@@ -155,5 +156,5 @@
             });
             link.classList.add("is-active");
         });
-    });
+    })
 </script>

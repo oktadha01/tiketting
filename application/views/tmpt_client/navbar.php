@@ -24,28 +24,28 @@
                     </a>
                 </li> -->
                 <li class="menu-item dropdown show">
-                    <a href="#" class="menu-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i>
-                        <span class="menu-name">Akun</span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <!-- <div class="dropdown-item" style="display: contents;"> -->
-                        <?php
-                        $id_customer = $this->input->cookie('session');
-                        $service = "(SELECT * FROM customer WHERE email = '$id_customer')";
-                        $query = $this->db->query($service);
-                        foreach ($query->result() as $rows) {
-                        ?>
+                <a href="#" class="menu-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="menu-name">Akun</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <!-- <div class="dropdown-item" style="display: contents;"> -->
+                    <?php
+                    $id_customer = $this->input->cookie('session');
+                    $service = "(SELECT * FROM customer WHERE email = '$id_customer')";
+                    $query = $this->db->query($service);
+                    foreach ($query->result() as $rows) {
+                    ?>
 
-                            <span class="dropdown-text">Hello,</span>
-                            <h6 class="dropdown-text"><?= $rows->nm_customer; ?></h6>
-                        <?php } ?>
-                        <!-- </div> -->
-                        <hr class="m-0">
-                        <a class="dropdown-item" href="#">Edit Profil</a>
-                        <a class="dropdown-item" href="#">Ganti Passwor</a>
-                        <a class="dropdown-item text-danger" href="#">Logout</a>
-                    </div>
+                        <span class="dropdown-text">Hello,</span>
+                        <h6 class="dropdown-text"><?= $rows->nm_customer; ?></h6>
+                    <?php } ?>
+                    <!-- </div> -->
+                    <hr class="m-0">
+                    <a class="dropdown-item" href="#">Edit Profil</a>
+                    <a class="dropdown-item" href="#">Ganti Passwor</a>
+                    <a class="dropdown-item text-danger" href="#">Logout</a>
+                </div>
                 </li>
             </ul>
         </div>
