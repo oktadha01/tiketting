@@ -12,20 +12,24 @@ class Callback extends CI_Controller
     }
 
     function callback_invoice() {
+
         xendit_loaded();
         $this->db->trans_begin();
+
+        $xenditXCallbackToken = 'xIgnYLs9PRcUYjZzYJc1EZUP5Aj3W7dTrCH6AHJOBJ67g7Zl';
+
         try {
-            $rawRequest          = file_get_contents("php://input");
-            $request             = json_decode($rawRequest, true);
+            $rawRequestInput = file_get_contents("php://input");
+            $request         = json_decode($rawRequestInput, true);
 
             $_id                 = $request['id'];
             $_externalId         = $request['external_id'];
             $_userId             = $request['user_id'];
             $_status             = $request['status'];
-            $_paidAmount         = $request['paid_amount'];
             $_paidAt             = $request['paid_at'];
             $_paymentChannel     = $request['payment_channel'];
             $_paymentDestination = $request['payment_destination'];
+            $_givenNames         = $request['surname'];
 
             $status = '0';
             if ($_status == 'PAID') {
@@ -35,31 +39,29 @@ class Callback extends CI_Controller
                 $datetime = $date_convert->format('Y-m-d H:i:s');
 
                 $this->db->set('bank', $_paymentChannel)
-                             ->set('tgl_byr', $datetime)
-                             ->set('status_transaksi', $status)
-                             ->where('code_bayar', $_externalId)
-                             ->update('transaksi');
-
-            $code_bayar = $_externalId;
-            redirect(base_url('Transaction/CB/') . $code_bayar);
+                         ->set('tgl_byr', $datetime)
+                         ->set('status_transaksi', $status)
+                         ->where('code_bayar', $_externalId)
+                         ->update('transaksi');
 
             } else if ($_status == 'EXPIRED') {
 
                 $this->db->where('code_bayar', $_externalId)->delete('tiket');
                 $this->db->where('code_bayar', $_externalId)->delete('transaksi');
 
-                // Hapus file PDF
-                $pdfFileName = 'pdf-' . $_externalId . '.pdf';
-                $pdfFilePath = FCPATH . 'upload/pdf/' . $pdfFileName;
-                if (file_exists($pdfFilePath)) {
-                    unlink($pdfFilePath);
-                }
+                $tiketCounts = array();
+                $code_bayar = $this->input->post('code-bayar');
+                $data['tiket'] = $this->M_transaksi->m_select_tiket($code_bayar);
+                foreach ($data['tiket'] as $file) {
+                    $id_price = $file->id_price;
 
-                // Hapus file QR
-                $qrFileName = 'pdf-' . $_externalId . '.png';
-                $qrFilePath = FCPATH . 'upload/qr/' . $qrFileName;
-                if (file_exists($qrFilePath)) {
-                    unlink($qrFilePath);
+                    if (isset($tiketCounts[$id_price])) {
+                        $tiketCounts[$id_price]++;
+                    } else {
+                        $tiketCounts[$id_price] = 1;
+                    }
+                    unlink('./upload/pdf/pdf-' . $file->code_tiket . '.pdf');
+                    unlink('./upload/qr/qr-' . $file->code_tiket . '.png');
                 }
 
             }
@@ -91,69 +93,6 @@ class Callback extends CI_Controller
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
-    }
-
-    function callback_FVA() {
-        xendit_loaded();
-        $this->db->trans_begin();
-        $xenditXCallbackToken = 'xIgnYLs9PRcUYjZzYJc1EZUP5Aj3W7dTrCH6AHJOBJ67g7Zl';
-
-        try {
-            $rawRequest          = file_get_contents("php://input");
-            $request             = json_decode($rawRequest, true);
-
-            $_id                 = $request['id'];
-            $_externalId         = $request['external_id'];
-            $_status             = $request['status'] ?? 'default_fva_value';
-            $_code               = $request['merchant_code'];
-
-            if ($_status == 'COMPLETED') {
-                $status = 'LUNAS';
-
-                $this->db->set('status_transaksi', $status)
-                    ->set('tes_status', $_code)
-                    ->where('code_bayar', $_externalId)
-                    ->where('status_transaksi', 'PENDING')
-                    ->update('transaksi');
-
-                $transfer_exists   = $this->db->get_where('transaksi', [
-                    'code_bayar' => $_externalId
-                ])->num_rows();
-
-            } else if ($_status == 'EXPIRED') {
-                $status = 'Expired';
-                $this->db->where('code_bayar', $_externalId)->delete('tiket');
-            }
-                $this->db->trans_commit();
-
-            $response = [
-                'status'  => true,
-                'message' => 'Permintaan Diterima',
-                'detail'  => $request,
-            ];
-
-        } catch (Exception $e) {
-            $this->db->trans_rollback();
-            return $this->output->set_content_type('application/json')
-                ->set_output(json_encode([
-                    'status' => false,
-                    'errors' => [
-                        'message' => $e->getMessage(),
-                        'type' => 'input',
-                    ],
-                    'detail' => [],
-                ]));
-        }
-        $this->output
-            ->set_content_type('application/json')
-            ->set_output(json_encode($response));
-    }
-
-    function callback_ewallet()
-    {
-        $rawRequestInput = file_get_contents("php://input");
-        $arrRequestInput = json_decode($rawRequestInput, true);
-        print_r($arrRequestInput);
     }
 
 }

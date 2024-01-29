@@ -20,11 +20,12 @@ class Buynow extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('tcpdf');
+        $this->load->library('Tcpdf');
         $this->load->model('M_buynow');
         $this->load->model('M_detail');
         $this->load->model('M_pdf');
     }
+
     function checkout()
     {
         $this->db->select("RIGHT(tiket.code_tiket, 4) as kode", FALSE);
@@ -43,22 +44,20 @@ class Buynow extends CI_Controller
 
 
         $customer = $_POST['akun'];
-        $email = $_POST['email']; // Ambil data email dan masukkan ke variabel email
-        $id_price = $_POST['id_price']; // Ambil data nama dan masukkan ke variabel nama
+        $email = $_POST['email']; 
+        $id_price = $_POST['id_price']; 
         $id_event = $_POST['id_event'];
-        $nama = $_POST['nama']; // Ambil data nama dan masukkan ke variabel nama
-        $tgl_lahir = $_POST['tgl_lahir']; // Ambil data tgl_lahir dan masukkan ke variabel tgl_lahir
-        $gender = $_POST['gender']; // Ambil data gender dan masukkan ke variabel gender
-        $kontak = $_POST['kontak']; // Ambil data gender dan masukkan ke variabel gender
-        $no_identitas = $_POST['no_identitas']; // Ambil data gender dan masukkan ke variabel gender
-        $kota = $_POST['kota']; // Ambil data gender dan masukkan ke variabel gender
-        $code = $_POST['code']; // Ambil data gender dan masukkan ke variabel gender
-        $payment = $_POST['payment']; // Ambil data gender dan masukkan ke variabel gender
-        // edit okta
+        $nama = $_POST['nama']; 
+        $tgl_lahir = $_POST['tgl_lahir']; 
+        $gender = $_POST['gender']; 
+        $kontak = $_POST['kontak']; 
+        $no_identitas = $_POST['no_identitas']; 
+        $kota = $_POST['kota']; 
+        $code = $_POST['code']; 
+        $payment = isset($_POST['payment']) ? $_POST['payment'] : 'default_value';
         $status = $_POST['status'];
-        // end edit
         $data_in = array();
-        // edit okta
+        
         $index = 0; // Set index array awal dengan 0
         foreach ($email as $dataemail) { // Kita buat perulangan berdasarkan email sampai data terakhir
             $tiket = "(SELECT * FROM price WHERE id_price = '$id_price[$index]')";
@@ -171,8 +170,7 @@ class Buynow extends CI_Controller
                     $data_kategori .= "$id_price, ";
                     $data_count .= "$count, ";
                 }
-                echo 'cek_stock_ready';
-                echo "id: $id_price, Count: $count stock: $stock_tiket<br>";
+
             }
         }
         if ($action == 'cetak') {
@@ -203,6 +201,7 @@ class Buynow extends CI_Controller
         $data['script']         = 'client/buynow/buynow_js';
         $this->load->view($this->template, $data);
     }
+
     function update_stock_tiket($tiketCounts)
     {
         foreach ($tiketCounts as $id_price => $count) {
@@ -215,9 +214,9 @@ class Buynow extends CI_Controller
                 // }
                 $this->M_buynow->update_stok_tiket($id_price, $stock_tiket);
             }
-            echo "id_price: $id_price, Count: $count <br>";
         }
     }
+
     function cetak_e_tiket($data_in)
     {
         $no = '1';
@@ -350,24 +349,10 @@ class Buynow extends CI_Controller
             $pdfFilePath = FCPATH . 'upload/pdf' . '/pdf-' . $code_tiket . '.pdf';
             $pdf->Output($pdfFilePath, 'F');
 
-            // edit okta
-            echo 'PDF generated and saved to the database.';
-
-            echo "id: $id,<br>Email: $email,<br> ID Customer: $status,<br> Name: $nama || $code_tiket, etc.";
-            echo '<br><br>';
-            // Increment the count for the id$id_price
-
-
-            //    end edit
-
         }
-        // } else {
-
-
-        // }
-
 
     }
+
     function insert_transaksi($data_in, $payment)
     {
         // Access individual elements of $item using their keys
@@ -400,10 +385,6 @@ class Buynow extends CI_Controller
             $status = $item['status'];
             // End edit
             if ($id == '1') {
-
-                // echo "id: $id,<br>Email: $email,<br> ID Customer: $id_customer,<br> Name: $nama || $code_bayar, etc.";
-                // echo '<br><br>';
-
                 $this->M_buynow->update_customer($id_customer, $email, $nama, $tgl_lahir, $gender, $kontak, $no_identitas, $kota);
             } else {
             };
@@ -435,18 +416,23 @@ class Buynow extends CI_Controller
         try {
 
             // code xendit
+            $successRedirectUrl = base_url('Transaction/CB/') . $code_bayar;
+
             $data_faktur = [
                 "external_id"       => $code_bayar,
-                "description"       => "Pembayaran Tiket Wisdil $code_bayar $nama",
+                "description"       => "Pembayaran Tiket Wisdil Kode Bayar: $code_bayar Kode Tiket: $code_tiket nama:$nama",
                 "amount"            => preg_replace('/[Rp. ]/', '', $nominal),
                 'invoice_duration'  => 3600,
                 'customer' => [
                     'given_names'   => $nama,
-                    'surname'       => $code_bayar,
-                    'mobile_number' => $code_tiket,
+                    'surname'       => $code_tiket,
                     'mobile_number' => $kontak,
                 ],
+
+                'success_redirect_url' => $successRedirectUrl,
+                'failure_redirect_url' => "http://localhost:8080/tiketting/Buynow/failure",
             ];
+
 
             $tgl_trx = date('d-m-Y H:i:s');
             $createInvoice  = Invoice::create($data_faktur);
@@ -463,15 +449,27 @@ class Buynow extends CI_Controller
                 'url_payment'       => $payment_url,
 
             ];
+
             $this->M_buynow->insert_transaksi($data_transaksi);
             $this->db->trans_commit();
 
-            redirect($payment_url);
-            // Redirect(base_url('Transaction/CB/') . $code_bayar);
+            $response = [
+                'status' => true,
+                'message' => 'Success',
+                'data' => [
+                    'payment_url' => $payment_url,
+                ],
+            ];
 
+            $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+
+            redirect($payment_url);
 
         } catch (\Xendit\Exceptions\ApiException $e) {
             $this->db->trans_rollback();
+
             $response = [
                 'status'       => false,
                 'errors'       => [
@@ -480,6 +478,11 @@ class Buynow extends CI_Controller
                 ],
                 'detail'       => [],
             ];
+
+            $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+
         } catch (Exception $e) {
             $this->db->trans_rollback();
             $response = [
@@ -495,18 +498,16 @@ class Buynow extends CI_Controller
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
     }
+
+    public function failure()
+    {
+        echo "Pembayaran Gagal";
+
+        echo '<script>
+                setTimeout(function(){
+                    window.location.href = "' . base_url('detail/event/kanpa-fest') . '";
+                }, 3000);
+            </script>';
+    }
+
 }
-
-
-// code tiket
-// id_event-id_customer-id_price-tgl-code
-// 1           1           1           3
-// id_event-id_customer-id_price-tgl-code
-// 1           1           1           2
-
-// code bayar
-// id_event-bulan_tgl_tahun-id_customer
-// 1         10-10-2023           1
-
-// date('l, d-m-Y')
-// <img src="<?= base_url('upload/qr/');

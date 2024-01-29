@@ -426,7 +426,7 @@ html::-webkit-scrollbar,
 }
 
 .font-size-tit {
-	font-size: xx-large;
+	font-size: x-large;
 }
 
 .space-content-kategori,
@@ -536,6 +536,47 @@ html::-webkit-scrollbar,
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
 
+
+.kategori-event {
+    transition: transform 0.3s ease;
+}
+
 .kategori-event:hover {
-	background: #FECD0A;
+    transform: scale(1.1);
+}
+
+/* footer */
+footer {
+	padding: 0 30px;
+	padding-bottom: 15px;
+	position: relative;
+	right: 0;
+}
+
+.siz-log-foo {
+	height: auto;
+	width: 8rem;
+	background: white;
+	margin: 2px 0px;
+	padding: 2px 2px;
+}
+
+.rounded-center {
+	border-radius: 8px;
+	align-self: center;
+	text-align: -webkit-center;
+}
+
+.siz-log-pay {
+	height: auto;
+	width: 5rem;
+	padding: 0px 8px;
+}
+
+.bg-size-icon {
+	font-size: xx-large;
+	padding: 2px 4px;
+	border-radius: 9px;
+	color: #0047ba;
+	box-shadow: 0px 2px 6px 0px rgb(255 255 255)
 }

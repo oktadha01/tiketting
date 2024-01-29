@@ -8,9 +8,9 @@
     <!-- <title>:: Iconic :: Home</title> -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iconic Bootstrap 4.5.0 Admin Template">
-    <meta name="author" content="WrapTheme, design by: ThemeMakker.com">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Wisdil adalah platform jual tiket & penyedia sistem event online">
+    <meta name="author" content="Wisdil.com, design by: Kanpa.co.id">
+    <link href="<?php echo base_url('assets'); ?>/images/LOGO-WISDIL.jpg" rel="icon">
 
     <!-- VENDOR CSS -->
     <link rel="stylesheet"
