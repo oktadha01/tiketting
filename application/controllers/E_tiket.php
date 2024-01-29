@@ -19,45 +19,56 @@ class E_tiket extends CI_Controller
 
     function data()
     {
-        $email = $this->input->cookie('session');
-        $tiket        = $this->M_tiket->m_data_tiket($email);
+        $email                  = $this->input->cookie('session');
+        $tiket                  = $this->M_tiket->m_data_tiket($email);
+
         $num_rows_tiket = $tiket['num_rows'];
         $no = 1;
+
         if ($num_rows_tiket > 0) {
             foreach ($tiket['result'] as $data_tiket) {
-                echo '<div class="card">
-                <div class="card-body">
-                <div class="row">
-                <div class="col-lg-1 col-md-1 col-2">
-                    <span class="num-tiket">' . $no++ . '</span>
-                </div>
-                <div class="col-lg-2 col-md-2 col-5">
-                <p class="small mb-0">Name</p>
-                    <p class="medium mb-0 font-weight-bold">' . $data_tiket->nama . '</p>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-5">
-                    <p class="small mb-0">Ticket</p>
-                    <p class="medium mb-0 font-weight-bold">' . $data_tiket->kategori_price . '</p>
-                    </div>
-                <div class="code-tiket col-lg-3 col-md-3 col-3">
-                <p class="small mb-0">Code Ticket</p>
-                    <p class="medium mb-0 font-weight-bold">' . $data_tiket->code_tiket . '</p>
-                </div>
-                <div class="col-lg-4 col-md-5 col-12">
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-info col-12 detail-e-tiket" data-toggle="modal" data-target="#detail-e-tiket" data-file="' . $data_tiket->code_tiket . '" data-link="' . $data_tiket->code_tiket . '_' . $data_tiket->kategori_price . '">Detail</button>
-                        </div>
-                        <div class="col">
-                            <button id="" class="btn btn-info col-12 download-file" data-file="' . $data_tiket->code_tiket . '" data-link="' . $data_tiket->code_tiket . '_' . $data_tiket->kategori_price . '">Download E-Tiket</button>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                </div>';
+
+                if ($data_tiket->status_transaksi == '0') {
+
+                    echo '<span>No tickets</span>';
+
+                } elseif ( $data_tiket->status_transaksi == '1') {
+                    echo '<div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-1 col-md-1 col-2">
+                                            <span class="num-tiket">' . $no++ . '</span>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-5">
+                                            <p class="small mb-0">Name</p>
+                                            <p class="medium mb-0 font-weight-bold">' . $data_tiket->nama . '</p>
+                                        </div>
+                                        <div class="col-lg-2 col-md-4 col-5">
+                                            <p class="small mb-0">Ticket</p>
+                                            <p class="medium mb-0 font-weight-bold">' . $data_tiket->kategori_price . '</p>
+                                        </div>
+                                        <div class="code-tiket col-lg-3 col-md-3 col-3">
+                                            <p class="small mb-0">Code Ticket</p>
+                                            <p class="medium mb-0 font-weight-bold">' . $data_tiket->code_tiket . '</p>
+                                        </div>
+                                        <div class="col-lg-4 col-md-5 col-12">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button class="btn btn-info col-12 detail-e-tiket" data-toggle="modal" data-target="#detail-e-tiket" data-file="' . $data_tiket->code_tiket . '" data-link="' . $data_tiket->code_tiket . '_' . $data_tiket->kategori_price . '">Detail</button>
+                                                </div>
+                                                <div class="col">
+                                                    <button id="" class="btn btn-info col-12 download-file" data-file="' . $data_tiket->code_tiket . '" data-link="' . $data_tiket->code_tiket . '_' . $data_tiket->kategori_price . '">Download E-Tiket</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>';
+                }
+
             }
         } else {
+
             echo '<span>No tickets</span>';
         }
     }

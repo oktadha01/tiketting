@@ -1,25 +1,25 @@
 <div class="header" id="header">
     <nav class="navbar container">
-        <a href="./index.html" class="brand">
+        <a href="<?=base_url('');?>" class="brand">
             <img src="<?=base_url('assets');?>/images/DD.png" alt="img-fluid" style="max-height: 3rem;">
         </a>
         <div class="menu" id="menu">
             <ul class="menu-list mb-0">
                 <li class="menu-item btn-navigasi transaksi" data-menu="transaksi">
                     <a href="#" class="menu-link is-active">
-                    <i class="fa-solid fa-tent-arrow-left-right"></i>
+                        <i class="fa-solid fa-tent-arrow-left-right"></i>
                         <span class="menu-name">Transaksi</span>
                     </a>
                 </li>
                 <li class="menu-item btn-navigasi" data-menu="tiket">
                     <a href="#" class="menu-link">
-                    <i class="fa-solid fa-ticket"></i>
+                        <i class="fa-solid fa-ticket"></i>
                         <span class="menu-name">Tiket</span>
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="#" class="menu-link">
-                    <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user"></i>
                         <span class="menu-name">Akun</span>
                     </a>
                 </li>

@@ -16,7 +16,7 @@
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form class="sign-in-form" action="<?= site_url('Auth/login') ?>" method="post" method="POST">
+                <form class="sign-in-form" action="<?= site_url('Auth/login_adm') ?>" method="post" method="POST">
                     <!-- Alert -->
                     <?php
                         if (validation_errors() || $this->session->flashdata('result_login')) {

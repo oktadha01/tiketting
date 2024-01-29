@@ -2,6 +2,7 @@
 
 <?php $this->load->view('tmpt_client/navbar'); ?>
 <?php $this->load->view('tmpt_client/slide_navigasi'); ?>
+
 <body data-theme="light" class="font-nunito">
     <div id="wrapper" class="theme-cyan">
         <!-- Page Loader -->
@@ -15,12 +16,12 @@
         <!-- main left menu -->
         <!-- mani page content body part -->
         <!-- <div id="main-content" class=""> -->
-            <!-- <div class="container-fluid"> -->
-                <?php $this->load->view($content); ?>
-            <!-- </div> -->
+        <!-- <div class="container-fluid"> -->
+        <?php $this->load->view($content); ?>
+        <!-- </div> -->
         <!-- </div> -->
     </div>
     <?php $this->load->view('tmpt_client/footer'); ?>
     <?php $this->load->view($script); ?>
-    
+
 </body>
