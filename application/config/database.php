@@ -12,10 +12,10 @@ $db['default'] = array(
 	'password' => '',
 
 	// Online Production
-	// 'username' => 'kina3126_absensi',
-	// 'password' => 'kanpa2020',
+	// 'username' => 'wisy2434_wisdil',
+	// 'password' => 'wisdil2023',
 
-	'database' => 'tiketting',
+	'database' => 'wisy2434_wisdil',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

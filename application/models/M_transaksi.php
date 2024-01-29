@@ -8,7 +8,6 @@ class M_transaksi extends CI_Model
 {
     function m_paynow($email, $code_bayar)
     {
-        // $bulan = '10';
         $this->db->select('*');
         $this->db->from('customer');
         $this->db->join('transaksi', 'transaksi.id_customer = customer.id_customer');
@@ -23,12 +22,14 @@ class M_transaksi extends CI_Model
         $this->db->select('*');
         $this->db->from('customer');
         $this->db->join('transaksi', 'transaksi.id_customer = customer.id_customer');
+        $this->db->join('event', 'event.id_event = transaksi.id_event');
         $this->db->where('customer.email', $email);
         $query = $this->db->get();
         $q['result'] = $query->result();
         $q['num_rows'] = $query->num_rows();
         return $q;
     }
+
     function m_detail_tiket($code_bayar)
     {
         $this->db->select('SUM(tiket.status = "free") as jumlah_free, COUNT(tiket.status = " ") as total_rows, kategori_price AS tiket, harga AS harga_tiket, tiket.status AS status_');
@@ -40,6 +41,7 @@ class M_transaksi extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
     function m_detail_tiket_bundling($code_bayar)
     {
         $this->db->select('COUNT(*) as jumlah, kategori_price AS tiket, harga AS harga_tiket, tiket.status AS status_');
@@ -51,6 +53,7 @@ class M_transaksi extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
     function m_detail_trans($code_bayar)
     {
         // $bulan = '10';
@@ -60,6 +63,25 @@ class M_transaksi extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    function m_detail_event($code_bayar)
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi');
+        $this->db->join('event', 'event.id_event = transaksi.id_event');
+        $this->db->where('transaksi.code_bayar', $code_bayar);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function event_slide()
+    {
+        $this->db->select('*');
+        $this->db->from('event');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     function m_detail_buyer($code_bayar)
     {
         // $bulan = '10';
@@ -80,6 +102,7 @@ class M_transaksi extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
     function m_delete_transaksi_tiket($code_bayar)
     {
         $delete_transaksi = $this->db->where('code_bayar', $code_bayar)
@@ -89,6 +112,7 @@ class M_transaksi extends CI_Model
         return $delete_transaksi;
         return $delete_tiket;
     }
+
     function m_update_stock_tiket($id_price, $stock_tiket)
     {
         $update = $this->db->set('stock_tiket', $stock_tiket)

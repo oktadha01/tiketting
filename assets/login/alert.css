@@ -1,0 +1,60 @@
+.alert {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: rgb(243, 185, 9);
+    border-color: #ebe00d;
+    color: #3c763d;
+}
+
+.alert {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: linear-gradient(to right, rgb(243, 185, 9), #0debb75b);
+    color: #3c763d;
+}
+
+
+.alert-success {
+    background-color: rgb(243, 185, 9);
+    border-color: #ebe00d;
+    color: #3c763d;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.2;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+/* Animasi untuk menghilangkan alert */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+#autoCloseAlert {
+    animation: fadeOut 1s ease-in-out 3s forwards;
+}

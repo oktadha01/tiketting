@@ -28,16 +28,6 @@
             <div id="load-data-detail-trans-m" class="modal-body">
 
             </div>
-            <div class="modal-footer" style="display: block;">
-                <div class="row">
-                    <div class="col pl-0">
-                        <button id="" type="button" class="btn bg-w-orange btn-btl-trans" data-dismiss="modal">Batalkan Transaksi</button>
-                    </div>
-                    <div class="col pr-0">
-                        <button id="" type="button" class="btn bg-w-blue text-light float-right" data-dismiss="modal">Bayar Sekarang</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -56,10 +46,12 @@
             <div class="modal-footer" style="display: block;">
                 <div class="row">
                     <div class="col pl-0">
-                        <button type="button" id="btn-close-modal-tiket" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+                        <button type="button" id="btn-close-modal-tiket" class="btn btn-danger"
+                            data-dismiss="modal">CLOSE</button>
                     </div>
                     <div class="col pr-0">
-                        <button id="btn-download-m" type="button" class="btn btn-info float-right download-file" data-dismiss="modal">Download E-Tiket</button>
+                        <button id="btn-download-m" type="button" class="btn btn-info float-right download-file"
+                            data-dismiss="modal">Download E-Tiket</button>
                     </div>
                 </div>
             </div>
