@@ -459,7 +459,7 @@ html::-webkit-scrollbar,
 		background: white;
 		padding: 17px 0px;
 		display: block;
-		z-index: 999;
+		z-index: 100;
 		border-top: 1px solid #e1e1e1;
 	}
 
@@ -538,4 +538,93 @@ html::-webkit-scrollbar,
 
 .kategori-event:hover {
 	background: #FECD0A;
+}
+
+/* footer */
+footer {
+	padding: 0 30px;
+	padding-bottom: 15px;
+	position: relative;
+	right: 0;
+}
+
+.siz-log-foo {
+	height: auto;
+	width: 8rem;
+	background: white;
+	margin: 2px 0px;
+	padding: 2px 2px;
+}
+
+.rounded-center {
+	border-radius: 8px;
+	align-self: center;
+	text-align: -webkit-center;
+}
+
+.siz-log-pay {
+	height: auto;
+	width: 5rem;
+	padding: 0px 8px;
+}
+
+.bg-size-icon {
+	font-size: xx-large;
+	padding: 2px 4px;
+	border-radius: 9px;
+	color: #0047ba;
+	box-shadow: 0px 2px 6px 0px rgb(255 255 255)
+}
+
+.dropdown-menu {
+	display: none;
+	left: -172px;
+	top: 117% !important;
+	width: -webkit-fill-available;
+}
+
+.dropdown-toggle::after {
+	display: none;
+}
+
+.dropdown-text {
+	display: block;
+	width: 100%;
+	padding: .25rem 1.5rem;
+	clear: both;
+	font-weight: 400;
+	color: #212529;
+	text-align: inherit;
+	white-space: nowrap;
+	background-color: transparent;
+	border: 0;
+}
+
+.btn-ubah-password:hover,
+.btn-ubah-email:hover {
+
+	cursor: pointer;
+	border: 3px solid #00000021;
+	padding: 0px 5px;
+	border-radius: 8px;
+	font-weight: bold;
+	box-shadow: 0px 1px 11px 0px rgb(0 0 0 / 26%);
+
+}
+
+.notif-success-pass,
+.notif-success-email {
+	background: chartreuse;
+	padding: 1px 10px;
+	border-radius: 6px;
+	margin-left: 1rem;
+}
+
+.notif-gagal-pass,
+.notif-gagal-email {
+	background: rgb(255, 98, 0);
+	padding: 1px 10px;
+	border-radius: 6px;
+	margin-left: 1rem;
+	color: white;
 }

@@ -32,9 +32,12 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/main.css">
     
     <!-- add plugin -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <!-- custom css -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/slide_navigation.css">
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/testimoni_slide.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/custom.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 

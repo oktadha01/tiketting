@@ -50,7 +50,7 @@
 <section class="container space-content-event">
     <span class="font-size-tit font-weight-bold">Rekomendasi Event</span>
     <div class="row">
-        <?php for ($x = 1; $x <= 4; $x++) { ?>
+        <?php for ($x = 1; $x <= 3; $x++) { ?>
 
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="card box-shadow">
@@ -82,4 +82,128 @@
     </div>
 
 </section>
-
+<section class="container">
+    <span class="font-size-tit font-weight-bold">Apa Kata Mereka</span>
+    <div class="testimonial-slider">
+        <div class="testimonial-slide">
+            <div class="testimonial_box">
+                <div class="testimonial_box-inner">
+                    <div class="testimonial_box-top box-shadow">
+                        <div class="testimonial_box-icon">
+                            <i class="i-con fas fa-quote-right"></i>
+                        </div>
+                        <div class="testimonial_box-text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus optio facilis beatae.</p>
+                        </div>
+                        <div class="testimonial_box-shape"></div>
+                    </div>
+                    <div class="testimonial_box-bottom">
+                        <div class="testimonial_box-profile">
+                            <div class="testimonial_box-img">
+                                <img class="img-box" src="https://i.ibb.co/hKgs8gm/profile.jpg" alt="profile">
+                            </div>
+                            <div class="testimonial_box-info">
+                                <div class="testimonial_box-name">
+                                    <h4>John Doe</h4>
+                                </div>
+                                <div class="testimonial_box-job">
+                                    <p>WISDIL.COM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-slide">
+            <div class="testimonial_box">
+                <div class="testimonial_box-inner">
+                    <div class="testimonial_box-top box-shadow">
+                        <div class="testimonial_box-icon">
+                            <i class="i-con fas fa-quote-right"></i>
+                        </div>
+                        <div class="testimonial_box-text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus optio facilis beatae.</p>
+                        </div>
+                        <div class="testimonial_box-shape"></div>
+                    </div>
+                    <div class="testimonial_box-bottom">
+                        <div class="testimonial_box-profile">
+                            <div class="testimonial_box-img">
+                                <img class="img-box" src="https://i.ibb.co/JQ18QKW/asd.jpg" alt="profile">
+                            </div>
+                            <div class="testimonial_box-info">
+                                <div class="testimonial_box-name">
+                                    <h4>John Doe</h4>
+                                </div>
+                                <div class="testimonial_box-job">
+                                    <p>WISDIL.COM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-slide">
+            <div class="testimonial_box">
+                <div class="testimonial_box-inner">
+                    <div class="testimonial_box-top box-shadow">
+                        <div class="testimonial_box-icon">
+                            <i class="i-con fas fa-quote-right"></i>
+                        </div>
+                        <div class="testimonial_box-text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus optio facilis beatae.</p>
+                        </div>
+                        <div class="testimonial_box-shape"></div>
+                    </div>
+                    <div class="testimonial_box-bottom">
+                        <div class="testimonial_box-profile">
+                            <div class="testimonial_box-img">
+                                <img class="img-box" src="https://i.ibb.co/hKgs8gm/profile.jpg" alt="profile">
+                            </div>
+                            <div class="testimonial_box-info">
+                                <div class="testimonial_box-name">
+                                    <h4>John Doe</h4>
+                                </div>
+                                <div class="testimonial_box-job">
+                                    <p>WISDIL.COM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-slide">
+            <div class="testimonial_box">
+                <div class="testimonial_box-inner">
+                    <div class="testimonial_box-top box-shadow">
+                        <div class="testimonial_box-icon">
+                            <i class="i-con fas fa-quote-right"></i>
+                        </div>
+                        <div class="testimonial_box-text">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus optio facilis beatae.</p>
+                        </div>
+                        <div class="testimonial_box-shape"></div>
+                    </div>
+                    <div class="testimonial_box-bottom">
+                        <div class="testimonial_box-profile">
+                            <div class="testimonial_box-img">
+                                <img class="img-box" src="https://i.ibb.co/JQ18QKW/asd.jpg" alt="profile">
+                            </div>
+                            <div class="testimonial_box-info">
+                                <div class="testimonial_box-name">
+                                    <h4>John Doe</h4>
+                                </div>
+                                <div class="testimonial_box-job">
+                                    <p>WISDIL.COM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
