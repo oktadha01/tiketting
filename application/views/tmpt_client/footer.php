@@ -133,7 +133,6 @@
 <script src="<?= base_url('assets'); ?>/bundles/mainscripts.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/js/advanced-form-elements.js"></script>
 <script src="<?= base_url('assets'); ?>/js/slide_navigation.js"></script>
-<script src="<?= base_url('assets'); ?>/js/index.js"></script>
 <!-- add Plugin -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>

@@ -97,6 +97,7 @@ function confirmDelete(id_event) {
         title: 'Apakah Anda yakin?',
         text: "Data yang dihapus tidak dapat dikembalikan!",
         icon: 'warning',
+        timer: 1500,
         showCancelButton: true,
         confirmButtonText: 'Ya',
         cancelButtonText: 'Batal!',
@@ -173,6 +174,7 @@ $('#tambah-data').submit(function(event) {
                     icon: 'success',
                     title: 'Berhasil!',
                     text: 'Event berhasil ditambahkan.',
+                    timer: 1500
                 });
 
                 var table = $('#data-event').DataTable();
