@@ -1,6 +1,6 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/kina3126/public_html/absen.kanpa.co.id
+    - export DEPLOYPATH=/home/wisy2434/public_html/
     - /bin/cp -R application $DEPLOYPATH
     - /bin/cp -R assets $DEPLOYPATH
     - /bin/cp -R upload $DEPLOYPATH
@@ -9,3 +9,4 @@ deployment:
     - /bin/cp composer.lock $DEPLOYPATH
     - /bin/cp license.txt $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
+
