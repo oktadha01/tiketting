@@ -53,9 +53,10 @@ $('.btn-navigasi').click(function () {
 
 
 $('.close-top').click(function () {
+	$('#load-data-navi').html('').hide();
 	$('.top').toggleClass('nav-active');
 	$('.bottom').toggleClass('nav-active');
-	$('#load-data-navi').html('').hide();
+	$('.menu-link').removeClass('is-active', true);
 });
 
 function transaksi() {
