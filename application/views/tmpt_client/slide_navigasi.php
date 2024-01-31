@@ -13,7 +13,7 @@
     </div>
     <div class="container">
         <div id="load-data-navi" class="row" style="overflow: scroll;max-height: 50rem;">
-
+            <span></span>
         </div>
     </div>
 </div>
@@ -46,12 +46,10 @@
             <div class="modal-footer" style="display: block;">
                 <div class="row">
                     <div class="col pl-0">
-                        <button type="button" id="btn-close-modal-tiket" class="btn btn-danger"
-                            data-dismiss="modal">CLOSE</button>
+                        <button type="button" id="btn-close-modal-tiket" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
                     </div>
                     <div class="col pr-0">
-                        <button id="btn-download-m" type="button" class="btn btn-info float-right download-file"
-                            data-dismiss="modal">Download E-Tiket</button>
+                        <button id="btn-download-m" type="button" class="btn btn-info float-right download-file" data-dismiss="modal">Download E-Tiket</button>
                     </div>
                 </div>
             </div>

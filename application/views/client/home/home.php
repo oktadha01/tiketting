@@ -12,26 +12,30 @@
     </div>
 
 </section>
+
 <section class="container space-content-kategori">
     <span class="font-size-tit font-weight-bold">Pilihan Kategori Event</span>
-    <div class="row" style="place-content: center;">
-        <div class="col-lg-2 col-md-4 col-6 kategori-event p-0 mt-2">
-            <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/pameran.png" alt="">
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 kategori-event p-0 mt-2">
-            <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/musik.png" alt="">
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 kategori-event p-0 mt-2 ">
-            <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/seminar.png" alt="">
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 kategori-event p-0 mt-2">
-            <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/pertunjukan.png" alt="" style="width: inherit;">
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 kategori-event p-0 mt-2">
-            <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/wisata.png" alt="">
-        </div>
-        <div class="col-lg-2 col-md-4 col-6 kategori-event p-0 mt-2">
-            <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/all-events.png" alt="">
+    <div class="cont-slider">
+
+        <div class="row" style="display: flex;">
+            <div class="kategori-event p-0 mt-2">
+                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/pameran.png" alt="">
+            </div>
+            <div class="kategori-event p-0 mt-2">
+                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/musik.png" alt="">
+            </div>
+            <div class="kategori-event p-0 mt-2 ">
+                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/seminar.png" alt="">
+            </div>
+            <div class="kategori-event p-0 mt-2">
+                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/pertunjukan.png" alt="" style="width: inherit;">
+            </div>
+            <div class="kategori-event p-0 mt-2">
+                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/wisata.png" alt="">
+            </div>
+            <div class="kategori-event p-0 mt-2">
+                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/all-events.png" alt="">
+            </div>
         </div>
     </div>
 </section>
@@ -73,7 +77,7 @@
 
 </section>
 
-<section class="container">
+<section class="container res-height">
     <span class="font-size-tit font-weight-bold">Apa Kata Mereka</span>
     <div class="testimonial-slider">
         <div class="testimonial-slide">

@@ -95,34 +95,6 @@
         <!-- </div> -->
     </div>
 </section>
-<div class="modal fade" id="modal-pass" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="title" id="defaultModalLabel">Ubah Password</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Password Lama</label>
-                            <input type="text" id="pass-lama" class="form-control" required="">
-                        </div>
-                        <div class="form-group">
-                            <label>Password Baru</label>
-                            <input type="text" id="password-baru" class="form-control" required="">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
-                <button type="button" id="btn-simpan-pass" class="btn bg-w-blue text-light" data-dismiss="modal">Simpan Password</button>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="modal fade" id="modal-email" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

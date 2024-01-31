@@ -73,7 +73,7 @@
 
 .nav.top,
 .nav.bottom {
-	height: max-content;
+	height: 94%;
 	width: 100%;
 	border: 4px solid #d6d6d6;
 	border-bottom-left-radius: 15px;
@@ -81,24 +81,27 @@
 }
 
 .nav.top {
-	top: -100px;
+	top: -94%;
 	left: 0px;
+	z-index: 999;
 }
 
 .nav.top.nav-active {
-	top: 0;
+	top: 61px;
 	display: block;
 	z-index: 999;
 
 }
 
 .nav.bottom {
-	bottom: -100px;
+
+	bottom: -94%;
 	left: 0;
+	z-index: 999;
 }
 
 .nav.bottom.nav-active {
-	bottom: 0;
+	bottom: 57px;
 	display: block;
 	z-index: 999;
 }
@@ -148,6 +151,8 @@
 	font-size: xx-large;
 	color: white;
 	font-weight: bold;
+	width: inherit;
+	height: min-content;
 }
 
 .p-table-inv {
@@ -166,16 +171,18 @@
 	width: 100%;
 	position: relative;
 	background: none;
-	
+
 }
-.btn-close-tiket{
+
+.btn-close-tiket {
 	display: none;
 }
 
 @media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
-	.btn-close-tiket{
+	.btn-close-tiket {
 		display: initial;
 	}
+
 	.f-size-tik {
 		font-size: large;
 	}
@@ -185,7 +192,7 @@
 		width: inherit;
 		bottom: 5px;
 	}
-	
+
 	.nav-tiket {
 		position: fixed;
 		z-index: 9999;
