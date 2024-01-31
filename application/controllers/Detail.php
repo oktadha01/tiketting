@@ -22,7 +22,6 @@ class Detail extends CI_Controller
     {
         $data['tittle']          = 'Detail Event';
         $data['script1']          = 'Detail Event';
-        // $data['absen']        = $this->M_dashboard->m_absen();
         $data['content']         = 'client/page_detail/page_detail';
         $data['script']         = 'client/page_detail/page_detail_js';
         $this->load->view($this->template, $data);
@@ -37,13 +36,12 @@ class Detail extends CI_Controller
         $this->load->view('client/detail/detail', $data);
         $this->load->view('client/detail/detail_js');
     }
+
     function cek_transaksi()
     {
         $email = $this->input->cookie('session');
         $this->db->select("*");
         $this->db->where("email", $email);
-        // $this->db->order_by('code_tiket', 'DESC');
-        // $this->db->limit(1);
 
         $query_ = $this->db->get('customer');
         if ($query_->num_rows() <> 0) {
@@ -106,7 +104,7 @@ class Detail extends CI_Controller
                     $data->email = $id_customer  = $_COOKIE['id-customer'];
                 }
             }
-            // Set Cookie 7  hari 
+            // Set Cookie 7  hari
             if (isset($_POST['remember'])) {
                 setcookie('session', $data->email, strtotime('+7 days'), '/');
                 $msg = 'Data cookie berhasil disimpan';

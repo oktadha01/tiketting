@@ -158,4 +158,23 @@ class Prices_model extends CI_Model
         return $this->db->insert('price', $data);
     }
 
+    public function get_event_menu($limit, $start, $id_user, $search = '')
+    {
+        $this->db->select('*');
+        $this->db->from('event');
+        $this->db->join('user', 'user.id_user = event.id_user');
+        $this->db->where('event.id_user', $id_user);
+
+        // Tambahkan kondisi pencarian jika ada
+        if (!empty($search)) {
+            $this->db->like('nm_event', $search);
+        }
+
+        $this->db->order_by("id_event", "DESC");
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+
+        return $query;
+    }
+
 }

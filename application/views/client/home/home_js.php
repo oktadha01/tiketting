@@ -36,7 +36,6 @@ $(function() {
 
 });
 </script>
-
 <script>
 $(document).ready(function() {
     $('.testimonial-slider').slick({

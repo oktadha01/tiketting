@@ -28,7 +28,7 @@ class Buynow extends CI_Controller
 
     function checkout()
     {
-        $this->db->select("RIGHT(tiket.code_tiket, 4) as kode", FALSE);
+        $this->db->select("MAX(CAST(RIGHT(tiket.code_tiket, 4) AS UNSIGNED)) as kode", FALSE);
         $this->db->order_by('code_tiket', 'DESC');
         $this->db->limit(1);
 
@@ -44,20 +44,20 @@ class Buynow extends CI_Controller
 
 
         $customer = $_POST['akun'];
-        $email = $_POST['email']; 
-        $id_price = $_POST['id_price']; 
+        $email = $_POST['email'];
+        $id_price = $_POST['id_price'];
         $id_event = $_POST['id_event'];
-        $nama = $_POST['nama']; 
-        $tgl_lahir = $_POST['tgl_lahir']; 
-        $gender = $_POST['gender']; 
-        $kontak = $_POST['kontak']; 
-        $no_identitas = $_POST['no_identitas']; 
-        $kota = $_POST['kota']; 
-        $code = $_POST['code']; 
+        $nama = $_POST['nama'];
+        $tgl_lahir = $_POST['tgl_lahir'];
+        $gender = $_POST['gender'];
+        $kontak = $_POST['kontak'];
+        $no_identitas = $_POST['no_identitas'];
+        $kota = $_POST['kota'];
+        $code = $_POST['code'];
         $payment = isset($_POST['payment']) ? $_POST['payment'] : 'default_value';
         $status = $_POST['status'];
         $data_in = array();
-        
+
         $index = 0; // Set index array awal dengan 0
         foreach ($email as $dataemail) { // Kita buat perulangan berdasarkan email sampai data terakhir
             $tiket = "(SELECT * FROM price WHERE id_price = '$id_price[$index]')";

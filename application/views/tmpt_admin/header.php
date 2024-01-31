@@ -32,8 +32,6 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/jquery-datatable/dataTables.bootstrap4.min.css">
     <link rel="stylesheet"
         href="<?= base_url('assets'); ?>/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css">
-    <link rel="stylesheet"
-        href="<?= base_url('assets'); ?>/vendor/jquery-datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css">
 
     <!-- Dropify -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/dropify/css/dropify.min.css">
