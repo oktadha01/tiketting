@@ -30,8 +30,8 @@
                             </div>
                         </div>
                         <div class="sparkline col-sm-12" data-type="line" data-spot-Radius="4" data-offset="90"
-                            data-width="100%" data-height="100px" data-line-Width="1" data-line-Color="#73cec7"
-                            data-fill-Color="#73cec7">
+                            data-width="100%" data-height="100px" data-line-Width="1" data-line-Color="#FECD0A"
+                            data-fill-Color="#0047BA">
                             2,3,1,5,4,2,3,1,5,4,7,8,2,3,1,4,6,5,4,4,4,7,8,2,3,1,4,6,5,4
                         </div>
                     </div>

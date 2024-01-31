@@ -33,10 +33,10 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-lg-3 text-center">
-                <a class="text-light" href="">
-                    <h5>Syarat dan ketentuan</h5>
-                </a>
+            <div class="col-lg-3 text-center"><a class="text-light" href="<?= base_url('Syarat_ketentuan'); ?>">
+                    <a class="text-light" href="">
+                        <h5>Syarat dan ketentuan</h5>
+                    </a>
             </div>
             <div class="col-lg-3 text-center">
                 <a class="text-light" href="">
@@ -59,47 +59,46 @@
 
             <div class="row" style="place-content: center;">
                 <div class="col-lg-1 col-2 mr-1">
-                    <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/bca.png" alt="">
+                    <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/bca.png" alt="">
                 </div>
                 <div class="col-lg-1 col-2 mr-1">
-                    <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/mandiri.png" alt="">
+                    <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/mandiri.png" alt="">
                 </div>
                 <div class="col-lg-1 col-2 mr-1">
-                    <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/bni.png" alt="">
+                    <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/bni.png" alt="">
                 </div>
                 <div class="col-lg-1 col-2 mr-1">
-                    <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/permata.png" alt="">
+                    <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/permata.png" alt="">
                 </div>
                 <div class="col-lg-1 col-2 mr-1">
-                    <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/gopay.png" alt="">
+                    <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/gopay.png" alt="">
                 </div>
                 <div class="col-lg-1 col-2 mr-1">
-                    <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/ovo.png" alt="">
+                    <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/ovo.png" alt="">
                 </div>
                 <div class="col-lg-1 col-2 mr-1">
-                    <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/dana.png" alt="">
+                    <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/dana.png" alt="">
                 </div>
                 <div class="col-lg-1 col-2 mr-1">
-                    <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/shopeepay.png" alt="">
+                    <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/shopeepay.png" alt="">
                 </div>
                 <div class="col-lg-1 col-2 mr-1">
-                    <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/astrapay.png" alt="">
+                    <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/astrapay.png" alt="">
                 </div>
             </div>
             <div class="row mt-3" style="place-content: center;">
                 <ul style="display: flex;">
                     <li class="mr-1">
-                        <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/visa-card.png" alt="">
+                        <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/visa-card.png" alt="">
                     </li>
                     <li class="mr-1">
-                        <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/mastercard.png" alt="">
+                        <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/mastercard.png" alt="">
                     </li>
                     <li class="mr-1">
-                        <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/jcb.png" alt="">
+                        <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/jcb.png" alt="">
                     </li>
                     <li class="mr-1">
-                        <img class="siz-log-pay" src="<?= base_url('assets/images/bank'); ?>/american-express.png"
-                            alt="">
+                        <img class="siz-log-pay" src="<?= base_url('assets/images'); ?>/american-express.png" alt="">
                     </li>
                 </ul>
             </div>
@@ -133,6 +132,7 @@
 <script src="<?= base_url('assets'); ?>/bundles/mainscripts.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/js/advanced-form-elements.js"></script>
 <script src="<?= base_url('assets'); ?>/js/slide_navigation.js"></script>
+<!-- <script src="<?= base_url('assets'); ?>/js/index.js"></script> -->
 <!-- add Plugin -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
@@ -162,5 +162,5 @@ menuLinks.forEach((link) => {
         });
         link.classList.add("is-active");
     });
-});
+})
 </script>

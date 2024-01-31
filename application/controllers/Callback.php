@@ -29,7 +29,7 @@ class Callback extends CI_Controller
             $_paidAt             = $request['paid_at'];
             $_paymentChannel     = $request['payment_channel'];
             $_paymentDestination = $request['payment_destination'];
-            $_givenNames         = $request['surname'];
+            $_amount             = $request['amount'];
 
             $status = '0';
             if ($_status == 'PAID') {
@@ -43,6 +43,12 @@ class Callback extends CI_Controller
                          ->set('status_transaksi', $status)
                          ->where('code_bayar', $_externalId)
                          ->update('transaksi');
+
+                $this->db->insert('saldo', [
+                            'code_bayar'   => $_externalId,
+                            'tanggal'      => $datetime,
+                            'nominal'      => $_amount,
+                        ]);
 
             } else if ($_status == 'EXPIRED') {
 

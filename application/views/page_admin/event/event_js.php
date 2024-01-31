@@ -111,11 +111,13 @@ function confirmDelete(id_event) {
                 dataType: 'json',
                 success: function(response) {
                     if (response.status) {
-                        swalWithBootstrapButtons.fire(
-                            'Berhasil!',
-                            'Data berhasil dihapus.',
-                            'success'
-                        );
+                        swalWithBootstrapButtons.fire({
+                            title: 'Berhasil!',
+                            text: 'Data berhasil dihapus.',
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false,
+                        });
 
                         var table = $('#data-event').DataTable();
                         table.row('#row_' + id_event).remove().draw(false);
@@ -283,6 +285,7 @@ $('#edit-event').submit(function(event) {
                     icon: 'success',
                     title: 'Berhasil!',
                     text: 'Data Event Berhasil Diubah.',
+                    timer: 1500
                 });
 
                 var table = $('#data-event').DataTable();

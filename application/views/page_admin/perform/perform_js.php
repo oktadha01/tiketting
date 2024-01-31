@@ -92,12 +92,14 @@ function confirmDelete(id_perform) {
                 dataType: 'json',
                 success: function(response) {
                     if (response.status) {
-                        // Menampilkan notifikasi sukses tanpa reload
-                        swalWithBootstrapButtons.fire(
-                            'Berhasil!',
-                            'Data berhasil dihapus.',
-                            'success'
-                        );
+                        swalWithBootstrapButtons.fire({
+                            title: 'Berhasil!',
+                            text: 'Data berhasil dihapus.',
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false,
+                        });
+
 
                         // Menghapus baris tabel secara dinamis (asumsi Anda menggunakan tabel datatables)
                         var table = $('#data-perform').DataTable();
@@ -132,6 +134,9 @@ function confirmDelete(id_perform) {
     });
 }
 
+$('#tambah-data').on('hidden.bs.modal', function() {
+    $('#perform-baru')[0].reset();
+});
 // kode simpan data
 $('#tambah-data').submit(function(event) {
     event.preventDefault();
@@ -153,9 +158,11 @@ $('#tambah-data').submit(function(event) {
             if (response.status) {
 
                 Swal.fire({
+                    position: "top-center",
                     icon: 'success',
                     title: 'Berhasil!',
                     text: 'Perform Berhasil Dibuat.',
+                    timer: 1400
                 });
 
                 var table = $('#data-perform').DataTable();
@@ -230,6 +237,7 @@ $('#ubah-perform').submit(function(e) {
                     icon: 'success',
                     title: 'Berhasil!',
                     text: 'Data Perform Berhasil Diubah.',
+                    timer: 1500
                 });
 
                 var table = $('#data-perform').DataTable();
