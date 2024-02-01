@@ -8,7 +8,7 @@
                 <?php if ($this->input->cookie('session') == '') { ?>
                     <li class="menu-item ">
                         <a href="<?= base_url('Auth'); ?>" class="menu-link">
-                            <img class="siz-menu" src="<?= base_url('assets/images/login.png'); ?>" alt="">
+                            <img class="siz-menu" src="<?= base_url('assets/images/Login.png'); ?>" alt="">
                             <span class="menu-name mr-2"> Login </span>
                         </a>
                     </li>

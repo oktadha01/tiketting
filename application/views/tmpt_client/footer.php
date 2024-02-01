@@ -41,7 +41,7 @@
                             <i class="fa-brands fa-instagram bg-w-orange bg-size-icon hov-ig"></i>
                         </a>
                     </li>
-                    <li class="mr-2">
+                    <!-- <li class="mr-2">
                         <a href="">
                             <i class="fa-brands fa-tiktok bg-w-orange bg-size-icon hov-tiktok"></i>
                         </a>
@@ -50,7 +50,7 @@
                         <a href="">
                             <i class="fa-brands fa-youtube bg-w-orange bg-size-icon hov-yt"></i>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -66,7 +66,7 @@
                     FAQ
                 </a>
             </div>
-            <div class="col-lg-3 col-md-3 col-12 text-center">
+            <!-- <div class="col-lg-3 col-md-3 col-12 text-center">
                 <a class="text-light a-menu-footer" href="">
                     Tentang kami
                 </a>
@@ -75,7 +75,7 @@
                 <a class="text-light a-menu-footer" href="">
                     Blog
                 </a>
-            </div>
+            </div> -->
         </div>
         <hr>
         <div class="bg-white rounded p-2">
