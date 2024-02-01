@@ -8,5 +8,4 @@ deployment:
     - /bin/cp composer.json $DEPLOYPATH
     - /bin/cp composer.lock $DEPLOYPATH
     - /bin/cp license.txt $DEPLOYPATH
-    - /bin/cp index.php $DEPLOYPATH
-
+    - /bin/cp index.php $DEPLOYPATH
