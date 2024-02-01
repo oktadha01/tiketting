@@ -187,8 +187,8 @@
     <section class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2 class="section-title hidden-xs text-center">Syarat Dan Ketentuan</h2>
-                <h2 class="section-title visible-xs text-center">Syarat Dan Ketentuan</h2>
+                <h2 class="section-title hidden-xs text-center mb-5 mt-5">Syarat Dan Ketentuan</h2>
+                <h2 class="section-title visible-xs text-center mb-5 mt-5">Syarat Dan Ketentuan</h2>
             </div>
         </div>
         <div class="row v-tabs">
@@ -211,7 +211,7 @@
                         <li>“Pembeli” berarti setiap individu dan/atau badan hukum yang membeli dengan harga tertentu atau secara cuma-cuma tiket yang diselenggarakan oleh Event Creator
                             secara sah dan sesuai dengan ketentuan penggunaan ini, syarat dan ketentuan yang berlaku pada tempat Event, syarat dan ketentuan yang ditetapkan oleh Event Creator,
                             serta peraturan perundang-undangan yang berlaku.</li>
-                        <li>“Situs” berarti WISDIL.co.id yang dikelola dan dimiliki oleh WISDIL.</li>
+                        <li>“Situs” berarti WISDIL.com yang dikelola dan dimiliki oleh WISDIL.</li>
                         <li>“Event” berarti sesuatu kegiatan yang bersifat komersial maupun tidak komersial yang diselenggarakan oleh Event Creator yang menggunakan jasa layanan
                             Platform kami untuk menunjang kegiatan acara tersebut.</li>
                         <li>“WISDIL.com” berarti adalah layanan yang kami sediakan untuk kamu Event Creator berupa penyediaan platform
@@ -267,11 +267,11 @@
                     <h4>Cookies</h4>
                     <span> Kami menggunakan penggunaan cookie. Dengan menggunakan situs web WISDIL anda menyetujui penggunaan cookie sesuai dengan kebijakan privasi WISDIL. Sebagian besar situs web interaktif modern menggunakan cookie untuk memungkinkan kami mengambil detail pengguna untuk setiap kunjungan. Cookie digunakan di beberapa area situs kami untuk mengaktifkan fungsionalitas area ini dan kemudahan penggunaan bagi orang-orang yang berkunjung. Beberapa mitra afliasai / iklan kami juga dapat menggunakan cookie. </span>
                     <h4>Hak Cipta</h4>
-                    <span> WISDIL dan/ atau pemberi lisensinya memiliki hak kekayaan intelektual untuk semua materi yang ada di WISDIL. Semua hak kekayaan intelektual dilindungi. Anda dapaat melihat dan/atau mencetak halaman dari WISDIL.co.id untuk penggunaan pribadi. Anda tunduk pada batasan yang ditetapkan dalam syarat dan ketentuan ini. </span>
+                    <span> WISDIL dan/ atau pemberi lisensinya memiliki hak kekayaan intelektual untuk semua materi yang ada di WISDIL. Semua hak kekayaan intelektual dilindungi. Anda dapaat melihat dan/atau mencetak halaman dari WISDIL.com untuk penggunaan pribadi. Anda tunduk pada batasan yang ditetapkan dalam syarat dan ketentuan ini. </span>
                     <ol>
                         <li> Event creator sebagai penyelenggara acara dilarang mengeksploitasi data pengguna untuk kepentingan pribadi atau organisasional tanpa izin dari kami. </li>
                         <li> Pengguna dilarang untuk menyalin, modifikasi atau membuat karya turunan dari platform ini. </li>
-                        <li> Pengguna dilarang untu menyalin, memodifikasi, atau mengirim e-Tiket tanpa sepengetahuan dari kami dan event creator. </li>
+                        <li> Pengguna dilarang untuk menyalin, memodifikasi, atau mengirim e-Tiket tanpa sepengetahuan dari kami dan event creator. </li>
                         <li> Event creator tidak diizinkan untuk meminta data lebih dari customer tanpa sepengetahuan dan izin kami. </li>
                         <li> Pengguna tidak diizinkan menggunakan phising, robot, spider, atau semacam virus lain untuk mengambil keuntungan pribadi atau sesuatu yang melawan hukum dengan mengatasnamakan kami. </li>
                     </ol>
@@ -280,7 +280,7 @@
                 <div id="ecommerce-tab" class="collapse fade">
                     <span> Berikut adalah kebijakan pengembalian dana kami, setiap pembelian atau transaksi akan mencapai persyaratan yang berbeda. Silahkan baca dengan cermat ketentuan dibawah ini: </span>
                     <ol>
-                        <li> Seluruh tiket pembeli yang telah dibeli tidak bias diuangkan kembali. </li>
+                        <li> Seluruh tiket pembeli yang telah dibeli tidak bisa diuangkan kembali. </li>
                         <li> Pengembalian dana hanya untuk pembeli yang memiliki kendala dalam proses pembayaran, contoh seperti system bank dalam proses perbaikan atau error. </li>
                         <li> Kami menghimbau kamu untuk tidak menjual tiketmu ke orang lain. Setiap kendala atau masalah yang disebabkan dari aktivitas tersebut bukan tanggungjawab kami. </li>
                         <li> Jika kamu ingin menjual tiketmu, kamu sebaiknya mengkonfirmasikan terlebuh dahulu kepada event creator atau kami. </li>
@@ -295,13 +295,14 @@
                     <span> Sejauh diizinkan oleh hukum yang berlaku, kami mengecualikan semua representasi, jaminan dan ketentuan yang berkaitan denan situs web kami dan penggunaan situs web ini (termasuk, namun tidak terbatas pada, jaminan apa pun yang dinyatakan oleh hukum sehubungan dengan kualitas yang memuaskan, kesesuaian dengan tujuan dan penggunaan perawatan dan keterampilan yang wajar). Tidak ada dalam penafian ini yang akan: </span>
                     <ol>
                         <li> Event creator telah setuju dan sepakat dengan kami sebelum menyelenggarakan acara, dan seluruh kesepakatan wajib dilakukan kecuali terdapat perubahaan yang disetujui oleh kedua belah pihak. </li>
-                        <li> Event creator hanya mempublikasikan acara dengan sepengetahuan kami yang tidak mengandun dan melanggar hukum yang berlaku. </li>
+                        <li> Event creator hanya mempublikasikan acara dengan sepengetahuan kami yang tidak mengandung dan melanggar hukum yang berlaku. </li>
                         <li> Jika terjadi sengketa atau acara tersebut melawan hukum, kami tidak bertanggung jawab dengan seluruh tranasaksi pembeli tiket. </li>
                         <li> Event creator bersedia untuk tidak membuat acara yang melawan hukum dan mengandung unsur SARA serta melanggar asusila. </li>
                         <li> Event creator bersedia untuk menginformasikan kepada pembeli jika mereka membatalkan acara yang sedang berjalan dan kami tidak bertanggung jawab atas seluruh transaksi yang telah ditransfer kepada event creator. </li>
                     </ol>
                     <h4>Hukum</h4>
-                    <span> Setiap pelanggaran atau perselisihan akan dilakukan di Pengadilan Negeri Kota Yogyakarta. Kami tidak memberikan fasilitas apa pun untuk anda, dan kami tidak akan memberi anda kompensasi apa pun. Setiap pengacara yang ingin anda bela, kami tidak punya niat untuk bertanggung jawab atas akomodasi. Anda harus menyetujui istilah ini jika anda melakukan transaksi di platform kami, kami tidak dapat menerima keluhan atau alas an tidak logis bahwa anda belum membaca atau tidak setuju tentang istilah ini. Intinya jika anda telah membeli atau melakukan tranasaki, maka dinyatakan telah mengerti maupun setuju atas ketentuan ini. </span>
+                    <span> Setiap pelanggaran atau perselisihan akan dilakukan di Pengadilan Negeri Kota Semarang. Kami tidak memberikan fasilitas apa pun untuk anda, dan kami tidak akan memberi anda kompensasi apa pun. Setiap pengacara yang ingin anda bela,
+                         kami tidak punya niat untuk bertanggung jawab atas akomodasi. Anda harus menyetujui istilah ini jika anda melakukan transaksi di platform kami, kami tidak dapat menerima keluhan atau alas an tidak logis bahwa anda belum membaca atau tidak setuju tentang istilah ini. Intinya jika anda telah membeli atau melakukan transaksi, maka dinyatakan telah mengerti maupun setuju atas ketentuan ini. </span>
                 </div>
             </div>
         </div>

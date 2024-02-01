@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Syarat_ketentuan extends CI_Controller
+class Faq extends CI_Controller
 {
     var $template = 'tmpt_client/index';
     public function __construct()
@@ -11,9 +11,9 @@ class Syarat_ketentuan extends CI_Controller
 
     function index()
     {
-        $data['tittle']          = 'Syarat & Ketentuan';
-        $data['content']         = 'client/syarat_ketentuan/syarat_ketentuan';
-        $data['script']         = 'client/syarat_ketentuan/syarat_ketentuan_js';
+        $data['tittle']          = 'FAQ';
+        $data['content']         = 'client/faq/faq';
+        $data['script']         = 'client/faq/faq_js';
         $this->load->view($this->template, $data);
     }
 }
