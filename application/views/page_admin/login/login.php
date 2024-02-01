@@ -39,76 +39,78 @@
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         </strong> <?= $data; ?>
                     </div>
-            </div>
-            <?php } ?>
-            <!-- Akhir Alert -->
+                    <?php } ?>
+                    <!-- Akhir Alert -->
 
-            <h2 class="title">Sign in</h2>
-            <div class="input-field">
-                <i class="fa fa-envelope"></i>
-                <input type="email" placeholder="Email" name="email" required autofocus autocomplete="current-email" />
+                    <h2 class="title">Sign in</h2>
+                    <div class="input-field">
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" placeholder="Email" name="email" required autofocus
+                            autocomplete="current-email" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="password" name="password" required autofocus
+                            autocomplete="current-password" />
+                        <i class="toggle-password fa fa-eye" onclick="togglePasswordVisibility('password')"></i>
+                    </div>
+                    <input type="submit" value="Login" class="btn solid " />
+                    <p class="social-text">Informasi Tentang System Bisa Lihat Sosial Media dibawah ini</p>
+                    <div class="social-media">
+                        <a href="https://wa.me/6285876208194?text=Hallo%20Wisdil%20..." target="_blank"
+                            class="social-icon">
+                            <i class="fab fa-whatsapp" style="font-size:27px;"></i>
+                        </a>
+                        <a href="https://www.instagram.com/wisdil_com?igsh=MTd3YzdpaGVwNTFqaw==" target="_blank"
+                            class="social-icon">
+                            <i class="fab fa-instagram" style="font-size:27px;"></i>
+                        </a>
+                        <a href="#" class="social-icon" style="font-size:22px;">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-youtube" style="font-size:22px;"></i>
+                        </a>
+                    </div>
+                </form>
+                <form action="#" class="sign-up-form">
+                    <h2 class="title">Soryy !!!!</h2>
+                    <p class="social-text">Untuk Pengajuan Akun baru Silahkan Hubungi Admin Isi Form Via WA</p>
+                    <div class="social-media">
+                        <a href="https://api.whatsapp.com/send?phone=6289615139363&text=Halo%20Kak%20,%20Bisa%20di%20Bantu%20Untuk%20Membuat%20Akun%20admin%20,%3F%0AAgency : %0ANama : %0AEmail : %0AKontak : %0A"
+                            class="social-icon" target="_blank">
+                            <i class="fab fa-whatsapp" style="font-size:27px;"></i>
+                        </a>
+                    </div>
+                </form>
             </div>
-            <div class="input-field">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password" id="password" name="password" required autofocus
-                    autocomplete="current-password" />
-                <i class="toggle-password fa fa-eye" onclick="togglePasswordVisibility('password')"></i>
-            </div>
-            <input type="submit" value="Login" class="btn solid " />
-            <p class="social-text">Informasi Tentang System Bisa Lihat Sosial Media dibawah ini</p>
-            <div class="social-media">
-                <a href="#" class="social-icon">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="social-icon">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-icon">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="#" class="social-icon">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
-            </form>
-            <form action="#" class="sign-up-form">
-                <h2 class="title">Soryy !!!!</h2>
-                <p class="social-text">Untuk Pengajuan Akun baru Silahkan Hubungi Admin Isi Form Via WA</p>
-                <div class="social-media">
-                    <a href="https://api.whatsapp.com/send?phone=6289615139363&text=Halo%20Kak%20,%20Bisa%20di%20Bantu%20Untuk%20Membuat%20Akun%20admin%20,%3F%0AAgency : %0ANama : %0AEmail : %0AKontak : %0A"
-                        class="social-icon" target="_blank">
-                        <i class="fab fa-whatsapp" style="font-size:27px;"></i>
-                    </a>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Belum Punya Akun ?</h3>
+                    <p>
+                        Please klik Sign up untuk membuat akun baru !!!
+                    </p>
+                    <button class="btn transparent" id="sign-up-btn">
+                        Sign up
+                    </button>
                 </div>
-            </form>
-        </div>
-    </div>
-    <div class="panels-container">
-        <div class="panel left-panel">
-            <div class="content">
-                <h3>Belum Punya Akun ?</h3>
-                <p>
-                    Please klik Sign up untuk membuat akun baru !!!
-                </p>
-                <button class="btn transparent" id="sign-up-btn">
-                    Sign up
-                </button>
+                <img src="<?= base_url('assets/login/'); ?>img/log.svg" class="image" alt="" />
             </div>
-            <img src="<?= base_url('assets/login/'); ?>img/log.svg" class="image" alt="" />
-        </div>
-        <div class="panel right-panel">
-            <div class="content">
-                <h3> Sudah Punya Akun</h3>
-                <p>
-                    Silahkan Klik Sign in Untuk Masuk Ke System
-                </p>
-                <button class="btn transparent" id="sign-in-btn">
-                    Sign in
-                </button>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3> Sudah Punya Akun</h3>
+                    <p>
+                        Silahkan Klik Sign in Untuk Masuk Ke System
+                    </p>
+                    <button class="btn transparent" id="sign-in-btn">
+                        Sign in
+                    </button>
+                </div>
+                <img src="<?= base_url('assets/login/'); ?>img/reg.svg" class="image" alt="" />
             </div>
-            <img src="<?= base_url('assets/login/'); ?>img/reg.svg" class="image" alt="" />
         </div>
-    </div>
     </div>
 
     <script src="<?= base_url(); ?>assets/login/app.js"></script>

@@ -40,9 +40,10 @@
                     <div class="content text-light ">
                         <div class="text mb-2 text-uppercase">Saldo</div>
                         <h4 class="number mb-0"><span class="font-12">
-                            </span><b style="color:red">Rp. 100.000.000 </b></h5>
+                            </span><b style="color:red"><?=$saldo; ?> </b></h5>
                         </h4>
-                        <small>Analytics for last month</small>
+                        <small>Saldo Untuk Semua Event</small>
+                        <strong><?= $this->session->userdata('userdata')->agency; ?></strong>
                     </div>
                     <div class="sparkline text-left mt-3" data-type="bar" data-offset="100" data-width="100%"
                         data-height="40px" data-bar-Width="4" data-bar-Color="#ffffff">
@@ -57,10 +58,11 @@
                 <div class="body">
                     <div class="icon bg-light"><i class="fa fa-ticket"></i> </div>
                     <div class="content text-light">
-                        <div class="text mb-2 text-uppercase">Total Tiket</div>
-                        <h4 class="number mb-0">3,251 <span class="font-12"><i class="fa fa-level-up"></i>
-                                11%</span></h4>
-                        <small>Analytics for last month</small>
+                        <div class="text mb-2 text-uppercase">Stok Tiket</div>
+                        <h4 class="number mb-0"><?=$total_tiket; ?> <span class="font-12"><i class="fa fa-level-up"></i>
+                                Tiket</span></h4>
+                        <small>Jumlah Untuk Semua Tiket Event</small>
+                        <strong><?= $this->session->userdata('userdata')->agency; ?></strong>
                     </div>
                     <div class="sparkline text-left mt-3" data-type="bar" data-offset="100" data-width="100%"
                         data-height="40px" data-bar-Width="4" data-bar-Color="#ffffff">
@@ -74,9 +76,11 @@
                     <div class="icon bg-light"><i class="fa fa-ticket"></i> </div>
                     <div class="content text-light">
                         <div class="text mb-2 text-uppercase">Tiket Terjual</div>
-                        <h4 class="number mb-0">3,251 <span class="font-12"><i class="fa fa-level-up"></i>
-                                5.2%</span></h4>
-                        <small>Analytics for last month</small>
+                        <h4 class="number mb-0"><?=$terjual_tiket; ?> <span class="font-12"><i
+                                    class="fa fa-level-up"></i>
+                                Tiket</span></h4>
+                        <small>Tiket terjual Semua Event</small>
+                        <strong><?= $this->session->userdata('userdata')->agency; ?></strong>
                     </div>
                     <div class="sparkline text-left mt-3" data-type="bar" data-offset="100" data-width="100%"
                         data-height="40px" data-bar-Width="4" data-bar-Color="#ffffff">
@@ -90,13 +94,8 @@
                     <div class="icon bg-light"><i class="fa fa-ticket"></i> </div>
                     <div class="content text-light">
                         <div class="text mb-2 text-uppercase">Stok Tiket</div>
-                        <h4 class="number mb-0">3,251 <span class="font-12"><i class="fa fa-level-up"></i>
-                                3.8%</span></h4>
-                        <small>Analytics for last month</small>
+
                     </div>
-                    <div class="sparkline text-left mt-3" data-type="bar" data-offset="100" data-width="100%"
-                        data-height="40px" data-bar-Width="4" data-bar-Color="#ffffff">
-                        2,9,8,7,4,4,4,1,2,4,6,7,8,3,2,1,2,5,6,7,3,4,9,1,5,1,7,8,4,2,1</div>
                 </div>
             </div>
         </div>
