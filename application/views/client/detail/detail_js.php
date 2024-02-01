@@ -92,7 +92,8 @@
                 $(this).val('1')
             }
         });
-        $('#email').keypress(function() {
+        $('#email').on('input', function() {
+            // alert('yaa')
             if ($(this).attr('class') == 'form-control valid') {
                 $('#btn-next').removeAttr('disabled')
             } else {
@@ -101,12 +102,11 @@
             }
         });
         $('#btn-next').click(function() {
-            if ($('#email').val() == '') {
-                $('#btn-next').attr('disabled')
-            } else {
-                $('#btn-next').removeAttr('disabled')
+            if ($('#email').attr('class') == 'form-control valid') {
                 buynow_event();
-
+                // $('#btn-next').removeAttr('disabled')
+            } else {
+                $('#btn-next').attr('disabled')
             }
 
         });
