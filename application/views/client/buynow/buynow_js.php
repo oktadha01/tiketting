@@ -140,7 +140,6 @@ $('#btn-login').click(function() {
         processData: false,
         contentType: false,
         success: function(data) {
-            alert(data);
             $('.notif-call-log').show(200);
             $('#btn-login, #btn-close-modal').hide();
             $('#submit').show(200);

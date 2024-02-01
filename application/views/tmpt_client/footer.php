@@ -18,7 +18,7 @@
                     <tr>
                         <th style="font-weight: normal;color: white;font-size: x-large;"><i class="fa-brands fa-whatsapp"></i></th>
                         <th class="pl-3" style="font-weight: normal;">
-                            <a href="https://wa.me/6285876208194?text=Hallo%20Wisdil%20..." target="_blank" style="color: white;" >0858-7620-8194</a>
+                            <a href="https://wa.me/6285876208194?text=Hallo%20Wisdil%20..." target="_blank" style="color: white;">0858-7620-8194</a>
                         </th>
                     </tr>
                     <tr>
@@ -62,7 +62,7 @@
                     </a>
             </div>
             <div class="col-lg-3 col-md-3 col-12 text-center">
-                <a class="text-light a-menu-footer" href="">
+                <a class="text-light a-menu-footer" href="<?= base_url('Faq'); ?>">
                     FAQ
                 </a>
             </div>
