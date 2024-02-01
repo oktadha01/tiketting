@@ -1,6 +1,10 @@
 deployment:
   tasks:
+<<<<<<< HEAD
     - export DEPLOYPATH=/home/wisy2434/public_html
+=======
+    - export DEPLOYPATH=/home/wisy2434/public_html/
+>>>>>>> 52a91482292e1468b8a37f036cfd21cf7324ba03
     - /bin/cp -R application $DEPLOYPATH
     - /bin/cp -R assets $DEPLOYPATH
     - /bin/cp -R upload $DEPLOYPATH
@@ -8,4 +12,9 @@ deployment:
     - /bin/cp composer.json $DEPLOYPATH
     - /bin/cp composer.lock $DEPLOYPATH
     - /bin/cp license.txt $DEPLOYPATH
+<<<<<<< HEAD
     - /bin/cp index.php $DEPLOYPATH
+=======
+    - /bin/cp index.php $DEPLOYPATH
+
+>>>>>>> 52a91482292e1468b8a37f036cfd21cf7324ba03
