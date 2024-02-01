@@ -39,39 +39,36 @@ $(function() {
 
 });
 </script>
-
 <script>
 $(document).ready(function() {
-        $('.testimonial-slider').slick({
-            autoplay: true,
-            autoplaySpeed: 800,
-            speed: 900,
-            draggable: false,
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            arrows: true,
-            dots: true,
-            responsive: [{
-                    breakpoint: 991,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                    }
-                },
-                {
-                    breakpoint: 575,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                    }
+    $('.testimonial-slider').slick({
+        autoplay: true,
+        autoplaySpeed: 800,
+        speed: 900,
+        draggable: false,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: true,
+        responsive: [{
+                breakpoint: 991,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
                 }
-            ]
-        });
-    }
-}
+            },
+            {
+                breakpoint: 575,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }
+        ]
+    });
+});
 </script>
-
 <script>
 const splide = new Splide(".splide", {
     // Optional parameters
