@@ -25,7 +25,6 @@
                         <hr>
                         <table>
                             <tbody>
-
                                 <tr>
                                     <td style="padding-right: 15px;padding-left: 3px;"><i
                                             class="fa-regular fa-clock"></i> </td>
@@ -40,9 +39,10 @@
                         </table>
                     </div>
                     <hr>
+
                     <span class="span-tit medium">Special Perfomence By :</span>
                     <?php foreach ($perform as $data) : ?>
-                    <?php if ($data->status_perform == 'special') { ?>
+                    <?php if ($data->status_perform == '1') { ?>
                     <h6 class="font-weight-bold"><?= $data->nama_artis; ?></h6>
                     <?php }  ?>
                     <?php endforeach; ?>
@@ -50,7 +50,7 @@
                     <span class="span-tit medium">Also Perfoming :</span>
                     <ul class="font-weight-bold" style="margin-left: 1rem;">
                         <?php foreach ($perform as $data) : ?>
-                        <?php if ($data->status_perform == 'also') { ?>
+                        <?php if ($data->status_perform == '2') { ?>
                         <li style="list-style: decimal;">
                             <h6 class="font-weight-bold"><?= $data->nama_artis; ?></h6>
                         </li>

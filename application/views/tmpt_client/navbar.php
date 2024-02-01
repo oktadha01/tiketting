@@ -1,6 +1,6 @@
 <div class="header" id="header">
     <nav class="navbar container">
-        <a href="" class="brand">
+        <a href="<?= base_url(''); ?>" class="brand">
             <img src="<?= base_url('assets'); ?>/images/DD.png" alt="img-fluid" style="max-height: 3rem;">
         </a>
         <div class="menu" id="menu">
