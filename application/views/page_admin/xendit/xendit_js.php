@@ -57,12 +57,13 @@ function confirmDelete(id) {
                 dataType: 'json',
                 success: function(response) {
                     if (response.status) {
-                        // Menampilkan notifikasi sukses tanpa reload
-                        swalWithBootstrapButtons.fire(
-                            'Berhasil!',
-                            'Data berhasil dihapus.',
-                            'success'
-                        );
+                        swalWithBootstrapButtons.fire({
+                            title: 'Berhasil!',
+                            text: 'Data berhasil dihapus.',
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false,
+                        });
 
                         // Menghapus baris tabel secara dinamis (asumsi Anda menggunakan tabel datatables)
                         var table = $('#data-xendit').DataTable();
@@ -146,6 +147,7 @@ $('#setting').submit(function(e) {
                     icon: 'success',
                     title: 'Berhasil!',
                     text: 'Data Xendit Berhasil Diubah.',
+                    timer: 1500
                 });
 
                 var table = $('#data-xendit').DataTable();

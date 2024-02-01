@@ -7,9 +7,12 @@
         </div>
         <div class="row">
             <div class="col">
-                <p class="text-light" style="text-align:justify">Wisdil.id adalah sebuah platform digital yang menyediakan Ticketing Management Service - TMS
-                    untuk mendukung penyelenggara event / acara dari penjualan tiket hingga penyediaan statistik atau laporan acara.
-                    Ingin menyelenggarakan acara bersama kami? hubungi <a href="www.wisdil.com" style="color:#FECD0A;">Wisdil.com</a></p>
+                <p class="text-light" style="text-align:justify">Wisdil.id adalah sebuah platform digital yang
+                    menyediakan Ticketing Management Service - TMS
+                    untuk mendukung penyelenggara event / acara dari penjualan tiket hingga penyediaan statistik atau
+                    laporan acara.
+                    Ingin menyelenggarakan acara bersama kami? hubungi <a href="www.wisdil.com"
+                        style="color:#FECD0A;">Wisdil.com</a></p>
             </div>
         </div>
         <div class="row">
@@ -127,7 +130,8 @@
         </div>
         <div class="copyright text-center text-sm text-muted text-lg-start">
             Wisdil © 2024. All rights reserved <i class="fa fa-heart"></i> by
-            <a href="https://www.Wisdil.com" class="font-weight-bold" target="_blank" style="color:#FECD0A;"> Wisdil.com</a>
+            <a href="https://www.Wisdil.com" class="font-weight-bold" target="_blank" style="color:#FECD0A;">
+                Wisdil.com</a>
         </div>
     </div>
 </footer>
@@ -186,29 +190,31 @@
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+    integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 <script>
-    var url_transaksi = '<?php echo site_url('Transaction/data'); ?>';
-    var url_tiket = '<?php echo site_url('E_tiket/data'); ?>';
-    var url_detail_trans = '<?php echo site_url('transaction/detail_trans'); ?>';
-    var url_detail_tiket = '<?php echo site_url('E_tiket/detail_tiket'); ?>';
-    var url_download_tiket = '<?= site_url('upload/pdf/'); ?>'
-    var url_qr = '<?= base_url('upload/qr/'); ?>'
-    var url = '<?= base_url(); ?>';
+var url_transaksi = '<?php echo site_url('Transaction/data'); ?>';
+var url_tiket = '<?php echo site_url('E_tiket/data'); ?>';
+var url_detail_trans = '<?php echo site_url('transaction/detail_trans'); ?>';
+var url_detail_tiket = '<?php echo site_url('E_tiket/detail_tiket'); ?>';
+var url_download_tiket = '<?= site_url('upload/pdf/'); ?>'
+var url_qr = '<?= base_url('upload/qr/'); ?>'
+var url = '<?= base_url(); ?>';
 
-    // Panggil fungsi saat halaman dimuat atau saat ukuran jendela berubah
-    window.addEventListener('resize', cekTipePerangkat);
-    cekTipePerangkat(); // Panggil fungsi saat halaman dimuat
-    const menuLinks = document.querySelectorAll(".menu-link");
+// Panggil fungsi saat halaman dimuat atau saat ukuran jendela berubah
+window.addEventListener('resize', cekTipePerangkat);
+cekTipePerangkat(); // Panggil fungsi saat halaman dimuat
+const menuLinks = document.querySelectorAll(".menu-link");
 
-    menuLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-            menuLinks.forEach((link) => {
-                link.classList.remove("is-active");
-            });
-            link.classList.add("is-active");
+menuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        menuLinks.forEach((link) => {
+            link.classList.remove("is-active");
         });
-    })
+        link.classList.add("is-active");
+    });
+})
 </script>

@@ -1,11 +1,11 @@
 <?php $this->load->view('tmpt_admin/header'); ?>
 
 <body data-theme="light" class="font-nunito">
-    <div id="wrapper" class="theme-cyan">
+    <div id="wrapper" class="theme-blue">
         <!-- Page Loader -->
         <div class="page-loader-wrapper">
             <div class="loader">
-                <div class="m-t-30"><img src="assets/images/logo-icon.svg" width="48" height="48" alt="Iconic"></div>
+                <div class="m-t-30"><img src="assets/images/loader/logo.png" width="70" height="48" alt="Iconic"></div>
                 <p>Please wait...</p>
             </div>
         </div>

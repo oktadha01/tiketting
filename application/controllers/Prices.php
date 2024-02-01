@@ -279,12 +279,13 @@ class Prices extends AUTH_Controller
     public function fetch()
     {
         $output = '';
-        $this->load->model('Scan_model');
+
+        $id_user = $this->session->userdata('userdata')->id_user;
         $limit = $this->input->post('limit');
         $start = $this->input->post('start');
         $search = $this->input->post('search');
 
-        $data = $this->Scan_model->get_event_menu($limit, $start, $search);
+        $data = $this->Prices_model->get_event_menu($limit, $start, $id_user, $search);
 
         if ($data->num_rows() > 0) {
             foreach ($data->result() as $event) {

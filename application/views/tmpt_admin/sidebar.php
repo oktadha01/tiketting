@@ -85,6 +85,10 @@
                             <a href="<?= site_url('Scan_tiket'); ?>" class=""><i class="fa fa-ticket"></i><span>Scan
                                     Tiket</span></a>
                         </li>
+                        <li class="menu">
+                            <a href="<?= site_url('Dana_masuk'); ?>" class=""><i
+                                    class="fa fa-money"></i><span>Transaksi</span></a>
+                        </li>
                     </ul>
                 </nav>
             </div>
