@@ -32,7 +32,7 @@ class Send_email extends CI_Controller
         $this->email->from('kinderton.idofficial@gmail.com', 'Kinderton');
         $this->email->to($email_to_user);
         $this->email->subject('Aktivasi Akun Kinderton');
-        $data_email = array(
+        $data_email = array(   
             'id_user'  => 'id_user',
             'nm_user'  => 'nm_user',
             'gmail' => 'gmail',

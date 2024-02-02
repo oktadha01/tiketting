@@ -198,7 +198,12 @@
                         $('#btn-close-modal').trigger('click');
                         var delayInMilliseconds = 500; //1 second
                         setTimeout(function() {
+
                             $('#page-load-detail-event').html(data);
+                            window.scrollTo({
+                                top: 0,
+                                behavior: 'smooth'
+                            });
                             // window.history.pushState({}, null, null);
                         }, delayInMilliseconds);
 
