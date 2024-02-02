@@ -266,7 +266,7 @@ class Buynow extends CI_Controller
             // disable auto-page-break
             $pdf->setAutoPageBreak(false, 0);
             // set bacground image
-            $img_file = base_url('upload/TIKET.PNG');
+            $img_file = base_url('upload/tiket.png');
             $pdf->Image($img_file, null, 0, 148, 105, '', '', '', false, 300, 'C', false, false, 0);
             // restore auto-page-break status
             $pdf->setAutoPageBreak($auto_page_break, $bMargin);

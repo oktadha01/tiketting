@@ -15,11 +15,13 @@ class M_tiket extends CI_Model
         $this->db->join('price', 'price.id_price = tiket.id_price');
         $this->db->where('customer.email', $email);
         // $this->db->where('status_tiket', '1');
+        $this->db->where('status_transaksi', '1');
         $query = $this->db->get();
         $q['result'] = $query->result();
         $q['num_rows'] = $query->num_rows();
         return $q;
     }
+
 
     function m_detail_tiket($email, $code_tiket)
     {

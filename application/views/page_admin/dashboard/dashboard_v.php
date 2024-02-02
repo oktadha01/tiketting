@@ -15,7 +15,7 @@
         <?php if ($userdata->privilage == 'Admin') : ?>
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card top_widget primary-bg">
-                <div class="body">
+                <div class="body pb-0">
                     <div class="icon bg-light"><i class="fa fa-money"></i> </div>
                     <div class="content text-light">
                         <div class="text mb-2 text-uppercase">Saldo Xendit</div>
@@ -55,13 +55,13 @@
 
         <div class="col-lg-3 col-md-6 col-sm-6 mr-0 pr-0">
             <div class="card top_widget secondary-bg">
-                <div class="body">
+                <div class="body p-1 m-1">
                     <div class="icon bg-light"><i class="fa fa-ticket"></i> </div>
                     <div class="content text-light">
                         <div class="text mb-2 text-uppercase">Stok Tiket</div>
                         <h4 class="number mb-0"><?=$total_tiket; ?> <span class="font-12"><i class="fa fa-level-up"></i>
                                 Tiket</span></h4>
-                        <small>Jumlah Untuk Semua Tiket Event</small>
+                        <small>Jumlah Semua Tiket Event</small>
                         <strong><?= $this->session->userdata('userdata')->agency; ?></strong>
                     </div>
                     <div class="sparkline text-left mt-3" data-type="bar" data-offset="100" data-width="100%"
@@ -72,7 +72,7 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 mr-0 pr-0">
             <div class="card top_widget bg-dark">
-                <div class="body">
+                <div class="body p-1 m-1">
                     <div class="icon bg-light"><i class="fa fa-ticket"></i> </div>
                     <div class="content text-light">
                         <div class="text mb-2 text-uppercase">Tiket Terjual</div>
@@ -90,14 +90,24 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 mr-0 pr-0">
             <div class="card top_widget bg-info">
-                <div class="body">
+                <div class="body p-1 m-1">
                     <div class="icon bg-light"><i class="fa fa-ticket"></i> </div>
                     <div class="content text-light">
-                        <div class="text mb-2 text-uppercase">Stok Tiket</div>
-
+                        <div class="text mb-2 text-uppercase">Status Tiket</div>
+                        <div class="mt-5">
+                            <div class="alert alert-success p-0 m-0" role="alert">
+                                <h5 class="number p-1 m-1"><?=$tiket_belum; ?> <span class="font-12"><i
+                                            class="fa fa-level-up"></i>
+                                        Belum Diambil</span></h5>
+                            </div>
+                            <div class="alert alert-danger pt-2 mt-2 pl-1 pr-0" role="alert">
+                                <h5 class="number p-0 m-0"><?=$tiket_diambil; ?> <span class="font-12"><i
+                                            class="fa fa-level-up"></i>
+                                        Sudah Diambil</span></h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
