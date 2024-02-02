@@ -205,7 +205,7 @@
                 <a class="v-tab-head v-tab-link visible-xs tab-active" data-target="#coreFeatures-tab">Cara Pembelian Tiket Wisdil</a>
                 <div id="coreFeatures-tab" class="collapse fade in">
                     <ol>
-                        <li>Pembeli memilih tiket event yang diinginkan, silahkan mengunjungi website artatix.co.id</li>
+                        <li>Pembeli memilih tiket event yang diinginkan, silahkan mengunjungi website Wisdil.com</li>
                         <li>Pilih event atau klik searching box dan tulis event yang ingin dibeli </li>
                         <li>Kemudian pilih tiket yang ingin dibeli</li>
                         <li>Selanjutnya mengisi data diri dan pastikan benar</li>
@@ -224,7 +224,7 @@
                 </div>
                 <a class="v-tab-head v-tab-link visible-xs" data-target="#marketing-tab">Batas waktu pembayaran tiket</a>
                 <div id="marketing-tab" class="collapse fade">
-                    <p>Untuk batas waktu pembayaran maks. 3 jam. Jika melebihi jangka waktu tersebut, maka pesanan akan otomatis dibatalkan dan silahkan melakukan pemesanan ulang</p>
+                    <p>Untuk batas waktu pembayaran maks. 1 jam. Jika melebihi jangka waktu tersebut, maka pesanan akan otomatis dibatalkan dan silahkan melakukan pemesanan ulang</p>
                 </div>
                 <a class="v-tab-head v-tab-link visible-xs" data-target="#email-tab">Cara Penukaran e-tiket Wisdil</a>
                 <div id="email-tab" class="collapse fade">
@@ -251,7 +251,7 @@
                 </div>
                 <a class="v-tab-head v-tab-link visible-xs" data-target="#technology-tab">Informasi harga tiket event</a>
                 <div id="technology-tab" class="collapse fade">
-                    <p>Untuk harga tiket dan detail mengenai event yang ingin dibeli, dapat langsung mengunjungi website artatix.co.id</p>
+                    <p>Untuk harga tiket dan detail mengenai event yang ingin dibeli, dapat langsung mengunjungi website Wisdil.com</p>
                 </div>
             </div>
         </div>
