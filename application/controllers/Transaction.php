@@ -56,15 +56,15 @@ class Transaction extends CI_Controller
                 } else {
                     // code status
                     $status_transaksi = '';
-                        if ($data_transaksi->status_transaksi == '0') {
-                            $status_transaksi = '<td class="font-weight-medium ml-0"><div class="badge badge-info shadow l-parpl text-white rounded ">Panding</div></td>';
-                        } elseif ($data_transaksi->status_transaksi == '1') {
-                            $status_transaksi = '<td class="font-weight-medium"><div class="badge badge-info shadow l-green text-dark rounded">Lunas</div></td>';
-                        }
+                    if ($data_transaksi->status_transaksi == '0') {
+                        $status_transaksi = '<td class="font-weight-medium ml-0"><div class="badge badge-info shadow l-parpl text-white rounded ">Panding</div></td>';
+                    } elseif ($data_transaksi->status_transaksi == '1') {
+                        $status_transaksi = '<td class="font-weight-medium"><div class="badge badge-info shadow l-green text-dark rounded">Lunas</div></td>';
+                    }
 
                     // code tombol
-                        if ($data_transaksi->status_transaksi == '0') {
-                            $actionButton = '<div class="col-6">
+                    if ($data_transaksi->status_transaksi == '0') {
+                        $actionButton = '<div class="col-6">
                                                 <button type="button" class="col-12 btn btn-sm bg-w-blue text-light btn-detail-trans-m" data-cb="' . $data_transaksi->code_bayar . '" data-toggle="modal" data-target="#detail-transaksi">Detail</button>
                                             </div>
                                             <div class="col-6">
@@ -72,17 +72,17 @@ class Transaction extends CI_Controller
                                                     <button type="button" class="col-12 btn btn-sm bg-w-orange">Pay Now</button>
                                                 </a>
                                             </div>';
-                        } elseif ($data_transaksi->status_transaksi == '1') {
-                            $actionButton = ' <div class="col-6">
+                    } elseif ($data_transaksi->status_transaksi == '1') {
+                        $actionButton = ' <div class="col-6">
                                                 <button type="button" class="col-12 btn btn-sm bg-w-blue text-light btn-detail-trans-m" data-cb="' . $data_transaksi->code_bayar . '" data-toggle="modal" data-target="#detail-transaksi">Detail</button>
                                               </div>';
-                        }
+                    }
 
                     echo '<div class="card box-shadow">
                     <div class="card-body">
                     <div class="row">
                         <div class="col-lg-1 col-md-2 col-5">
-                            <img src="'.base_url('upload/event/') .$data_transaksi->poster.'" class="img-fluid size-poster">
+                            <img src="' . base_url('upload/event/') . $data_transaksi->poster . '" class="img-fluid size-poster">
                         </div>
                         <div class="col-lg-8 col-md-10 col-7 p-table-inv">
                             <div class="row">
@@ -107,14 +107,14 @@ class Transaction extends CI_Controller
                                 <div class="col-lg-2">
                                     <div style="display:grid;">
                                         <span class="smal">Status</span>
-                                        <span class="font-weight-bold"> '.$status_transaksi.'</span>
+                                        <span class="font-weight-bold"> ' . $status_transaksi . '</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 p-table-inv">
                             <hr class="hr">
-                            <div class="row">'.$actionButton.'</div>
+                            <div class="row">' . $actionButton . '</div>
                             </div>
                         </div>
                     </div>
@@ -212,7 +212,7 @@ class Transaction extends CI_Controller
             </div>
             <div class="col-lg-6 col-md-6 col-6">
             <p class="small mb-0">Payment</p>
-            <p id="text-file" class="medium mb-0 font-weight-bold">'. $data_trans->bank .'</p>
+            <p id="text-file" class="medium mb-0 font-weight-bold">' . $data_trans->bank . '</p>
             </div>
             <div class="col-lg-6 col-md-6 col-6">
             <p class="small mb-0">Total</p>
@@ -221,6 +221,22 @@ class Transaction extends CI_Controller
             </div>
             </div>
             </div>';
+            // code tombol modal footer
+            if ($data_trans->status_transaksi == '0') {
+                $modalButton = '<div class="row">
+                                        <div class="col pl-0">
+                                            <button id="" type="button" class="btn bg-w-orange btn-btl-trans" data-dismiss="modal">Batalkan
+                                                Transaksi</button>
+                                        </div>
+                                        <div class="col pr-0">
+                                            <a href="' . base_url('Transaction/CB/') . $data_trans->code_bayar . '">
+                                                <button type="button" class="btn bg-w-blue text-light float-right">Bayar Sekarang</button>
+                                            </a>
+                                        </div>
+                                    </div>';
+            } elseif ($data_trans->status_transaksi == '1') {
+                $modalButton = '';
+            }
         }
         echo '<span class="font-weight-bold">Buyer Details</span>';
         $no = 1;
@@ -253,48 +269,32 @@ class Transaction extends CI_Controller
                 }
             } else {
                 echo '<div class="card box-shadow">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-1">
-                        <span class="num-tiket">' . $no++ . '</span>
-                    </div>
-                    <div class="col-lg-4">
-                        <p class="small mb-0">Name</p>
-                        <p class="medium mb-0 font-weight-bold">' . $data_buyer->nama . '</p>
-                    </div>
-                    <div class="col-lg-4">
-                        <p class="small mb-0">Email</p>
-                        <p class="medium mb-0 font-weight-bold">' . $data_buyer->email . '</p>
-                    </div>
-                    <div class="col-lg-3">
-                        <p class="small mb-0">Ticket</p>
-                        <p class="medium mb-0 font-weight-bold">' . $data_buyer->kategori_price . '</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        ';
-             // code tombol modal footer
-                    if ($data_event->status_transaksi == '0') {
-                        $modalButton = '<div class="row">
-                                            <div class="col pl-0">
-                                                <button id="" type="button" class="btn bg-w-orange btn-btl-trans" data-dismiss="modal">Batalkan
-                                                    Transaksi</button>
-                                            </div>
-                                            <div class="col pr-0">
-                                                <a href="' . base_url('Transaction/CB/') . $data_event->code_bayar . '">
-                                                    <button type="button" class="btn bg-w-blue text-light float-right">Bayar Sekarang</button>
-                                                </a>
-                                            </div>
-                                        </div>';
-                    } elseif ( $data_event->status_transaksi == '1') {
-                        $modalButton = '';
-                    }
-
-                    echo ' <div class="modal-footer" style="display: block;">'.$modalButton.'</div>';
-                    echo '<input type="text" id="del-code_transaksi" value="' . $code_bayar . '" hidden>';
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-1">
+                                    <span class="num-tiket">' . $no++ . '</span>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="small mb-0">Name</p>
+                                    <p class="medium mb-0 font-weight-bold">' . $data_buyer->nama . '</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="small mb-0">Email</p>
+                                    <p class="medium mb-0 font-weight-bold">' . $data_buyer->email . '</p>
+                                </div>
+                                <div class="col-lg-3">
+                                    <p class="small mb-0">Ticket</p>
+                                    <p class="medium mb-0 font-weight-bold">' . $data_buyer->kategori_price . '</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
             }
         }
+
+
+        echo ' <div class="modal-footer" style="display: block;">' . $modalButton . '</div>';
+        echo '<input type="text" id="del-code_transaksi" value="' . $code_bayar . '" hidden>';
     }
     function batalkan_transaksi()
     {
@@ -323,9 +323,8 @@ class Transaction extends CI_Controller
                 $id_price = $data_->id_price;
                 $stock_tiket = $data_->stock_tiket + $count;
                 // echo 'id:' . $data_->id_price . 'count :' . $stock_tiket;
-                $this->M_transaksi->m_update_stock_tiket($id_price ,$stock_tiket);
+                $this->M_transaksi->m_update_stock_tiket($id_price, $stock_tiket);
             }
-
         }
     }
 }
