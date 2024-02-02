@@ -28,16 +28,11 @@ class E_tiket extends CI_Controller
         if ($num_rows_tiket > 0) {
             foreach ($tiket['result'] as $data_tiket) {
 
-                if ($data_tiket->status_transaksi == '0') {
-
-                    echo '<span>No tickets</span>';
-
-                } elseif ( $data_tiket->status_transaksi == '1') {
                     echo '<div class="card">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-1 col-md-1 col-2">
-                                            <span class="num-tiket">' . $no++ . '</span>
+                                             <span class="num-tiket">' . $no++ . '</span>
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-5">
                                             <p class="small mb-0">Name</p>
@@ -64,7 +59,6 @@ class E_tiket extends CI_Controller
                                     </div>
                                 </div>
                             </div>';
-                }
 
             }
         } else {
@@ -72,6 +66,7 @@ class E_tiket extends CI_Controller
             echo '<span>No tickets</span>';
         }
     }
+
     function detail_tiket()
     {
         $code_tiket = $_POST['code_tiket'];
