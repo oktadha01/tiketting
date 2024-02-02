@@ -266,7 +266,7 @@ class Buynow extends CI_Controller
             // disable auto-page-break
             $pdf->setAutoPageBreak(false, 0);
             // set bacground image
-            $img_file = base_url('upload/TIKET.PNG');
+            $img_file = base_url('upload/tiket.png');
             $pdf->Image($img_file, null, 0, 148, 105, '', '', '', false, 300, 'C', false, false, 0);
             // restore auto-page-break status
             $pdf->setAutoPageBreak($auto_page_break, $bMargin);
@@ -277,7 +277,7 @@ class Buynow extends CI_Controller
 
             // Add header text
             $pdf->SetY(1); // Set the Y position for the header text
-            $headerText = 'WWW.Musickanpa.com';
+            $headerText = 'WWW.WISDIL.COM';
             $headerText = strtoupper($headerText); // Convert the header text to uppercase
             $pdf->setFont('dejavusans', '', 6); // Set font for the header text
             $pdf->setFontSpacing(2);
