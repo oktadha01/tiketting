@@ -24,17 +24,17 @@ class E_tiket extends CI_Controller
 
         $num_rows_tiket = $tiket['num_rows'];
         $no = 1;
-
+        // echo '<div class="row">';
         if ($num_rows_tiket > 0) {
             foreach ($tiket['result'] as $data_tiket) {
-                echo '<div class="card">
+                echo '<div class="card box-shadow">
                                 <div class="card-header etic-header bg-w-orange">
-                                    <span>' . $data_tiket->nm_event . '</span>
+                                <span>' . $data_tiket->nm_event . '</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-lg-1 col-md-1 col-2">
-                                            <span class="num-tiket">' . $no++ . '</span>
+                                    <div class="col-lg-1 col-md-1 col-2">
+                                    <span class="num-tiket">' . $no++ . '</span>
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-5">
                                             <p class="small mb-0">Name</p>
@@ -65,6 +65,7 @@ class E_tiket extends CI_Controller
         } else {
             echo '<span>No tickets</span>';
         }
+        // echo '</div>';
     }
     function detail_tiket()
     {

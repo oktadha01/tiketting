@@ -32,7 +32,7 @@
                             <span class="menu-name">Akun</span>
                         </a>
                     </li>
-                    <li class="menu-item menu-akun-drop dropdown show">
+                    <li class="menu-item menu-akun-drop dropdown">
                         <a href="#" class="menu-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="siz-menu" src="<?= base_url('assets/images/akun.png'); ?>" alt="">
                             <span class="menu-name">Akun</span>

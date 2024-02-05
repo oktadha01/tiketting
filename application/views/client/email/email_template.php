@@ -1,103 +1,25 @@
-<div class="">
-    <div class="aHl"></div>
-    <div id=":nh" tabindex="-1"></div>
-    <div id=":n6" class="ii gt" jslog="20277; u014N:xr6bB; 4:W251bGwsbnVsbCxbXV0.">
-        <div id=":n5" class="a3s aiL msg2331540006550853788"><u></u>
-            <div style="margin:0;padding:0;font-size:15px;line-height:160%;color:#444;width:100%;font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#f5f7fb">
-                <center>
-                    <table width="100%" cellspacing="0" cellpadding="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%;background-color:#f5f7fb">
+<div>
+    <!-- <div style="color:transparent;opacity:0;font-size:0px;border:0;max-height:1px;width:1px;margin:0px;padding:0px;border-width:0px!important;display:none!important;line-height:0px!important">
+        <img border="0" width="1" height="1" src="" alt="apaaa" class="CToWUd" data-bit="iit">
+    </div> -->
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background:#e6eaed">
+        <tbody>
+            <tr>
+                <td align="center">
+                    <table border="0" cellpadding="0" cellspacing="0" style="background:#e6eaed;height:62px;width:90%;max-width:450px">
                         <tbody>
                             <tr>
-                                <td align="center" valign="top" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
-
-                                    <span style="padding:0;font-size:0;display:none;max-height:0;line-height:0;color:transparent;height:0;max-width:0;opacity:0;overflow:hidden;width:0">This is preheader text. Some clients will show this text as a preview.</span>
-                                    <table cellspacing="0" cellpadding="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%;max-width:640px;text-align:left">
+                                <td align="center" valign="middle">
+                                    <img src="https://wisdil.com/assets/images/DD.png" style="padding-top:48px;height: auto;width: 10rem;" class="CToWUd" data-bit="iit">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="middle" style="padding-bottom:40px">
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
                                         <tbody>
                                             <tr>
-                                                <td style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;padding:8px">
-                                                    <table cellpadding="0" cellspacing="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;padding-top:24px;padding-bottom:24px">
-                                                                    <table cellspacing="0" cellpadding="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
-                                                                                    <a href="https://infinityfree.net/" style="color:#467fcf;text-decoration:none" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://infinityfree.net/&amp;source=gmail&amp;ust=1667450745750000&amp;usg=AOvVaw3lGZdNfpcuHsEtlEnIJRAs">
-                                                                                        <img height="34" alt="" style="line-height:100%;outline:0;text-decoration:none;vertical-align:baseline;font-size:0;border:0 none">
-                                                                                    </a>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <div>
-                                                        <table cellpadding="0" cellspacing="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%;background:#fff;border-radius:3px;border:1px solid #f0f0f0">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
-                                                                        <table cellpadding="0" cellspacing="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;padding:40px 48px">
-                                                                                        <p>Hi <a href="mailto:<?php echo $gmail; ?>" target="_blank"><?php echo $gmail; ?></a>,</p>
-                                                                                        Terimakasih telah mendaftar di Kinderton. Akun anda segara aktif dengan cara klik.</p>
-                                                                                        <table cellspacing="0" cellpadding="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%">
-                                                                                            <tbody>
-                                                                                                <tr>
-                                                                                                    <td align="center" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif">
-                                                                                                        <table cellpadding="0" cellspacing="0" border="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;background-color:#467fcf;color:#fff;border-radius:3px;width:auto;border-collapse:separate">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td align="center" valign="top" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;line-height:100%">
-                                                                                                                        <a href="<?php echo base_url(); ?>konfrim_akun/aktivasi/<?php echo $id_user; ?>" style="text-decoration:none;white-space:nowrap;font-weight:600;font-size:16px;padding:12px 32px;border-radius:3px;line-height:100%;display:block;border:1px solid transparent;background-color:#467fcf;color:#fff;border-color:#467fcf" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://app.infinityfree.net/accounts/epiz_32899282&amp;source=gmail&amp;ust=1667450745750000&amp;usg=AOvVaw2VifFL9WdzkK_PlRda_cLB">
-                                                                                                                            <span style="color:#fff;font-size:16px;text-decoration:none;white-space:nowrap;font-weight:600;line-height:100%">aktivasi akun</span>
-                                                                                                                        </a>
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                        <p>Berikut detail akun anda :</p>
-                                                                                        <h2>Detail Akun Kinderton</h2>
-                                                                                        <p>Username: <?php echo $nm_user; ?><br>
-                                                                                            Password: (******)<br>
-                                                                                            Kontak: <?php echo $kontak; ?>
-                                                                                        </p>
-                                                                                        <hr>
-                                                                                        <p>Segala bentuk informasi seperti nomor kontak, alamat e-mail atau password kamu bersifat rahasia. Jangan menginformasikan data-data kepada siapapun, termasuk kepada pihak yang mengatasnamakan Kinderton.</p>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <table cellspacing="0" cellpadding="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;padding-top:48px;padding-bottom:48px">
-                                                                    <table cellspacing="0" cellpadding="0" style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;border-collapse:collapse;width:100%;color:#9eb0b7;text-align:center;font-size:13px">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="font-family:Open Sans,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;padding-top:16px">
-                                                                                    Copyright © 2022 Kinderton. All rights reserved.
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                                <td align="center">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -106,17 +28,212 @@
                             </tr>
                         </tbody>
                     </table>
-                </center>
-                <div class="yj6qo"></div>
-                <div class="adL">
-                </div>
-            </div>
-            <div class="adL">
-            </div>
-        </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <table border="0" align="center" cellpadding="0" cellspacing="0" style="width:90%;max-width:450px">
+                        <tbody>
+                            <tr style="background:#ffffff">
+                                <td>
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td style="background-image:url(https://ci3.googleusercontent.com/meips/ADKq_NacqA7Yn2g-8RUsBj8vL3blfoVaBB8GoTooeH-Fd7zDbKQxFkCbhmhw53-I-7rge4lMA8EN5yzm2e2GdgwVy6A2eMJ6WzRde_U1yV9uevraRdnfJ0uBIamPPlnXyM4W2I8CfCokdlNu0RQGcLZqO2eHDvj7RyZEmiLiT1xB7hJacT8EnIigGcu5jdmcbQnLY_b4d48l=s0-d-e1-ft#https://cntres-assets-ap-southeast-1-250226768838-cf675839782fd369.s3-ap-southeast-1.amazonaws.com/asset/images/email/strip.png);background-repeat:repeat-x no-repeat;width:100%;height:4px;background-color:#1ba0e2;display:block"> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="top" width="100%">
+                                    <?php foreach ($data_transaksi as $transaksi) { ?>
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="center" valign="top">
+                                                        <div>
+
+                                                            <div style="padding-top:38px;background:#ffffff">
+                                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="center" valign="top">
+                                                                                <h1 style="font-weight:normal;font-size:30px;color:#434343;margin:0px;padding:0px 16px"> Tiket <?= $transaksi['nm_kategori_event']; ?> Anda telah terbit! </h1>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td align="left" valign="top" style="padding:0px 16px">
+                                                                                <div style="width:100%;height:38px;display:block"></div>
+                                                                                <h3 style="font-size:16px;margin:0px;padding:0px;color:#434343;font-weight:bold"><strong>Yth. <?= $transaksi['nm_customer']; ?>,</strong></h3>
+                                                                                <div style="width:100%;height:28px;display:block"></div>
+                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black;">Pembelian tiket <?= $transaksi['nm_kategori_event']; ?> Anda telah sukses dikonfirmasi.</p><br>
+                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black;">Tiket <?= $transaksi['nm_kategori_event']; ?> dan bukti pembelian Anda terdapat dalam lampiran.</p>
+                                                                                <div style="width:100%;height:32px;display:block"></div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div style="background:#ffffff;margin-bottom:16px;border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:2px solid #dadada">
+                                                                <div style="padding:0 16px;margin-bottom:10px">
+                                                                    <table border="0" cellpadding="0" cellspacing="0" style="margin:0px;width:100%">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="left" valign="middle" width="100%;">
+                                                                                    <span style="font-size:15px;text-transform:uppercase;color:#1ba0e2;font-weight:bold;margin:0px;padding:0px">Detail Pesanan</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <table border="0" cellpadding="0" cellspacing="0" style="border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#cdd0d1;border-top-width:1px;border-top-style:solid;border-top-color:#cdd0d1;width:100%;padding:0 16px">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" valign="top" width="100%" style="padding-top:10px;padding-bottom:10px">
+                                                                                <h2 style="font-size:16px;line-height:16px;font-weight:bold;width:100%;margin:0px;padding:0px;margin-top:10px; color:black"><?= $transaksi['nm_event']; ?></h2>
+                                                                                <p style="font-size:15px;color:#737374;margin:0px;padding:0px;margin-bottom:5px"><?= $transaksi['lokasi'] . ' | Kab. Semarang |' . $transaksi['tgl_event'] . ' | ' . $transaksi['jam_event']; ?></p>
+                                                                                <?php foreach ($data_tiket as $tiket) { ?>
+                                                                                    <p style="font-size: 15px;color: #1ba0e2;margin:0px;padding:0px;font-style: italic;"><?= $tiket->kategori_price; ?> <?= $tiket->ticket_count; ?>x </p>
+                                                                                <?php
+                                                                                };
+                                                                                ?>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" style="width:100%">
+                                                                                <div style="padding:0 16px">
+                                                                                    <p style="font-size:14px;margin-top:15px; color:black"> Dipesan dan dibayarkan oleh:<br>
+                                                                                        <span style="font-weight:bold;font-size:16px;color:#1ba0e2"><?= $transaksi['nm_customer']; ?></span>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div style="padding:0 16px">
+                                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top:20px;margin-bottom:20px">
+                                                                        <tbody>
+                                                                            <tr>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
+                                                                                    <p style="color:#737374;font-size:13px;margin:0px;padding:0px">Invoice </p>
+                                                                                </td>
+                                                                                <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
+                                                                                    <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : <?= $transaksi['invoice']; ?></p>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
+                                                                                    <p style="color:#737374;font-size:13px;margin:0px;padding:0px">Payment </p>
+                                                                                </td>
+                                                                                <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
+                                                                                    <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : <?= $transaksi['payment']; ?></p>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
+                                                                                    <p style="color:#737374;font-size:13px;margin:0px;padding:0px">Jumlah bayar </p>
+                                                                                </td>
+                                                                                <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
+                                                                                    <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : Rp. <?= number_format($transaksi['nominal'], 0, ',', '.'); ?> </p>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
+                                                                                    <p style="color:#737374;font-size:13px;margin:0px;padding:0px">Tanggal </p>
+                                                                                </td>
+                                                                                <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
+                                                                                    <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : <?= $transaksi['tgl_trans']; ?> </p>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div style="background:#fff;border-bottom:2px solid #dadada;border-radius:4px 4px 6px 6px;max-width:600px;overflow:hidden;width:100%;margin-bottom:16px">
+                                                            <table align="center" style="background:0 0;border-collapse:collapse;border-spacing:0;margin:0 auto;padding:0;text-align:inherit;vertical-align:top">
+                                                                <tbody>
+                                                                    <tr style="padding:0;text-align:left;vertical-align:top">
+                                                                        <td style="Margin:0;border-collapse:collapse!important;color:#434343;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.5;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+                                                                            <table style="border-collapse:collapse;border-spacing:0;display:table;padding:0;text-align:left;vertical-align:top;width:100%">
+                                                                                <tbody>
+                                                                                    <tr style="padding:0;text-align:left;vertical-align:top">
+                                                                                        <th style="color:#434343;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.5;margin:0 auto;padding:0;padding-left:16px;padding-right:16px;text-align:left;width:584px">
+                                                                                            <table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+                                                                                                <tbody>
+                                                                                                    <tr style="padding:0;text-align:left;vertical-align:top">
+                                                                                                        <th style="color:#434343;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.5;margin:0;padding:0;text-align:left">
+                                                                                                            <h3 style="color:inherit;font-family:Helvetica,Arial,sans-serif;font-size:1.125rem;font-weight:700;letter-spacing:.3px;line-height:26px;margin:16px 0 8px 0;padding:0;text-align:left;word-wrap:normal">Punya pertanyaan?</h3>
+                                                                                                            <p style="color:#434343;font-family:Helvetica,Arial,sans-serif;font-size:.875rem;font-weight:400;line-height:22px;margin:0 0 8px 0;padding:0;text-align:left"> Temukan jawaban Anda dengan cepat di Help Center. </p>
+                                                                                                            <a href="https://wa.me/6285876208194?text=Hallo%20Wisdil%20..." style="margin-bottom: 17px; color:#0770cd;display:block;font-family:Helvetica,Arial,sans-serif;font-size:.875rem;font-weight:700;line-height:22px;padding:0;text-align:left;text-decoration:none;white-space:nowrap" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://post.spmailtechnolo.com/f/a/7GFoDlJfKLSPU0azRXlh3Q~~/AAUcTQA~/RgRmq4p9P0SzaHR0cHM6Ly9tZXNzYWdpbmctY2FsbGJhY2stYXBpLm1zZy50cmF2ZWxva2EuY29tL3I_aWQ9MTc3MzAzMjY5MjE2MjUxMDc0OSZ0YXJnZXQ9SXJqJTJCU1NyU0NmQnM0V1glMkJrYllReXZCRDRRd0xhODRVSmNjbERGdmF0b2NyJTJGMDd2dTZ4ZElFZXlNS3FwRDV0d2FxSWc5TUhuWkl1bGhITGsyV1dKTGclM0QlM0RXA3NwY0IKZLZ9Bclk0p-NBFITY2VzYW5keTEzQGdtYWlsLmNvbVgEAAAAAQ~~&amp;source=gmail&amp;ust=1706950554480000&amp;usg=AOvVaw1W0gFW2BWM_hTvvfIpK6My">
+                                                                                                                <img src="https://ci3.googleusercontent.com/meips/ADKq_NbtjkpjimFvuTejbSMTCEWOc21vTmazQwW118TGbci0dvXDjfoy4Tpx35VsWjdMfHkFGw2B0WkL5JXO5i0TdyFxFaoRYUxbysfsiOOK399dsr2_auwjyOHQk7hsCe-LXfGI1XmyOmtL-uvu_SJK7wsdJ_xcpEzLlLDjNoGyMUWmfkyYz01TzGgMdAqw98vV3GqT2He6BjcFQMaUGi5iUsiNRlmHtUFB36F02pazB6HgKJXHXy_rMUPduWMyAso3L-ElBqU8=s0-d-e1-ft#https://s3-ap-southeast-1.amazonaws.com/cntres-assets-ap-southeast-1-250226768838-cf675839782fd369/imageResource/2018/02/14/1518583857385-282626c7ce0aaf1b1c727f9ba04729bf.png" style="border:none;clear:both;display:inline-block;height:16px;margin-right:8px;max-width:100%;outline:0;text-decoration:none;vertical-align:text-top;width:16px" class="CToWUd" data-bit="iit">
+                                                                                                                Kunjungi Pusat Bantuan
+                                                                                                            </a>
+                                                                                                        </th>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="background-color:#e6eaed">
+                                                        <table style="Margin:0 auto;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:100%">
+                                                            <tbody>
+                                                                <tr style="padding:0;text-align:left;vertical-align:top">
+                                                                    <td height="16px" style="Margin:0;border-collapse:collapse!important;color:#434343;font-size:16px;font-weight:normal;line-height:16px;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">&nbsp;</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" valign="middle" style="background:#e6eaed;padding-bottom:16px;width:100%;max-width:600px;border-bottom:1px solid #dadada">
+                                                        <p style="color:#8f8f8f;font-size:12px;letter-spacing:0.5px;line-height:20px;text-align:center">Email ini hanya ditujukan untuk <?= $transaksi['nm_customer']; ?>, karena Anda telah melakukan pemesanan melalui Wisdil.com.</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" valign="middle" style="background:#e6eaed;padding-top:16px;padding-bottom:16px;width:100%;max-width:600px">
+                                                        <p style="color:#8f8f8f;font-size:12px;letter-spacing:0.5px;line-height:20px;text-align:center">© 2024 Wisdil. Hak Cipta Dilindungi.<br><br> </p>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <img style="display:block;font-size:0px;line-height:0em" src="https://ci3.googleusercontent.com/meips/ADKq_Nb4xY7TksW7wEAhWf_4eASy9KawG_-k4_qTpU1mtcHM1rs5xRtc727W1B14M8LqtDXynVcLpWxjg7WyObGV1ptgGSuP3wi9-XkXqdV4K6wcCDgpajs2hmC8p6RSaRFX=s0-d-e1-ft#https://messaging-callback-api.msg.traveloka.com/o?id=1773032692162510749" alt="" width="1" height="1" border="0" class="CToWUd" data-bit="iit" jslog="138226; u014N:xr6bB; 53:WzAsMl0.">
+
+    <img border="0" width="1" height="1" alt="" src="https://ci3.googleusercontent.com/meips/ADKq_Naq7vK-0ba3S7UOUd_fC1hjDmoUNoE1XC2P-7epJ37rpgAcl5aI2wpm_GTvcHF_ITEeh71XqFSnqkzKWorYI9kXWmubvh5Vz47umFwdIEff9pjjoWeCmgLA6fIiFxa7QrgD3e2mTDiBzQIfbQYExWN5ex9Vm4Baatq6W9pMw7DXHlU_SelqshgMYZiQFtJU8dyCudGLz32GbUSYJmyc=s0-d-e1-ft#http://post.spmailtechnolo.com/q/g-gmz1GUuGfmlEAe4G2mRw~~/AAUcTQA~/RgRmq4p9PlcDc3BjQgpktn0FyWTSn40EUhNjZXNhbmR5MTNAZ21haWwuY29tWAQAAAAB" class="CToWUd" data-bit="iit">
+    <div class="yj6qo"></div>
+    <div class="adL">
     </div>
-    <div id=":nl" class="ii gt" style="display:none">
-        <div id=":nm" class="a3s aiL "></div>
-    </div>
-    <div class="hi"></div>
 </div>

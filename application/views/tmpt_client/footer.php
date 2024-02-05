@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <p class="text-light" style="text-align:justify">Wisdil.id adalah sebuah platform digital yang
+                <p class="text-light" style="text-align:justify">Wisdil.com adalah sebuah platform digital yang
                     menyediakan Ticketing Management Service - TMS
                     untuk mendukung penyelenggara event / acara dari penjualan tiket hingga penyediaan statistik atau
                     laporan acara.
@@ -24,12 +24,12 @@
                             <a href="https://wa.me/6285876208194?text=Hallo%20Wisdil%20..." target="_blank" style="color: white;">0858-7620-8194</a>
                         </th>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th style="font-weight: normal;color: white;font-size: x-large;"><i class="fa-regular fa-building"></i></th>
                         <th class="pl-3" style="font-weight: normal;">
                             <p style="color: white;">Perumahan Bukit Asri 4 No. 15, Jl. Ismaya Raya , RT 008 RW 004, Kel/Desa : Lerep, Kec. Ungaran Barat, Kab. Semarang</p>
                         </th>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
             <div class="col-lg-6 col-12">

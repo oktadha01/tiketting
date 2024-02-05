@@ -39,7 +39,7 @@ class Transaction extends CI_Controller
                 $currentDateTime = date($data_transaksi->tgl_transaksi);
                 $newDateTime = date('d-m-Y H:i:s', strtotime($currentDateTime . ' +1 hours'));
 
-                if (date('d-m-Y H:i:s') >= $newDateTime) {
+                if (date('d-m-Y H:i:s') >= $newDateTime && $data_transaksi->status_transaksi == '0') {
                     // echo 'delete';
                     $sql = "SELECT * FROM tiket WHERE code_bayar = '$data_transaksi->code_bayar'";
                     $query = $this->db->query($sql);

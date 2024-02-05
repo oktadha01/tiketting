@@ -1,15 +1,15 @@
 <div id="navigasi" class="nav">
-    <div class="row bg-w-blue nav-transaksi mb-2">
+    <div class="row bg-w-blue nav-transaksi mb-2" style="position: fixed;z-index: 9;width: -webkit-fill-available;">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <span class="close-top" style="cursor: pointer;"><i class="fa-solid fa-arrow-left"></i> <span id="span-text-navi" > Transaction</span></span>
+                    <span class="close-top" style="cursor: pointer;"><i class="fa-solid fa-arrow-left"></i> <span id="span-text-navi"> Transaction</span></span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div id="load-data-navi" class="row" style="overflow: scroll;max-height: 50rem;">
+    <div class="container mb-3 mt-5">
+        <div id="load-data-navi" class="row">
             <span></span>
         </div>
     </div>
