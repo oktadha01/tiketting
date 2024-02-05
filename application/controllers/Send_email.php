@@ -31,8 +31,8 @@ class Send_email extends CI_Controller
         $this->load->library('email', $config);
         $this->email->from('kinderton.idofficial@gmail.com', 'Kinderton');
         $this->email->to($email_to_user);
-        $this->email->subject('Aktivasi Akun Kinderton');
-        $data_email = array(   
+        $this->email->subject('Tiket event anda - Invoice #1054591753');
+        $data_email = array(
             'id_user'  => 'id_user',
             'nm_user'  => 'nm_user',
             'gmail' => 'gmail',
@@ -43,8 +43,8 @@ class Send_email extends CI_Controller
         $this->email->message($body);
         // Array to store dynamic PDF file paths
         $pdfFilepaths = array(
-            base_url('upload/pdf') . '/pdf-CT-1111122823.pdf',
-            base_url('upload/pdf') . '/pdf-CT-1121122823.pdf',
+            base_url('upload/pdf') . '/pdf-CT-53520202-0002.pdf',
+            base_url('upload/pdf') . '/pdf-CT-53520202-0001.pdf',
             // Add more file paths dynamically as needed
         );
 

@@ -402,10 +402,10 @@ hr {
                     ?>
                 <div class="row bg-white">
                     <div class="col-6">
-                        <h4 class="font-weight-bold">Total Pembayaran</h4>
+                        <span class="medium font-weight-bold">Total Pembayaran</span>
                     </div>
                     <div class="col-6">
-                        <h4 class="font-weight-bold float-right">Rp. <?= number_format($total, 0, ',', '.'); ?></h4>
+                        <span class="medium font-weight-bold float-right">Rp. <?= number_format($total, 0, ',', '.'); ?></span>
                     </div>
                 </div>
                 <div class="row">

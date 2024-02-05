@@ -94,6 +94,13 @@
 
         <!-- </div> -->
     </div>
+    <div class="row">
+        <div class="col">
+            <a href="<?= base_url('Auth/logout'); ?>">
+                <button class="btn btn-danger col-12">Logout</button>
+            </a>
+        </div>
+    </div>
 </section>
 <div class="modal fade" id="modal-email" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

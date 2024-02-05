@@ -30,6 +30,8 @@
 	-moz-transition: .5s;
 	-o-transition: .5s;
 	transition: .5s;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .nav .ul {
