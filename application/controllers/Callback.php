@@ -150,7 +150,7 @@ class Callback extends CI_Controller
             'protocol'  => 'smtp',
             'smtp_host' => 'mail.wisdil.com',
             'smtp_user' => 'tiket@wisdil.com',  // Email gmail
-            'smtp_pass'   => 'tiketwisdil123',  // Password gmail
+            'smtp_pass'   => 'tiket123!',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
