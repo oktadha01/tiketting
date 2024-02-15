@@ -24,6 +24,7 @@ class M_transaksi extends CI_Model
         $this->db->join('transaksi', 'transaksi.id_customer = customer.id_customer');
         $this->db->join('event', 'event.id_event = transaksi.id_event');
         $this->db->where('customer.email', $email);
+        $this->db->ORDER_BY('transaksi.id_transaksi', 'DESC');
         $query = $this->db->get();
         $q['result'] = $query->result();
         $q['num_rows'] = $query->num_rows();

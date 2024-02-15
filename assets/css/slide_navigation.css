@@ -254,3 +254,11 @@
 	border-radius: 4px;
 	font-size: x-large;
 }
+.notif-e-tiketSDA{
+	background-color: #28a745!important;
+    color: cornsilk;
+    text-align: center;
+    margin-top: 9px;
+    border-radius: 5px;
+    margin-bottom: 0;
+}

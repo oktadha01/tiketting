@@ -57,6 +57,10 @@ $('.close-top').click(function () {
 	$('.bottom').toggleClass('nav-active');
 	$('.menu-link').removeClass('is-active', true);
 });
+$('.btn-user').click(function () {
+	// alert(';')
+	$('#navigasi').removeClass('nav-active');
+})
 
 function transaksi() {
 	$.ajax({
