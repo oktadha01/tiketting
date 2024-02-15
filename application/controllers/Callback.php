@@ -109,14 +109,14 @@ class Callback extends CI_Controller
             ->set_output(json_encode($response));
     }
 
-    function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
-    // function send_email()
+    // function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
+    function send_email()
     {
         // CB-54020215-0006
-        // $_externalId = 'CB-53021515-0007';
-        // $_paymentChannel = 'BCA';
-        // $datetime = '10-12-2024 09:00';
-        // $_amount = '100000';
+        $_externalId = 'CB-53021515-0007';
+        $_paymentChannel = 'BCA';
+        $datetime = '10-12-2024 09:00';
+        $_amount = '100000';
         $data['data_tiket'] = $this->M_callback->m_data_tiket($_externalId);
         $data['transaksi'] = $this->M_callback->m_data_transaksi($_externalId);
         $data['data_e_tiket'] = $this->M_callback->m_data_e_tiket($_externalId);
@@ -148,9 +148,12 @@ class Callback extends CI_Controller
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'Oktadha01@gmail.com',  // Email gmail
-            'smtp_pass'   => 'rvcw cvny ibav czbh',  // Password gmail
+            'smtp_host' => 'mail.wisdil.com',
+            'smtp_user' => 'tiket@wisdil.com',  // Email gmail
+            'smtp_pass'   => 'tiket123!',  // Password gmail
+            // 'smtp_host' => 'smtp.gmail.com',
+            // 'smtp_user' => 'Oktadha01@gmail.com',  // Email gmail
+            // 'smtp_pass'   => 'rvcw cvny ibav czbh',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
@@ -159,7 +162,7 @@ class Callback extends CI_Controller
         // $email_to_user = $this->session->userdata('gmail');
         $email_to_user = $email;
         $this->load->library('email', $config);
-        $this->email->from('Wisdil@gmail.com', 'Wisdil.com');
+        $this->email->from('tiket@wisdil.com', 'Wisdil.com');
         $this->email->to($email_to_user);
         $this->email->subject('Tiket ' . $nm_kategori_event . ' anda - Invoice #' . $_externalId);
 
