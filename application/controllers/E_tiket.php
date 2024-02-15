@@ -50,16 +50,26 @@ class E_tiket extends CI_Controller
                                             <p class="small mb-0">Code Ticket</p>
                                             <p class="medium mb-0 font-weight-bold">' . $data_tiket->code_tiket . '</p>
                                         </div>
-                                        <div class="col-lg-4 col-md-5 col-12">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <button class="btn bg-w-blue font-weight-bold text-light col-12 detail-e-tiket" data-toggle="modal" data-target="#detail-e-tiket" data-event="' . $data_tiket->nm_event . '" data-file="' . $data_tiket->code_tiket . '" data-link="' . $data_tiket->code_tiket . '_' . $data_tiket->kategori_price . '">Detail</button>
-                                                </div>
-                                                <div class="col">
-                                                    <button id="" class="btn bg-w-orange font-weight-bold col-12 download-file" data-file="' . $data_tiket->code_tiket . '" data-link="' . $data_tiket->code_tiket . '_' . $data_tiket->kategori_price . '">Download E-Tiket</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="col-lg-4 col-md-5 col-12">';
+                if ($data_tiket->status_tiket == '1') {
+                    echo '<div class="row">
+                            <div class="col-12">
+                                <p class="notif-e-tiketSDA">Tiket sudah di ambil !</p>
+                            </div>
+                        </div>';
+                } else {
+                    echo '<div class="row">
+                            <div class="col">
+                                <button class="btn bg-w-blue font-weight-bold text-light col-12 detail-e-tiket" data-toggle="modal" data-target="#detail-e-tiket" data-event="' . $data_tiket->nm_event . '" data-file="' . $data_tiket->code_tiket . '" data-link="' . $data_tiket->code_tiket . '_' . $data_tiket->kategori_price . '">Detail</button>
+                            </div>
+                            <div class="col">
+                                <button id="" class="btn bg-w-orange font-weight-bold col-12 download-file" data-file="' . $data_tiket->code_tiket . '" data-link="' . $data_tiket->code_tiket . '_' . $data_tiket->kategori_price . '">Download E-Tiket</button>
+                            </div>
+                        </div>';
+                }
+
+
+                echo '</div>
                                     </div>
                                 </div>
                             </div>';
