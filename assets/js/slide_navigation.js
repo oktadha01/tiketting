@@ -51,7 +51,6 @@ $('.btn-navigasi').click(function () {
 
 });
 
-
 $('.close-top').click(function () {
 	$('#load-data-navi').html('').hide();
 	$('.top').toggleClass('nav-active');
@@ -130,6 +129,9 @@ function tiket() {
 			$('#load-data-navi').html(data);
 			download_e_tiket();
 			btn_detail_e_tiket();
+			$('.detail-e-tiket').click(function () {
+				$('#nm-e-tiket').text('E-Tiket - ' + $(this).data('event'))
+			});
 		},
 		error: function () {
 			alert("Data Gagal Diupload");

@@ -51,6 +51,8 @@
     <div class="container" style="max-width: 100%;">
         <div class="forms-container">
             <div class="signin-signup">
+                <form class="sign-in-form" action="<?= site_url('Auth/login_client') ?>" method="post" method="POST">
+                    
                 <!-- Alert -->
                 <?php
                 if (validation_errors() || $this->session->flashdata('result_login')) {
@@ -75,8 +77,6 @@
                     </div>
                 <?php } ?>
                 <!-- Akhir Alert -->
-                <form class="sign-in-form" action="<?= site_url('Auth/login_adm') ?>" method="post" method="POST">
-
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fa fa-envelope"></i>

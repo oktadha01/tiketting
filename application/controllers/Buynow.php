@@ -14,6 +14,7 @@ class Buynow extends CI_Controller
     public $input;
     public $M_pdf;
     public $output;
+    public $Event_model;
 
     var $template = 'tmpt_client/index';
 
@@ -24,8 +25,17 @@ class Buynow extends CI_Controller
         $this->load->model('M_buynow');
         $this->load->model('M_detail');
         $this->load->model('M_pdf');
+        $this->load->model('Event_model');
     }
-
+    function get_ajax_kab()
+    {
+        $query = $this->Event_model->get_kabupaten();
+        $data = "<option value=''>- Pilih Kota -</option>";
+        foreach ($query as $value) {
+            $data .= "<option value='" . $value->id . "'>" . $value->nama . "</option>";
+        }
+        echo $data;
+    }
     function checkout()
     {
         $this->db->select("MAX(CAST(RIGHT(tiket.code_tiket, 4) AS UNSIGNED)) as kode", FALSE);
@@ -132,6 +142,7 @@ class Buynow extends CI_Controller
 
         }
         $action = 'cetak';
+        $action1 = 'close';
         $data_kategori = "";
         $data_count = "";
         $data_kategori_sold = "";
@@ -149,6 +160,7 @@ class Buynow extends CI_Controller
                     } else {
                         if ($rows->stock_tiket >= $rows->beli + $rows->gratis) {
                             $count = $rows->stock_tiket - $rows->gratis;
+                            $action1 = 'open';
                         } else {
                             $count = '0';
                         }
@@ -161,16 +173,15 @@ class Buynow extends CI_Controller
                     $data_count .= "$count, ";
                     // echo $action;
                 } else {
-                    // $action = 'cetak';
+                    $action1 = 'open';
                     if ($rows->status_bundling == '1') {
                         $count = '1';
                     } else {
-                        $count = $rows->stock_tiket;
+                        $count = $count;
                     }
                     $data_kategori .= "$id_price, ";
                     $data_count .= "$count, ";
                 }
-
             }
         }
         if ($action == 'cetak') {
@@ -179,25 +190,30 @@ class Buynow extends CI_Controller
             $this->insert_transaksi($data_in, $payment);
             $this->update_stock_tiket($tiketCounts);
         } else {
-            $this->callback_stock_ready($data_kategori, $data_count, $data_kategori_sold, $data_count_sold, $nm_event);
+            $this->callback_stock_ready($data_kategori, $data_count, $data_kategori_sold, $data_count_sold, $nm_event, $action1);
         }
     }
 
-    function callback_stock_ready($data_kategori, $data_count, $data_kategori_sold, $data_count_sold, $nm_event)
+    function callback_stock_ready($data_kategori, $data_count, $data_kategori_sold, $data_count_sold, $nm_event, $action1)
     {
         $data_kategori = $data_kategori;
         $data_count = $data_count;
-        echo $data_kategori;
-        echo $data_count;
+        // echo $data_kategori;
+        // echo '<br>';
+        // echo $data_count;
+        // echo '<br>';
+        // echo $action1;
         $email = $this->input->cookie('session');
         $nm_event = preg_replace("![^a-z0-9]+!i", " ", $nm_event);
+        $data['tittle']          = 'Checkout';
         $data['event']        = $this->M_detail->m_event($nm_event);
         $data['customer']        = $this->M_detail->m_customer($email);
+        $data['action'] = $action1;
         $data['data_kategori'] = $data_kategori;
         $data['data_count'] = $data_count;
         $data['data_kategori_sold'] = $data_kategori_sold;
         $data['data_count_sold'] = $data_count_sold;
-        $data['content']         = "client/buynow/buynow";
+        $data['content']         = "client/buynow/buynow"; 
         $data['script']         = 'client/buynow/buynow_js';
         $this->load->view($this->template, $data);
     }
@@ -209,8 +225,8 @@ class Buynow extends CI_Controller
             $query = $this->db->query($tiket);
             foreach ($query->result() as $rows) {
                 $stock_tiket = $rows->stock_tiket - $count;
-                // if($stock_tiket < 0){
-                //     $stock_tiket = $rows->stock_tiket
+                // if($stock_tiket == 0){
+                //     $stock_tiket = $rows->stock_tiket;
                 // }
                 $this->M_buynow->update_stok_tiket($id_price, $stock_tiket);
             }
@@ -348,9 +364,7 @@ class Buynow extends CI_Controller
 
             $pdfFilePath = FCPATH . 'upload/pdf' . '/pdf-' . $code_tiket . '.pdf';
             $pdf->Output($pdfFilePath, 'F');
-
         }
-
     }
 
     function insert_transaksi($data_in, $payment)
@@ -462,11 +476,10 @@ class Buynow extends CI_Controller
             ];
 
             $this->output
-            ->set_content_type('application/json')
-            ->set_output(json_encode($response));
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
 
             redirect($payment_url);
-
         } catch (\Xendit\Exceptions\ApiException $e) {
             $this->db->trans_rollback();
 
@@ -480,9 +493,8 @@ class Buynow extends CI_Controller
             ];
 
             $this->output
-            ->set_content_type('application/json')
-            ->set_output(json_encode($response));
-
+                ->set_content_type('application/json')
+                ->set_output(json_encode($response));
         } catch (Exception $e) {
             $this->db->trans_rollback();
             $response = [
@@ -509,5 +521,4 @@ class Buynow extends CI_Controller
                 }, 3000);
             </script>';
     }
-
 }

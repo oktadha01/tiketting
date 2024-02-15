@@ -181,7 +181,17 @@
 	display: none;
 }
 
+.max-h-list {
+	height: 18rem;
+	overflow: overlay;
+}
+
 @media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
+	.max-h-list {
+		height: auto;
+		overflow: overlay;
+	}
+
 	.btn-close-tiket {
 		display: initial;
 	}

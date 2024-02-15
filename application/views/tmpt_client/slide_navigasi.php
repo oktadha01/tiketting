@@ -35,7 +35,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="title" id="defaultModalLabel">E-Tiket </h4>
+                <h4 class="title" id="nm-e-tiket">E-Tiket </h4>
             </div>
             <div id="load-data-detail-tiket-m" class="modal-body">
 
