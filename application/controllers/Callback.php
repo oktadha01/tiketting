@@ -148,9 +148,9 @@ class Callback extends CI_Controller
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
-            'smtp_host' => 'mail.wisdil.com',
-            'smtp_user' => 'tiket@wisdil.com',  // Email gmail
-            'smtp_pass'   => 'tiket123!',  // Password gmail
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'Oktadha01@gmail.com',  // Email gmail
+            'smtp_pass'   => 'rvcw cvny ibav czbh',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
