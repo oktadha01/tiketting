@@ -47,7 +47,11 @@ class Callback extends CI_Controller
 
                 $date_convert = Carbon::parse($_paidAt);
                 $datetime = $date_convert->format('d-m-Y H:i:s');
-
+                // $_externalId = 'CB-53021522-0023';
+                // $_paymentChannel = 'BCA';
+                // $datetime = '10-12-2024 09:00';
+                // $_amount = '100000';
+                $this->send_email($_externalId, $_paymentChannel, $datetime, $_amount);
                 $this->db->set('bank', $_paymentChannel)
                     ->set('tgl_byr', $datetime)
                     ->set('status_transaksi', $status)
@@ -59,7 +63,6 @@ class Callback extends CI_Controller
                     'tanggal'      => $datetime,
                     'nominal'      => $_amount,
                 ]);
-                $this->send_email($_externalId, $_paymentChannel, $datetime, $_amount);
             } else if ($_status == 'EXPIRED') {
 
                 $this->db->where('code_bayar', $_externalId)->delete('tiket');
@@ -109,89 +112,90 @@ class Callback extends CI_Controller
             ->set_output(json_encode($response));
     }
 
-    function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
     // function send_email()
+    function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
     {
         // CB-54020215-0006
         // $_externalId = 'CB-53021522-0023';
         // $_paymentChannel = 'BCA';
         // $datetime = '10-12-2024 09:00';
         // $_amount = '100000';
-        echo $_externalId;
-        echo '<br>';
-        echo $_paymentChannel;
-        echo '<br>';
-        echo $datetime;
-        echo '<br>';
-        echo $_amount;
-        echo '<br>';
-        // $data['data_tiket'] = $this->M_callback->m_data_tiket($_externalId);
-        // $data['transaksi'] = $this->M_callback->m_data_transaksi($_externalId);
-        // $data['data_e_tiket'] = $this->M_callback->m_data_e_tiket($_externalId);
+        // echo $_externalId;
+        // echo '<br>';
+        // echo $_paymentChannel;
+        // echo '<br>';
+        // echo $datetime;
+        // echo '<br>';
+        // echo $_amount;
+        // echo '<br>';
 
-        // $data_transaksi = [];
-        // foreach ($data['transaksi'] as $trans) {
-        //     $email = $trans->email;
-        //     $nm_customer = $trans->nm_customer;
-        //     $nm_kategori_event = $trans->nm_kategori_event;
-        //     $nm_event = $trans->nm_event;
-        //     $lokasi = $trans->lokasi;
-        //     $tgl_event = $trans->tgl_event;
-        //     $jam_event = $trans->jam_event;
-        //     $data_transaksi[] = [
-        //         'nm_customer' => $nm_customer,
-        //         'nm_kategori_event' => $nm_kategori_event,
-        //         'nm_event' => $nm_event,
-        //         'lokasi' => $lokasi,
-        //         'tgl_event' => $tgl_event,
-        //         'jam_event' => $jam_event,
-        //         'invoice' => $_externalId,
-        //         'payment' => $_paymentChannel,
-        //         'tgl_trans' => $datetime,
-        //         'nominal' => $_amount,
-        //     ];
-        // }
-        // $data['data_transaksi'] = $data_transaksi;
-        // $config = [
-        //     'mailtype'  => 'html',
-        //     'charset'   => 'utf-8',
-        //     'protocol'  => 'smtp',
-        //     'smtp_host' => 'mail.wisdil.com',
-        //     'smtp_user' => 'tiket@wisdil.com',  // Email gmail
-        //     'smtp_pass'   => 'tiket123!',  // Password gmail
-        //     // 'smtp_host' => 'smtp.gmail.com',
-        //     // 'smtp_user' => 'Oktadha01@gmail.com',  // Email gmail
-        //     // 'smtp_pass'   => 'rvcw cvny ibav czbh',  // Password gmail
-        //     'smtp_crypto' => 'ssl',
-        //     'smtp_port'   => 465,
-        //     'crlf'    => "\r\n",
-        //     'newline' => "\r\n"
-        // ];
-        // // $email_to_user = $this->session->userdata('gmail');
-        // $email_to_user = $email;
-        // $this->load->library('email', $config);
-        // $this->email->from('tiket@wisdil.com', 'Wisdil.com');
-        // $this->email->to($email_to_user);
-        // $this->email->subject('Tiket ' . $nm_kategori_event . ' anda - Invoice #' . $_externalId);
+        $data['data_tiket'] = $this->M_callback->m_data_tiket($_externalId);
+        $data['transaksi'] = $this->M_callback->m_data_transaksi($_externalId);
+        $data['data_e_tiket'] = $this->M_callback->m_data_e_tiket($_externalId);
 
-        // $body = $this->load->view('client/email/email_template.php', $data, true);
+        $data_transaksi = [];
+        foreach ($data['transaksi'] as $trans) {
+            $email = $trans->email;
+            $nm_customer = $trans->nm_customer;
+            $nm_kategori_event = $trans->nm_kategori_event;
+            $nm_event = $trans->nm_event;
+            $lokasi = $trans->lokasi;
+            $tgl_event = $trans->tgl_event;
+            $jam_event = $trans->jam_event;
+            $data_transaksi[] = [
+                'nm_customer' => $nm_customer,
+                'nm_kategori_event' => $nm_kategori_event,
+                'nm_event' => $nm_event,
+                'lokasi' => $lokasi,
+                'tgl_event' => $tgl_event,
+                'jam_event' => $jam_event,
+                'invoice' => $_externalId,
+                'payment' => $_paymentChannel,
+                'tgl_trans' => $datetime,
+                'nominal' => $_amount,
+            ];
+        }
+        $data['data_transaksi'] = $data_transaksi;
+        $config = [
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'protocol'  => 'smtp',
+            'smtp_host' => 'mail.wisdil.com',
+            'smtp_user' => 'tiket@wisdil.com',  // Email gmail
+            'smtp_pass'   => 'tiket123!',  // Password gmail
+            // 'smtp_host' => 'smtp.gmail.com',
+            // 'smtp_user' => 'Oktadha01@gmail.com',  // Email gmail
+            // 'smtp_pass'   => 'rvcw cvny ibav czbh',  // Password gmail
+            'smtp_crypto' => 'ssl',
+            'smtp_port'   => 465,
+            'crlf'    => "\r\n",
+            'newline' => "\r\n"
+        ];
+        // $email_to_user = $this->session->userdata('gmail');
+        $email_to_user = $email;
+        $this->load->library('email', $config);
+        $this->email->from('tiket@wisdil.com', 'Wisdil.com');
+        $this->email->to($email_to_user);
+        $this->email->subject('Tiket ' . $nm_kategori_event . ' anda - Invoice #' . $_externalId);
 
-        // $this->email->message($body);
-        // // Array to store dynamic PDF file paths
-        // $pdfFilepaths = array();
+        $body = $this->load->view('client/email/email_template.php', $data, true);
 
-        // foreach ($data['data_e_tiket'] as $tiket) {
-        //     $pdfFilePath = FCPATH . 'upload/pdf/pdf-' . $tiket->code_tiket . '.pdf'; // Assuming FCPATH is defined and points to the root of your project
-        //     if (file_exists($pdfFilePath)) { // Check if the file exists before adding it to the array
-        //         $pdfFilepaths[] = $pdfFilePath;
-        //     } else {
-        //         echo 'Error! PDF file not found for code_tiket: ' . $tiket->code_tiket;
-        //     }
-        //     $this->email->attach($pdfFilePath);
-        // }
+        $this->email->message($body);
+        // Array to store dynamic PDF file paths
+        $pdfFilepaths = array();
 
-        // // Assuming the email configuration is properly set up elsewhere in your code
-        // $this->email->send();
-        //     // redirect(base_url('konfrim_akun'));
+        foreach ($data['data_e_tiket'] as $tiket) {
+            $pdfFilePath = FCPATH . 'upload/pdf/pdf-' . $tiket->code_tiket . '.pdf'; // Assuming FCPATH is defined and points to the root of your project
+            if (file_exists($pdfFilePath)) { // Check if the file exists before adding it to the array
+                $pdfFilepaths[] = $pdfFilePath;
+            } else {
+                echo 'Error! PDF file not found for code_tiket: ' . $tiket->code_tiket;
+            }
+            $this->email->attach($pdfFilePath);
+        }
+
+        // Assuming the email configuration is properly set up elsewhere in your code
+        $this->email->send();
+        // redirect(base_url('konfrim_akun'));
     }
 }
