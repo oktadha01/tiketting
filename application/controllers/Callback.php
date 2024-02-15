@@ -109,11 +109,11 @@ class Callback extends CI_Controller
             ->set_output(json_encode($response));
     }
 
-    // function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
     function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
+    // function send_email()
     {
         // CB-54020215-0006
-        // $_externalId = 'CB-53020215-0001';
+        // $_externalId = 'CB-53021515-0007';
         // $_paymentChannel = 'BCA';
         // $datetime = '10-12-2024 09:00';
         // $_amount = '100000';
@@ -148,9 +148,9 @@ class Callback extends CI_Controller
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'Oktadha01@gmail.com',  // Email gmail
-            'smtp_pass'   => 'rvcw cvny ibav czbh',  // Password gmail
+            'smtp_host' => 'mail.wisdil.com',
+            'smtp_user' => 'tiket@wisdil.com',  // Email gmail
+            'smtp_pass'   => 'tiketwisdil123',  // Password gmail
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
