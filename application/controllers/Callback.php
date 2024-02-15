@@ -110,13 +110,13 @@ class Callback extends CI_Controller
     }
 
     // function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
-    function send_email()
+    function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
     {
         // CB-54020215-0006
-        $_externalId = 'CB-53020215-0001';
-        $_paymentChannel = 'BCA';
-        $datetime = '10-12-2024 09:00';
-        $_amount = '100000';
+        // $_externalId = 'CB-53020215-0001';
+        // $_paymentChannel = 'BCA';
+        // $datetime = '10-12-2024 09:00';
+        // $_amount = '100000';
         $data['data_tiket'] = $this->M_callback->m_data_tiket($_externalId);
         $data['transaksi'] = $this->M_callback->m_data_transaksi($_externalId);
         $data['data_e_tiket'] = $this->M_callback->m_data_e_tiket($_externalId);
