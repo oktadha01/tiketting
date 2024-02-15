@@ -752,7 +752,7 @@ footer {
 	background: chartreuse;
 	padding: 1px 10px;
 	border-radius: 6px;
-	margin-left: 1rem;
+	/* margin-left: 1rem; */
 }
 
 .notif-gagal-pass,
@@ -760,8 +760,16 @@ footer {
 	background: rgb(255, 98, 0);
 	padding: 1px 10px;
 	border-radius: 6px;
-	margin-left: 1rem;
+	/* margin-left: 1rem; */
 	color: white;
+}
+
+.invalid-pass-error {
+	border: 2px solid #ff8f8f !important;
+}
+
+.valid-pass-success {
+	border: 2px solid #3ba83f !important;
 }
 
 .a-menu-footer {
@@ -827,4 +835,34 @@ footer {
 	padding: 0px 25px;
 	color: white;
 	font-weight: bold;
+}
+
+.select2-container .select2-selection--single {
+	box-sizing: border-box;
+	cursor: pointer;
+	display: block;
+	height: 34px;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+	color: #444;
+	line-height: 34px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+	height: 26px;
+	position: absolute;
+	top: 4px;
+	right: 1px;
+	width: 20px;
+}
+
+.select2-container {
+	box-sizing: border-box;
+	display: table-cell;
+	margin: 0;
+	position: relative;
+	vertical-align: middle;
 }

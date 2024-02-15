@@ -2,7 +2,7 @@
 
 <script>
     $(document).ready(function() {
-
+       
         let addurl;
         $('.t-right').click(function() {
             $('.right').toggleClass('nav-active');
@@ -200,12 +200,10 @@
                         setTimeout(function() {
 
                             $('#page-load-detail-event').html(data);
-                            window.scrollTo({
-                                top: 0,
-                                behavior: 'smooth'
-                            });
+                           
                             // window.history.pushState({}, null, null);
                         }, delayInMilliseconds);
+                       
 
                     }
                     $('#email').on('keypress', function() {

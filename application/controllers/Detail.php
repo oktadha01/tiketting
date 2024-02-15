@@ -92,7 +92,7 @@ class Detail extends CI_Controller
         $data = $this->M_auth->login_customer($post_email, $post_pass);
         $action = $data;
         if ($data == false) {
-            // echo 'gagal-login';
+            echo 'gagal-login';
             // $this->session->set_flashdata('result_login', '<br>Email atau Password yang anda masukkan salah.');
             // redirect('Auth');
         } else {

@@ -50,7 +50,7 @@
                             <?php } ?>
                             <hr class="m-0">
                             <a class="dropdown-item" href="<?= base_url('Userprofil'); ?>">Edit Profil</a>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#modal-pass">Ganti Passwor</a>
+                            <a class="dropdown-item btn-ubah-password" data-action="nav" data-toggle="modal" data-target="#modal-pass">Ganti Passwor</a>
                             <a class="dropdown-item text-danger" href="<?= base_url('Auth/logout'); ?>">Logout</a>
                         </div>
                     </li>
