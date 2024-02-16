@@ -51,13 +51,16 @@ $('.btn-navigasi').click(function () {
 
 });
 
-
 $('.close-top').click(function () {
 	$('#load-data-navi').html('').hide();
 	$('.top').toggleClass('nav-active');
 	$('.bottom').toggleClass('nav-active');
 	$('.menu-link').removeClass('is-active', true);
 });
+$('.btn-user').click(function () {
+	// alert(';')
+	$('#navigasi').removeClass('nav-active');
+})
 
 function transaksi() {
 	$.ajax({
@@ -130,6 +133,9 @@ function tiket() {
 			$('#load-data-navi').html(data);
 			download_e_tiket();
 			btn_detail_e_tiket();
+			$('.detail-e-tiket').click(function () {
+				$('#nm-e-tiket').text('E-Tiket - ' + $(this).data('event'))
+			});
 		},
 		error: function () {
 			alert("Data Gagal Diupload");

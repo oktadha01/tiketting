@@ -39,7 +39,7 @@ class Transaction extends CI_Controller
                 $currentDateTime = date($data_transaksi->tgl_transaksi);
                 $newDateTime = date('d-m-Y H:i:s', strtotime($currentDateTime . ' +1 hours'));
 
-                if (date('d-m-Y H:i:s') >= $newDateTime) {
+                if (date('d-m-Y H:i:s') >= $newDateTime && $data_transaksi->status_transaksi == '0') {
                     // echo 'delete';
                     $sql = "SELECT * FROM tiket WHERE code_bayar = '$data_transaksi->code_bayar'";
                     $query = $this->db->query($sql);
@@ -86,25 +86,25 @@ class Transaction extends CI_Controller
                         </div>
                         <div class="col-lg-8 col-md-10 col-7 p-table-inv">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 col-md-4 col-12">
                                 <div style="display:grid;">
                                         <span class="smal">Invoice Number</span>
                                         <span class="font-weight-bold">INV-#' . $data_transaksi->code_bayar . '</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 col-md-4 col-12">
                                     <div style="display:grid;">
                                         <span class="smal">Buy At</span>
                                         <span class="font-weight-bold">' . $data_transaksi->tgl_transaksi . '</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-2 col-md-2 col-12">
                                     <div style="display:grid;">
                                         <span class="smal">Total</span>
                                         <span class="font-weight-bold">Rp ' . number_format($data_transaksi->nominal, 0, ',', '.') . '</span>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-lg-2 col-md-2 col-12">
                                     <div style="display:grid;">
                                         <span class="smal">Status</span>
                                         <span class="font-weight-bold"> ' . $status_transaksi . '</span>
@@ -112,7 +112,7 @@ class Transaction extends CI_Controller
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 p-table-inv">
+                        <div class="col-lg-3 col-12 p-table-inv">
                             <hr class="hr">
                             <div class="row">' . $actionButton . '</div>
                             </div>
