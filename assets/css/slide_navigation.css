@@ -30,6 +30,8 @@
 	-moz-transition: .5s;
 	-o-transition: .5s;
 	transition: .5s;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .nav .ul {
@@ -179,7 +181,17 @@
 	display: none;
 }
 
+.max-h-list {
+	height: 18rem;
+	overflow: overlay;
+}
+
 @media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
+	.max-h-list {
+		height: auto;
+		overflow: overlay;
+	}
+
 	.btn-close-tiket {
 		display: initial;
 	}
@@ -241,4 +253,12 @@
 	padding: 3px 14px;
 	border-radius: 4px;
 	font-size: x-large;
+}
+.notif-e-tiketSDA{
+	background-color: #28a745!important;
+    color: cornsilk;
+    text-align: center;
+    margin-top: 9px;
+    border-radius: 5px;
+    margin-bottom: 0;
 }

@@ -8,12 +8,6 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" id="email" class="form-control" required="" readonly value="<?= $data->email; ?>">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <div class="form-group">
                             <label>Nama</label>
                             <input type="text" id="nama" class="form-control" required="" readonly value="<?= $data->nm_customer; ?>">
                         </div>
@@ -24,9 +18,7 @@
                             <input type="text" id="tgl-lahir" class="form-control" required="" readonly value="<?= $data->tgl_lahir; ?>">
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-12">
+                    <div class="col-lg-4 col-md-4 col-12">
                         <div class="form-group">
                             <label>Jenis Kelamin</label>
                             <br>
@@ -42,6 +34,8 @@
                             <input type="text" id="val-gender" value="<?= $data->gender; ?>" hidden>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-3 col-md-3 col-12">
                         <div class="form-group">
                             <label>NIK</label>
@@ -49,9 +43,11 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-12">
-                        <div class="form-group">
-                            <label>Kota</label>
-                            <input type="text" id="kota" class="form-control" required="" readonly value="<?= $data->kota; ?>">
+                        <div class="input-wrapper">
+                            <label class="label-select2">Kota</label>
+                            <select class="select2 form-control select-kota" id="kota" required="" disabled data-value="<?= $data->kota; ?>">
+                                <option value=''>-- Pilih Kota --</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-12">
@@ -72,20 +68,28 @@
                         <button id="btn-simpan-profil" class="btn bg-w-blue text-light float-right" hidden>Simpan Profil</button>
                     </div>
                 </div>
-                <div class="row ubah-email">
+                <div class="row ubah-email mb-2">
                     <div class="col">
                         <hr>
-                        <span class="btn-ubah-email" data-toggle="modal" data-target="#modal-email">Ubah Email ></span>
-                        <span class="float-right">Email@Gmail.com</span>
-                    </div>
-                    <div class="col-12">
-                        <span class="col-12" id="notif-email"></span>
+                        <span class="btn-ubah-email" data-email="<?= $data->email; ?>" data-toggle="modal" data-target="#modal-email">Ubah Email ></span>
+                        <span class="float-right text-email"><?= $data->email; ?></span>
                     </div>
                 </div>
-                <div class="row ubah-password">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="col-12" id="notif-email"></p>
+                    </div>
+                </div>
+                <div class="row ubah-password mb-2">
                     <div class="col">
                         <hr>
-                        <span class="btn-ubah-password" data-toggle="modal" data-target="#modal-pass">Ubah Password ></span><span id="notif-pass"></span>
+                        <span class="btn-ubah-password" data-action="page" data-toggle="modal" data-target="#modal-pass">Ubah Password ></span>
+                        <span class="float-right">*******</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="col-12" id="notif-pass"></p>
                     </div>
                 </div>
             <?php } ?>
@@ -93,6 +97,13 @@
         <!-- <div class="card-footer"> -->
 
         <!-- </div> -->
+    </div>
+    <div class="row row-btn-logout">
+        <div class="col">
+            <a href="<?= base_url('Auth/logout'); ?>">
+                <button class="btn btn-danger col-12">Logout</button>
+            </a>
+        </div>
     </div>
 </section>
 <div class="modal fade" id="modal-email" tabindex="-1" role="dialog">
@@ -103,17 +114,25 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-12">
                         <div class="form-group">
-                            <label>Ubah Email</label>
-                            <input type="text" id="email-baru" class="form-control" required="">
+                            <label>Ubah Email Baru</label>
+                            <input type="email" id="email" class="form-control email-baru" required="">
+                            <span class="valid_info"></span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-pass">
+                        <div class="form-group">
+                            <label>Validasi Password</label>
+                            <input type="password" id="password" class="form-control" required="">
+                            <span class="valid_pass"></span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
-                <button type="button" id="btn-simpan-email" class="btn bg-w-blue text-light" data-dismiss="modal">Simpan Email</button>
+                <button type="button" id="btn-simpan-email" class="btn bg-w-blue text-light">Simpan Email</button>
             </div>
         </div>
     </div>

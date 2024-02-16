@@ -32,8 +32,8 @@
                             <span class="menu-name">Akun</span>
                         </a>
                     </li>
-                    <li class="menu-item menu-akun-drop dropdown show">
-                        <a href="#" class="menu-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="menu-item menu-akun-drop dropdown">
+                        <a href="#" class="menu-link dropdown-toggle btn-user" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="siz-menu" src="<?= base_url('assets/images/akun.png'); ?>" alt="">
                             <span class="menu-name">Akun</span>
                         </a>
@@ -50,7 +50,7 @@
                             <?php } ?>
                             <hr class="m-0">
                             <a class="dropdown-item" href="<?= base_url('Userprofil'); ?>">Edit Profil</a>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#modal-pass">Ganti Passwor</a>
+                            <a class="dropdown-item btn-ubah-password" data-action="nav" data-toggle="modal" data-target="#modal-pass">Ganti Passwor</a>
                             <a class="dropdown-item text-danger" href="<?= base_url('Auth/logout'); ?>">Logout</a>
                         </div>
                     </li>
