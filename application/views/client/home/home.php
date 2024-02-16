@@ -80,7 +80,7 @@
 
 </section>
 
-<section class="container res-height">
+<!-- <section class="container res-height">
     <span class="font-size-tit font-weight-bold">Apa Kata Mereka</span>
     <div class="testimonial-slider">
         <div class="testimonial-slide">
@@ -208,4 +208,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->

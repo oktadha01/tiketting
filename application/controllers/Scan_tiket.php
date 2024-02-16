@@ -25,6 +25,17 @@ class Scan_tiket extends AUTH_Controller
         $data['userdata']       = $this->userdata;
         $data['tittle']         = 'Menu Scan Tiket';
         $data['bread']          = 'Scan Tiket';
+
+        $id_user                = $this->session->userdata('userdata')->id_user;
+        $tiket_status           = $this->Scan_model->get_tiket_status($id_user);
+        $diambil                = number_format($tiket_status->jumlah_tiket_1 , 0, ',', '.');
+        $belum                  = number_format($tiket_status->jumlah_tiket_0 , 0, ',', '.');
+        $tiket                  = number_format($tiket_status->jumlah_total_tiket , 0, ',', '.');
+
+        $data['total_tiket']    = $tiket;
+        $data['tiket_diambil']  = $diambil;
+        $data['tiket_belum']    = $belum;
+
         $data['content']        = 'page_admin/scan_tiket/scan';
         $data['script']         = 'page_admin/scan_tiket/scan_js';
         $this->load->view($this->template, $data);

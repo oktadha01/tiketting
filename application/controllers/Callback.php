@@ -36,7 +36,7 @@ class Callback extends CI_Controller
                 $status = '1';
 
                 $date_convert = Carbon::parse($_paidAt);
-                $datetime = $date_convert->format('Y-m-d H:i:s');
+                $datetime = $date_convert->format('d-m-Y H:i:s');
 
                 $this->db->set('bank', $_paymentChannel)
                          ->set('tgl_byr', $datetime)

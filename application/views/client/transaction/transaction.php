@@ -13,23 +13,24 @@
                 </div>
                 <div class="text-center">
                     <div class="text-center">
-                        <?php if ($data->status_transaksi == 0): ?>
-                        <h5 style="font-family: fantasy; font-weight-bold; letter-spacing: 4px; color: orange;">
+                        <?php if ($data->status_transaksi == 0) : ?>
+                        <h5 class="font-weight-bold" style="font-family: fantasy; letter-spacing: 4px; color: orange;">
                             Pending
                         </h5>
-                        <?php elseif ($data->status_transaksi == 1): ?>
-                        <h5 style="font-family: fantasy; font-weight-bold; letter-spacing: 2px; color: green;">
+                        <?php elseif ($data->status_transaksi == 1) : ?>
+                        <h5 class="font-weight-bold" style="font-family: fantasy; letter-spacing: 2px; color: green;">
                             Sukses
                         </h5>
-                        <?php else: ?>
-                        <?php if (empty($data->code_bayar)): ?>
-                        <h5 style="font-family: fantasy; font-weight-bold; letter-spacing: 4px; color: red;">
+                        <?php else : ?>
+                        <?php if (empty($data->code_bayar)) : ?>
+                        <h5 class="font-weight-bold" style="font-family: fantasy; letter-spacing: 4px; color: red;">
                             Tidak ada invoice / Expired
                         </h5>
                         <?php endif; ?>
                         <?php endif; ?>
                     </div>
                 </div>
+
                 <hr style="color: green;">
                 <div class="row mt-1">
                     <div class="col-6">
@@ -63,6 +64,22 @@
                         <span class="float-right">Rp. <?= number_format($data->nominal, 0, ',', '.'); ?></span>
                     </div>
                 </div>
+                <?php if ($data->status_transaksi == 1) : ?>
+                <ul class="list-unstyled feeds_widget mb-0" data-file="<?= $data->code_tiket; ?>"
+                    data-link="<?= $data->code_tiket .'_'. $data->kategori_price ; ?>">
+                    <li>
+                        <div class="feeds-left mr-2 mt-3"><i class="fa fa-thumbs-o-up text-danger"
+                                style="font-size:30px;"></i></div>
+                        <div class="feeds-body">
+                            <h4 class="title">Perhatian <small class="float-right text-muted">Hari Ini</small></h4>
+                            <td>
+                                <small>E-tiket dapat diunduh di menu tiket!!!</small>
+                                <small>Atau dapat dilihat di Email terdaftar!!!</small>
+                            </td>
+                        </div>
+                    </li>
+                </ul>
+                <?php endif; ?>
                 <div class="row pl-0 ml-0">
                     <div class="col-lg-6 col-md-6 col-12 mt-4 mb-1 ml-0 pl-0">
                         <a class="btn bg-w-orange text-end" href="<?= site_url('Home') ?>">Kembali</a>

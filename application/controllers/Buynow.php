@@ -277,7 +277,7 @@ class Buynow extends CI_Controller
 
             // Add header text
             $pdf->SetY(1); // Set the Y position for the header text
-            $headerText = 'WWW.Musickanpa.com';
+            $headerText = 'WWW.WISDIL.COM';
             $headerText = strtoupper($headerText); // Convert the header text to uppercase
             $pdf->setFont('dejavusans', '', 6); // Set font for the header text
             $pdf->setFontSpacing(2);

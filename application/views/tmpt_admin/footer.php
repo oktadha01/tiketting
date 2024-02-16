@@ -3,13 +3,13 @@
 <!-- page js file -->
 <script src="<?= base_url('assets'); ?>/bundles/libscripts.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/bundles/vendorscripts.bundle.js"></script>
-<script src="<?= base_url('assets'); ?>/bundles/easypiechart.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/bundles/mainscripts.bundle.js"></script>
+<script src="<?= base_url('assets'); ?>/bundles/easypiechart.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/jquery.maskedinput/jquery.maskedinput.min.js"></script>
 <script src="<?= base_url('assets'); ?>/js/pages/forms/advanced-form-elements.js"></script>
-<script src="<?= base_url('assets'); ?>/js/index.js"></script>
 <script src="<?= base_url('assets'); ?>/bundles/c3.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/nouislider/nouislider.js"></script>
+<script src="<?= base_url('assets'); ?> /js/pages/ui/dialogs.js"></script>
 
 <!-- select2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
@@ -21,11 +21,6 @@
 <script src="<?= base_url('assets'); ?>/vendor/jquery-datatable/buttons/buttons.colVis.min.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/jquery-datatable/buttons/buttons.html5.min.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/jquery-datatable/buttons/buttons.print.min.js"></script>
-
-<script src="<?= base_url('assets'); ?>/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-<script src="<?= base_url('assets'); ?>/vendor/jquery-inputmask/jquery.inputmask.bundle.js"></script>
-<script src="<?= base_url('assets'); ?>/vendor/jquery.maskedinput/jquery.maskedinput.min.js"></script>
-<!-- <script src="<?= base_url('assets'); ?>/vendor/multi-select/js/jquery.multi-select.js"></script> -->
 
 <!-- daterange -->
 <script src="<?= base_url('assets'); ?>/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
@@ -54,5 +49,5 @@ $('[data-provide="datepicker"]').datepicker({
     autoclose: true
 });
 </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.2.0/html5-qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.2.0/html5-qrcode.min.js"></script> -->

@@ -115,7 +115,7 @@ class Prices_model extends CI_Model
         return $query->result();
     }
 
-    function get_tiket($privilage, $id_event)
+    function get_tiket($id_event, $privilage)
     {
         if ($privilage == 'Admin') {
 
@@ -129,7 +129,7 @@ class Prices_model extends CI_Model
 
         } else if ($privilage == 'User') {
 
-            $this->db->select('*');
+            $this->db->select('kategori_price, id_price, stock_tiket');
             $this->db->from('price');
             $this->db->join('event', 'event.id_event = price.id_event');
             $this->db->where('price.id_event', $id_event);

@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="input-group mb-2">
-                                <input type="text" class="col-lg-12 time24" id="jam-event" name="jam_event" required>
+                                <input type="time" class="col-lg-12 time24" id="jam-event" name="jam_event" required>
                                 <label class="label-in">Jam</label>
                             </div>
                         </div>
@@ -249,7 +249,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="input-group mb-2">
-                                <input type="text" class="col-lg-12 time24" id="edit-jam-event" name="jam_event"
+                                <input type="time" class="col-lg-12 time24" id="edit-jam-event" name="jam_event"
                                     required>
                                 <label class="label-in">Jam</label>
                             </div>

@@ -2,11 +2,8 @@
     <div class="row bg-w-blue nav-transaksi mb-2">
         <div class="container">
             <div class="row">
-                <div class="col-6">
-                    <span class="close-top" style="cursor: pointer;"><i class="fa-solid fa-arrow-left"></i> Back</span>
-                </div>
-                <div class="col-6">
-                    <span id="span-text-navi" class="float-right">Transaction</span>
+                <div class="col">
+                    <span class="close-top" style="cursor: pointer;"><i class="fa-solid fa-arrow-left"></i> <span id="span-text-navi" > Transaction</span></span>
                 </div>
             </div>
         </div>

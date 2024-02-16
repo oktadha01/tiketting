@@ -148,10 +148,11 @@
 }
 
 .nav-transaksi {
-	font-size: xx-large;
+	font-size: larger;
 	color: white;
 	font-weight: bold;
-	width: inherit;
+	padding: 6px 2px;
+	width: auto;
 	height: min-content;
 }
 
