@@ -82,8 +82,9 @@
                                     class="fa fa-money"></i><span>Prices</span></a>
                         </li>
                         <li class="menu">
-                            <a href="<?= site_url('Scan_tiket'); ?>" class=""><i class="fa fa-ticket"></i><span>Scan
-                                    Tiket</span></a>
+                            <a href="<?= site_url('Scan_tiket'); ?>" id="scanTiketButton" class=""><i
+                                    class="fa fa-ticket"></i><span>Scan Tiket</span>
+                            </a>
                         </li>
                         <li class="menu">
                             <a href="<?= site_url('Dana_masuk'); ?>" class=""><i

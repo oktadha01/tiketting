@@ -505,9 +505,11 @@ html::-webkit-scrollbar,
 .kategori-event:hover {
 	transform: scale(1.1);
 }
+
 .menu-akun {
 	display: none;
 }
+
 @media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
 	.btn-fixed-buy {
 		position: fixed;
@@ -611,6 +613,7 @@ html::-webkit-scrollbar,
 	.menu-akun-drop {
 		display: none;
 	}
+
 	.menu-akun {
 		display: block;
 	}
@@ -818,4 +821,10 @@ footer {
 
 .slick-dots {
 	bottom: 0px;
+}
+
+.etic-header {
+	padding: 0px 25px;
+	color: white;
+	font-weight: bold;
 }

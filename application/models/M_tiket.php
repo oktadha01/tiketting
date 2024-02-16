@@ -11,10 +11,10 @@ class M_tiket extends CI_Model
         $this->db->select('*');
         $this->db->from('customer');
         $this->db->join('transaksi', 'transaksi.id_customer = customer.id_customer');
-        $this->db->join('tiket', 'tiket.id_customer = customer.id_customer');
+        $this->db->join('tiket', 'tiket.code_bayar = transaksi.code_bayar');
         $this->db->join('price', 'price.id_price = tiket.id_price');
+        $this->db->join('event', 'event.id_event = tiket.id_event');
         $this->db->where('customer.email', $email);
-        // $this->db->where('status_tiket', '1');
         $this->db->where('status_transaksi', '1');
         $query = $this->db->get();
         $q['result'] = $query->result();
