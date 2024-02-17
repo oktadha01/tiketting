@@ -1,8 +1,23 @@
 <script src="<?= base_url('assets'); ?>/js/email_validasi.js"></script>
 
 <script>
+    // document.getElementById('myForm').addEventListener('submit', function(event) {
+    //     var inputs = document.querySelectorAll('input[name="nama[]"]');
+    //     var isValid = true;
+    //     inputs.forEach(function(input) {
+    //         if (!input.value.trim()) {
+    //             isValid = false;
+    //         }
+    //     });
+
+    //     if (isValid) {
+    //         // alert('Please fill in all required fields.');
+    //         event.preventDefault();
+    //         alert('Please fill in all required fields.');
+    //     }
+    // });
     $(document).ready(function() {
-       
+
         let addurl;
         $('.t-right').click(function() {
             $('.right').toggleClass('nav-active');
@@ -18,7 +33,6 @@
         $('.btn-close-tiket').click(function() {
             $('.right').toggleClass('nav-active');
         })
-
 
         $('.btn-add-tiket').click(function() {
             $(this).hide()
@@ -200,10 +214,10 @@
                         setTimeout(function() {
 
                             $('#page-load-detail-event').html(data);
-                           
+
                             // window.history.pushState({}, null, null);
                         }, delayInMilliseconds);
-                       
+
 
                     }
                     $('#email').on('keypress', function() {
