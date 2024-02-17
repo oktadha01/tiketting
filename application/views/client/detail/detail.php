@@ -65,12 +65,12 @@
         <div class="col-lg-4">
             <div class="nav-tiket nav right">
                 <div class="info-tgl-event-t">
-                    <div class="card">
+                    <div class="card mb-0">
                         <?php foreach ($event as $data) : ?>
-                            <div class="card-body">
-                                <p class="mb-1"><?= $data->tgl_event; ?> | <?= $data->jam_event; ?></p>
-                                <p class="mb-1"><?= $data->lokasi; ?> | <?= $data->nama; ?></p>
-                                <p class="mb-1 font-weight-bold">Batas Pembelian : <?= $data->batas_pesan; ?></p>
+                            <div class="card-body p-0 pl-3 pr-3">
+                                <p class="mb-0"><?= $data->tgl_event; ?> | <?= $data->jam_event; ?></p>
+                                <p class="mb-0"><?= $data->lokasi; ?> | <?= $data->nama; ?></p>
+                                <p class="mb-0 font-weight-bold">Batas Pembelian : <?= $data->batas_pesan; ?></p>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -138,13 +138,12 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- </form> -->
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 <div class="container row btn-fixed-buy">
     <div class="col">
         <button class="col-12 btn bg-w-blue text-light box-shadow t-right">Beli Tiket</button>

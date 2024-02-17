@@ -1,6 +1,16 @@
 <script src="<?= base_url('assets'); ?>/js/email_validasi.js"></script>
 
 <script>
+    $('.menu-user').addClass('is-active');
+    const menuLinks = document.querySelectorAll(".menu-user");
+    menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            menuLinks.forEach((link) => {
+                link.classList.remove("is-active");
+            });
+            link.classList.add("is-active");
+        });
+    })
     populateKota();
     var delayInMilliseconds = 700; //1 second
     setTimeout(function() {
@@ -70,7 +80,7 @@
             $('#btn-simpan-email').attr('data-dismiss', 'modal')
         }
     });
-   
+
     $('#btn-simpan-email').click(function() {
         if ($('#password').val() == '') {
             $('.col-pass').show();
