@@ -8,8 +8,8 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	// Offline development
-	// 'username' => 'root',
-	// 'password' => '',
+	'username' => 'root',
+	'password' => '',
 
 	// Online Production
 	'username' => 'wisy2434_wisdil',
