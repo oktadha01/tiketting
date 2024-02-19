@@ -28,6 +28,7 @@ $('.btn-navigasi').click(function () {
 	// $(this).data('menu'));
 	if ($(this).data('menu') == $('#span-text-navi').text()) {
 		$('#navigasi').removeClass('nav-active');
+		$('#span-text-navi').text('');
 	} else {
 
 		if ($(this).data('nav') == 'top') {
@@ -64,6 +65,7 @@ $('.close-top').click(function () {
 	$('.top').toggleClass('nav-active');
 	$('.bottom').toggleClass('nav-active');
 	$('.menu-link').removeClass('is-active', true);
+	$('#span-text-navi').text('');
 });
 $('.btn-user').click(function () {
 	// alert(';')
