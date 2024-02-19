@@ -81,10 +81,10 @@
                 </ul>
                 <?php endif; ?>
                 <div class="row pl-0 ml-0">
-                    <div class="col-lg-6 col-md-6 col-12 mt-4 mb-1 ml-0 pl-0">
+                    <div class="col-lg-6 col-md-6 col-3 mt-4 mb-1 ml-0 pl-0">
                         <a class="btn bg-w-orange text-end" href="<?= site_url('Home') ?>">Kembali</a>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-12 mt-4 mb-1 text-right">
+                    <div class="col-lg-6 col-md-6 col-9 mt-4 mb-1 text-right">
                         <?php if ($data->status_transaksi == 0) : ?>
                         <a class="btn bg-w-blue text-light payNowButton"
                             data-url-payment="<?= $data->url_payment; ?>">Pay Now</a>
