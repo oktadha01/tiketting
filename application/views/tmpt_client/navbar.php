@@ -14,26 +14,26 @@
                     </li>
                 <?php } else { ?>
 
-                    <li class="menu-item btn-navigasi transaksi" data-menu="transaksi">
+                    <li class="menu-item btn-navigasi transaksi" data-menu="Transaksi">
                         <a href="#" class="menu-link">
                             <img class="siz-menu" src="<?= base_url('assets/images/transaksi.png'); ?>" alt="">
                             <span class="menu-name">Transaksi</span>
                         </a>
                     </li>
-                    <li class="menu-item btn-navigasi" data-menu="tiket">
+                    <li class="menu-item btn-navigasi" data-menu="Tiket">
                         <a href="#" class="menu-link">
                             <img class="siz-menu" src="<?= base_url('assets/images/tiket.png'); ?>" alt="">
                             <span class="menu-name">Tiket</span>
                         </a>
                     </li>
                     <li class="menu-item menu-akun">
-                        <a href="<?= base_url('Userprofil'); ?>" class="menu-link">
+                        <a href="<?= base_url('Userprofil'); ?>" class="menu-link menu-user">
                             <img class="siz-menu" src="<?= base_url('assets/images/akun.png'); ?>" alt="">
                             <span class="menu-name">Akun</span>
                         </a>
                     </li>
                     <li class="menu-item menu-akun-drop dropdown">
-                        <a href="#" class="menu-link dropdown-toggle btn-user" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="menu-link dropdown-toggle btn-user menu-user" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="siz-menu" src="<?= base_url('assets/images/akun.png'); ?>" alt="">
                             <span class="menu-name">Akun</span>
                         </a>

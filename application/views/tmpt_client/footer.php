@@ -331,14 +331,31 @@
     // Panggil fungsi saat halaman dimuat atau saat ukuran jendela berubah
     window.addEventListener('resize', cekTipePerangkat);
     cekTipePerangkat(); // Panggil fungsi saat halaman dimuat
-    const menuLinks = document.querySelectorAll(".menu-link");
 
-    menuLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-            menuLinks.forEach((link) => {
-                link.classList.remove("is-active");
+    $('.menu-link').click(function() {
+        if ($(this).attr('class') == 'menu-link is-active') {
+            $('.menu-link').removeClass('is-active');
+        } else if ($(this).attr('class') == 'menu-link dropdown-toggle btn-user menu-user') {
+            $('.menu-link').removeClass('is-active');
+            $(this).addClass('is-active');
+            $('#wrapper').click(function() {
+                // alert('body')
+                // Your code here
+                $('.menu-link').removeClass('is-active');
             });
-            link.classList.add("is-active");
-        });
+        } else {
+            $('.menu-link').removeClass('is-active');
+            $(this).addClass('is-active');
+
+        }
     })
+    // const menuLinks = document.querySelectorAll(".menu-mobile");
+    // menuLinks.forEach((link) => {
+    //     link.addEventListener("click", () => {
+    //         menuLinks.forEach((link) => {
+    //             link.classList.remove("is-active");
+    //         });
+    //         link.classList.add("is-active");
+    //     });
+    // })
 </script>

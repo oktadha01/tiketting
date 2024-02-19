@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <span class="close-top" style="cursor: pointer;"><i class="fa-solid fa-arrow-left"></i> <span id="span-text-navi"> Transaction</span></span>
+                    <span class="close-top" style="cursor: pointer;"><i class="fa-solid fa-arrow-left"></i> <span id="span-text-navi"> </span></span>
                 </div>
             </div>
         </div>
