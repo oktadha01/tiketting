@@ -65,12 +65,12 @@ function updateResult(data) {
             '<div class="' + wrapClass + '">' +
             '<span class="' + ribbonClass + '">' + data.result[0].status_tiket + '</span>' +
             '</div> <br>' +
-            '<div class="body text-center pb-2">' +
-            '   <div class="member-img success-animation">' +
+            '<div class="body text-center mt-0 pt-0">' +
+            '   <div class="member-img success-animation pt-0 mt-0">' +
             '       <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>' +
             '   </div>' +
             '<center>' +
-            '   <h6 class="text-dark l-green shadow rounded" style="width:65%;"><b>' +
+            '   <h6 class="text-dark l-green shadow rounded" style="width:73%;"><b>' +
             data.result[0].code_tiket +
             '</b></h6>' +
             '</center>' +

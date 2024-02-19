@@ -75,8 +75,7 @@
                         <div class="col-lg-12 col-md-7 col-sm-12 mb-0 pb-0">
                             <div class="card top_widget mb-0 pb-0">
                                 <div class="body m-0 p-0">
-                                    <div id="result"
-                                        style="z-index: 2; position: absolute; top: 25%; left: 20%; transform: translate(-50%, -50%); width: 80%; max-width: 400px; padding: 20px;">
+                                    <div id="result" class="result-mob">
                                     </div>
                                     <div id="reader" style="width: 100%; height: 50%; position: relative; z-index: 1;">
                                     </div>
@@ -98,4 +97,6 @@
         </div>
     </div>
 </div>
+
+<!-- z-index: 2; position: absolute; top: 25%; left: 20%; transform: translate(-50%, -50%); width: 80%; max-width: 400px; padding: 20px; -->
 <!-- akhir Modal Scan-->
