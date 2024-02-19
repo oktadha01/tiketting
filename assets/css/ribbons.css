@@ -458,7 +458,7 @@ body {
   .result-mob {
       z-index: 2;
       position: absolute;
-      top: 80%;
+      top: 70%;
       left: 45%;
       transform: translate(-50%, -50%);
       width: 80%;
