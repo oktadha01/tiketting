@@ -239,10 +239,21 @@ h1 {
     background: white;
 }
 
-@media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
 
+.result-mob {
+    z-index: 2;
+    position: absolute;
+    top: 25%;
+    left: 18%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
     .container-fluid {
-        width: 113%;
+        width: 110%;
         padding-left: 0px;
         padding-right: 6px;
     }
