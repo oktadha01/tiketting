@@ -47,11 +47,15 @@ class Callback extends CI_Controller
 
                 $date_convert = Carbon::parse($_paidAt);
                 $datetime = $date_convert->format('d-m-Y H:i:s');
+<<<<<<< HEAD
+
+=======
                 // $_externalId = 'CB-53021522-0023';
                 // $_paymentChannel = 'BCA';
                 // $datetime = '10-12-2024 09:00';
                 // $_amount = '100000';
                 $this->send_email($_externalId, $_paymentChannel, $datetime, $_amount);
+>>>>>>> 7e1752c44372e5561ec149c87410e232e03409ba
                 $this->db->set('bank', $_paymentChannel)
                     ->set('tgl_byr', $datetime)
                     ->set('status_transaksi', $status)

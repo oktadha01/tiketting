@@ -1,4 +1,18 @@
 <script>
+function checkInput() {
+    var buyInput = document.getElementById('buy-input');
+    var freeInput = document.getElementById('free-input');
+    var buyWrapper = document.getElementById('buy');
+    var freeWrapper = document.getElementById('free');
+
+    if (buyInput.value > 5) {
+        buyInput.value = 5;
+    } else if (freeInput.value > 3) {
+        freeInput.value = 3;
+    }
+
+}
+
 $('#tambah-data, #ubah-price').on('shown.bs.modal', function() {
     $(function() {
         $('.select2').each(function() {
@@ -80,11 +94,13 @@ function confirmDelete(id_price) {
                 success: function(response) {
                     if (response.status) {
                         // Menampilkan notifikasi sukses tanpa reload
-                        swalWithBootstrapButtons.fire(
-                            'Berhasil!',
-                            'Data berhasil dihapus.',
-                            'success'
-                        );
+                        swalWithBootstrapButtons.fire({
+                            title: 'Berhasil!',
+                            text: 'Data berhasil dihapus.',
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false,
+                        });
 
                         // Menghapus baris tabel secara dinamis (asumsi Anda menggunakan tabel datatables)
                         var table = $('#data-price').DataTable();
@@ -149,13 +165,16 @@ function togglePromoFields() {
     var promoKelCheckbox = document.getElementById("promo-kel");
     var buyInput = document.getElementById("buy");
     var freeInput = document.getElementById("free");
+    var warningSpn = document.getElementById("warning");
 
     if (promoKelCheckbox.checked) {
         buyInput.style.display = "block";
         freeInput.style.display = "block";
+        warningSpn.style.display = "block";
     } else {
         buyInput.style.display = "none";
         freeInput.style.display = "none";
+        warningSpn.style.display = "none";
     }
 }
 
@@ -354,6 +373,7 @@ $('#bundling').on('show.bs.modal', function(e) {
     sendDataToController(idEventBundle);
 });
 
+
 function sendDataToController(idEventBundle) {
     $.ajax({
         url: '<?= site_url('Prices/get_ajax_tiket')?>',
@@ -362,7 +382,7 @@ function sendDataToController(idEventBundle) {
             id_event_bundle: idEventBundle
         },
         success: function(response) {
-            populateSelectOptions(response);
+            tiketSelectOptions(response);
         },
         error: function() {
             console.error('Error sending data to controller.');
@@ -370,7 +390,7 @@ function sendDataToController(idEventBundle) {
     });
 }
 
-function populateSelectOptions(data) {
+function tiketSelectOptions(data) {
     var selectOptions = '<option value="">-- Pilih Tiket --</option>';
     data.forEach(function(option) {
         selectOptions += '<option value="' + option.id_price + '" data-stok="' + option.stock_tiket +
@@ -379,6 +399,7 @@ function populateSelectOptions(data) {
     });
 
     $('#id-bundling').html(selectOptions);
+    // $('#id-bundlingedit').html(selectOptions);
 }
 
 
@@ -390,7 +411,7 @@ $('#id-bundling').on('change', function() {
     $('#stok').val(stokValue);
     $('#id-price-bundle').val(id_priceValue);
 
-    // console.log('Event terpilih:', selectedOption.val());
+    console.log('Event terpilih:', selectedOption.val());
 });
 
 // perhitungan pembuatan bundling
