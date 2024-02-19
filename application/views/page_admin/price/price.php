@@ -114,18 +114,30 @@
                                         <label class="label-in">Akhir Promo</label>
                                     </div>
                                 </div>
+
                                 <div class="col-md-3 pr-0">
                                     <div class="input-wrapper" id="buy" style="display: none;">
-                                        <input type="number" id="buy-input" class="col-lg-12">
-                                        <label class="label-in">Buy</label>
+                                        <label for=" buy-input" class="label-in">Buy</label>
+                                        <input type="number" id="buy-input" class="col-lg-12" min="1" max="5"
+                                            oninput="checkInput()">
                                     </div>
                                 </div>
+
                                 <div class="col-md-3 pl-0">
                                     <div class="input-wrapper" id="free" style="display: none;">
-                                        <input type="number" id="free-input" class="col-lg-12">
-                                        <label class="label-in">Free</label>
+                                        <input type="number" id="free-input" class="col-lg-12" min="1" max="3"
+                                            oninput="checkInput()">
+                                        <label class="label-in" for="free-input">Free</label>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6 text-danger pl=0 pr=0 text-center" id="warning"
+                                    style="display: none;">
+                                    <span style="font-size: 10px; font-weight: bold;">Promo kelipatan max
+                                        buy= 5 & free= 3 </span>
+                                </div>
+
                             </div>
                         </li>
                     </ul>
@@ -225,19 +237,19 @@
             </div>
             <form id="buat-bundling">
                 <div class="modal-body">
-                    <input type="number" id="id-price-bundle" class="col-lg-12" hidden>
+                    <input type="number" id="edit-id-price-bundle" class="col-lg-12" hidden>
                     <input type="text" value="<?= $this->uri->segment(3); ?>" id="id-event-bundle" class="col-lg-12"
                         hidden>
                     <div class=" row mb-3">
                         <div class="col-md-6 mr-0 pr-0">
                             <div class="input-wrapper">
-                                <input type="text" id="nm-bundling" class="col-lg-12" required>
+                                <input type="text" id="edit-nm-bundling" class="col-lg-12" required>
                                 <label class="label-in">Nama Bundling</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-wrapper">
-                                <input type="text" id="harga-bundling" class="col-lg-12" required>
+                                <input type="text" id="edit-harga-bundling" class="col-lg-12" required>
                                 <label class="label-in">Harga Bundling</label>
                             </div>
                         </div>
@@ -246,21 +258,21 @@
                         <div class="col-md-6 mb-2 mr-0 pr-0">
                             <div class="input-wrapper">
                                 <label class="label-select2">Kategori Tiket</label>
-                                <select class="select2 w-100" style="height:55px;" id="id-bundling" name="id_bundling"
-                                    data-dropdown-parent="#bundling" required>
+                                <select class="select2 w-100" style="height:55px;" id="id-bundlingedit"
+                                    name="id_bundling" data-dropdown-parent="#edit-bundling" required>
                                     <option value=''>-- Pilih Tiket --</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3 mr-0 pr-0">
                             <div class="input-wrapper">
-                                <input type="number" id="stok" class="col-lg-12" required disabled>
+                                <input type="number" id="edit-stok" class="col-lg-12" required disabled>
                                 <label class="label-in">Stock</label>
                             </div>
                         </div>
                         <div class="col-md-3 ml-0 pl-0">
                             <div class="input-wrapper">
-                                <input type="number" id="stok-tiket-reguler" class="col-lg-12" required disabled>
+                                <input type="number" id="edit-stok-tiket-reguler" class="col-lg-12" required disabled>
                                 <label class="label-in">Sisa Tiket</label>
                             </div>
                         </div>
@@ -268,19 +280,19 @@
                     <div class=" row mb-3">
                         <div class="col-md-3 mr-0 pr-0">
                             <div class="input-wrapper">
-                                <input type="number" id="isi-bundle" class="col-lg-12" required>
+                                <input type="number" id="edit-isi-bundle" class="col-lg-12" required>
                                 <label class="label-in">Isi Bundle</label>
                             </div>
                         </div>
                         <div class="col-md-3 mr-0 pr-0 ml-0 pl-0">
                             <div class="input-wrapper">
-                                <input type="number" id="jml-bundle" class="col-lg-12" required>
+                                <input type="number" id="edit-jml-bundle" class="col-lg-12" required>
                                 <label class="label-in">Jml Bundle</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-wrapper">
-                                <input type="number" id="stock-bundle" class="col-lg-12" required readonly>
+                                <input type="number" id="edit-stock-bundle" class="col-lg-12" required readonly>
                                 <label class="label-in">Jml Isi Bundle</label>
                             </div>
                         </div>
@@ -298,90 +310,6 @@
 
 <!-- modal bundling-->
 <div class="modal fade" id="bundling" tabindex="-1" role="dialog" aria-labelledby="etambah-data" aria-hidden="true"
-    data-modal-parent="tambah-data">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Buat Tiket Bundling</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="buat-bundling">
-                <div class="modal-body">
-                    <input type="number" id="id-price-bundle" class="col-lg-12" hidden>
-                    <input type="text" value="<?= $this->uri->segment(3); ?>" id="id-event-bundle" class="col-lg-12"
-                        hidden>
-                    <div class=" row mb-3">
-                        <div class="col-md-6 mr-0 pr-0">
-                            <div class="input-wrapper">
-                                <input type="text" id="nm-bundling" class="col-lg-12" required>
-                                <label class="label-in">Nama Bundling</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-wrapper">
-                                <input type="text" id="harga-bundling" class="col-lg-12" required>
-                                <label class="label-in">Harga Bundling</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" row mb-3 mt-1">
-                        <div class="col-md-6 mb-2 mr-0 pr-0">
-                            <div class="input-wrapper">
-                                <label class="label-select2">Kategori Tiket</label>
-                                <select class="select2 w-100" style="height:55px;" id="id-bundling" name="id_bundling"
-                                    data-dropdown-parent="#bundling" required>
-                                    <option value=''>-- Pilih Tiket --</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mr-0 pr-0">
-                            <div class="input-wrapper">
-                                <input type="number" id="stok" class="col-lg-12" required disabled>
-                                <label class="label-in">Stock</label>
-                            </div>
-                        </div>
-                        <div class="col-md-3 ml-0 pl-0">
-                            <div class="input-wrapper">
-                                <input type="number" id="stok-tiket-reguler" class="col-lg-12" required disabled>
-                                <label class="label-in">Sisa Tiket</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class=" row mb-3">
-                        <div class="col-md-3 mr-0 pr-0">
-                            <div class="input-wrapper">
-                                <input type="number" id="isi-bundle" class="col-lg-12" required>
-                                <label class="label-in">Isi Bundle</label>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mr-0 pr-0 ml-0 pl-0">
-                            <div class="input-wrapper">
-                                <input type="number" id="jml-bundle" class="col-lg-12" required>
-                                <label class="label-in">Jml Bundle</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-wrapper">
-                                <input type="number" id="stock-bundle" class="col-lg-12" required readonly>
-                                <label class="label-in">Jml Isi Bundle</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
-                    <button type="submit" class="btn btn-primary" disabled>Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- akhir Modal bundling-->
-
-<!-- modal edit bundling-->
-<div class="modal fade" id="ubah-bundling" tabindex="-1" role="dialog" aria-labelledby="etambah-data" aria-hidden="true"
     data-modal-parent="tambah-data">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">

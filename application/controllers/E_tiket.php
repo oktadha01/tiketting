@@ -35,8 +35,13 @@ class E_tiket extends CI_Controller
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
+<<<<<<< HEAD
+                                        <div class="col-lg-1 col-md-1 col-2">
+                                             <span class="num-tiket">' . $no++ . '</span>
+=======
                                     <div class="col-lg-1 col-md-1 col-2">
                                     <span class="num-tiket">' . $no++ . '</span>
+>>>>>>> 7e1752c44372e5561ec149c87410e232e03409ba
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-5">
                                             <p class="small mb-0">Name</p>
@@ -79,6 +84,7 @@ class E_tiket extends CI_Controller
         }
         // echo '</div>';
     }
+
     function detail_tiket()
     {
         $code_tiket = $_POST['code_tiket'];

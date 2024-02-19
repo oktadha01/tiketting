@@ -1,4 +1,7 @@
 <script>
+// Suara notifikasi
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
 // manipulasi data sceneQR
 function onScanSuccess(qrCodeMessage) {
     $.ajax({
@@ -9,6 +12,8 @@ function onScanSuccess(qrCodeMessage) {
         },
         success: function(data) {
             updateResult(data);
+
+            successSound.play();
         },
         error: function(xhr, status, error) {
             console.error('Error fetching data:', error);
@@ -21,6 +26,7 @@ function onScanSuccess(qrCodeMessage) {
 
 // kode manual input
 function submitManualCode() {
+    event.preventDefault();
     var manualCode = document.getElementById("manualCodeInput").value;
     if (manualCode.trim() !== "") {
         $.ajax({
@@ -54,17 +60,17 @@ function updateResult(data) {
         var ribbonfide = data.result[0].status_tiket === 'Sudah Diambil' ? 'ribbons fade-out' : 'ribbon';
 
         resultElement.innerHTML =
-            '<section class="fade-in">' +
+            '<section class="fade-in rounded">' +
             '<div class="' + ribbonfide + '">' +
             '<div class="' + wrapClass + '">' +
             '<span class="' + ribbonClass + '">' + data.result[0].status_tiket + '</span>' +
             '</div> <br>' +
             '<div class="body text-center pb-2">' +
-            '   <div class="member-img">' +
-            '       <span><img src="<?= base_url("assets"); ?>/images/user/avatar3.jpg" alt="profile-image" class="rounded-circle" /></span>' +
-            '   </div><br>' +
+            '   <div class="member-img success-animation">' +
+            '       <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>' +
+            '   </div>' +
             '<center>' +
-            '   <h6 class="text-dark l-green shadow rounded" style="width: 50%;"><b>' +
+            '   <h6 class="text-dark l-green shadow rounded" style="width:65%;"><b>' +
             data.result[0].code_tiket +
             '</b></h6>' +
             '</center>' +
@@ -72,11 +78,13 @@ function updateResult(data) {
             '       <span class="text-dark">' + data.result[0].nama + '</span><br>' +
             '       <span class="text-dark">' + data.result[0].email + '</span><br>' +
             '   </ul>' +
-            '   <button class="btn btn-success rounded" onclick="ambilTiket(\'' + data.result[0].code_tiket + '\')" ' +
-            isDisabled + '> <i class="fa fa-check-circle"> Approve</button>' +
+            '   <button id="approveButton" class="btn btn-success rounded" onclick="ambilTiket(\'' + data.result[0]
+            .code_tiket + '\', event)" ' +
+            isDisabled + '> <i class="fa fa-check-circle"></i> Approve</button>' +
             '</div>' +
             '</div>' +
             '</section>';
+
 
         setTimeout(function() {
             var ribbon5Element = resultElement.querySelector('.ribbons');
@@ -84,7 +92,9 @@ function updateResult(data) {
             if (ribbon5Element) {
                 ribbon5Element.classList.add('hidden');
             }
-        }, 5000);
+
+
+        }, 4000);
 
     } else {
         resultElement.innerHTML =
@@ -105,12 +115,14 @@ function updateResult(data) {
             if (ribbon2Element) {
                 ribbon2Element.classList.add('hidden');
             }
-        }, 4000);
+        }, 10000);
     }
 }
 
 // update status tiket
 function ambilTiket(codeTiket) {
+    event.preventDefault();
+
     $.ajax({
         url: '<?php echo base_url('Scan_tiket/update_tiket'); ?>',
         method: 'POST',
@@ -135,12 +147,24 @@ function ambilTiket(codeTiket) {
     });
 }
 
-var html5QrCodeScanner = new Html5QrcodeScanner("reader", {
-    fps: 10,
-    qrbox: 250
+$('#scan-tiket').on('show.bs.modal', function() {
+    var html5QrCodeScanner = new Html5QrcodeScanner("reader", {
+        fps: 30,
+        qrbox: {
+            width: 1020,
+            height: 750
+        }
+    });
+
+    html5QrCodeScanner.render(onScanSuccess, onScanError);
 });
 
-html5QrCodeScanner.render(onScanSuccess, onScanError);
+$('#scan-tiket').on('hide.bs.modal', function() {
+    $('#reader').html('');
+
+    html5QrCodeScanner.render(onScanSuccess, onScanError);
+});
+
 
 // datatable scan tiket
 $(document).ready(function() {

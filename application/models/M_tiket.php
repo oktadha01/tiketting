@@ -22,6 +22,7 @@ class M_tiket extends CI_Model
         return $q;
     }
 
+
     function m_detail_tiket($email, $code_tiket)
     {
         // $bulan = '10';

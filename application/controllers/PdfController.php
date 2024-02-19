@@ -8,7 +8,7 @@ class PdfController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('tcpdf');
+        $this->load->library('Tcpdf');
         // $this->load->library('phpqrcode');
         $this->load->model('M_pdf');
     }
@@ -28,14 +28,14 @@ class PdfController extends CI_Controller
         // disable auto-page-break
         $pdf->setAutoPageBreak(false, 0);
         // set bacground image
-        $img_file = base_url('upload/TIKET.PNG');
+        $img_file = FCPATH . 'upload/tiket.png';
         $pdf->Image($img_file, null, 0, 148, 105, '', '', '', false, 300, 'C', false, false, 0);
         // restore auto-page-break status
         $pdf->setAutoPageBreak($auto_page_break, $bMargin);
         // set the starting point for the page content
         $pdf->setPageMark();
         // Add background color
-        
+
         // Add header text
         $pdf->SetY(1); // Set the Y position for the header text
         $headerText = 'WWW.Musickanpa.com';
@@ -117,8 +117,8 @@ class PdfController extends CI_Controller
         //============================================================+
 
         // require_once(dirname(__FILE__) . '/../libraries/phpqrcode/qrlib.php');
-        // $tempDir = './upload/'; 
-        // $codeContents = 'https://temurespondenkpwbijateng.com/kehadiran.php'; 
+        // $tempDir = './upload/';
+        // $codeContents = 'https://temurespondenkpwbijateng.com/kehadiran.php';
         // QRcode::png($codeContents, $tempDir.'qrcode.png', QR_ECLEVEL_L, 5);
         // $html = $this->load->view('client/pdf/pdf', [], true);
 

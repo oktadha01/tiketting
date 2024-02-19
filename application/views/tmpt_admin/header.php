@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/main.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/ecommerce.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/blog.css">
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/chatapp.css">
 
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

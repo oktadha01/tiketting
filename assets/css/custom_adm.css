@@ -42,35 +42,19 @@
     margin-bottom: 2px;
 }
 
+.container-fluid
+{
+width: 103%;
+padding-left: 5px;
+padding-right: 3px;
+}
+
 .input-wrapper {
     position: relative;
     line-height: 14px;
     margin: 0 5px;
     display: grid;
 }
-
-/* .label-select {
-    color: #bbb;
-    font-size: 11px;
-    text-transform: uppercase;
-    position: absolute;
-    z-index: 2;
-    left: 20px;
-    top: 14px;
-    padding: 0 2px;
-    pointer-events: none;
-    background: #fff;
-    -webkit-transition: -webkit-transform 100ms ease;
-    -moz-transition: -moz-transform 100ms ease;
-    -o-transition: -o-transform 100ms ease;
-    -ms-transition: -ms-transform 100ms ease;
-    transition: transform 100ms ease;
-    -webkit-transform: translateY(-20px);
-    -moz-transform: translateY(-20px);
-    -o-transform: translateY(-20px);
-    -ms-transform: translateY(-20px);
-    transform: translateY(-20px);
-} */
 
 .label-select {
     color: #59C4BC;
@@ -255,32 +239,14 @@ h1 {
     background: white;
 }
 
-/* @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+@media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
 
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
+    .container-fluid {
+        width: 113%;
+        padding-left: 0px;
+        padding-right: 6px;
     }
-    to {
-      opacity: 0;
-    }
-  }
-
-
-  .fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-
-  .fade-out {
-    animation: fadeOut 0.5s ease-in-out;
-  } */
+}
 
 
 

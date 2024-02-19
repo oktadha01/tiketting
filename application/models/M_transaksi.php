@@ -11,8 +11,11 @@ class M_transaksi extends CI_Model
         $this->db->select('*');
         $this->db->from('customer');
         $this->db->join('transaksi', 'transaksi.id_customer = customer.id_customer');
+        $this->db->join('tiket', 'tiket.code_bayar = transaksi.code_bayar');
+        $this->db->join('price', 'price.id_event = transaksi.id_event');
         $this->db->where('customer.email', $email);
         $this->db->where('transaksi.code_bayar', $code_bayar);
+        $this->db->limit(1);
         $query = $this->db->get();
         return $query->result();
     }

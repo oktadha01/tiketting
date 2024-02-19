@@ -92,7 +92,9 @@ class Prices extends AUTH_Controller
             $status = '';
 
             if ($prc->stock_tiket == '0') {
-                $status = '<td class="font-weight-medium"><div class="badge badge-danger shadow bg-white rounded">Sold Out</div></td>';
+                $status = '<td class="font-weight-medium"><div class="badge badge-danger shadow bg-danger text-light rounded">Sold Out</div></td>';
+            } elseif ($prc->stock_tiket < ($prc->beli + $prc->gratis)) {
+                $status = '<td class="font-weight-medium"><div class="badge badge-warning shadow bg-warning rounded text-dark">Stok Kurang</div></td>';
             } elseif ($prc->status == '0') {
                 $status = '<td class="font-weight-medium"><div class="badge badge-success shadow bg-white rounded">Stock Ready</div></td>';
             } elseif ($prc->status == '1') {
@@ -232,8 +234,7 @@ class Prices extends AUTH_Controller
     {
         $privilage = $this->session->userdata('userdata')->privilage;
         $id_event = $this->input->post('id_event_bundle');
-
-        $query = $this->Prices_model->get_tiket($privilage, $id_event);
+        $query = $this->Prices_model->get_tiket($id_event, $privilage);
 
         header('Content-Type: application/json');
         echo json_encode($query);

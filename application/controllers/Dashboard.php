@@ -39,14 +39,19 @@ class Dashboard extends AUTH_Controller
         $balance         = $this->Dashboard_model->get_total_nominal($id_user);
         $tiket           = $this->Dashboard_model->get_total_tiket($id_user);
         $terjual         = $this->Dashboard_model->get_tiket_terjual($id_user);
+        $tiket_status    = $this->Dashboard_model->get_tiket_status($id_user);
 
         $Rp_saldo        = 'Rp. ' . number_format($balance, 0, ',', '.');
         $tiket_format    = number_format($tiket, 0, ',', '.');
-        $terjual_format    = number_format($terjual, 0, ',', '.');
+        $terjual_format  = number_format($terjual, 0, ',', '.');
+        $diambil         = number_format($tiket_status->jumlah_tiket_1 , 0, ',', '.');
+        $belum         = number_format($tiket_status->jumlah_tiket_0 , 0, ',', '.');
 
-        $data['saldo'] = $Rp_saldo;
-        $data['total_tiket'] = $tiket_format;
+        $data['saldo']         = $Rp_saldo;
+        $data['total_tiket']   = $tiket_format;
         $data['terjual_tiket'] = $terjual_format;
+        $data['tiket_belum']   = $belum;
+        $data['tiket_diambil'] = $diambil;
 
         $this->load->view($this->template, $data);
     }
