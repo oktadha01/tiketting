@@ -25,27 +25,35 @@ function cekTipePerangkat() {
 	}
 }
 $('.btn-navigasi').click(function () {
-	if ($(this).data('nav') == 'top') {
-
-		$('.top').addClass('nav-active');
-		$('#load-data-navi').show();
-		if ($(this).data('menu') == 'transaksi') {
-			transaksi();
-			$('#span-text-navi').text('Transaksi')
-		} else {
-			tiket();
-			$('#span-text-navi').text('Tiket')
-		}
+	// $(this).data('menu'));
+	if ($(this).data('menu') == $('#span-text-navi').text()) {
+		$('#navigasi').removeClass('nav-active');
 	} else {
 
-		$('.bottom').addClass('nav-active');
-		$('#load-data-navi').show();
-		if ($(this).data('menu') == 'transaksi') {
-			transaksi();
-			$('#span-text-navi').text('Transaksi')
+		if ($(this).data('nav') == 'top') {
+			if ($('#navigasi').attr('class') == 'nav top') {
+				$('#navigasi').toggleClass('nav-active');
+			}
+			$('#load-data-navi').show();
+			if ($(this).data('menu') == 'Transaksi') {
+				transaksi();
+				$('#span-text-navi').text('Transaksi')
+			} else {
+				tiket();
+				$('#span-text-navi').text('Tiket')
+			}
 		} else {
-			tiket();
-			$('#span-text-navi').text('Tiket')
+			if ($('#navigasi').attr('class') == 'nav bottom') {
+				$('#navigasi').toggleClass('nav-active');
+			}
+			$('#load-data-navi').show();
+			if ($(this).data('menu') == 'Transaksi') {
+				transaksi();
+				$('#span-text-navi').text('Transaksi');
+			} else {
+				tiket();
+				$('#span-text-navi').text('Tiket');
+			}
 		}
 	}
 
