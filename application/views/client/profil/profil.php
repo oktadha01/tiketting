@@ -1,4 +1,4 @@
-<section class="container" style="margin-top: 6rem;height: 100vh;">
+<section class="container" style="margin-top: 6rem;height: 100%;margin-bottom: 5rem;">
     <div class="card">
         <div class="card-header">
             <h5>Profil</h5>

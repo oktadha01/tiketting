@@ -187,8 +187,8 @@ class Buynow extends CI_Controller
         if ($action == 'cetak') {
             $this->M_buynow->save_tiket($data_in);
             $this->cetak_e_tiket($data_in);
-            $this->insert_transaksi($data_in, $payment);
             $this->update_stock_tiket($tiketCounts);
+            $this->insert_transaksi($data_in, $payment);
         } else {
             $this->callback_stock_ready($data_kategori, $data_count, $data_kategori_sold, $data_count_sold, $nm_event, $action1);
         }
@@ -224,6 +224,7 @@ class Buynow extends CI_Controller
             $tiket = "(SELECT * FROM price WHERE id_price = $id_price)";
             $query = $this->db->query($tiket);
             foreach ($query->result() as $rows) {
+                $id_price = $rows->id_price;
                 $stock_tiket = $rows->stock_tiket - $count;
                 // if($stock_tiket == 0){
                 //     $stock_tiket = $rows->stock_tiket;
