@@ -213,7 +213,7 @@ class Buynow extends CI_Controller
         $data['data_count'] = $data_count;
         $data['data_kategori_sold'] = $data_kategori_sold;
         $data['data_count_sold'] = $data_count_sold;
-        $data['content']         = "client/buynow/buynow"; 
+        $data['content']         = "client/buynow/buynow";
         $data['script']         = 'client/buynow/buynow_js';
         $this->load->view($this->template, $data);
     }
