@@ -76,11 +76,9 @@ class Prices extends AUTH_Controller
                                 <i class="fa fa-edit"></i>
                             </a>';
             } elseif ($prc->status_bundling == '1') {
-                $editButton = '<a data-toggle="modal" data-target="#ubah-bundling" class="btn btn-outline-info btn-xs btn-edit" title="Ubah"
+                $editButton = '<a data-toggle="modal" data-target="#ubah-bundling" class="btn btn-outline-info btn-xs btn-edit-bundling" title="Ubah Bundling"
                                 data-id_price="'.$prc->id_price.'" data-id_event="'.$prc->id_event.'" data-kategori_price="'.$prc->kategori_price.'"
-                                data-stock_tiket="'.$prc->stock_tiket.'" data-tiket="'.$prc->harga.'" data-akhir_promo="'.$prc->akhir_promo.'"
-                                data-status="'.$prc->status.'" data-status_bundling="'.$prc->status_bundling.'" data-beli="'.$prc->beli.'"
-                                data-gratis="'.$prc->gratis.'" data-tiket_bundling="'.$prc->tiket_bundling.'" data-status_bundling="'.$prc->status_bundling.'">
+                                data-stock_tiket="'.$prc->stock_tiket.'" data-tiket="'.$prc->harga.'" data-tiket_bundle="'.$prc->tiket_bundling.'">
                                 <i class="fa fa-edit"></i>
                             </a>';
             }
@@ -275,6 +273,45 @@ class Prices extends AUTH_Controller
         }
 
         echo json_encode($response);
+    }
+
+    public function edit_bundling() {
+
+        $id_price = $this->input->post('id_price');
+        $id_event = $this->input->post('id_event');
+        $kategori_price = $this->input->post('kategori_price');
+        $harga = $this->input->post('harga');
+        $stock_tiket = $this->input->post('stock_tiket');
+        $tiket_bundling = $this->input->post('tiket_bundling');
+
+                // var_dump($_POST);
+
+            if (!empty($id_price)) {
+                $data = array(
+                    'id_price' => $id_price,
+                    'id_event' => $id_event,
+                    'kategori_price' => $kategori_price,
+                    'harga' => $harga,
+                    'stock_tiket' => $stock_tiket,
+                    'tiket_bundling' =>$tiket_bundling,
+                );
+
+                $update_status = $this->Prices_model->update_data('price', $data, $id_price);
+
+                if ($update_status) {
+                    $response['status'] = true;
+                    $response['message'] = 'Data berhasil diperbarui.';
+                } else {
+                    $response['status'] = false;
+                    $response['message'] = 'Terjadi kesalahan saat memperbarui data di database.';
+                }
+            } else {
+                $response['status'] = false;
+                $response['message'] = 'ID tidak valid. Data tidak dapat diperbarui.';
+            }
+
+            $this->output->set_content_type('application/json');
+            $this->output->set_output(json_encode($response));
     }
 
     public function fetch()

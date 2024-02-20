@@ -280,9 +280,9 @@ $(document).ready(function() {
         $('#ubah-price #edit-stock-tiket').val(stock_tiket);
         $('#ubah-price #edit-akhir').val(akhir_promo);
         $('#ubah-price #edit-status').prop('checked', status == 1);
-        // $('#ubah-price #edit-promo-kel').prop('checked', beli > 1);
-        // $('#ubah-price #edit-buy').val(buy);
-        // $('#ubah-price #edit-free').val(free);
+        $('#ubah-price #edit-promo-kel').prop('checked', beli > 1);
+        $('#ubah-price #edit-buy').val(buy);
+        $('#ubah-price #edit-free').val(free);
 
         perbaruiStatusedit();
     });
@@ -529,6 +529,133 @@ $('#buat-bundling').submit(function(event) {
     });
 });
 // akhir kode bandling
+
+// kode ubah bundling
+$(document).ready(function() {
+    $(document).on('click', '.btn-edit-bundling', function() {
+        var id_price = $(this).data('id_price');
+        var id_event = $(this).data('id_event');
+        var kategori_price = $(this).data('kategori_price');
+        var harga_bundling = $(this).data('tiket');
+        var stock_bundling = $(this).data('stock_tiket');
+        var isi_bundling = $(this).data('tiket_bundle');
+
+        $('#edit-bundling #edit-id-price-bundle').val(id_price);
+        $('#edit-bundling #id-event-bundle').val(id_event);
+        $('#edit-bundling #edit-nm-bundling').val(kategori_price);
+        $('#edit-bundling #edit-harga-bundling').val(harga_bundling);
+        $('#edit-bundling #edit-isi-bundle').val(isi_bundling);
+        $('#edit-bundling #edit-stock-bundle').val(stock_bundling);
+
+    });
+});
+
+$(document).ready(function() {
+    $('#ubah-bundling').on('shown.bs.modal', function() {
+        hitungJumlahBundle();
+    });
+});
+
+function hitungJumlahBundle() {
+    var isiBundle = parseFloat(document.getElementById("edit-isi-bundle").value);
+    var stockBundle = parseFloat(document.getElementById("edit-stock-bundle").value);
+    var jmlBundleInput = document.getElementById("edit-jml-bundle");
+    var warningElement = document.getElementById("edit-warning");
+    var ubahButton = document.getElementById("ubah-button");
+
+    if (!isNaN(isiBundle) && !isNaN(stockBundle)) {
+        var jumlahBundle = stockBundle / isiBundle;
+        jmlBundleInput.value = isNaN(jumlahBundle) ? "" : jumlahBundle.toFixed(1);
+
+        var isBilanganBulat = jumlahBundle % 1 === 0 && jumlahBundle >= 0;
+
+        ubahButton.disabled = !isBilanganBulat;
+
+        if (isBilanganBulat) {
+            warningElement.classList.add('fade-out');
+
+            setTimeout(function() {
+                warningElement.hidden = true;
+                warningElement.classList.remove('fade-out');
+                warningElement.classList.add('fade-in');
+            }, 500);
+        } else {
+            warningElement.classList.add('fade-in');
+            warningElement.hidden = false;
+
+            setTimeout(function() {
+                warningElement.classList.remove('fade-in');
+            }, 500);
+        }
+    } else {
+        jmlBundleInput.value = "";
+        ubahButton.disabled = true;
+        warningElement.hidden = true;
+    }
+}
+
+$('#edit-bundling').submit(function(e) {
+    e.preventDefault();
+    var form = $(this);
+
+    if (form.data('requestRunning')) {
+        return;
+    }
+
+    var formData = {
+        id_price: $('#edit-id-price-bundle').val(),
+        id_event: $('#id-event-bundle').val(),
+        kategori_price: $('#edit-nm-bundling').val(),
+        harga: $('#edit-harga-bundling').val(),
+        stock_tiket: $('#edit-stock-bundle').val(),
+        tiket_bundling: $('#edit-isi-bundle').val(),
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: "<?php echo base_url('Prices/edit_bundling'); ?>",
+        data: formData,
+        beforeSend: function() {
+            form.data('requestRunning', true);
+        },
+        success: function(response) {
+            if (response.status) {
+                console.log(response);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Data Bundling Berhasil Diubah.',
+                });
+
+                var table = $('#data-price').DataTable();
+                table.ajax.reload(null, false);
+                $('#ubah-bundling').modal('hide');
+
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: response.message ||
+                        'Terjadi kesalahan saat validasi data di server.',
+                });
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Terjadi kesalahan saat mengirim permintaan ke server.',
+            });
+        },
+        complete: function() {
+            form.data('requestRunning', false);
+        },
+    });
+});
+
+// akhir kode ubah bundling
 
 $(document).ready(function() {
 
