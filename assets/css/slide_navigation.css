@@ -186,6 +186,7 @@
 	overflow: overlay;
 }
 
+/* All device mobile */
 @media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: portrait) {
 	.max-h-list {
 		height: auto;
@@ -246,6 +247,35 @@
 	}
 }
 
+/* only device iphone 5/7/8 */
+@media only screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
+
+	.nav.bottom {
+		height: 92%;
+		width: 100%;
+		border: 4px solid #d6d6d6;
+		border-bottom-left-radius: 15px;
+		border-bottom-right-radius: 15px;
+	}
+
+
+
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) {
+	.nav.top {
+		height: 87%;
+		width: 100%;
+		border: 4px solid #d6d6d6;
+		border-bottom-left-radius: 15px;
+		border-bottom-right-radius: 15px;
+	}
+	.nav.top.nav-active {
+		top: -4px;
+		display: block;
+		z-index: 999;
+	}
+}
 
 .num-tiket {
 	background: blanchedalmond;
@@ -254,11 +284,12 @@
 	border-radius: 4px;
 	font-size: x-large;
 }
-.notif-e-tiketSDA{
-	background-color: #28a745!important;
-    color: cornsilk;
-    text-align: center;
-    margin-top: 9px;
-    border-radius: 5px;
-    margin-bottom: 0;
+
+.notif-e-tiketSDA {
+	background-color: #28a745 !important;
+	color: cornsilk;
+	text-align: center;
+	margin-top: 9px;
+	border-radius: 5px;
+	margin-bottom: 0;
 }

@@ -57,13 +57,9 @@ class Transaction extends CI_Controller
                     // code status
                     $status_transaksi = '';
                     if ($data_transaksi->status_transaksi == '0') {
+                        // Status transaksi
                         $status_transaksi = '<td class="font-weight-medium ml-0"><div class="badge badge-info shadow l-parpl text-white rounded ">Panding</div></td>';
-                    } elseif ($data_transaksi->status_transaksi == '1') {
-                        $status_transaksi = '<td class="font-weight-medium"><div class="badge badge-info shadow l-green text-dark rounded">Lunas</div></td>';
-                    }
-
-                    // code tombol
-                    if ($data_transaksi->status_transaksi == '0') {
+                        // code tombol
                         $actionButton = '<div class="col-6">
                                                 <button type="button" class="col-12 btn btn-sm bg-w-blue text-light btn-detail-trans-m" data-cb="' . $data_transaksi->code_bayar . '" data-toggle="modal" data-target="#detail-transaksi">Detail</button>
                                             </div>
@@ -72,51 +68,63 @@ class Transaction extends CI_Controller
                                                     <button type="button" class="col-12 btn btn-sm bg-w-orange">Pay Now</button>
                                                 </a>
                                             </div>';
+                        // Tanggal transaksi
+                        $tgl_transaksi = '<span class="smal">Dipesan</span>
+                                            <span class="font-weight-bold">' . $data_transaksi->tgl_transaksi . '</span>';
+                        // coundown
+                       
                     } elseif ($data_transaksi->status_transaksi == '1') {
+                        // Status transaksi
+                        $status_transaksi = '<td class="font-weight-medium"><div class="badge badge-info shadow l-green text-dark rounded">Lunas</div></td>';
+                        // code tombol
                         $actionButton = ' <div class="col-6">
-                                                <button type="button" class="col-12 btn btn-sm bg-w-blue text-light btn-detail-trans-m" data-cb="' . $data_transaksi->code_bayar . '" data-toggle="modal" data-target="#detail-transaksi">Detail</button>
-                                              </div>';
+                                        <button type="button" class="col-12 btn btn-sm bg-w-blue text-light btn-detail-trans-m" data-cb="' . $data_transaksi->code_bayar . '" data-toggle="modal" data-target="#detail-transaksi">Detail</button>
+                                        </div>';
+                        // Tanggal transaksi
+                        $tgl_transaksi = '<span class="smal">Dibayar</span>
+                                        <span class="font-weight-bold">' . $data_transaksi->tgl_byr . '</span>';
                     }
 
                     echo '<div class="card box-shadow">
                     <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-1 col-md-2 col-5">
-                            <img src="' . base_url('upload/event/') . $data_transaksi->poster . '" class="img-fluid size-poster">
-                        </div>
-                        <div class="col-lg-8 col-md-10 col-7 p-table-inv">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
+                    <div class="col-lg-1 col-md-2 col-5">
+                    <img src="' . base_url('upload/event/') . $data_transaksi->poster . '" class="img-fluid size-poster">
+                    </div>
+                    <div class="col-lg-8 col-md-10 col-7">
+                        
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                            <div style="display:grid;">
+                                    <span class="smal">Invoice Number</span>
+                                    <span class="font-weight-bold">INV-#' . $data_transaksi->code_bayar . '</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
                                 <div style="display:grid;">
-                                        <span class="smal">Invoice Number</span>
-                                        <span class="font-weight-bold">INV-#' . $data_transaksi->code_bayar . '</span>
-                                    </div>
+                                    ' . $tgl_transaksi . '
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-12">
-                                    <div style="display:grid;">
-                                        <span class="smal">Buy At</span>
-                                        <span class="font-weight-bold">' . $data_transaksi->tgl_transaksi . '</span>
-                                    </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-12">
+                                <div style="display:grid;">
+                                    <span class="smal">Total</span>
+                                    <span class="font-weight-bold">Rp ' . number_format($data_transaksi->nominal, 0, ',', '.') . '</span>
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-12">
-                                    <div style="display:grid;">
-                                        <span class="smal">Total</span>
-                                        <span class="font-weight-bold">Rp ' . number_format($data_transaksi->nominal, 0, ',', '.') . '</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-12">
-                                    <div style="display:grid;">
-                                        <span class="smal">Status</span>
-                                        <span class="font-weight-bold"> ' . $status_transaksi . '</span>
-                                    </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-12">
+                                <div style="display:grid;">
+                                    <span class="smal">Status</span>
+                                    <span class="font-weight-bold"> ' . $status_transaksi . '</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-12 p-table-inv">
-                            <hr class="hr">
-                            <div class="row">' . $actionButton . '</div>
-                            </div>
+                    </div>
+                       
+                    <div class="col-lg-3 col-12 pt-4">
+                        <hr class="hr">
+                        <div class="row">' . $actionButton . '</div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>';
@@ -126,6 +134,7 @@ class Transaction extends CI_Controller
             echo '<span>Tidak Ada Transaksi</span>';
         }
     }
+   
     function detail_trans()
     {
         $code_bayar = $_POST['code_bayar'];
