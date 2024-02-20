@@ -85,7 +85,7 @@ class PdfController extends CI_Controller
         $pdf->SetTextColor(255, 255, 255);
         $pdf->Cell(50, 1, $headerText, 0, 1, 'L'); // Print the header text
 
-        $pdf->Image(base_url('upload/qr/qr-CT-120104-0001.png'), 101, 37, 28);
+        $pdf->Image(base_url('upload/qr/qr-CT-53520202-0001.png'), 101, 37, 28);
 
         $headerText = 'Kode Booking';
         $headerText = strtoupper($headerText); // Convert the header text to uppercase
