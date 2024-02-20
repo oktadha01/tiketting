@@ -191,28 +191,63 @@
                         </div>
                     </div>
                     <div class=" row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-5 mr-0 pr-0 ">
                             <div class="input-wrapper">
                                 <input type="number" id="edit-stock-tiket" class="col-lg-12" required>
                                 <label class="label-in">Stock Tiket</label>
                             </div>
                         </div>
-                    </div>
-                    <div class=" row mb-3">
-                        <div class="col-md-6 mb-2">
+                        <div class="col-md-3 mb-2 pr-2 pl-2 mr-0 pr-0">
                             <label class="fancy-checkbox ml-1 mt-2">
                                 <input type="checkbox" name="checkbox" id="edit-status" onchange="perbaruiStatusedit()">
                                 <span>Promo</span>
                             </label>
                         </div>
-                        <div class="col-md-6 mb-2" id="due-kategori-edit" style="display: none;">
-                            <div class="input-wrapper">
-                                <input data-provide="datepicker" data-date-autoclose="true" type="text" id="edit-akhir"
-                                    name="akhir_promo" class="col-lg-12">
-                                <label class="label-in">Akhir Promo</label>
-                            </div>
+                        <div class="col-md-4 mb-2 pl-0 pr-0" id="edit-promo-kelipatan" style="display: none;">
+                            <label class="fancy-checkbox ml-1 mt-2">
+                                <input type="checkbox" name="checkbox" id="edit-promo-kel"
+                                    onchange="togglePromoFields()">
+                                <span>Promo Kelipatan</span>
+                            </label>
                         </div>
                     </div>
+                    <ul class="list-unstyled feeds_widget" id="due-kategori-container" style="display: none;">
+                        <li>
+                            <div class="row mt-1">
+                                <div class="col-md-6 mb-2">
+                                    <div class="input-wrapper" id="due-kategori">
+                                        <input data-provide="datepicker" data-date-autoclose="true" type="text"
+                                            id="akhir-promo" name="akhir_promo" class="col-lg-12">
+                                        <label class="label-in">Akhir Promo</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 pr-0">
+                                    <div class="input-wrapper" id="buy" style="display: none;">
+                                        <label for=" buy-input" class="label-in">Buy</label>
+                                        <input type="number" id="buy-input" class="col-lg-12" min="1" max="5"
+                                            oninput="checkInput()">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 pl-0">
+                                    <div class="input-wrapper" id="free" style="display: none;">
+                                        <input type="number" id="free-input" class="col-lg-12" min="1" max="3"
+                                            oninput="checkInput()">
+                                        <label class="label-in" for="free-input">Free</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-6 text-danger pl=0 pr=0 text-center" id="warning"
+                                    style="display: none;">
+                                    <span style="font-size: 10px; font-weight: bold;">Promo kelipatan max
+                                        buy= 5 & free= 3 </span>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -226,20 +261,19 @@
 
 <!-- modal edit bundling-->
 <div class="modal fade" id="ubah-bundling" tabindex="-1" role="dialog" aria-labelledby="etambah-data" aria-hidden="true"
-    data-modal-parent="tambah-data">
+    data-modal-parent="ubah-bundling">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Buat Tiket Bundling</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Ubah Tiket Bundling</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="buat-bundling">
-                <div class="modal-body">
+            <form id="edit-bundling">
+                <div class="modal-body pb-1">
                     <input type="number" id="edit-id-price-bundle" class="col-lg-12" hidden>
-                    <input type="text" value="<?= $this->uri->segment(3); ?>" id="id-event-bundle" class="col-lg-12"
-                        hidden>
+                    <input type="text" id="id-event-bundle" class="col-lg-12" hidden>
                     <div class=" row mb-3">
                         <div class="col-md-6 mr-0 pr-0">
                             <div class="input-wrapper">
@@ -254,59 +288,43 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" row mb-3 mt-1">
-                        <div class="col-md-6 mb-2 mr-0 pr-0">
-                            <div class="input-wrapper">
-                                <label class="label-select2">Kategori Tiket</label>
-                                <select class="select2 w-100" style="height:55px;" id="id-bundlingedit"
-                                    name="id_bundling" data-dropdown-parent="#edit-bundling" required>
-                                    <option value=''>-- Pilih Tiket --</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mr-0 pr-0">
-                            <div class="input-wrapper">
-                                <input type="number" id="edit-stok" class="col-lg-12" required disabled>
-                                <label class="label-in">Stock</label>
-                            </div>
-                        </div>
-                        <div class="col-md-3 ml-0 pl-0">
-                            <div class="input-wrapper">
-                                <input type="number" id="edit-stok-tiket-reguler" class="col-lg-12" required disabled>
-                                <label class="label-in">Sisa Tiket</label>
-                            </div>
-                        </div>
-                    </div>
                     <div class=" row mb-3">
                         <div class="col-md-3 mr-0 pr-0">
                             <div class="input-wrapper">
-                                <input type="number" id="edit-isi-bundle" class="col-lg-12" required>
+                                <input type="number" id="edit-isi-bundle" class="col-lg-12" required
+                                    oninput="hitungJumlahBundle()">
                                 <label class="label-in">Isi Bundle</label>
                             </div>
                         </div>
                         <div class="col-md-3 mr-0 pr-0 ml-0 pl-0">
                             <div class="input-wrapper">
-                                <input type="number" id="edit-jml-bundle" class="col-lg-12" required>
+                                <input type="number" id="edit-jml-bundle" class="col-lg-12" required readonly>
                                 <label class="label-in">Jml Bundle</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-wrapper">
-                                <input type="number" id="edit-stock-bundle" class="col-lg-12" required readonly>
+                                <input type="number" id="edit-stock-bundle" class="col-lg-12" required readonly
+                                    oninput="hitungJumlahBundle()">
                                 <label class="label-in">Jml Isi Bundle</label>
                             </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 text-danger ml-0 mt-3" id="edit-warning" hidden fade-in
+                            fade-out>
+                            <span class="badge badge-danger" style="font-size: 9px; font-weight: bold;"> JML Bundle
+                                harus bilangan bulat tidak boleh koma </span>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
-                    <button type="submit" class="btn btn-primary" disabled>Simpan</button>
+                    <button type="submit" id="ubah-button" class="btn btn-primary" disabled>Ubah</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<!-- akhir Modal bundling-->
+<!-- akhir edit bundling-->
 
 <!-- modal bundling-->
 <div class="modal fade" id="bundling" tabindex="-1" role="dialog" aria-labelledby="etambah-data" aria-hidden="true"
