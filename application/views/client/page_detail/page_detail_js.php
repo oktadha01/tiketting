@@ -1,19 +1,9 @@
 <script>
-    // $('.btn').click(function() {\
-    let addurl;
     if ('<?= $this->uri->segment(4); ?>' == 'buynow') {
         detail_event();
     } else {
         detail_event();
     }
-
-
-    // window.addEventListener('popstate', () => {
-    //     console.log('User clicked back button');
-
-    //     // document.body.style.backgroundColor = 'white';
-    //     detail_event();
-    // });
 
     function detail_event() {
 
