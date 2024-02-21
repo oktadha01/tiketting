@@ -62,6 +62,7 @@ $('.btn-navigasi').click(function () {
 
 });
 $('.close-top').click(function () {
+	$('#eventclick').val('');
 	$('#load-data-navi').html('').hide();
 	$('.top').toggleClass('nav-active');
 	$('.bottom').toggleClass('nav-active');
