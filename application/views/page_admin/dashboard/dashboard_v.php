@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div class="row clearfix row-deck">
+    <div class="row clearfix row-deck pr-4">
         <?php if ($userdata->privilage == 'Admin') : ?>
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card top_widget primary-bg">

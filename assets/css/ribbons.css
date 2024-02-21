@@ -9,10 +9,10 @@ body {
   }
 /* ribbon hasil scan */
   .ribbon {
-    height: 188px;
+    height: 100px;
     position: relative;
     margin-bottom: 0px;
-    background: url(https://html5book.ru/wp-content/uploads/2015/10/snow-road.jpg);
+    background: url(https://wisdil.com/scan/blm_ambil.jpg);
     background-size: cover;
     text-transform: uppercase;
     color: white;
@@ -23,7 +23,7 @@ body {
     height: 188px;
     position: relative;
     margin-bottom: 0px;
-    background: url(https://html5book.ru/wp-content/uploads/2015/10/snow-road.jpg);
+    background: url(https://wisdil.com/scan/diambil.jpg);
     background-size: cover;
     text-transform: uppercase;
     color: white;
@@ -181,7 +181,7 @@ body {
 
   .fade-in {
     opacity: 0;
-    animation: fadeIn 0.5s ease-in-out forwards;
+    animation: fadeIn 2s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
