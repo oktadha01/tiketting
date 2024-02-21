@@ -22,8 +22,8 @@
                     <h6 class="mt-1 text-light">Untuk Scan Tiket </h6>
                 </div>
                 <div class="member-img">
-                    <a href="javascript:void(0);"><img src="assets/images/QR_menu/qrcode-logo.png" data-toggle="modal"
-                            class="rounded-circle" data-target="#scan-tiket" alt="profile-image"></a>
+                    <a><img src="assets/images/QR_menu/qrcode-logo.png" data-toggle="modal" class="rounded-circle"
+                            data-target="#scan-tiket" alt="profile-image"></a>
                 </div>
                 <div class="body mb-0 pb-0">
                     <hr>
@@ -65,8 +65,7 @@
 </div>
 
 <!-- modal Scan-->
-<div class="modal fade" id="scan-tiket" tabindex="-1" role="dialog" aria-labelledby="scan-QR" aria-hidden="true"
-    data-modal-parent="scan">
+<div class="modal fade" id="scan-tiket" tabindex="-1" role="dialog" aria-labelledby="scan-QR" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <form id="scan">
@@ -97,6 +96,4 @@
         </div>
     </div>
 </div>
-
-<!-- z-index: 2; position: absolute; top: 25%; left: 20%; transform: translate(-50%, -50%); width: 80%; max-width: 400px; padding: 20px; -->
 <!-- akhir Modal Scan-->

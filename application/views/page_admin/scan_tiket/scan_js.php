@@ -58,6 +58,7 @@ function updateResult(data) {
         var ribbonClass = data.result[0].status_tiket === 'Sudah Diambil' ? 'ribbon5' : 'ribbon6';
         var wrapClass = data.result[0].status_tiket === 'Sudah Diambil' ? '' : 'wrap';
         var ribbonfide = data.result[0].status_tiket === 'Sudah Diambil' ? 'ribbons fade-out' : 'ribbon';
+        var textClass = data.result[0].status_tiket === 'Sudah Diambil' ? 'text-white' : 'text-black';
 
         resultElement.innerHTML =
             '<section class="fade-in rounded">' +
@@ -75,8 +76,8 @@ function updateResult(data) {
             '</b></h6>' +
             '</center>' +
             '   <ul class="social-links list-unstyled">' +
-            '       <span class="text-dark">' + data.result[0].nama + '</span><br>' +
-            '       <span class="text-dark">' + data.result[0].email + '</span><br>' +
+            '       <b><span class="' + textClass + '">' + data.result[0].nama + '</span></b><br>' +
+            '       <b><span class="' + textClass + '">' + data.result[0].email + '</span></b><br>' +
             '   </ul>' +
             '   <button id="approveButton" class="btn btn-success rounded" onclick="ambilTiket(\'' + data.result[0]
             .code_tiket + '\', event)" ' +
@@ -133,7 +134,6 @@ function ambilTiket(codeTiket) {
             console.log('Status_tiket berhasil diupdate');
             var card = resultElement.querySelector('.ribbon');
             if (card) {
-                // Tambahkan kelas animasi fade-out
                 card.classList.add('fade-out-animation');
 
                 setTimeout(function() {
@@ -162,8 +162,9 @@ $('#scan-tiket').on('show.bs.modal', function() {
 $('#scan-tiket').on('hide.bs.modal', function() {
     $('#reader').html('');
 
-    html5QrCodeScanner.render(onScanSuccess, onScanError);
 });
+
+// html5QrCodeScanner.render(onScanSuccess, onScanError);
 
 
 // datatable scan tiket
