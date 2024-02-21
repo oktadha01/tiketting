@@ -63,11 +63,8 @@ class Callback extends CI_Controller
                 ]);
             } else if ($_status == 'EXPIRED') {
 
-                $this->db->where('code_bayar', $_externalId)->delete('tiket');
-                $this->db->where('code_bayar', $_externalId)->delete('transaksi');
-
                 $tiketCounts = array();
-                $code_bayar = $this->input->post('code-bayar');
+                $code_bayar = $_externalId;
                 $data['tiket'] = $this->M_transaksi->m_select_tiket($code_bayar);
                 foreach ($data['tiket'] as $file) {
                     $id_price = $file->id_price;
@@ -79,6 +76,18 @@ class Callback extends CI_Controller
                     }
                     unlink('./upload/pdf/pdf-' . $file->code_tiket . '.pdf');
                     unlink('./upload/qr/qr-' . $file->code_tiket . '.png');
+                }
+                $this->M_transaksi->m_delete_transaksi_tiket($code_bayar);
+                foreach ($tiketCounts as $id_price => $count) {
+                    $this->db->select("*");
+                    $this->db->where('id_price', $id_price);
+                    $query_ = $this->db->get('price');
+                    if ($query_->num_rows() <> 0) {
+                        $data_ = $query_->row();
+                        $id_price = $data_->id_price;
+                        $stock_tiket = $data_->stock_tiket + $count;
+                        $this->M_transaksi->m_update_stock_tiket($id_price, $stock_tiket);
+                    }
                 }
             }
 
