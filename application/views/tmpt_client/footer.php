@@ -129,7 +129,7 @@
         </div>
         <div class="copyright text-center text-sm text-muted text-lg-start">
             Wisdil © 2024. All rights reserved <i class="fa fa-heart"></i> by
-            <a href="https://www.Wisdil.com" class="font-weight-bold" target="_blank" style="color:#FECD0A;">
+            <a href="<?= base_url('Home'); ?>" class="font-weight-bold" target="_blank" style="color:#FECD0A;">
                 Wisdil.com</a>
         </div>
     </div>
@@ -349,6 +349,28 @@
 
         }
     })
+
+    window.history.pushState({}, null, null);
+
+    $(window).on("popstate", function() {
+        if ($('#eventclick').val() == 'tiket-detail') {
+            $('.right').removeClass('nav-active');
+            $('#eventclick').val('');
+            window.history.pushState({}, null, null);
+        } else if ($('#eventclick').val() == 'menu-navi') {
+            // $('.top, .bottom').removeClass('nav-active');
+            $('.close-top').trigger('click');
+            $('#eventclick').val('');
+            window.history.pushState({}, null, null);
+        } else if ($('#eventclick').val() == 'buynow') {
+            $('#eventclick').val('');
+            window.location.href = "<?= base_url('detail/event/'); ?><?= $this->uri->segment(3); ?>";
+        } else {
+            // window.history.back();
+            window.location.href = "<?= base_url('Home'); ?>";
+
+        }
+    });
     // const menuLinks = document.querySelectorAll(".menu-mobile");
     // menuLinks.forEach((link) => {
     //     link.addEventListener("click", () => {

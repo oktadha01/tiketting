@@ -1,37 +1,16 @@
 <script src="<?= base_url('assets'); ?>/js/email_validasi.js"></script>
 
 <script>
-    // document.getElementById('myForm').addEventListener('submit', function(event) {
-    //     var inputs = document.querySelectorAll('input[name="nama[]"]');
-    //     var isValid = true;
-    //     inputs.forEach(function(input) {
-    //         if (!input.value.trim()) {
-    //             isValid = false;
-    //         }
-    //     });
-
-    //     if (isValid) {
-    //         // alert('Please fill in all required fields.');
-    //         event.preventDefault();
-    //         alert('Please fill in all required fields.');
-    //     }
-    // });
     $(document).ready(function() {
+        
 
-        let addurl;
         $('.t-right').click(function() {
+            $('#eventclick').val('tiket-detail');
             $('.right').toggleClass('nav-active');
-            let addurl = '/tiket';
-            const newPageUrl = '<?= base_url('detail/event/'); ?><?= $this->uri->segment(3); ?>' + addurl;
-            window.history.pushState({}, null, newPageUrl);
-            window.addEventListener('popstate', () => {
-                $('.btn-close-tiket').trigger('click');
-                const currentUrl = '<?= base_url('detail/event/'); ?><?= $this->uri->segment(3); ?>';
-                window.history.pushState({}, '', currentUrl);
-            });
         });
         $('.btn-close-tiket').click(function() {
-            $('.right').toggleClass('nav-active');
+            $('#eventclick').val('page')
+            $('.right').removeClass('nav-active');
         })
 
         $('.btn-add-tiket').click(function() {
@@ -141,9 +120,6 @@
                 success: function(data) {
                     if (data == 'buy') {
                         buynow_event();
-                        let addurl = '/buynow';
-                        const newPageUrl = '<?= base_url('detail/event/'); ?><?= $this->uri->segment(3); ?>' + addurl;
-                        window.history.pushState({}, null, newPageUrl);
                     } else {
                         swal_vali_transaksi()
                     }
@@ -215,7 +191,7 @@
 
                             $('#page-load-detail-event').html(data);
 
-                            // window.history.pushState({}, null, null);
+                            $('#eventclick').val('buynow');
                         }, delayInMilliseconds);
 
 
