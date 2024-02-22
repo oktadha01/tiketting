@@ -15,16 +15,16 @@
                 <?php } else { ?>
 
                     <li class="menu-item btn-navigasi transaksi" data-menu="Transaksi">
-                        <a href="#" class="menu-link">
+                        <div class="menu-link">
                             <img class="siz-menu" src="<?= base_url('assets/images/transaksi.png'); ?>" alt="">
                             <span class="menu-name">Transaksi</span>
-                        </a>
+                        </div>
                     </li>
                     <li class="menu-item btn-navigasi" data-menu="Tiket">
-                        <a href="#" class="menu-link">
+                        <div href="#" class="menu-link">
                             <img class="siz-menu" src="<?= base_url('assets/images/tiket.png'); ?>" alt="">
                             <span class="menu-name">Tiket</span>
-                        </a>
+                        </div>
                     </li>
                     <li class="menu-item menu-akun">
                         <a href="<?= base_url('Userprofil'); ?>" class="menu-link menu-user">

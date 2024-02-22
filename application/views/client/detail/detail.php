@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="nav-tiket nav right">
+            <div id="navi-tiket" class="nav-tiket nav right">
                 <div class="info-tgl-event-t">
                     <div class="card mb-0">
                         <?php foreach ($event as $data) : ?>

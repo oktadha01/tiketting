@@ -24,14 +24,15 @@ function cekTipePerangkat() {
 		// Lakukan tindakan untuk perangkat desktop di sini
 	}
 }
+
 $('.btn-navigasi').click(function () {
-	// $(this).data('menu'));
+	
 	if ($(this).data('menu') == $('#span-text-navi').text()) {
 		$('#navigasi').removeClass('nav-active');
 		$('#span-text-navi').text('');
 	} else {
-
 		if ($(this).data('nav') == 'top') {
+			$('#eventclick').val('menu-navi');
 			if ($('#navigasi').attr('class') == 'nav top') {
 				$('#navigasi').toggleClass('nav-active');
 			}
@@ -44,6 +45,7 @@ $('.btn-navigasi').click(function () {
 				$('#span-text-navi').text('Tiket')
 			}
 		} else {
+			$('#eventclick').val('menu-navi');
 			if ($('#navigasi').attr('class') == 'nav bottom') {
 				$('#navigasi').toggleClass('nav-active');
 			}
@@ -59,12 +61,12 @@ $('.btn-navigasi').click(function () {
 	}
 
 });
-
 $('.close-top').click(function () {
+	$('#eventclick').val('');
 	$('#load-data-navi').html('').hide();
 	$('.top').toggleClass('nav-active');
 	$('.bottom').toggleClass('nav-active');
-	$('.menu-link').removeClass('is-active', true);
+	$('.menu-link').removeClass('is-active');
 	$('#span-text-navi').text('');
 });
 $('.btn-user').click(function () {
