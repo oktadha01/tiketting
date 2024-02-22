@@ -117,6 +117,7 @@ class Prices extends AUTH_Controller
             $no++;
             $row    = array();
             $row[]  = $no.".";
+            $row[] = '<a href="' . site_url('Custom_tiket') . '"><td class="header-column"><img src="' . base_url('upload/backround_tiket/default.jpg') . '" alt="Design Tiket" class="border border-success m-0 p-0 img-thumbnail max-height-1rem img-fluid"></td></a>';
             $row[]  = ' &nbsp; ' . '<td class="font-weight-medium"><div class="badge badge-dark shadow-lg rounded">' . $prc->nm_event . '</div></td>';
             $row[]  = $kategori_price;
             $row[]  = $Rp_harga;

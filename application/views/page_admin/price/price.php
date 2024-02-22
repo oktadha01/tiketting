@@ -34,6 +34,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Design Tiket</th>
                                     <th>Event</th>
                                     <th>Kategori Harga</th>
                                     <th>Harga</th>
