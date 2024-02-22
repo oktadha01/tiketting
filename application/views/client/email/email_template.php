@@ -93,7 +93,7 @@
                                                                         <tr>
                                                                             <td align="left" valign="top" width="100%" style="padding-top:10px;padding-bottom:10px">
                                                                                 <h2 style="font-size:16px;line-height:16px;font-weight:bold;width:100%;margin:0px;padding:0px;margin-top:10px; color:black"><?= $transaksi['nm_event']; ?></h2>
-                                                                                <p style="font-size:15px;color:#737374;margin:0px;padding:0px;margin-bottom:5px"><?= $transaksi['lokasi'] . ' | Kab. Semarang |' . $transaksi['tgl_event'] . ' | ' . $transaksi['jam_event']; ?></p>
+                                                                                <p style="font-size:15px;color:#737374;margin:0px;padding:0px;margin-bottom:5px"><?= $transaksi['lokasi'] . ' | Kab. Kendal |' . $transaksi['tgl_event'] . ' | ' . $transaksi['jam_event']; ?></p>
                                                                                 <?php foreach ($data_tiket as $tiket) { ?>
                                                                                     <p style="font-size: 15px;color: #1ba0e2;margin:0px;padding:0px;font-style: italic;"><?= $tiket->kategori_price; ?> <?= $tiket->ticket_count; ?>x </p>
                                                                                 <?php
