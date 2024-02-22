@@ -308,6 +308,8 @@ class Buynow extends CI_Controller
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->Cell(10, 7, '', 0, 0);
 
+            $pdf->Image(base_url('assets/images/LOGO-WISDIL.png'), 16, 10, 15);
+            
             $textnama = $nama;
             $textnama = strtoupper($textnama); // Convert the header text to uppercase
             $jumlah = "1";
