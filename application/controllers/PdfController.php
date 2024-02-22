@@ -63,6 +63,8 @@ class PdfController extends CI_Controller
         $pdf->SetFillColor(59, 78, 135);
         $pdf->SetTextColor(255, 255, 255);
         $pdf->Cell(50, 1, $nama, 0, 1, 'L'); // Print the header text
+        
+        $pdf->Image(base_url('assets/images/LOGO-WISDIL.png'), 16, 10, 15);
 
         $headerText = 'Oktadha01@gmail.coom';
         // $headerText = strtoupper($headerText); // Convert the header text to uppercase
@@ -74,9 +76,6 @@ class PdfController extends CI_Controller
         $pdf->SetTextColor(255, 255, 255);
         $pdf->Cell(50, 1, $headerText, 0, 1, 'L'); // Print the header text
         
-        $pdf->SetY(68); // Set the Y position for the header text
-        $pdf->SetX(80); // Set the Y position for the header text
-        $pdf->Image(base_url('assets/images/LOGO WISDIL-04.png'), 88, 37, 28);
 
         $headerText = 'VIP 01';
         $headerText = strtoupper($headerText); // Convert the header text to uppercase
@@ -88,8 +87,7 @@ class PdfController extends CI_Controller
         $pdf->SetTextColor(255, 255, 255);
         $pdf->Cell(50, 1, $headerText, 0, 1, 'L'); // Print the header text
 
-        // $pdf->Image(base_url('upload/qr/qr-CT-53520202-0001.png'), 101, 37, 28);
-        $pdf->Image(base_url('assets/images/LOGO-WISDIL.jpg'), 88, 37, 28);
+        $pdf->Image(base_url('upload/qr/qr-CT-53520202-0001.png'), 101, 37, 28);
 
         $headerText = 'Kode Booking';
         $headerText = strtoupper($headerText); // Convert the header text to uppercase
