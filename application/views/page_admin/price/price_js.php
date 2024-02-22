@@ -93,7 +93,6 @@ function confirmDelete(id_price) {
                 dataType: 'json',
                 success: function(response) {
                     if (response.status) {
-                        // Menampilkan notifikasi sukses tanpa reload
                         swalWithBootstrapButtons.fire({
                             title: 'Berhasil!',
                             text: 'Data berhasil dihapus.',
@@ -102,7 +101,6 @@ function confirmDelete(id_price) {
                             showConfirmButton: false,
                         });
 
-                        // Menghapus baris tabel secara dinamis (asumsi Anda menggunakan tabel datatables)
                         var table = $('#data-price').DataTable();
                         table.row('#row_' + id_price).remove().draw(false);
                     } else {

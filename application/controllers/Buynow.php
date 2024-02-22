@@ -283,7 +283,7 @@ class Buynow extends CI_Controller
             // disable auto-page-break
             $pdf->setAutoPageBreak(false, 0);
             // set bacground image
-            $img_file = base_url('upload/tiket.png');
+            $img_file = base_url('upload/e-tiket.jpg');
             $pdf->Image($img_file, null, 0, 148, 105, '', '', '', false, 300, 'C', false, false, 0);
             // restore auto-page-break status
             $pdf->setAutoPageBreak($auto_page_break, $bMargin);
@@ -317,7 +317,7 @@ class Buynow extends CI_Controller
             $pdf->setFontSpacing(2);
             $pdf->setFont('dejavusans', 'B', 25);
             $pdf->SetFillColor(59, 78, 135);
-            $pdf->SetTextColor(255, 255, 255);
+            $pdf->SetTextColor(14, 88, 114);
             $pdf->Cell(50, 1, $nama, 0, 1, 'L'); // Print the header text
 
             $textemail = $email;
@@ -327,7 +327,7 @@ class Buynow extends CI_Controller
             $pdf->setFontSpacing(1);
             $pdf->setFont('dejavusans', '', 7);
             $pdf->SetFillColor(59, 78, 135);
-            $pdf->SetTextColor(255, 255, 255);
+            $pdf->SetTextColor(14, 88, 114);
             $pdf->Cell(50, 1, $textemail, 0, 1, 'L'); // Print the header text
 
 
@@ -338,7 +338,7 @@ class Buynow extends CI_Controller
             $pdf->setFontSpacing(2);
             $pdf->setFont('dejavusans', '', 20);
             $pdf->SetFillColor(59, 78, 135);
-            $pdf->SetTextColor(255, 255, 255);
+            $pdf->SetTextColor(14, 88, 114);
             $pdf->Cell(50, 1, $textkategoritiket, 0, 1, 'L'); // Print the header text
 
             $pdf->Image(base_url('upload/qr/qr-' . $code_tiket . '.png'), 101, 37, 28);
@@ -350,7 +350,7 @@ class Buynow extends CI_Controller
             $pdf->setFontSpacing(0);
             $pdf->setFont('dejavusans', '', 5);
             $pdf->SetFillColor(59, 78, 135);
-            $pdf->SetTextColor(255, 255, 255);
+            $pdf->SetTextColor(14, 88, 114);
             $pdf->Cell(50, 1, $headerText, 0, 1, 'R'); // Print the header text
 
             $textcodetiket = $code_tiket;
@@ -360,7 +360,7 @@ class Buynow extends CI_Controller
             $pdf->setFontSpacing(0);
             $pdf->setFont('dejavusans', '', 10);
             $pdf->SetFillColor(59, 78, 135);
-            $pdf->SetTextColor(255, 255, 255);
+            $pdf->SetTextColor(14, 88, 114);
             $pdf->Cell(50, 1, $textcodetiket, 0, 1, 'R'); // Print the header text
 
             $pdfFilePath = FCPATH . 'upload/pdf' . '/pdf-' . $code_tiket . '.pdf';

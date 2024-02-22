@@ -97,7 +97,6 @@ function confirmDelete(id_event) {
         title: 'Apakah Anda yakin?',
         text: "Data yang dihapus tidak dapat dikembalikan!",
         icon: 'warning',
-        timer: 1500,
         showCancelButton: true,
         confirmButtonText: 'Ya',
         cancelButtonText: 'Batal!',
