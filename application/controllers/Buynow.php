@@ -290,7 +290,7 @@ class Buynow extends CI_Controller
             // set the starting point for the page content
             $pdf->setPageMark();
             // Add background color
-            $pdf->Rect(0, 0, $pdf->GetPageWidth(), 6, 'F'); // Adjust the height (10 in this example) as needed
+            // $pdf->Rect(0, 0, $pdf->GetPageWidth(), 6, 'F'); // Adjust the height (10 in this example) as needed
 
             // Add header text
             $pdf->SetY(1); // Set the Y position for the header text
@@ -309,7 +309,7 @@ class Buynow extends CI_Controller
             $pdf->Cell(10, 7, '', 0, 0);
 
             $pdf->Image(base_url('assets/images/LOGO-WISDIL.png'), 16, 10, 15);
-            
+
             $textnama = $nama;
             $textnama = strtoupper($textnama); // Convert the header text to uppercase
             $jumlah = "1";
