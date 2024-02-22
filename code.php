@@ -1,4 +1,4 @@
-<center>
+<!-- <center>
     <h1 id="demo" style="font-family: fantasy; letter-spacing: 2px;"></h1>
     <?php
     $currentDateTime = date($data->tgl_transaksi);
@@ -92,4 +92,20 @@ $scriptcountdown = '<script>
     }
     timer = setInterval(showRemaining, 1000);
 </script>';
-$countdown = '<div id="demo-' . $data_transaksi->id_transaksi . '" class="mb-0"></div>';
+$countdown = '<div id="demo-' . $data_transaksi->id_transaksi . '" class="mb-0"></div>'; -->
+
+<html>
+
+<head>
+    <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="jquery.backDetect.js"></script>
+
+</head>
+
+</html>
+<script>
+    window.addEventListener("hashchange", function(e) {
+        if (e.oldURL.length > e.newURL.length)
+            alert("back")
+    });
+</script>

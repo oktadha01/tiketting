@@ -394,21 +394,24 @@
                     </div>
                     <div class="row">
                         <!-- <div class="col"> -->
-                        <?php if ($this->input->cookie('session') == '') { ?>
-                            <button id="btn-submit-login" type="button" class="col-12 btn bg-w-orange" onclick="submitWithLoading('btn-submit-login')">
-                                <span id="btn-text-login">Bayar</span>
-                                <span id="btn-loading-login" class="loading" style="display:none;">
-                                    <i class="fas fa-spinner fa-spin"></i> Loading...
-                                </span>
-                            </button>
-                        <?php } else { ?>
-                            <button id="btn-submit" class="col-12 btn bg-w-orange" onclick="submitWithLoading('btn-submit')">
-                                <span id="btn-text">Bayar</span>
-                                <span id="btn-loading" class="loading" style="display:none;">
-                                    <i class="fas fa-spinner fa-spin"></i> Loading...
-                                </span>
-                            </button>
-                        <?php } ?>
+                        <?php foreach ($customer as $data) { ?>
+                            <?php if ($data->password == '') { ?>
+                                <button id="btn-submit-login" type="button" class="col-12 btn bg-w-orange" onclick="submitWithLoading('btn-submit-login')">
+                                    <span id="btn-text-login">Bayar</span>
+                                    <span id="btn-loading-login" class="loading" style="display:none;">
+                                        <i class="fas fa-spinner fa-spin"></i> Loading...
+                                    </span>
+                                </button>
+                            <?php } else { ?>
+                                <button id="btn-submit" class="col-12 btn bg-w-orange" onclick="submitWithLoading('btn-submit')">
+                                    <span id="btn-text">Bayar</span>
+                                    <span id="btn-loading" class="loading" style="display:none;">
+                                        <i class="fas fa-spinner fa-spin"></i> Loading...
+                                    </span>
+                                </button>
+                            <?php } ?>
+                        <?php
+                        } ?>
                         <!-- </div> -->
                     </div>
                 </div>
