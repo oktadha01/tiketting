@@ -70,7 +70,7 @@
                             <div class="card-body p-0 pl-3 pr-3">
                                 <p class="mb-0"><?= $data->tgl_event; ?> | <?= $data->jam_event; ?></p>
                                 <p class="mb-0"><?= $data->lokasi; ?> | <?= $data->nama; ?></p>
-                                <p class="mb-0 font-weight-bold">Batas Pembelian : <?= $data->batas_pesan; ?></p>
+                                <!-- <p class="mb-0 font-weight-bold">Batas Pembelian : <?= $data->batas_pesan; ?></p> -->
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -83,6 +83,7 @@
                     <div class="card-body bar-none max-h-list">
                         <ul>
                             <?php foreach ($tiket as $data) : ?>
+
                                 <li class="border-cate-tiket box-shadow mt-2">
                                     <div class="row">
                                         <div class="col-6">
@@ -92,7 +93,7 @@
                                                 <?= number_format($data->harga, 0, ',', '.'); ?>,-</span>
                                         </div>
                                         <div class="col-6 pt-2">
-                                            <?php if ($data->stock_tiket < $data->beli + $data->gratis) { ?>
+                                            <?php if ($data->stock_tiket < $data->beli + $data->gratis + $data->tiket_bundling or date("d/m/Y") > $data->tgl_event) { ?>
                                                 <button class="btn btn-dark float-right">Sold Out</button>
                                                 <input hidden type="text" class="form-control input-count" name="count_tiket[]" placeholder="" aria-label="" aria-describedby="basic-addon1" value="0" readonly>
                                             <?php

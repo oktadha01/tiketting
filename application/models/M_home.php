@@ -1,21 +1,35 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_home extends CI_Model
 {
 
-    function data_event()
+    function data_event_ready()
     {
-        $this->db->select('event.*, wilayah_kabupaten.*, MIN(price.harga) as min_price');
-        $this->db->from('event');
-        $this->db->join('wilayah_kabupaten', 'wilayah_kabupaten.id = event.kota');
-        $this->db->join('price', 'price.id_event = event.id_event');
-        $this->db->group_by('event.id_event');
+        $this->db->select('combined_query.*');
+        $this->db->from('(SELECT event.*, wilayah_kabupaten.*, MIN(price.harga) as min_price
+                        FROM event
+                        JOIN wilayah_kabupaten ON wilayah_kabupaten.id = event.kota
+                        JOIN price ON price.id_event = event.id_event
+                        WHERE price.stock_tiket >= (price.beli + price.gratis + price.tiket_bundling)
+                        GROUP BY event.id_event
+                        UNION
+                        SELECT event.*, wilayah_kabupaten.*, MIN(price.harga) as min_price
+                        FROM event
+                        JOIN wilayah_kabupaten ON wilayah_kabupaten.id = event.kota
+                        JOIN price ON price.id_event = event.id_event
+                        GROUP BY event.id_event
+                        ) AS combined_query');
+        $this->db->group_by('combined_query.id_event');
+        $this->db->order_by('combined_query.tgl_event', 'DESC');
         $this->db->limit(6);
-        $this->db->order_by('event.id_event', 'DESC');
+
         $query = $this->db->get();
 
         return $query->result();
+
+        // Process $result as needed
+
     }
 
 
@@ -28,5 +42,4 @@ class M_home extends CI_Model
 
         return $query->result();
     }
-
 }
