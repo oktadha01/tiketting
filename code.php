@@ -1,111 +1,172 @@
-<!-- <center>
-    <h1 id="demo" style="font-family: fantasy; letter-spacing: 2px;"></h1>
-    <?php
-    $currentDateTime = date($data->tgl_transaksi);
-    $newDateTime = date('m-d-Y H:i:s', strtotime($currentDateTime . ' +1 hours'));
-
-    $dateString = $newDateTime;
-    $date = DateTime::createFromFormat('n-j-Y H:i:s', $dateString);
-
-    if ($date !== false) {
-        // Format tanggal sebagai bulan
-        $formattedDate = $date->format('M d, Y');
-
-        // Format jam
-        $formattedTime = $date->format('H:i:s');
-
-        // Output dengan pemisah antara tanggal dan jam
-        // echo $formattedDate . ' | ' . $formattedTime;
-    } else {
-        echo 'Format tanggal tidak valid';
+<style>
+    /* body {
+        text-align: center;
+        background: #00ECB9;
+        font-family: sans-serif;
+        font-weight: 100;
     }
-    ?>
-    <h6>Payment limit <?= $formattedDate . ' | ' . $formattedTime; ?></h6>
-    <input type="text" id="batas-waktu" value="<?= $newDateTime; ?>" hidden>
-</center>
-<script>
-    $(document).ready(function() {
-        // Set the date we're counting down to
-        var tgl_transaksi = $('#batas-waktu').val();
-        // var tgl_transaksi = '01-08-2024 11:30:49'
 
-        var end = new Date(tgl_transaksi);
-        var _second = 1000;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
-        var timer;
+    h1 {
+        color: #396;
+        font-weight: 100;
+        font-size: 40px;
+        margin: 25vh 0px 20px;
+    }
 
-        function showRemaining() {
-            var now = new Date();
-            var distance = end - now;
-            var days = Math.floor(distance / _day);
-            var hours = Math.floor((distance % _day) / _hour);
-            var minutes = Math.floor((distance % _hour) / _minute);
-            var seconds = Math.floor((distance % _minute) / _second);
+    .clockdiv {
+        font-family: sans-serif;
+        color: #fff;
+        display: block;
+        font-weight: 100;
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-            document.getElementById("demo").innerHTML = "00:" + minutes + ":" + seconds;
+    .clockdiv>div {
+        padding: 15px;
+        border-radius: 3px;
+        background: #00BF96;
+        margin: 10px;
+        width: 90px;
+    }
 
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("demo").innerHTML = "EXPIRED!";
-                delete_tagihan();
-                return;
-            }
-        }
-        timer = setInterval(showRemaining, 1000);
+    .clockdiv div>span {
+        padding: 15px;
+        font-size: 22px;
+        border-radius: 3px;
+        background: #00816A;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+    }
 
-    });
-</script>
+    .smalltext {
+        margin-top: 10px;
+        font-size: 13px;
+    } */
+</style>
+<h1>Countdown</h1>
+<!-- <div class="col-lg-4 col-md-4 col-12">
+    <div style="display:grid;">
 
-<div class="row">
-    <div class="col-12">
-        ' . $countdown . '
-        ' . $scriptcountdown . '
+        <span class="smal">Menunggu Pembayaran</span>
+        <div class="clockdiv" data-date="02-27-2024 12:00:00">
+            <div>
+                <span class="days"></span>
+                <div class="smalltext">days</div>
+            </div>
+            <div>
+                <span class="hours"></span>
+                <div class="smalltext">hours</div>
+            </div>
+            <div>
+                <span class="minutes"></span>
+                <div class="smalltext">minutes</div>
+            </div>
+            <div>
+                <span class="seconds"></span>
+                <div class="smalltext">seconds</div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- <div class="clockdiv" data-date="December 22, 2021 18:22:23">
+    <div>
+        <span class="days"></span>
+        <div class="smalltext">days</div>
+    </div>
+    <div>
+        <span class="hours"></span>
+        <div class="smalltext">hours</div>
+    </div>
+    <div>
+        <span class="minutes"></span>
+        <div class="smalltext">minutes</div>
+    </div>
+    <div>
+        <span class="seconds"></span>
+        <div class="smalltext">seconds</div>
     </div>
 </div>
-$scriptcountdown = '<script>
-    var tgl_transaksi = "02-20-2024 14:18:52";
-
-    var end = new Date(tgl_transaksi);
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-    var timer;
-
-    function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-
-        document.getElementById("demo-' . $data_transaksi->id_transaksi . '").innerHTML = "00:" + minutes + ":" + seconds;
-
-        if (distance < 0) {
-            clearInterval(timer);
-            document.getElementById("demo-' . $data_transaksi->id_transaksi . '").innerHTML = "EXPIRED!";
-            return;
-        }
-    }
-    timer = setInterval(showRemaining, 1000);
-</script>';
-$countdown = '<div id="demo-' . $data_transaksi->id_transaksi . '" class="mb-0"></div>'; -->
-
-<html>
-
-<head>
-    <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
-    <script src="jquery.backDetect.js"></script>
-
-</head>
-
-</html>
+<div class="clockdiv" data-date="December 22, 2020 12:55:11">
+    <div>
+        <span class="days"></span>
+        <div class="smalltext">days</div>
+    </div>
+    <div>
+        <span class="hours"></span>
+        <div class="smalltext">hours</div>
+    </div>
+    <div>
+        <span class="minutes"></span>
+        <div class="smalltext">minutes</div>
+    </div>
+    <div>
+        <span class="seconds"></span>
+        <div class="smalltext">seconds</div>
+    </div>
+</div>
+<div class="clockdiv" data-date="02-27-2024 12:00:00">
+    <div>
+        <span class="days"></span>
+        <div class="smalltext">days</div>
+    </div>
+    <div>
+        <span class="hours"></span>
+        <div class="smalltext">hours</div>
+    </div>
+    <div>
+        <span class="minutes"></span>
+        <div class="smalltext">minutes</div>
+    </div>
+    <div>
+        <span class="seconds"></span>
+        <div class="smalltext">seconds</div>
+    </div>
+</div> -->
 <script>
-    window.addEventListener("hashchange", function(e) {
-        if (e.oldURL.length > e.newURL.length)
-            alert("back")
+    document.addEventListener('readystatechange', event => {
+        if (event.target.readyState === "complete") {
+            var clockdiv = document.getElementsByClassName("clockdiv");
+            var countDownDate = new Array();
+            for (var i = 0; i < clockdiv.length; i++) {
+                countDownDate[i] = new Array();
+                countDownDate[i]['el'] = clockdiv[i];
+                countDownDate[i]['time'] = new Date(clockdiv[i].getAttribute('data-date')).getTime();
+                countDownDate[i]['days'] = 0;
+                countDownDate[i]['hours'] = 0;
+                countDownDate[i]['seconds'] = 0;
+                countDownDate[i]['minutes'] = 0;
+            }
+
+            var countdownfunction = setInterval(function() {
+                for (var i = 0; i < countDownDate.length; i++) {
+                    var now = new Date().getTime();
+                    var distance = countDownDate[i]['time'] - now;
+                    countDownDate[i]['days'] = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    countDownDate[i]['hours'] = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    countDownDate[i]['minutes'] = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    countDownDate[i]['seconds'] = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    if (distance < 0) {
+                        countDownDate[i]['el'].querySelector('.days').innerHTML = 0;
+                        countDownDate[i]['el'].querySelector('.hours').innerHTML = 0;
+                        countDownDate[i]['el'].querySelector('.minutes').innerHTML = 0;
+                        countDownDate[i]['el'].querySelector('.seconds').innerHTML = 0;
+                    } else {
+                        countDownDate[i]['el'].querySelector('.days').innerHTML = countDownDate[i]['days'];
+                        countDownDate[i]['el'].querySelector('.hours').innerHTML = countDownDate[i]['hours'];
+                        countDownDate[i]['el'].querySelector('.minutes').innerHTML = countDownDate[i]['minutes'];
+                        countDownDate[i]['el'].querySelector('.seconds').innerHTML = countDownDate[i]['seconds'];
+                    }
+
+                }
+            }, 1000);
+        }
     });
 </script>

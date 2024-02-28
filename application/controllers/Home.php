@@ -15,7 +15,7 @@ class Home extends CI_Controller
     function index()
     {
         $data['tittle']          = 'Wisdil.com';
-        $data['event_data']      = $this->M_home->data_event();
+        $data['event_data_ready']      = $this->M_home->data_event_ready();
         $data['banner']          = $this->M_home->data_banner();
         $data['content']         = 'client/home/home';
         $data['script']          = 'client/home/home_js';

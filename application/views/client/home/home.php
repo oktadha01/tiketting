@@ -3,9 +3,9 @@
     <div class="swiper slider1 container-fluid" style=" padding: 0px 5px;">
         <div class="swiper-wrapper">
             <?php foreach ($banner as $data) { ?>
-            <div class="swiper-slide">
-                <img src="<?= base_url('upload'); ?>/banner/<?= $data->header ?>" class="slide-item" alt="">
-            </div>
+                <div class="swiper-slide">
+                    <img src="<?= base_url('upload'); ?>/banner/<?= $data->header ?>" class="slide-item" alt="">
+                </div>
             <?php } ?>
         </div>
         <div class="swiper-pagination"></div>
@@ -28,8 +28,7 @@
                 <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/seminar.png" alt="">
             </div>
             <div class="kategori-event p-0 mt-2">
-                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/pertunjukan.png" alt=""
-                    style="width: inherit;">
+                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/pertunjukan.png" alt="" style="width: inherit;">
             </div>
             <div class="kategori-event p-0 mt-2">
                 <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/wisata.png" alt="">
@@ -43,40 +42,51 @@
 <section class="container space-content-event">
     <span class="font-size-tit font-weight-bold">Rekomendasi Event</span>
     <div class="row">
-        <?php foreach ($event_data as $data) {
+        <?php foreach ($event_data_ready as $data) {
             $event = preg_replace("![^a-z0-9]+!i", "-", $data->nm_event);
             $hargaRP = 'Rp ' . number_format($data->min_price, 0, ',', '.') . ',-';
+            // echo date("d/m/Y");
         ?>
-        <div class="col-lg-4 col-md-6 col-12">
-            <div class="card box-shadow">
-                <div class="row card-body p-card">
-                    <div class="col-lg-12 col-md-12 col-6">
-                        <div class="img-poster">
-                            <img src="<?= base_url('upload'); ?>/event/<?= $data->poster ?>" alt="">
+            <div class="col-lg-4 col-md-6 col-12">
+                <?php if (date("d/m/Y") > $data->tgl_event) { ?>
+                    <div class="card" style="background: grey;opacity: 0.5;">
+                    <?php } else { ?>
+                        <div class="card box-shadow">
+                        <?php } ?>
+                        <div class="card-body p-card">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-6">
+                                    <div class="img-poster">
+                                        <img src="<?= base_url('upload'); ?>/event/<?= $data->poster ?>" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-6">
+                                    <h5 class="font-size-post font-weight-bold mt-3"><?= $data->nm_event; ?></h5>
+                                    <p class="font-size-det mb-1 small"><i class="fa fa-calendar"></i> <?= $data->tgl_event; ?> |
+                                        <?= $data->jam_event; ?></p>
+                                    <p class="font-size-det small"><i class="fa fa-map-marker"></i> <?= $data->lokasi; ?> |
+                                        <?= $data->nama; ?></p>
+                                    <div class="row" style=" align-items: center;">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <span class="small">Start Form</span><br>
+                                            <span class="medium font-weight-bold"><?= $hargaRP; ?> </span>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <?php if (date("d/m/Y") > $data->tgl_event) { ?>
+                                                <a class="bg-dark btn col-12 float-right text-light" href="<?= site_url('detail/event/') . $event ?>">Sold Out</a>
+                                            <?php } else { ?>
+                                                <a class="btn bg-w-orange float-right col-12" href="<?= site_url('detail/event/') . $event ?>">Beli Tiket</a>
+                                            <?php } ?>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-6">
-                        <h5 class="font-size-post font-weight-bold mt-3"><?= $data->nm_event; ?></h5>
-                        <p class="font-size-det mb-1 small"><i class="fa fa-calendar"></i> <?= $data->tgl_event; ?> |
-                            <?= $data->jam_event; ?></p>
-                        <p class="font-size-det small"><i class="fa fa-map-marker"></i> <?= $data->lokasi; ?> |
-                            <?= $data->nama; ?></p>
-                        <div class="row" style=" align-items: center;">
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <span class="small">Start Form</span><br>
-                                <span class="medium font-weight-bold"><?= $hargaRP; ?> </span>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <a class="btn bg-w-orange float-right col-12"
-                                    href="<?= site_url('detail/event/') . $event ?>">Beli Tiket</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
-        </div>
-        <?php } ?>
-    </div>
 
 </section>
 

@@ -26,7 +26,7 @@ function cekTipePerangkat() {
 }
 
 $('.btn-navigasi').click(function () {
-	
+
 	if ($(this).data('menu') == $('#span-text-navi').text()) {
 		$('#navigasi').removeClass('nav-active');
 		$('#span-text-navi').text('');
@@ -83,7 +83,7 @@ function transaksi() {
 		success: function (data) {
 			$('#load-data-navi').html(data);
 			btn_detail_trans();
-
+			startCountdown();
 		},
 		error: function () {
 			alert("Data Gagal Diupload");
@@ -211,7 +211,46 @@ function download_e_tiket() {
 	});
 }
 
+function startCountdown() {
+	var clockdiv = document.getElementsByClassName('clockdiv');
+	var countDownDate = new Array();
+	for (var i = 0; i < clockdiv.length; i++) {
+		countDownDate[i] = new Array();
+		countDownDate[i]['el'] = clockdiv[i];
+		countDownDate[i]['time'] = new Date(clockdiv[i].getAttribute('data-date')).getTime();
+		countDownDate[i]['days'] = 0;
+		countDownDate[i]['hours'] = 0;
+		countDownDate[i]['seconds'] = 0;
+		countDownDate[i]['minutes'] = 0;
+	}
 
+	var countdownfunction = setInterval(function () {
+		for (var i = 0; i < countDownDate.length; i++) {
+			var now = new Date().getTime();
+			var distance = countDownDate[i]['time'] - now;
+			countDownDate[i]['days'] = Math.floor(distance / (1000 * 60 * 60 * 24));
+			countDownDate[i]['hours'] = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			countDownDate[i]['minutes'] = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			countDownDate[i]['seconds'] = Math.floor((distance % (1000 * 60)) / 1000);
+
+			if (distance < 0) {
+				countDownDate[i]['el'].querySelector('.countdown-timer').innerHTML = 'EXPAID';
+				// countDownDate[i]['el'].querySelector('.hours').innerHTML = 0;
+				// countDownDate[i]['el'].querySelector('.minutes').innerHTML = 0;
+				// countDownDate[i]['el'].querySelector('.seconds').innerHTML = 0;
+			} else {
+				countDownDate[i]['el'].querySelector('.countdown-timer').innerHTML = countDownDate[i]['days'] + 'd | ' + countDownDate[i]['hours'] + 'h | ' + countDownDate[i]['minutes'] + 'm | ' + countDownDate[i]['seconds'] + 's';
+				// countDownDate[i]['el'].querySelector('.hours').innerHTML = ;
+				// countDownDate[i]['el'].querySelector('.minutes').innerHTML = ;
+				// countDownDate[i]['el'].querySelector('.seconds').innerHTML = ;
+			}
+		}
+	}, 1000);
+}
+// document.getElementById('load-data-navi').addEventListener('load', function () {
+// 	// Start the countdown timer when the view is loaded
+// 	startCountdown();
+// });
 
 // $('.t-left').click(function () {
 // 	$('.left').toggleClass('nav-active');
