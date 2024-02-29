@@ -167,7 +167,6 @@
             $.ajax({
                 type: 'POST',
                 url: "<?php echo site_url('Detail/buynow'); ?>/<?= $this->uri->segment(3); ?>",
-                // contentType: "application/json",
                 data: formData,
                 cache: false,
                 processData: false,

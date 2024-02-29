@@ -10,6 +10,7 @@ class Auth extends CI_Controller
 	public $M_auth;
 	public $input;
 	public $db;
+	public $email;
 
 	public function __construct()
 	{
@@ -155,6 +156,59 @@ class Auth extends CI_Controller
 		} else {
 			$this->session->set_flashdata('result_login', '<br>email Dan Password Harus Diisi.');
 			redirect('Auth/login');
+		}
+	}
+	function cek_email_rest_pass()
+	{
+		$email = $_POST['email'];
+		$this->db->select("email");
+		$this->db->where("email", $email);
+		$query_ = $this->db->get('customer');
+		if ($query_->num_rows() > 0) {
+			echo $query_->num_rows();
+		}
+	}
+	function ins_token_pass()
+	{
+		$email = 'oktadha01@gmail.com';
+		// $email = $_POST['email'];
+		$token = md5($email . date("dmYHis"));
+		$this->M_auth->update_token_customer($email, $token);
+
+		$data['token'] = base_url('ResetPassword/token/') . $token;
+		$this->db->select("*");
+		$this->db->where("email", $email);
+		$query_ = $this->db->get('customer');
+		$data_cust = $query_->result();
+		foreach ($data_cust as $customer) {
+			$data['nm_customer'] = $customer->nm_customer;
+			$config = [
+				'mailtype'  => 'html',
+				'charset'   => 'utf-8',
+				'protocol'  => 'smtp',
+				'smtp_host' => 'mail.wisdil.com',
+				'smtp_user' => 'tiket@wisdil.com',  // Email gmail
+				'smtp_pass'   => 'tiket123!',  // Password gmail
+				// 'smtp_host' => 'smtp.gmail.com',
+				// 'smtp_user' => 'Oktadha01@gmail.com',  // Email gmail
+				// 'smtp_pass'   => 'rvcw cvny ibav czbh',  // Password gmail
+				'smtp_crypto' => 'ssl',
+				'smtp_port'   => 465,
+				'crlf'    => "\r\n",
+				'newline' => "\r\n"
+			];
+
+			$email_to_user = $email;
+			$this->load->library('email', $config);
+			$this->email->from('tiket@wisdil.com', 'Wisdil.com');
+			$this->email->to($email_to_user);
+			$this->email->subject('Reset Password. Halo ' . $customer->nm_customer . ' Kami mendengar Anda memerlukan pengaturan ulang kata sandi. Klik tautan di bawah dan Anda akan diarahkan ke situs aman tempat Anda dapat menyetel password baru');
+
+			$body = $this->load->view('client/email/temp_rest_pass.php', $data, true);
+
+			$this->email->message($body);
+
+			$this->email->send();
 		}
 	}
 	// function logout()
