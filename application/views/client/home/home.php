@@ -48,7 +48,7 @@
             // echo date("d/m/Y");
         ?>
             <div class="col-lg-4 col-md-6 col-12">
-                <?php if (date("d/m/Y") > $data->tgl_event) { ?>
+                <?php if ($data->tgl_event > date("d/m/Y")) { ?>
                     <div class="card" style="background: grey;opacity: 0.5;">
                     <?php } else { ?>
                         <div class="card box-shadow">
@@ -72,7 +72,7 @@
                                             <span class="medium font-weight-bold"><?= $hargaRP; ?> </span>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <?php if (date("d/m/Y") > $data->tgl_event) { ?>
+                                            <?php if ($data->tgl_event > date("d/m/Y")) { ?>
                                                 <a class="bg-dark btn col-12 float-right text-light" href="<?= site_url('detail/event/') . $event ?>">Sold Out</a>
                                             <?php } else { ?>
                                                 <a class="btn bg-w-orange float-right col-12" href="<?= site_url('detail/event/') . $event ?>">Beli Tiket</a>

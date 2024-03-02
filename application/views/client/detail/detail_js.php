@@ -2,8 +2,9 @@
 
 <script>
     $(document).ready(function() {
-        
 
+        $('.btn-lupa-pass, .form-rest-pass').hide();
+        $('#btn-submit-rest-pass').hide();
         $('.t-right').click(function() {
             $('#eventclick').val('tiket-detail');
             $('.right').toggleClass('nav-active');
@@ -182,7 +183,9 @@
                     } else if (data == 'gagal-login') {
                         $('#password').addClass('invalid')
                         $('.valid_pass').text('Wrong Password !!')
+                        $('.btn-lupa-pass').show(100)
                     } else {
+                        $('.btn-lupa-pass').hide()
                         $('#form-pass').hide();
                         $('#btn-close-modal').trigger('click');
                         var delayInMilliseconds = 500; //1 second
@@ -210,5 +213,75 @@
 
         }
 
+        $('.btn-lupa-pass').click(function() {
+            $('#btn-submit-rest-pass').show(200);
+            $('#btn-next').hide();
+            $('.form-login, .btn-lupa-pass').hide();
+            $('.form-rest-pass').show(200);
+            $('#label-login').text('Reset Password');
+            $('.span-text-rest').text('Masukkan alamat email Anda di bawah ini untuk mengatur ulang kata sandi Anda');
+        });
+        $('#btn-close-modal').click(function() {
+            $('#btn-submit-rest-pass').hide();
+            $('#btn-next').show(200);
+            $('.form-login, .btn-lupa-pass').show(200);
+            $('.form-rest-pass').hide()
+            $('#label-login').text('Resgitrasi Email');
+            $('.span-text-rest').text('');
+            $('#password').removeClass('invalid');
+            $('.valid_pass').text('');
+            $('#form-pass').hide();
+            $('#email').val('');
+        });
+
+        $('.email-rest').on('input', function() {
+            let formData = new FormData();
+            formData.append('email', $('.email-rest').val());
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('Auth/cek_email_rest_pass'); ?>",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    action_email_rest(data)
+
+                },
+                error: function() {
+                    alert("Data Gagal Diupload");
+                }
+            });
+        });
+        $('#btn-submit-rest-pass').on('click', function() {
+            let formData = new FormData();
+            formData.append('email', $('.email-rest').val());
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('Auth/ins_token_pass'); ?>",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    alert(data);
+                },
+                error: function() {
+                    alert("Data Gagal Diupload");
+                }
+            });
+        });
+
+        function action_email_rest(data) {
+            if (data == 1) {
+                $('.email-rest').addClass('valid-email').removeClass('invalid-email');
+                $('.notif-email').addClass('valid-email').removeClass('invalid-email').text('Email ini tersedia !');
+                $('#btn-submit-rest-pass').removeAttr('disabled', true);
+            } else {
+                $('.email-rest').addClass('invalid-email').removeClass('valid-email');
+                $('.notif-email').addClass('invalid-email').removeClass('valid-email').text('Email ini tidak valid !');
+                $('#btn-submit-rest-pass').attr('disabled', true);
+            }
+        }
     });
 </script>

@@ -7,6 +7,25 @@
         margin-top: 6px;
         display: flex;
     }
+
+    /* .notif-email {
+        right: 95px;
+        position: relative;
+        font-size: small;
+        margin-bottom: 11px;
+    } */
+
+    .invalid-email,
+    .invalid-email:focus {
+        border: 2px solid #ff00008c;
+        color: red;
+    }
+
+    .valid-email,
+    .valid-email:focus {
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+    }
 </style>
 <section class="container">
     <?php foreach ($event as $data) : ?>
@@ -93,7 +112,7 @@
                                                 <?= number_format($data->harga, 0, ',', '.'); ?>,-</span>
                                         </div>
                                         <div class="col-6 pt-2">
-                                            <?php if ($data->stock_tiket < $data->beli + $data->gratis + $data->tiket_bundling or date("d/m/Y") > $data->tgl_event) { ?>
+                                            <?php if ($data->stock_tiket < $data->beli + $data->gratis + $data->tiket_bundling or $data->tgl_event > date("d/m/Y")) { ?>
                                                 <button class="btn btn-dark float-right">Sold Out</button>
                                                 <input hidden type="text" class="form-control input-count" name="count_tiket[]" placeholder="" aria-label="" aria-describedby="basic-addon1" value="0" readonly>
                                             <?php
@@ -154,31 +173,53 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="title" id="defaultModalLabel">Regitrasi email </h4>
+                <h4 class="title" id="label-login">Regitrasi email </h4>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" id="email" class="form-control" required="">
-                            <span class="valid_info"></span>
+                    <div class="col-12">
+                        <span class="span-text-rest text-center"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-login">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="email" class="form-control" required="">
+                                <span class="valid_info"></span>
+                            </div>
+                            <div id="form-pass" class="form-group">
+                                <label>Password</label>
+                                <input type="text" id="password" class="form-control" required="">
+                                <span class="valid_pass"></span>
+                            </div>
+                            <div class="remember" hidden>
+                                <input type="checkbox" id="remember" name="remember" value="" />
+                                <label for="remember"> Remember</label>
+                            </div>
                         </div>
-                        <div id="form-pass" class="form-group">
-                            <label>Password</label>
-                            <input type="text" id="password" class="form-control" required="">
-                            <span class="valid_pass"></span>
+                        <div class="form-rest-pass">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="" class="form-control email-rest" required="">
+                                <span class="notif-email" style="border: none;"></span>
+                            </div>
                         </div>
-                        <div class="remember" hidden>
-                            <input type="checkbox" id="remember" name="remember" value="" />
-                            <label for="remember"> Remember</label>
-                        </div>
+                    </div>
+                    <div class="col-12 ">
+                        <span class="btn-lupa-pass float-right text-info">Lupa Password ?</span>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btn-next" class="btn btn-primary" disabled>Next</button>
-                <button type="button" id="btn-close-modal" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+                <div class="col p-0">
+                    <button type="button" id="btn-close-modal" class="btn btn-danger " data-dismiss="modal">CLOSE</button>
+                </div>
+                <div class="col p-0">
+                    <button type="button" id="btn-next" class="btn btn-primary float-right" disabled>Next</button>
+                    <button type="button" id="btn-submit-rest-pass" class="btn btn-primary float-right">Submit</button>
+                </div>
             </div>
         </div>
     </div>
