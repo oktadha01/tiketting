@@ -49,9 +49,9 @@
         ?>
             <div class="col-lg-4 col-md-6 col-12">
                 <?php if ($data->tgl_event > date("d/m/Y")) { ?>
-                    <div class="card" style="background: grey;opacity: 0.5;">
+                    <div class="card border-event min-h-reko-event" style="background: #cfcdcd; -webkit-filter: grayscale(100%); filter: grayscale(100%);">
                     <?php } else { ?>
-                        <div class="card box-shadow">
+                        <div class="card border-event box-shadow">
                         <?php } ?>
                         <div class="card-body p-card">
                             <div class="row">
@@ -68,12 +68,16 @@
                                         <?= $data->nama; ?></p>
                                     <div class="row" style=" align-items: center;">
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <span class="small">Start Form</span><br>
-                                            <span class="medium font-weight-bold"><?= $hargaRP; ?> </span>
+                                            <?php if ($data->tgl_event > date("d/m/Y")) { ?>
+                                                <span class="font-weight-bold" style="font-size: larger;">Sold Out</span>
+                                            <?php } else { ?>
+                                                <span class="small">Start Form</span><br>
+                                                <span class="medium font-weight-bold"><?= $hargaRP; ?> </span>
+                                            <?php } ?>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
                                             <?php if ($data->tgl_event > date("d/m/Y")) { ?>
-                                                <a class="bg-dark btn col-12 float-right text-light" href="<?= site_url('detail/event/') . $event ?>">Sold Out</a>
+                                                <a class="bg-dark btn col-12 float-right text-light" href="<?= site_url('detail/event/') . $event ?>">Berakhir</a>
                                             <?php } else { ?>
                                                 <a class="btn bg-w-orange float-right col-12" href="<?= site_url('detail/event/') . $event ?>">Beli Tiket</a>
                                             <?php } ?>
