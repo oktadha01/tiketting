@@ -139,25 +139,31 @@
                             <?php endforeach; ?>
                         </ul>
                     </div>
-                    <div class="card-footer card-footer-tiket-detail">
-                        <div class="row">
-                            <div class="col-6">
+                    <?php if ($data->tgl_event < date("d/m/Y")) { ?>
+                        <div class="card-footer card-footer-tiket-detail">
+                            <div class="row">
+                                <div class="col-6">
 
-                                <span class="small">Subtotal </span><br>
-                                <input id="in-subtotal" type="text" value="0" hidden>
-                                <span id="subtotal" class="medium font-weight-bold">Rp. 0,-</span>
-                            </div>
-                            <div class="col-6 pt-2">
-                                <?php if ($this->input->cookie('session') == '') { ?>
-                                    <button id="checkout" class="btn bg-w-orange float-right btn-checkout" data-toggle="modal" data-target="#defaultModal" disabled>Checkout</button>
-                                <?php
-                                } else { ?>
-                                    <button id="btn-submit" class="btn bg-w-orange float-right btn-checkout" disabled>Checkout</button>
-                                <?php
-                                } ?>
+                                    <span class="small">Subtotal </span><br>
+                                    <input id="in-subtotal" type="text" value="0" hidden>
+                                    <span id="subtotal" class="medium font-weight-bold">Rp. 0,-</span>
+                                </div>
+                                <div class="col-6 pt-2">
+                                    <?php if ($this->input->cookie('session') == '') { ?>
+                                        <button id="checkout" class="btn bg-w-orange float-right btn-checkout" data-toggle="modal" data-target="#defaultModal" disabled>Checkout</button>
+                                    <?php
+                                    } else { ?>
+                                        <button id="btn-submit" class="btn bg-w-orange float-right btn-checkout" disabled>Checkout</button>
+                                    <?php
+                                    } ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php
+                    } else { ?>
+                    <?php
+                    } ?>
+
                 </div>
             </div>
         </div>
