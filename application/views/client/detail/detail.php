@@ -202,7 +202,7 @@
                         <div class="form-rest-pass">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" id="" class="form-control email-rest" required="">
+                                <input type="email" id="" class="form-control text-body email-rest" required="">
                                 <span class="notif-email" style="border: none;"></span>
                             </div>
                         </div>

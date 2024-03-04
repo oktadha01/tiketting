@@ -88,12 +88,18 @@
         });
         $('#email').on('input', function() {
             // alert('yaa')
-            if ($(this).attr('class') == 'form-control valid') {
-                $('#btn-next').removeAttr('disabled')
-            } else {
-                $('#btn-next').attr('disabled')
+            var delayInMilliseconds = 1000; //1 second
+            setTimeout(function() {
+                // alert('yaa1')
 
-            }
+                if ($('#email').attr('class') == 'form-control valid') {
+                    $('#btn-next').removeAttr('disabled', true)
+                    // alert('yaa')
+                } else {
+                    $('#btn-next').attr('disabled', true)
+
+                }
+            }, delayInMilliseconds);
         });
         $('#btn-next').click(function() {
             if ($('#email').attr('class') == 'form-control valid') {
@@ -224,14 +230,15 @@
         $('#btn-close-modal').click(function() {
             $('#btn-submit-rest-pass').hide();
             $('#btn-next').show(200);
-            $('.form-login, .btn-lupa-pass').show(200);
-            $('.form-rest-pass').hide()
+            $('.form-login').show(200);
+            $('.form-rest-pass, .btn-lupa-pass').hide()
             $('#label-login').text('Resgitrasi Email');
             $('.span-text-rest').text('');
             $('#password').removeClass('invalid');
             $('.valid_pass').text('');
             $('#form-pass').hide();
-            $('#email').val('');
+            $('#email').removeClass('valid').val('');
+            $('.valid_info').text('');
         });
 
         $('.email-rest').on('input', function() {
@@ -264,7 +271,28 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    alert(data);
+                    // alert(data);
+                    Swal.fire({
+                        title: "Proses Berhasil !",
+                        text: "Silakan periksa email Anda untuk mengubah kata sandi Anda",
+                        icon: "success"
+                    }).then((result) => {
+                        if (result.isConfirmed || result.dismiss === Swal.DismissReason.cancel) {
+                            // Redirect to the appropriate URL after user interaction
+                            $('#btn-submit-rest-pass').hide();
+                            $('#btn-next').show(200);
+                            $('.form-login').show(200);
+                            $('.form-rest-pass, .btn-lupa-pass').hide()
+                            $('#label-login').text('Resgitrasi Email');
+                            $('.span-text-rest').text('');
+                            $('#password').removeClass('invalid');
+                            $('.valid_pass').text('');
+                            $('#form-pass').hide();
+                            $('#email').removeClass('valid').val('');
+                            $('.valid_info').text('');
+                            window.open('https://mail.google.com/', '_blank');
+                        }
+                    });
                 },
                 error: function() {
                     alert("Data Gagal Diupload");
