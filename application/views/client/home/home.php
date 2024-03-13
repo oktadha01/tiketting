@@ -48,9 +48,14 @@
             // echo date("d/m/Y");
         ?>
             <div class="col-lg-4 col-md-6 col-12">
-                <?php if ($data->tgl_event > date("d/m/Y")) { ?>
+
+                <?php
+
+                // Memeriksa apakah tanggal saat ini lebih besar dari tanggal target
+                if (strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
                     <div class="card border-event min-h-reko-event" style="background: #cfcdcd; -webkit-filter: grayscale(100%); filter: grayscale(100%);">
-                    <?php } else { ?>
+                    <?php
+                } else { ?>
                         <div class="card border-event box-shadow">
                         <?php } ?>
                         <div class="card-body p-card">
@@ -68,20 +73,26 @@
                                         <?= $data->nama; ?></p>
                                     <div class="row" style=" align-items: center;">
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <?php if ($data->tgl_event > date("d/m/Y")) { ?>
+                                            <?php
+                                            // Memeriksa apakah tanggal saat ini lebih besar dari tanggal target
+                                            if (strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
                                                 <span class="font-weight-bold" style="font-size: larger;">Sold Out</span>
-                                            <?php } else { ?>
+                                            <?php
+                                            } else { ?>
                                                 <span class="small">Start Form</span><br>
                                                 <span class="medium font-weight-bold"><?= $hargaRP; ?> </span>
                                             <?php } ?>
+
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12">
-                                            <?php if ($data->tgl_event > date("d/m/Y")) { ?>
+                                            <?php
+                                            // Memeriksa apakah tanggal saat ini lebih besar dari tanggal target
+                                            if (strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
                                                 <a class="bg-dark btn col-12 float-right text-light" href="<?= site_url('detail/event/') . $event ?>">Berakhir</a>
-                                            <?php } else { ?>
+                                            <?php
+                                            } else { ?>
                                                 <a class="btn bg-w-orange float-right col-12" href="<?= site_url('detail/event/') . $event ?>">Beli Tiket</a>
                                             <?php } ?>
-
                                         </div>
                                     </div>
                                 </div>

@@ -66,24 +66,19 @@ class Detail extends CI_Controller
             if ($password == '') {
                 $this->reg_email($email, $action);
             } else {
-                $this->login($email, $password, $nm_event);
+                $this->login($email, $password);
             }
         } else {
             // echo'ya';
             $email = $this->input->cookie('session');
             $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
-            $data['data_kategori'] = $_POST['kategori_tiket'];
-            $data['data_count'] = $_POST['count_tiket'];
-            $data['event']        = $this->M_detail->m_event($nm_event);
-            $data['customer']        = $this->M_detail->m_customer($email);
-
-            $this->load->view('client/buynow/buynow', $data);
-            $this->load->view('client/buynow/buynow_js');
+            $this->to_page_buynow($nm_event, $email);
+            
         }
     }
 
 
-    function login($email, $password, $nm_event)
+    function login($email, $password)
     {
         $post_email = trim($email);
         $post_pass = trim($password);
@@ -122,24 +117,12 @@ class Detail extends CI_Controller
                 if ($customer->password == '') {
                     // echo 'show-not-pass';
                     $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
-                    $data['data_kategori'] = $_POST['kategori_tiket'];
-                    $data['data_count'] = $_POST['count_tiket'];
-                    $data['event']        = $this->M_detail->m_event($nm_event);
-                    $data['customer']        = $this->M_detail->m_customer($email);
-
-                    $this->load->view('client/buynow/buynow', $data);
-                    $this->load->view('client/buynow/buynow_js');
+                    $this->to_page_buynow($nm_event, $email);
                 } else {
                     if ($action == true) {
                         // echo 'berhasil';
                         $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
-                        $data['data_kategori'] = $_POST['kategori_tiket'];
-                        $data['data_count'] = $_POST['count_tiket'];
-                        $data['event']        = $this->M_detail->m_event($nm_event);
-                        $data['customer']        = $this->M_detail->m_customer($email);
-
-                        $this->load->view('client/buynow/buynow', $data);
-                        $this->load->view('client/buynow/buynow_js');
+                        $this->to_page_buynow($nm_event, $email);
                     } else {
 
                         echo 'show';
@@ -154,13 +137,17 @@ class Detail extends CI_Controller
 
             $this->M_detail->m_save_customer($data_customer);
             $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
-            $data['data_kategori'] = $_POST['kategori_tiket'];
-            $data['data_count'] = $_POST['count_tiket'];
-            $data['event']        = $this->M_detail->m_event($nm_event);
-            $data['customer']        = $this->M_detail->m_customer($email);
-
-            $this->load->view('client/buynow/buynow', $data);
-            $this->load->view('client/buynow/buynow_js');
+            $this->to_page_buynow($nm_event, $email);
         }
+    }
+
+    function to_page_buynow($nm_event, $email)
+    {
+        $data['data_kategori'] = $_POST['kategori_tiket'];
+        $data['data_count'] = $_POST['count_tiket'];
+        $data['event']        = $this->M_detail->m_event($nm_event);
+        $data['customer']        = $this->M_detail->m_customer($email);
+        $this->load->view('client/buynow/buynow', $data);
+        $this->load->view('client/buynow/buynow_js');
     }
 }

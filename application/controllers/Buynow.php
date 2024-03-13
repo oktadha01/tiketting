@@ -426,7 +426,7 @@ class Buynow extends CI_Controller
                 };
             };
         }
-
+        $subtotal = $nominal * 0.03 + 7850 + $nominal;
         xendit_loaded();
         $this->db->trans_begin();
 
@@ -438,7 +438,7 @@ class Buynow extends CI_Controller
             $data_faktur = [
                 "external_id"       => $code_bayar,
                 "description"       => "Pembayaran Tiket Wisdil Kode Bayar: $code_bayar Kode Tiket: $code_tiket nama:$nama",
-                "amount"            => preg_replace('/[Rp. ]/', '', $nominal),
+                "amount"            => preg_replace('/[Rp. ]/', '', $subtotal),
                 'invoice_duration'  => 3600,
                 'customer' => [
                     'given_names'   => $nama,
@@ -462,6 +462,7 @@ class Buynow extends CI_Controller
                 'code_bayar'        => $code_bayar,
                 'jumlah_tiket'      => $jmlh,
                 'nominal'           => preg_replace('/[Rp. ]/', '', $nominal),
+                'subtotal'          => preg_replace('/[Rp. ]/', '', $subtotal),
                 'tgl_transaksi'     => $tgl_trx,
                 'url_payment'       => $payment_url,
 
