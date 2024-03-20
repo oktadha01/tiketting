@@ -93,7 +93,7 @@
                                                                         <tr>
                                                                             <td align="left" valign="top" width="100%" style="padding-top:10px;padding-bottom:10px">
                                                                                 <h2 style="font-size:16px;line-height:16px;font-weight:bold;width:100%;margin:0px;padding:0px;margin-top:10px; color:black"><?= $transaksi['nm_event']; ?></h2>
-                                                                                <p style="font-size:15px;color:#737374;margin:0px;padding:0px;margin-bottom:5px"><?= $transaksi['lokasi'] . ' | Kab. Kendal |' . $transaksi['tgl_event'] . ' | ' . $transaksi['jam_event']; ?></p>
+                                                                                <p style="font-size:15px;color:#737374;margin:0px;padding:0px;margin-bottom:5px"><?= $transaksi['lokasi'] . ' | ' . $transaksi['kota_event'] . ' |' . $transaksi['tgl_event'] . ' | ' . $transaksi['jam_event']; ?></p>
                                                                                 <?php foreach ($data_tiket as $tiket) { ?>
                                                                                     <p style="font-size: 15px;color: #1ba0e2;margin:0px;padding:0px;font-style: italic;"><?= $tiket->kategori_price; ?> <?= $tiket->ticket_count; ?>x </p>
                                                                                 <?php
@@ -109,8 +109,8 @@
                                                                             <td align="left" style="width:100%">
                                                                                 <div style="padding:0 16px">
                                                                                     <p style="font-size:14px;margin-top:15px; color:black"> Dipesan dan dibayarkan oleh:<br>
-                                                                                        <!-- <span style="font-weight:bold;font-size:16px;color:#1ba0e2"><?= $transaksi['nm_customer']; ?></span> -->
-                                                                                        <span style="font-weight:bold;font-size:16px;color:#1ba0e2">PT. Kanzu Permai Abadi</span>
+                                                                                        <span style="font-weight:bold;font-size:16px;color:#1ba0e2"><?= $transaksi['nm_customer']; ?></span>
+                                                                                        <!-- <span style="font-weight:bold;font-size:16px;color:#1ba0e2">PT. Kanzu Permai Abadi</span> -->
                                                                                     </p>
                                                                                 </div>
                                                                             </td>
@@ -136,8 +136,8 @@
                                                                                     <p style="color:#737374;font-size:13px;margin:0px;padding:0px">Payment </p>
                                                                                 </td>
                                                                                 <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
-                                                                                    <!-- <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : <?= $transaksi['payment']; ?></p> -->
-                                                                                    <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : Bank BTNS</p>
+                                                                                    <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : <?= $transaksi['payment']; ?></p>
+                                                                                    <!-- <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : Bank BTNS</p> -->
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -148,14 +148,14 @@
                                                                                     <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : Lunas </p>
                                                                                 </td>
                                                                             </tr>
-                                                                            <!-- <tr>
+                                                                            <tr>
                                                                                 <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
                                                                                     <p style="color:#737374;font-size:13px;margin:0px;padding:0px">Jumlah bayar </p>
                                                                                 </td>
                                                                                 <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
                                                                                     <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : Rp. <?= number_format($transaksi['nominal'], 0, ',', '.'); ?> </p>
                                                                                 </td>
-                                                                            </tr> -->
+                                                                            </tr>
                                                                             <tr>
                                                                                 <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
                                                                                     <p style="color:#737374;font-size:13px;margin:0px;padding:0px">Tanggal </p>
