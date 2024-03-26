@@ -5,7 +5,8 @@
         <!-- Page Loader -->
         <div class="page-loader-wrapper">
             <div class="loader">
-                <div class="m-t-30"><img src="assets/images/loader/logo.png" width="70" height="48" alt="Iconic"></div>
+                <div class="m-t-30"><img src="<?= base_url('assets/images/loader/logo.png') ?>" width="70" height="48"
+                        alt="Iconic"></div>
                 <p>Please wait...</p>
             </div>
         </div>

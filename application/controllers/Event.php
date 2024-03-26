@@ -45,7 +45,7 @@ class Event extends AUTH_Controller
 
             // tombol edit
             $editButton = '<a data-toggle="modal" data-target="#ubah-event" class="btn btn-outline-warning btn-xs btn-edit" title="Ubah"
-            data-id_event="'.$evn->id_event.'" data-id_user="'.$evn->id_user.'" data-nm_event="'.$evn->nm_event.'" data-tgl_event="'.$evn->tgl_event.'" data-jam_event="'.$evn->jam_event.'" data-batas_pesan="'.$evn->batas_pesan.'" data-lokasi="'.$evn->lokasi.'" data-kota="'.$evn->kota.'" data-alamat="'.$evn->alamat.'" data-kategori_event="'.$evn->kategori_event.'" data-desc_event="'.$evn->desc_event.'" data-mc_by="'.$evn->mc_by.'" data-poster="'.$evn->poster.'" data-header="'.$evn->header.'"><i class="fa fa-edit"></i></a>';
+            data-id_event="'.$evn->id_event.'" data-id_user="'.$evn->id_user.'" data-nm_event="'.$evn->nm_event.'" data-tgl_event="'.$evn->tgl_event.'" data-jam_event="'.$evn->jam_event.'" data-batas_pesan="'.$evn->batas_pesan.'" data-lokasi="'.$evn->lokasi.'" data-kota="'.$evn->kota.'" data-alamat="'.$evn->alamat.'" data-kategori_event="'.$evn->nm_kategori_event.'" data-desc_event="'.$evn->desc_event.'" data-mc_by="'.$evn->mc_by.'" data-poster="'.$evn->poster.'" data-header="'.$evn->header.'"><i class="fa fa-edit"></i></a>';
 
             // tombol Hapus
             $hapusButton = ' &nbsp; <a href="#" onclick="confirmDelete('.$evn->id_event.');"  class="btn btn-outline-danger btn-xs" title="Hapus"><i class="fa fa-trash-o"></i></a>';
@@ -54,7 +54,7 @@ class Event extends AUTH_Controller
             $row = array();
             $row[] = $no.".";
             $row[] = '<td class="poster-column"><img src="' . base_url('upload/event/') . $evn->poster . '" alt="Poster Acara" class="border border-primary m-0 p-0 img-thumbnail max-height-7rem img-fluid"></td>';
-            $row[] = '<td class="header-column"><img src="' . base_url('upload/event/') . $evn->header . '" alt="Header Acara" class="border border-success m-0 p-0 img-thumbnail max-height-7rem img-fluid"></td>';
+            // $row[] = '<td class="header-column"><img src="' . base_url('upload/event/') . $evn->header . '" alt="Header Acara" class="border border-success m-0 p-0 img-thumbnail max-height-7rem img-fluid"></td>';
             $row[] = ' &nbsp; ' . '<td class="font-weight-medium"><div class="badge badge-info shadow l-khaki text-dark rounded">' . $evn->agency . '</div></td>';
             $row[] = $evn->nm_event;
             $row[] = $evn->tgl_event;
@@ -63,7 +63,7 @@ class Event extends AUTH_Controller
             $row[] = $evn->lokasi;
             $row[] = $evn->nama;
             $row[] = $evn->alamat;
-            $row[] = $evn->kategori_event;
+            $row[] = $evn->nm_kategori_event;
             $row[] = $evn->desc_event;
             $row[] = $evn->mc_by;
             $row[] = $editButton. $hapusButton  ;
@@ -86,7 +86,15 @@ class Event extends AUTH_Controller
             $data .= "<option value='".$value->id."'>".$value->nama."</option>";
         }
         echo $data;
+    }
 
+    function get_kategori_event(){
+        $query = $this->Event_model->get_kategori();
+        $data = "<option value=''>- Pilih Kategori -</option>";
+        foreach ($query as $value) {
+            $data .= "<option value='".$value->id_kategori_event."'>".$value->nm_kategori_event."</option>";
+        }
+        echo $data;
     }
 
     function input_event()
@@ -112,19 +120,19 @@ class Event extends AUTH_Controller
         }
 
         $data = array(
-            'id_user'        => $this->input->post('id_user'),
-            'nm_event'       => $this->input->post('nm_event'),
-            'tgl_event'      => $this->input->post('tgl_event'),
-            'jam_event'      => $this->input->post('jam_event'),
-            'batas_pesan'    => $this->input->post('batas_pesan'),
-            'lokasi'         => $this->input->post('lokasi'),
-            'kota'           => $this->input->post('kota'),
-            'alamat'         => $this->input->post('alamat'),
-            'kategori_event' => $this->input->post('kategori_event'),
-            'desc_event'     => $this->input->post('desc_event'),
-            'mc_by'          => $this->input->post('mc_by'),
-            'poster'         => $poster,
-            'header'         => $header
+            'id_user'           => $this->input->post('id_user'),
+            'nm_event'          => $this->input->post('nm_event'),
+            'tgl_event'         => $this->input->post('tgl_event'),
+            'jam_event'         => $this->input->post('jam_event'),
+            'batas_pesan'       => $this->input->post('batas_pesan'),
+            'lokasi'            => $this->input->post('lokasi'),
+            'kota'              => $this->input->post('kota'),
+            'alamat'            => $this->input->post('alamat'),
+            'id_kategori_event' => $this->input->post('kategori_event'),
+            'desc_event'        => $this->input->post('desc_event'),
+            'mc_by'             => $this->input->post('mc_by'),
+            'poster'            => $poster,
+            'header'            => $header
         );
 
         $result = $this->Event_model->save_event($data);

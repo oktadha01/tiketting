@@ -10,8 +10,9 @@
 <script src="<?= base_url('assets'); ?>/bundles/c3.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/nouislider/nouislider.js"></script>
 <script src="<?= base_url('assets'); ?> /js/pages/ui/dialogs.js"></script>
-
-<!-- select2 -->
+<script src="<?= base_url('assets'); ?>/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<!-- select2
+-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <!-- datatables -->
@@ -30,6 +31,8 @@
 <!-- dropify -->
 <script src="<?= base_url('assets'); ?>/vendor/dropify/js/dropify.min.js"></script>
 <script src="<?= base_url('assets'); ?>/js/pages/forms/dropify.js"></script>
+<script src="<?= base_url('assets'); ?>/vendor/summernote/dist/summernote.js"></script>
+<script src="<?= base_url('assets'); ?>/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
 <script>
 $(function() {
@@ -49,5 +52,6 @@ $('[data-provide="datepicker"]').datepicker({
     autoclose: true
 });
 </script>
+
 <script src="https://unpkg.com/html5-qrcode"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.2.0/html5-qrcode.min.js"></script> -->

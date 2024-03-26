@@ -47,7 +47,7 @@ class Prices_model extends CI_Model
             $this->db->join('event', 'event.id_event = price.id_event');
             $this->db->where('event.id_user', $id_user);
             $this->db->where('price.id_event', $id_event);
-            $this->db->order_by('id_price', 'DESC');
+            $this->db->order_by('price.id_price', 'DESC');
 
                 $i = 0;
                 foreach ($this->column_searchtrx as $trx) {
@@ -160,12 +160,11 @@ class Prices_model extends CI_Model
 
     public function get_event_menu($limit, $start, $id_user, $search = '')
     {
-        $this->db->select('*');
+        $this->db->select('event.*, user.id_user, user.agency');
         $this->db->from('event');
         $this->db->join('user', 'user.id_user = event.id_user');
         $this->db->where('event.id_user', $id_user);
 
-        // Tambahkan kondisi pencarian jika ada
         if (!empty($search)) {
             $this->db->like('nm_event', $search);
         }

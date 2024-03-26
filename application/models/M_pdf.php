@@ -12,4 +12,10 @@ class M_pdf extends CI_Model {
 
         $this->db->insert('pdf_table', $data);
     }
+
+    public function get_warna($id_event) {
+        $this->db->select('id_event, color_nama, color_email, color_kategori, color_code_tiket');
+        $this->db->where('id_event', $id_event);
+        return $this->db->get('custom_tiket')->row_array();
+    }
 }
