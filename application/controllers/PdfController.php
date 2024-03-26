@@ -19,6 +19,16 @@ class PdfController extends CI_Controller
         // create new PDF document
         $pdf = new TCPDF('L', 'mm', 'A6');
         $pdf->AddPage();
+        $id_event= '54';
+        $warna = "(SELECT * FROM custom_tiket WHERE id_event = $id_event)";
+            $query = $this->db->query($warna);
+            foreach ($query->result() as $rows) {
+                $nama_warna = $rows->color_nama;
+                $email_warna = $rows->color_email;
+                $kategori_warna = $rows->color_kategori;
+                $code_warna = $rows->color_code_tiket;
+                $background = $rows->background;
+            };
 
 
         // get the current page break margin
@@ -28,8 +38,8 @@ class PdfController extends CI_Controller
         // disable auto-page-break
         $pdf->setAutoPageBreak(false, 0);
         // set bacground image
-        $img_file = FCPATH . 'upload/tiket.png';
-        $pdf->Image($img_file, null, 0, 148, 105, '', '', '', false, 300, 'C', false, false, 0);
+        $img_file = FCPATH . 'upload/backround_tiket/'. $background. '';
+        $pdf->Image($img_file, null, 3, 148, 102, '', '', '', false, 300, 'C', false, false, 0);
         // restore auto-page-break status
         $pdf->setAutoPageBreak($auto_page_break, $bMargin);
         // set the starting point for the page content
@@ -61,7 +71,10 @@ class PdfController extends CI_Controller
         $pdf->setFontSpacing(2);
         $pdf->setFont('dejavusans', 'B', 25);
         $pdf->SetFillColor(59, 78, 135);
-        $pdf->SetTextColor(255, 255, 255);
+        $pdf->SetTextColor(0, 255, 64);
+
+        list($r, $g, $b) = sscanf($nama_warna, '#%02x%02x%02x');
+        $pdf->SetTextColor($r, $g, $b);
         $pdf->Cell(50, 1, $nama, 0, 1, 'L'); // Print the header text
 
         $headerText = 'Oktadha01@gmail.coom';
@@ -71,7 +84,9 @@ class PdfController extends CI_Controller
         $pdf->setFontSpacing(1);
         $pdf->setFont('dejavusans', '', 7);
         $pdf->SetFillColor(59, 78, 135);
-        $pdf->SetTextColor(255, 255, 255);
+
+        list($r, $g, $b) = sscanf($email_warna, '#%02x%02x%02x');
+        $pdf->SetTextColor($r, $g, $b);
         $pdf->Cell(50, 1, $headerText, 0, 1, 'L'); // Print the header text
 
 
@@ -82,7 +97,8 @@ class PdfController extends CI_Controller
         $pdf->setFontSpacing(2);
         $pdf->setFont('dejavusans', '', 20);
         $pdf->SetFillColor(59, 78, 135);
-        $pdf->SetTextColor(255, 255, 255);
+        list($r, $g, $b) = sscanf($kategori_warna, '#%02x%02x%02x');
+        $pdf->SetTextColor($r, $g, $b);
         $pdf->Cell(50, 1, $headerText, 0, 1, 'L'); // Print the header text
 
         $pdf->Image(base_url('upload/qr/qr-CT-53520202-0001.png'), 101, 37, 28);
@@ -94,7 +110,8 @@ class PdfController extends CI_Controller
         $pdf->setFontSpacing(0);
         $pdf->setFont('dejavusans', '', 5);
         $pdf->SetFillColor(59, 78, 135);
-        $pdf->SetTextColor(255, 255, 255);
+        list($r, $g, $b) = sscanf($code_warna, '#%02x%02x%02x');
+        $pdf->SetTextColor($r, $g, $b);
         $pdf->Cell(50, 1, $headerText, 0, 1, 'R'); // Print the header text
 
         $headerText = 'CT-1111122823';
@@ -104,7 +121,8 @@ class PdfController extends CI_Controller
         $pdf->setFontSpacing(0);
         $pdf->setFont('dejavusans', '', 10);
         $pdf->SetFillColor(59, 78, 135);
-        $pdf->SetTextColor(255, 255, 255);
+        list($r, $g, $b) = sscanf($code_warna, '#%02x%02x%02x');
+        $pdf->SetTextColor($r, $g, $b);
         $pdf->Cell(50, 1, $headerText, 0, 1, 'R'); // Print the header text
 
 

@@ -27,6 +27,12 @@
                             <i class="fa fa-suitcase"></i>
                             <span> &nbsp; Buat Bundling</span>
                         </button>
+                        <a href="<?= site_url('Custom_tiket/kastemisasi/' . $this->uri->segment(3)); ?>"
+                            class="btn btn-info shadow rounded mr-2">
+                            <i class="fa fa-credit-card"></i>
+                            <span> &nbsp; Kastemasi Tiket</span>
+                        </a>
+
                     </div>
                     <div class="body table-responsive">
                         <table id="data-price" class="table table-bordered table-hover table-striped"
@@ -34,7 +40,6 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Design Tiket</th>
                                     <th>Event</th>
                                     <th>Kategori Harga</th>
                                     <th>Harga</th>
@@ -145,7 +150,23 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary" id="btn-simpan">
+                        <span id="btn-text">Simpan</span>
+                        <span id="loading-icon" class="loading" style="display:none;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z" />
+                                <rect x="11" y="6" rx="1" width="2" height="7">
+                                    <animateTransform attributeName="transform" type="rotate" dur="9s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="11" y="11" rx="1" width="2" height="9">
+                                    <animateTransform attributeName="transform" type="rotate" dur="0.75s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                            </svg> Loading...
+                        </span>
+                    </button>
                 </div>
             </form>
         </div>

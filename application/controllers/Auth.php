@@ -50,7 +50,7 @@ class Auth extends CI_Controller
 						$data->email = $id_customer  = $_COOKIE['id-customer'];
 					}
 				}
-				// Set Cookie 7  hari 
+				// Set Cookie 7  hari
 				if (isset($_POST['remember'])) {
 					setcookie('session', $data->email, strtotime('+7 days'), '/');
 					$msg = 'Data cookie berhasil disimpan';
@@ -122,14 +122,19 @@ class Auth extends CI_Controller
 
 	function login()
 	{
-		$session = $this->session->userdata('status');
-
-		if ($session == '') {
+		$session_status = $this->session->userdata('status');
+		$session_privilege = $this->session->userdata('privilage');
+		if ($session_status == '') {
 			$this->load->view('page_admin/login/login');
 		} else {
-			redirect('Dashboard');
+			if ($session_privilege == 'scan') {
+				redirect('Scan_tiket');
+			} else {
+				redirect('Dashboard');
+			}
 		}
 	}
+
 	public function login_adm()
 	{
 		$this->form_validation->set_rules('email', 'Email', 'required');
@@ -149,14 +154,23 @@ class Auth extends CI_Controller
 					'userdata' => $data,
 					'status' => "Loged in"
 				];
+
+				$session['privilage'] = strtolower($data->privilage);
+
 				$this->session->set_userdata($session);
-				redirect('Dashboard');
+
+				if ($session['privilage'] == 'scan') {
+					redirect('Scan_tiket');
+				} else {
+					redirect('Dashboard');
+				}
 			}
 		} else {
 			$this->session->set_flashdata('result_login', '<br>email Dan Password Harus Diisi.');
 			redirect('Auth/login');
 		}
 	}
+
 	// function logout()
 	// {
 	// 	$this->session->sess_destroy();

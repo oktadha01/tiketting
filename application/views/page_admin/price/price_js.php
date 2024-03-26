@@ -192,6 +192,10 @@ $('#tambah-data').on('hidden.bs.modal', function() {
 $('#tambah-data').submit(function(event) {
     event.preventDefault();
 
+    $('#btn-text').hide();
+    $('#loading-icon').show();
+    $('#btn-simpan').attr('disabled', true);
+
     var id_event = $('#id-event').val();
     var kategori_price = $('#kategori-price').val();
     var harga = $('#harga').val();
@@ -222,6 +226,10 @@ $('#tambah-data').submit(function(event) {
         },
         dataType: 'json',
         success: function(response) {
+            $('#btn-text').show();
+            $('#loading-icon').hide();
+            $('#btn-simpan').attr('disabled', false);
+
             if (response.status) {
 
                 Swal.fire({
@@ -245,6 +253,10 @@ $('#tambah-data').submit(function(event) {
             }
         },
         error: function(xhr, status, error) {
+            $('#btn-text').show();
+            $('#loading-icon').hide();
+            $('#btn-simpan').attr('disabled', false);
+
             console.error(xhr.responseText);
 
             Swal.fire({

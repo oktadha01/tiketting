@@ -43,11 +43,16 @@
                             <a href="<?= site_url('Banner_upload'); ?>" class=""><i class="fa fa-flag"></i><span>
                                     Banner</span></a>
                         </li>
+                        <li class="menu">
+                            <a href="<?= site_url('Article'); ?>" class=""><i class="fa fa-file-text"></i><span>
+                                    Article</span></a>
+                        </li>
                         <li class="menu active">
                             <a href="#setting" class="has-arrow"><i class="fa fa-gears"></i><span>Setting</span></a>
                             <ul class="submenu">
-                                <li><a href="<?= site_url('User'); ?>"
-                                        class="<?= ($this->uri->segment(1) == 'User') ? 'active' : ''; ?>"> User</a>
+                                <li><a href="<?= site_url('User/user_adm'); ?>"
+                                        class="<?= ($this->uri->segment(1) == 'User/user_adm') ? 'active' : ''; ?>">
+                                        User</a>
                                 </li>
                                 <li><a href="<?= site_url('Xendit'); ?>"
                                         class="<?= ($this->uri->segment(1) == 'Xendit') ? 'active' : ''; ?>">API
@@ -90,10 +95,35 @@
                             <a href="<?= site_url('Dana_masuk'); ?>" class=""><i
                                     class="fa fa-money"></i><span>Transaksi</span></a>
                         </li>
+                        <li class="menu">
+                            <a href="<?= site_url('User/user_scan'); ?>" class=""><i class="fa fa-users"></i><span>User
+                                    Scan</span></a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </div>
         <?php endif; ?>
+
+        <?php if ($userdata->privilage == 'scan') : ?>
+        <div class="tab-content padding-0">
+            <div class="tab-pane active" id="menu">
+                <nav id="left-sidebar-nav" class="sidebar-nav">
+                    <ul id="main-menu" class="metismenu li_animation_delay">
+                        <li class="menu">
+                            <a href="<?= site_url('Scan_tiket'); ?>" id="scanTiketButton" class=""><i
+                                    class="fa fa-qrcode"></i><span>Scan Tiket</span>
+                            </a>
+                        </li>
+                        <!-- <li class="menu">
+                            <a href="<?= site_url(''); ?>" class=""><i class="fa fa-barcode"></i><span>Scan
+                                    Masuk</span></a>
+                        </li> -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <?php endif; ?>
+
     </div>
 </div>

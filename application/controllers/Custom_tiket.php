@@ -17,48 +17,82 @@ class Custom_tiket extends AUTH_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('');
+        $this->load->model('Custom_tiket_model');
 
     }
 
-    public function index()
+    public function kastemisasi()
     {
+        $id_event                = $this->uri->segment(3);
         $data['userdata']        = $this->userdata;
-        $data['tittle']          = 'Custom tiket';
-        $data['bread']           = 'Custom Tiket';
+        $data['tittle']          = 'Custom Tiket';
+        $data['bread']           = 'Kustomisasi Tampilan Tiket';
+        $data['kustomisasi']     = $this->Custom_tiket_model->get_datacustom($id_event);
         $data['content']         = 'page_admin/custom_tiket/tiket';
         $data['script']          = 'page_admin/custom_tiket/tiket_js';
         $this->load->view($this->template, $data);
     }
 
-    function upload_backround()
+    public function get_color($id_event) {
+        $color_data = $this->Custom_tiket_model->get_color_by_id_event($id_event);
+        header('Content-Type: application/json');
+        echo json_encode($color_data);
+    }
+
+    public function save_custom()
     {
         $config['upload_path'] = "./upload/backround_tiket";
         $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 1024 * 1;
         $config['encrypt_name'] = TRUE;
 
         $this->load->library('upload', $config);
 
-        if ($this->upload->do_upload('header')) {
+        if ($this->upload->do_upload('filePhoto')) {
             $upload_data = $this->upload->data();
-            $header = $upload_data['file_name'];
+            $background = $upload_data['file_name'];
         } else {
-            $header = '';
+            $background = 'default_upload.png';
         }
 
-        $data = array(
-            'header'         => $header
-        );
+        $id_event = $this->input->post('id_event');
 
-        $result = $this->Banner_kat_model->save_banner($data);
+        $existing_data = $this->Custom_tiket_model->get_datacustom($id_event);
+
+        if ($existing_data) {
+
+            $data = array(
+                'color_nama'        => $this->input->post('color_nama'),
+                'color_email'       => $this->input->post('color_email'),
+                'color_kategori'    => $this->input->post('color_kategori'),
+                'color_code_tiket'  => $this->input->post('color_code_tiket'),
+                'background'        => $background
+            );
+
+            $result = $this->Custom_tiket_model->update_design($id_event, $data);
+
+        } else {
+
+            $data = array(
+                'id_event'          => $id_event,
+                'color_nama'        => $this->input->post('color_nama'),
+                'color_email'       => $this->input->post('color_email'),
+                'color_kategori'    => $this->input->post('color_kategori'),
+                'color_code_tiket'  => $this->input->post('color_code_tiket'),
+                'background'        => $background
+            );
+
+            $result = $this->Custom_tiket_model->save_design($data);
+        }
 
         if ($result) {
             $response = array('status' => 'success', 'message' => 'Data berhasil disimpan.');
         } else {
-            $response = array('status' => 'error', 'message' => 'Gagal menyimpan data.');
+            $response = array('status' => 'error', 'message' => 'Gagal menyimpan data ke database.');
         }
 
         echo json_encode($response);
     }
+
 
 }

@@ -68,7 +68,7 @@ class Prices extends AUTH_Controller
             $Rp_harga = 'Rp. ' . number_format($harga, 0, ',', '.');
 
             if ($prc->status_bundling == '0') {
-                $editButton = '<a data-toggle="modal" data-target="#ubah-harga" class="btn btn-outline-warning btn-xs btn-edit" title="Ubah"
+                $editButton = '<a data-toggle="modal" data-target="#ubah-harga" class="btn btn-outline-primary btn-xs btn-edit" title="Ubah"
                                 data-id_price="'.$prc->id_price.'" data-id_event="'.$prc->id_event.'" data-kategori_price="'.$prc->kategori_price.'"
                                 data-stock_tiket="'.$prc->stock_tiket.'" data-tiket="'.$prc->harga.'" data-akhir_promo="'.$prc->akhir_promo.'"
                                 data-status="'.$prc->status.'" data-status_bundling="'.$prc->status_bundling.'" data-beli="'.$prc->beli.'"
@@ -76,7 +76,7 @@ class Prices extends AUTH_Controller
                                 <i class="fa fa-edit"></i>
                             </a>';
             } elseif ($prc->status_bundling == '1') {
-                $editButton = '<a data-toggle="modal" data-target="#ubah-bundling" class="btn btn-outline-info btn-xs btn-edit-bundling" title="Ubah Bundling"
+                $editButton = '<a data-toggle="modal" data-target="#ubah-bundling" class="btn btn-outline-warning btn-xs btn-edit-bundling" title="Ubah Bundling"
                                 data-id_price="'.$prc->id_price.'" data-id_event="'.$prc->id_event.'" data-kategori_price="'.$prc->kategori_price.'"
                                 data-stock_tiket="'.$prc->stock_tiket.'" data-tiket="'.$prc->harga.'" data-tiket_bundle="'.$prc->tiket_bundling.'">
                                 <i class="fa fa-edit"></i>
@@ -112,12 +112,25 @@ class Prices extends AUTH_Controller
             }
             $kategori_price .= '</p>';
 
-
+            if ($prc->status_bundling == '0') {
+                $editButton = '<a data-toggle="modal" data-target="#ubah-harga" class="btn btn-outline-primary btn-xs btn-edit" title="Ubah"
+                                data-id_price="'.$prc->id_price.'" data-id_event="'.$prc->id_event.'" data-kategori_price="'.$prc->kategori_price.'"
+                                data-stock_tiket="'.$prc->stock_tiket.'" data-tiket="'.$prc->harga.'" data-akhir_promo="'.$prc->akhir_promo.'"
+                                data-status="'.$prc->status.'" data-status_bundling="'.$prc->status_bundling.'" data-beli="'.$prc->beli.'"
+                                data-gratis="'.$prc->gratis.'" data-tiket_bundling="'.$prc->tiket_bundling.'" data-status_bundling="'.$prc->status_bundling.'">
+                                <i class="fa fa-edit"></i>
+                            </a>';
+            } elseif ($prc->status_bundling == '1') {
+                $editButton = '<a data-toggle="modal" data-target="#ubah-bundling" class="btn btn-outline-warning btn-xs btn-edit-bundling" title="Ubah Bundling"
+                                data-id_price="'.$prc->id_price.'" data-id_event="'.$prc->id_event.'" data-kategori_price="'.$prc->kategori_price.'"
+                                data-stock_tiket="'.$prc->stock_tiket.'" data-tiket="'.$prc->harga.'" data-tiket_bundle="'.$prc->tiket_bundling.'">
+                                <i class="fa fa-edit"></i>
+                            </a>';
+            }
 
             $no++;
             $row    = array();
             $row[]  = $no.".";
-            $row[] = '<a href="' . site_url('Custom_tiket') . '"><td class="header-column"><img src="' . base_url('upload/backround_tiket/default.jpg') . '" alt="Design Tiket" class="border border-success m-0 p-0 img-thumbnail max-height-1rem img-fluid"></td></a>';
             $row[]  = ' &nbsp; ' . '<td class="font-weight-medium"><div class="badge badge-dark shadow-lg rounded">' . $prc->nm_event . '</div></td>';
             $row[]  = $kategori_price;
             $row[]  = $Rp_harga;
@@ -153,6 +166,10 @@ class Prices extends AUTH_Controller
             'akhir_promo' => $this->input->post('akhir_promo'),
             'beli' => $beli,
             'gratis' => $this->input->post('free')
+        );
+
+        $custom = array(
+
         );
 
         $result = $this->Prices_model->save_price($data);

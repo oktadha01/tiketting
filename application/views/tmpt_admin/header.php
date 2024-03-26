@@ -17,6 +17,7 @@
         href="<?= base_url('assets'); ?>/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/font-awesome/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/toastr/toastr.min.css">
 
     <!-- MAIN Project CSS file -->
@@ -25,6 +26,9 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/ecommerce.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/blog.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/chatapp.css">
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/custom_tiket.css">
+    <link rel="stylesheet"
+        href="<?= base_url('assets'); ?>/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
 
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -39,5 +43,9 @@
 
     <!-- select2 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+    <!-- sumernote -->
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/summernote/dist/summernote.css" />
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css">
 
 </head>
