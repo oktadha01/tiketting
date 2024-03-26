@@ -123,7 +123,7 @@ class Callback extends CI_Controller
     function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
     {
         // CB-54020215-0006
-        // $_externalId = 'CB-53021522-0023';
+        // $_externalId = 'CB-54030817-0003';
         // $_paymentChannel = 'BCA';
         // $datetime = '10-12-2024 09:00';
         // $_amount = '100000';
@@ -149,6 +149,7 @@ class Callback extends CI_Controller
             $lokasi = $trans->lokasi;
             $tgl_event = $trans->tgl_event;
             $jam_event = $trans->jam_event;
+            $kota_event = $trans->nama;
             $data_transaksi[] = [
                 'nm_customer' => $nm_customer,
                 'nm_kategori_event' => $nm_kategori_event,
@@ -160,6 +161,7 @@ class Callback extends CI_Controller
                 'payment' => $_paymentChannel,
                 'tgl_trans' => $datetime,
                 'nominal' => $_amount,
+                'kota_event' => $kota_event,
             ];
         }
         $data['data_transaksi'] = $data_transaksi;

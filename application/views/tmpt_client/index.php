@@ -41,6 +41,7 @@
     </div>
     <input type="text" id="eventclick" value="" hidden>
 
+    
     <?php $this->load->view('tmpt_client/footer'); ?>
     <?php $this->load->view($script); ?>
 

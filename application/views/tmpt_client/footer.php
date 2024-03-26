@@ -43,12 +43,18 @@
                             <i class="fa-brands fa-instagram bg-w-orange bg-size-icon hov-ig"></i>
                         </a>
                     </li>
-                    <!-- <li class="mr-2">
-                        <a href="">
+                    <li class="mr-2">
+                        <a href="https://www.tiktok.com/@wisdil.indonesia">
                             <i class="fa-brands fa-tiktok bg-w-orange bg-size-icon hov-tiktok"></i>
                         </a>
                     </li>
                     <li class="mr-2">
+                        <a href="https://www.facebook.com/wisdilindonesia">
+                        <i class="fa-brands fa-facebook bg-w-orange bg-size-icon hov-fb"></i>
+                            <!-- <i class="fa-brands fa-youtube bg-w-orange bg-size-icon hov-yt"></i> -->
+                        </a>
+                    </li>
+                    <!-- <li class="mr-2">
                         <a href="">
                             <i class="fa-brands fa-youtube bg-w-orange bg-size-icon hov-yt"></i>
                         </a>

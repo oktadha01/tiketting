@@ -68,11 +68,30 @@ class Transaction extends CI_Controller
                                                     <button type="button" class="col-12 btn btn-sm bg-w-orange">Pay Now</button>
                                                 </a>
                                             </div>';
-                        // Tanggal transaksi
-                        $tgl_transaksi = '<span class="smal">Dipesan</span>
-                                            <span class="font-weight-bold">' . $data_transaksi->tgl_transaksi . '</span>';
-                        // coundown
-                       
+                        $currentDateTime = date($data_transaksi->tgl_transaksi);
+                        $newDateTime = date('m-d-Y H:i:s', strtotime($currentDateTime . ' +1 hours'));
+
+                        $dateString = $newDateTime;
+                        $date = DateTime::createFromFormat('n-j-Y H:i:s', $dateString);
+
+                        if ($date !== false) {
+                            // Format tanggal sebagai bulan
+                            $formattedDate = $date->format('M d, Y');
+
+                            // Format jam
+                            $formattedTime = $date->format('H:i:s');
+
+                            // Output dengan pemisah antara tanggal dan jam
+                            // echo $formattedDate . ' | ' . $formattedTime;
+                        } else {
+                            echo 'Format tanggal tidak valid';
+                        }
+
+
+                        $tgl_transaksi = '<span class="smal">Menunggu Pembayaran</span>
+                                            <div class="clockdiv" data-date="' . $newDateTime . '" style="display: flex;">
+                                                    <span class="countdown-timer font-weight-bold"></span>
+                                            </div>';
                     } elseif ($data_transaksi->status_transaksi == '1') {
                         // Status transaksi
                         $status_transaksi = '<td class="font-weight-medium"><div class="badge badge-info shadow l-green text-dark rounded">Lunas</div></td>';
@@ -88,11 +107,18 @@ class Transaction extends CI_Controller
                     echo '<div class="card box-shadow">
                     <div class="card-body">
                     <div class="row">
-                    <div class="col-lg-1 col-md-2 col-5">
+                    <div class="col-lg-1 col-md-1 col-12">
+                    <ul class="ul-poster-trans">
+                    <li>
                     <img src="' . base_url('upload/event/') . $data_transaksi->poster . '" class="img-fluid size-poster">
+                    </li>
+                    <li class="ml-3 li-event-trans">
+                    <span>' . $data_transaksi->nm_event . '</span>
+                    </li>
+                    </ul>
                     </div>
-                    <div class="col-lg-8 col-md-10 col-7">
-                        
+                    <div class="col-lg-8 col-md-11 col-12">
+
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-12">
                             <div style="display:grid;">
@@ -100,27 +126,27 @@ class Transaction extends CI_Controller
                                     <span class="font-weight-bold">INV-#' . $data_transaksi->code_bayar . '</span>
                                 </div>
                             </div>
+                            <div class="col-lg-2 col-md-2 col-12">
+                            <div style="display:grid;">
+                            <span class="smal">Total</span>
+                            <span class="font-weight-bold">Rp ' . number_format($data_transaksi->nominal, 0, ',', '.') . '</span>
+                            </div>
+                            </div>
                             <div class="col-lg-4 col-md-4 col-12">
                                 <div style="display:grid;">
                                     ' . $tgl_transaksi . '
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-12">
-                                <div style="display:grid;">
-                                    <span class="smal">Total</span>
-                                    <span class="font-weight-bold">Rp ' . number_format($data_transaksi->nominal, 0, ',', '.') . '</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-12">
-                                <div style="display:grid;">
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-12">
+                                    <div style="display:grid;">
                                     <span class="smal">Status</span>
                                     <span class="font-weight-bold"> ' . $status_transaksi . '</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                       
-                    <div class="col-lg-3 col-12 pt-4">
+
+                    <div class="col-lg-3 col-12">
                         <hr class="hr">
                         <div class="row">' . $actionButton . '</div>
                         </div>
@@ -134,7 +160,7 @@ class Transaction extends CI_Controller
             echo '<span>Tidak Ada Transaksi</span>';
         }
     }
-   
+
     function detail_trans()
     {
         $code_bayar = $_POST['code_bayar'];
@@ -214,20 +240,37 @@ class Transaction extends CI_Controller
             <div class="col-lg-6 col-md-6 col-12">
                 <p class="small mb-0">Invoice Number</p>
                 <p class="medium font-weight-bold">INV-#' . $data_trans->code_bayar . '</p>
-            </div>
-            <div class="col-lg-6 col-md-6 col-12">
-                <p class="small mb-0">Buy At</p>
+            </div>';
+            if ($data_trans->status_transaksi == '0') {
+
+                echo '<div class="col-lg-6 col-md-6 col-12">
+                <p class="small mb-0">Dipesan</p>
                 <p id="text-tiket" class="medium font-weight-bold">' . $data_trans->tgl_transaksi . '</p>
-            </div>
-            <div class="col-lg-6 col-md-6 col-6">
-            <p class="small mb-0">Payment</p>
-            <p id="text-file" class="medium mb-0 font-weight-bold">' . $data_trans->bank . '</p>
-            </div>
-            <div class="col-lg-6 col-md-6 col-6">
+            </div>';
+            } else {
+                echo '<div class="col-lg-6 col-md-6 col-12">
+                <p class="small mb-0">Dibayar</p>
+                <p id="text-tiket" class="medium font-weight-bold">' . $data_trans->tgl_byr . '</p>
+                </div>';
+            }
+
+            echo '<div class="col-lg-6 col-md-6 col-6">
             <p class="small mb-0">Total</p>
             <p id="text-file" class="medium mb-0 font-weight-bold">Rp. ' . number_format($data_trans->nominal, 0, ',', '.') . '</p>
-            </div>
-            </div>
+            </div>';
+            if ($data_trans->status_transaksi == '0') {
+                echo '<div class="col-lg-6 col-md-6 col-6">
+            <p class="small mb-0">Status</p>
+            <p id="text-file" class="medium mb-0 font-weight-bold">Panding</p>
+            </div>';
+            } else {
+                echo '<div class="col-lg-6 col-md-6 col-6">
+            <p class="small mb-0">Status</p>
+            <p id="text-file" class="medium mb-0 font-weight-bold">Lunas</p>
+            </div>';
+            }
+
+            echo '</div>
             </div>
             </div>';
             // code tombol modal footer
@@ -257,43 +300,51 @@ class Transaction extends CI_Controller
                     echo '<div class="card box-shadow">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-1">
+                            <div class="col-lg-1 col-2">
                                 <span class="num-tiket">' . $no++ . '</span>
                             </div>
-                            <div class="col-lg-4">
-                                <p class="small mb-0">Name</p>
-                                <p class="medium mb-0 font-weight-bold">' . $data_buyer->nama . '</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <p class="small mb-0">Email</p>
-                                <p class="medium mb-0 font-weight-bold">' . $data_buyer->email . '</p>
-                            </div>
-                            <div class="col-lg-3">
-                                <p class="small mb-0">Ticket</p>
-                                <p class="medium mb-0 font-weight-bold">' . $data_buyer->kategori_price . '</p>
+                            <div class="col-lg-11 col-10">
+                                <div class="row">
+                                    <div class="col-lg-3 col-12">
+                                        <p class="small mb-0">Ticket</p>
+                                        <p class="medium mb-0 font-weight-bold">' . $data_buyer->kategori_price . '</p>
+                                    </div>
+                                    <div class="col-lg-4 col-12">
+                                        <p class="small mb-0">Name</p>
+                                        <p class="medium mb-0 font-weight-bold">' . $data_buyer->nama . '</p>
+                                    </div>
+                                    <div class="col-lg-4 col-12">
+                                        <p class="small mb-0">Email</p>
+                                        <p class="medium mb-0 font-weight-bold">' . $data_buyer->email . '</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>';
+                        </div>
+                    </div>';
                 }
             } else {
                 echo '<div class="card box-shadow">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-1">
+                                <div class="col-lg-1 col-2">
                                     <span class="num-tiket">' . $no++ . '</span>
                                 </div>
-                                <div class="col-lg-4">
-                                    <p class="small mb-0">Name</p>
-                                    <p class="medium mb-0 font-weight-bold">' . $data_buyer->nama . '</p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <p class="small mb-0">Email</p>
-                                    <p class="medium mb-0 font-weight-bold">' . $data_buyer->email . '</p>
-                                </div>
-                                <div class="col-lg-3">
-                                    <p class="small mb-0">Ticket</p>
-                                    <p class="medium mb-0 font-weight-bold">' . $data_buyer->kategori_price . '</p>
+                                <div class="col-lg-11 col-10">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-12">
+                                            <p class="small mb-0">Ticket</p>
+                                            <p class="medium mb-0 font-weight-bold">' . $data_buyer->kategori_price . '</p>
+                                        </div>
+                                        <div class="col-lg-4 col-12">
+                                            <p class="small mb-0">Name</p>
+                                            <p class="medium mb-0 font-weight-bold">' . $data_buyer->nama . '</p>
+                                        </div>
+                                        <div class="col-lg-4 col-12">
+                                            <p class="small mb-0">Email</p>
+                                            <p class="medium mb-0 font-weight-bold">' . $data_buyer->email . '</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -302,7 +353,7 @@ class Transaction extends CI_Controller
         }
 
 
-        echo ' <div class="modal-footer" style="display: block;">' . $modalButton . '</div>';
+        echo ' <div class="modal-footer pl-0 pr-0" style="display: block;">' . $modalButton . '</div>';
         echo '<input type="text" id="del-code_transaksi" value="' . $code_bayar . '" hidden>';
     }
     function batalkan_transaksi()

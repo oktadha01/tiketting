@@ -292,14 +292,14 @@ class Buynow extends CI_Controller
             // disable auto-page-break
             $pdf->setAutoPageBreak(false, 0);
             // set bacground image
-            $img_file = FCPATH . 'upload/backround_tiket/'. $background. '';
-            $pdf->Image($img_file, null, 0, 148, 105, '', '', '', false, 300, 'C', false, false, 0);
+            $img_file = base_url('upload/e-tiket.jpg');
+            $pdf->Image($img_file, null, 3, 148, 102, '', '', '', false, 300, 'C', false, false, 0);
             // restore auto-page-break status
             $pdf->setAutoPageBreak($auto_page_break, $bMargin);
             // set the starting point for the page content
             $pdf->setPageMark();
             // Add background color
-            $pdf->Rect(0, 0, $pdf->GetPageWidth(), 6, 'F'); // Adjust the height (10 in this example) as needed
+            // $pdf->Rect(0, 0, $pdf->GetPageWidth(), 6, 'F'); // Adjust the height (10 in this example) as needed
 
             // Add header text
             $pdf->SetY(1); // Set the Y position for the header text
@@ -316,6 +316,8 @@ class Buynow extends CI_Controller
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->Cell(10, 7, '', 0, 0);
+
+            $pdf->Image(base_url('assets/images/LOGO-WISDIL.png'), 16, 10, 15);
 
             $textnama = $nama;
             $textnama = strtoupper($textnama); // Convert the header text to uppercase
@@ -437,7 +439,7 @@ class Buynow extends CI_Controller
                 };
             };
         }
-
+        $subtotal = $nominal * 0.03 + 7850 + $nominal;
         xendit_loaded();
         $this->db->trans_begin();
 
@@ -449,7 +451,7 @@ class Buynow extends CI_Controller
             $data_faktur = [
                 "external_id"       => $code_bayar,
                 "description"       => "Pembayaran Tiket Wisdil Kode Bayar: $code_bayar Kode Tiket: $code_tiket nama:$nama",
-                "amount"            => preg_replace('/[Rp. ]/', '', $nominal),
+                "amount"            => preg_replace('/[Rp. ]/', '', $subtotal),
                 'invoice_duration'  => 3600,
                 'customer' => [
                     'given_names'   => $nama,
@@ -473,6 +475,7 @@ class Buynow extends CI_Controller
                 'code_bayar'        => $code_bayar,
                 'jumlah_tiket'      => $jmlh,
                 'nominal'           => preg_replace('/[Rp. ]/', '', $nominal),
+                'subtotal'          => preg_replace('/[Rp. ]/', '', $subtotal),
                 'tgl_transaksi'     => $tgl_trx,
                 'url_payment'       => $payment_url,
 

@@ -18,17 +18,19 @@ class M_callback extends CI_Model
     }
     function m_data_transaksi($_externalId)
     {
-        $this->db->select('*');
+        $this->db->select('transaksi.*, event.*, kategori_event.*, customer.*, customer.kota as kota_customer, wilayah_kabupaten.*');
         $this->db->from('transaksi');
         $this->db->Join('event', 'event.id_event = transaksi.id_event');
         $this->db->Join('kategori_event', 'kategori_event.id_kategori_event = event.id_kategori_event');
         $this->db->Join('customer', 'customer.id_customer = transaksi.id_customer');
+        $this->db->Join('wilayah_kabupaten', 'wilayah_kabupaten.id = event.kota');
         $this->db->where('transaksi.code_bayar', $_externalId);
         $query = $this->db->get();
         return $query->result();
     }
 
-    function m_data_e_tiket($_externalId){
+    function m_data_e_tiket($_externalId)
+    {
 
         $this->db->select('*');
         $this->db->from('tiket');
