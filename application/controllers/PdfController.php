@@ -38,8 +38,8 @@ class PdfController extends CI_Controller
         // disable auto-page-break
         $pdf->setAutoPageBreak(false, 0);
         // set bacground image
-        $img_file = FCPATH . 'upload/backround_tiket/'. $background. '';
-        $pdf->Image($img_file, null, 3, 148, 102, '', '', '', false, 300, 'C', false, false, 0);
+        $img_file = FCPATH . 'upload/e-tiket.jpg';
+        $pdf->Image($img_file, null, 0, 148, 105, '', '', '', false, 300, 'C', false, false, 0);
         // restore auto-page-break status
         $pdf->setAutoPageBreak($auto_page_break, $bMargin);
         // set the starting point for the page content
@@ -76,6 +76,8 @@ class PdfController extends CI_Controller
         list($r, $g, $b) = sscanf($nama_warna, '#%02x%02x%02x');
         $pdf->SetTextColor($r, $g, $b);
         $pdf->Cell(50, 1, $nama, 0, 1, 'L'); // Print the header text
+
+        $pdf->Image(base_url('assets/images/LOGO-WISDIL.png'), 16, 10, 15);
 
         $headerText = 'Oktadha01@gmail.coom';
         // $headerText = strtoupper($headerText); // Convert the header text to uppercase

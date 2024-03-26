@@ -358,6 +358,7 @@
                             $query = $this->db->query($tiket);
                             foreach ($query->result() as $rows) {
                                 $total = $rows->harga * $count + $total;
+                                $fee = $total * 0.03 + 7850;
 
                     ?>
 
@@ -386,10 +387,26 @@
                     ?>
                     <div class="row bg-white">
                         <div class="col-6">
-                            <span class="medium font-weight-bold">Total Pembayaran</span>
+                            <span class="medium font-weight-bold">Total Tiket</span>
                         </div>
                         <div class="col-6">
                             <span class="medium font-weight-bold float-right">Rp. <?= number_format($total, 0, ',', '.'); ?></span>
+                        </div>
+                    </div>
+                    <div class="row bg-white">
+                        <div class="col-6">
+                            <span class="medium font-weight-bold">Internet fee</span>
+                        </div>
+                        <div class="col-6">
+                            <span class="medium font-weight-bold float-right">Rp. <?= number_format($fee, 0, ',', '.'); ?></span>
+                        </div>
+                    </div>
+                    <div class="row bg-white">
+                        <div class="col-6">
+                            <span class="medium font-weight-bold">Total Pembayaran</span>
+                        </div>
+                        <div class="col-6">
+                            <span class="medium font-weight-bold float-right">Rp. <?= number_format($total + $fee, 0, ',', '.'); ?></span>
                         </div>
                     </div>
                     <div class="row">

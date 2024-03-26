@@ -51,6 +51,13 @@ class M_auth extends CI_Model
 		$this->db->insert('customer', $data);
 		return $this->db->affected_rows();
 	}
+	function update_token_customer($email, $token)
+	{
+		$update = $this->db->set('token_password', $token)
+			->where('email', $email)
+			->update('customer');
+		return $update;
+	}
 }
 
 /* End of file M_auth.php */

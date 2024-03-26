@@ -44,6 +44,36 @@
                 padding: 0rem 2rem;
             }
         }
+
+        .btn-lupa-pass {
+            left: 108px;
+            position: relative;
+            color: blue;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            color: #fff !important;
+            background-color: #dc3545 !important;
+            border-color: #dc3545 !important;
+        }
+
+        .notif-email {
+            right: 95px;
+            position: relative;
+            font-size: small;
+            margin-bottom: 11px;
+        }
+
+        .invalid-email {
+            border: 2px solid #ff00008c;
+            color: red;
+        }
+
+        .valid-email {
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+        }
     </style>
 </head>
 
@@ -52,37 +82,38 @@
         <div class="forms-container">
             <div class="signin-signup">
                 <form class="sign-in-form" action="<?= site_url('Auth/login_client') ?>" method="post" method="POST">
-                    
-                <!-- Alert -->
-                <?php
-                if (validation_errors() || $this->session->flashdata('result_login')) {
-                ?>
-                    <div class="alert" id="autoCloseAlert">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong style=" padding: 5px 5px 5px 5px;">Warning!</strong>
-                        <?php echo validation_errors(); ?>
-                        <?php echo $this->session->flashdata('result_login'); ?>
-                    </div>
 
-                <?php } ?>
+                    <!-- Alert -->
+                    <?php
+                    if (validation_errors() || $this->session->flashdata('result_login')) {
+                    ?>
+                        <div class="alert" id="autoCloseAlert">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong style=" padding: 5px 5px 5px 5px;">Warning!</strong>
+                            <?php echo validation_errors(); ?>
+                            <?php echo $this->session->flashdata('result_login'); ?>
+                        </div>
 
-                <?php
-                $data = $this->session->flashdata('sukses');
-                if ($data != "") {
-                ?>
-                    <div class="alert alert-success"><strong>Sukses! </strong> <?= $data; ?></div>
-                    <div class="alert alert-success" id="autoCloseAlert">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        </strong> <?= $data; ?>
-                    </div>
-                <?php } ?>
-                <!-- Akhir Alert -->
-                    <h2 class="title">Sign in</h2>
-                    <div class="input-field">
+                    <?php } ?>
+
+                    <?php
+                    $data = $this->session->flashdata('sukses');
+                    if ($data != "") {
+                    ?>
+                        <div class="alert alert-success"><strong>Sukses! </strong> <?= $data; ?></div>
+                        <div class="alert alert-success" id="autoCloseAlert">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </strong> <?= $data; ?>
+                        </div>
+                    <?php } ?>
+                    <!-- Akhir Alert -->
+                    <h2 class="title title-form">Sign in</h2>
+                    <p class="social-text mb-0 text-center form-rest-pass" hidden>Masukkan alamat email Anda di bawah ini untuk mengatur ulang kata sandi Anda</p>
+                    <div class="input-field form-login">
                         <i class="fa fa-envelope"></i>
                         <input type="email" placeholder="Email" name="email" required autofocus autocomplete="current-email" />
                     </div>
-                    <div class="input-field">
+                    <div class="input-field form-login">
                         <i class="fas fa-lock"></i>
                         <input type="password" placeholder="Password" id="password" name="password" required autofocus autocomplete="current-password" />
                         <i class="toggle-password fa fa-eye" onclick="togglePasswordVisibility('password')"></i>
@@ -91,7 +122,24 @@
                         <input type="checkbox" id="remember" name="remember" value="" checked="true">
                         <label for="remember"> Remember</label>
                     </div>
-                    <input type="submit" value="Login" class="btn solid " />
+                    <span class="btn-lupa-pass form-login">Lupa Password ?</span>
+                    <input type="submit" value="Login" class="btn solid form-login " />
+
+                    <!-- form reset password -->
+                    <div class="input-field form-email-rest mb-0 form-rest-pass" hidden>
+                        <i class="fa fa-envelope"></i>
+                        <input type="email" class="email-rest" placeholder="Email" name="email" required autofocus autocomplete="current-email" />
+                    </div>
+                    <span class="notif-email form-rest-pass" hidden style="border: none;"></span>
+                    <div class="row form-rest-pass" hidden>
+                        <div class="col-6">
+                            <button id="btn-batal" class="btn btn-danger">Batal</button>
+                        </div>
+                        <div class="col-6">
+                            <button id="btn-submit" class="btn btn-primary" disabled>Submit</button>
+                        </div>
+                    </div>
+
                     <p class="social-text">Informasi Tentang System Bisa Lihat Sosial Media dibawah ini</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
@@ -213,8 +261,92 @@
 
     <script src="<?= base_url(); ?>assets/login/app.js"></script>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        $('.form-rest-pass').removeAttr('hidden', true).hide();
+        $('.btn-lupa-pass').click(function() {
+            $('.form-login').hide();
+            $('.form-rest-pass').show(200);
+            $('.title-form').text('Reset Password');
+        });
+        $('#sign-up-btn, #btn-batal').click(function() {
+            $('.form-login').show(200);
+            $('.form-rest-pass').hide();
+            $('.title-form').text('Sign in');
+            $('.email-rest').val('');
+            $('.notif-email').removeClass('valid-email').removeClass('invalid-email').text('');
+            $('.form-email-rest').removeClass('valid-email').removeClass('invalid-email');
+            $('#btn-submit').attr('disabled', true);
+        });
+        $('.email-rest').on('input', function() {
+            let formData = new FormData();
+            formData.append('email', $('.email-rest').val());
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('Auth/cek_email_rest_pass'); ?>",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    action_email_rest(data)
+
+                },
+                error: function() {
+                    alert("Data Gagal Diupload");
+                }
+            });
+        });
+
+        $('#btn-submit').on('click', function() {
+            let formData = new FormData();
+            formData.append('email', $('.email-rest').val());
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo site_url('Auth/ins_token_pass'); ?>",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    // alert(data);
+                    Swal.fire({
+                        title: "Proses Berhasil !",
+                        text: "Silakan periksa email Anda untuk mengubah kata sandi Anda",
+                        icon: "success"
+                    }).then((result) => {
+                        if (result.isConfirmed || result.dismiss === Swal.DismissReason.cancel) {
+                            // Redirect to the appropriate URL after user interaction
+                            $('.form-login').show(200);
+                            $('.form-rest-pass').hide();
+                            $('.title-form').text('Sign in');
+                            $('.email-rest').val('');
+                            $('.notif-email').removeClass('valid-email').removeClass('invalid-email').text('');
+                            $('.form-email-rest').removeClass('valid-email').removeClass('invalid-email');
+                            $('#btn-submit').attr('disabled', true);
+                            window.open('https://mail.google.com/', '_blank');
+                        }
+                    });
+                },
+                error: function() {
+                    alert("Data Gagal Diupload");
+                }
+            });
+        });
+
+        function action_email_rest(data) {
+            if (data == 1) {
+                $('.form-email-rest').addClass('valid-email').removeClass('invalid-email');
+                $('.notif-email').addClass('valid-email').removeClass('invalid-email').text('Email ini tersedia !');
+                $('#btn-submit').removeAttr('disabled', true);
+            } else {
+                $('.form-email-rest').addClass('invalid-email').removeClass('valid-email');
+                $('.notif-email').addClass('invalid-email').removeClass('valid-email').text('Email ini tidak valid !');
+                $('#btn-submit').attr('disabled', true);
+            }
+        }
         // show password
         function togglePasswordVisibility(inputId) {
             var passwordInput = document.getElementById(inputId);
