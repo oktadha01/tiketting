@@ -237,6 +237,27 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="body">
+                                <div id="gambar-content-add" class="list-unstyled row clearfix">
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12 m-b-10 pl-0">
+                                    <img class="img-fluid img-thumbnail" id="previewImage-add" src="#" alt="Preview"
+                                        style="max-width: 100%; display: none;">
+                                </div>
+                                <div class="col-lg-12 col-md-6 col-sm-12 d-flex flex-row-reverse pt-0 pb-15 pr-0">
+                                    <form id="form-gambar-add" enctype="multipart/form-data">
+                                        <input type="text" id="id-content-gbr-add" name="id_content"
+                                            class="form-control" hidden />
+                                        <div class="media-body">
+                                            <button type="button" class="btn-sm btn-primary m-b-8 m-t-0 m-r-0"
+                                                id="btn-upload-add">Tambah
+                                                Gambar</button>
+                                            <input type="file" id="filePhoto-add" class="sr-only">
+                                        </div>
+                                        <button type="button" id="btn-upload-photo-add"
+                                            class="simpan btn-sm btn-info m-b-8 m-t-0 m-r-0"
+                                            style="display: none;">Simpan Gambar</button>
+                                    </form>
+                                </div>
                                 <form id="artikel-content" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
                                         <input type="text" id="id-content-article" name="id_article"
@@ -247,7 +268,7 @@
                                             class="form-control summernote" rows="10"></textarea>
                                     </div>
 
-                                    <button type="submit" class="btn btn-block btn-primary   m-t-20 "
+                                    <button type="submit" class="btn btn-block btn-primary m-t-20 "
                                         id="btn-simpan-content">
                                         <span id="btn-text-content">Post</i></span>
                                         <span id="loading-icon" class="loading" style="display:none;">
