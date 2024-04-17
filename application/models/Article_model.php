@@ -91,5 +91,94 @@ class Article_model extends CI_Model
         return $query->row_array();
     }
 
+    // data popular post
+    public function get_popular_post($limit, $start)
+    {
+        $this->db->select('article.*');
+        $this->db->from('article');
+        $this->db->order_by("article.views", "DESC");
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+
+        return $query;
+
+    }
+
+    public function get_tags()
+    {
+        $this->db->select('tags');
+        $this->db->distinct();
+        $this->db->from('article');
+        $query = $this->db->get();
+
+        return $query;
+    }
+
+    function data_event_ready()
+    {
+        $this->db->select('combined_query.*');
+        $this->db->from('(SELECT event.*, wilayah_kabupaten.*, MIN(price.harga) as min_price
+                        FROM event
+                        JOIN wilayah_kabupaten ON wilayah_kabupaten.id = event.kota
+                        JOIN price ON price.id_event = event.id_event
+                        WHERE price.stock_tiket >= (price.beli + price.gratis + price.tiket_bundling)
+                        GROUP BY event.id_event
+                        UNION
+                        SELECT event.*, wilayah_kabupaten.*, MIN(price.harga) as min_price
+                        FROM event
+                        JOIN wilayah_kabupaten ON wilayah_kabupaten.id = event.kota
+                        JOIN price ON price.id_event = event.id_event
+                        GROUP BY event.id_event
+                        ) AS combined_query');
+        $this->db->group_by('combined_query.id_event');
+        $this->db->order_by('combined_query.tgl_event', 'DESC');
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function get_tags_artikel($limit, $start, $tags_article)
+    {
+            $this->db->select('article.*');
+            $this->db->from('article');
+            $this->db->where('article.tags', $tags_article);
+            $this->db->limit($limit, $start);
+            $query = $this->db->get();
+
+            return $query;
+    }
+
+    public function get_detail_artikel($limit, $start, $judul_article)
+    {
+            $this->db->select('*');
+            $this->db->from('article');
+            $this->db->where('article.judul_article', $judul_article);
+            $this->db->limit($limit, $start);
+            $query = $this->db->get();
+
+            return $query;
+    }
+
+    public function get_foto_berita()
+    {
+            $this->db->select('*');
+            $this->db->from('foto_content');
+            $query = $this->db->get();
+
+            return $query;
+    }
+
+    public function get_data_content()
+    {
+        $this->db->select('*');
+        $this->db->from('content_article');
+        $query = $this->db->get();
+
+        return $query;
+    }
+
+
 
 }

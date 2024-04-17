@@ -28,3 +28,10 @@
     transform: scale(1.1);
     filter: brightness(70%);
   }
+
+  .container-artikel {
+    max-width: 75rem;
+    height: auto;
+    margin: 5rem auto;
+    padding: 0 1.25rem;
+  }

@@ -76,7 +76,7 @@ class Article extends AUTH_Controller
                                     $output .= '<li class="pr-1"><a class="fa fa-pencil-square-o btn-sm btn-outline-success btn-content" data-toggle="modal" data-target="#tambah-content" href="" data-id_article="'.$artikel->id_article.'"> Isi Konten</a></li>';
                                 } else {
                                     $output .= '<li class="p-1"><a class="fa fa-pencil-square-o btn-sm btn-outline-warning btn-edit-content" data-toggle="modal" data-target="#ubah-content" href="" data-id_content="'.$artikel->id_content.'" data-id_article="'.$artikel->id_content_article.'" data-content="'.htmlspecialchars($artikel->content, ENT_QUOTES, 'UTF-8').'"> Edit Konten</a></li>
-                                                <li"><a class="pl-1 fa fa-plus-circle btn-sm btn-outline-success btn-content" data-toggle="modal" data-target="#tambah-content" href="" data-id_article="'.$artikel->id_article.'"> Tambah Konten</a></li>';
+                                                <li"><a class="pl-1 fa fa-plus-circle btn-sm btn-outline-success btn-content" data-toggle="modal" data-target="#tambah-content" href="" data-id_article="'.$artikel->id_article.'" data-id_content="'.$artikel->id_content.'"> Tambah Konten</a></li>';
                                 }
                         $output .= '</ul>
                         </div>
