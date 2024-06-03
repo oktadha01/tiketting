@@ -12,9 +12,10 @@ class Event_model extends CI_Model
 
         if ($privilage == 'Admin') {
 
-            $this->db->select('event.*, user.id_user, user.agency, wilayah_kabupaten.*');
+            $this->db->select('event.*, user.id_user, user.agency, wilayah_kabupaten.*, kategori_event.*');
             $this->db->from('event');
             $this->db->join('user', 'user.id_user = event.id_user');
+            $this->db->join('kategori_event', 'kategori_event.id_kategori_event = event.id_kategori_event');
             $this->db->join('wilayah_kabupaten', 'wilayah_kabupaten.id = event.kota');
             $this->db->order_by('id_event', 'DESC');
 
@@ -42,8 +43,9 @@ class Event_model extends CI_Model
 
         } else if ($privilage == 'User') {
 
-            $this->db->select('event.*, user.id_user, user.agency, wilayah_kabupaten.*');
+            $this->db->select('event.*, user.id_user, user.agency, wilayah_kabupaten.*, kategori_event.*');
             $this->db->from('event');
+            $this->db->join('kategori_event', 'kategori_event.id_kategori_event = event.id_kategori_event');
             $this->db->join('user', 'user.id_user = event.id_user');
             $this->db->join('wilayah_kabupaten', 'wilayah_kabupaten.id = event.kota');
             $this->db->where('event.id_user', $id_user);
@@ -125,6 +127,15 @@ class Event_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('wilayah_kabupaten');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    function get_kategori()
+    {
+        $this->db->select('*');
+        $this->db->from('kategori_event');
         $query = $this->db->get();
 
         return $query->result();

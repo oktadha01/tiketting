@@ -1,0 +1,37 @@
+/* artikel */
+.image-container {
+    position: relative;
+  }
+
+  .img-fluid.img-thumbnail {
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .delete-button {
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: auto;
+  }
+
+  .image-container:hover .delete-button {
+    display: block;
+  }
+
+  .image-container:hover img {
+    filter: brightness(100%);
+  }
+
+  .image-container:hover .img-fluid.img-thumbnail {
+    transform: scale(1.1);
+    filter: brightness(70%);
+  }
+
+  .container-artikel {
+    max-width: 75rem;
+    height: auto;
+    margin: 5rem auto;
+    padding: 0 1.25rem;
+  }

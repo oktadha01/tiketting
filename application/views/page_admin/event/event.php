@@ -39,7 +39,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Poster</th>
-                                    <th>Header</th>
+                                    <!-- <th>Header</th> -->
                                     <th>Agency</th>
                                     <th>Event</th>
                                     <th>Tanggal</th>
@@ -148,11 +148,7 @@
                                 <div class="input-wrapper ml-0 mr-0">
                                     <label class="label-select">Kategori Event</label>
                                     <select type="text" id="kategori_event" name="kategori_event" class="col-lg-12">
-                                        <option value="">Pilih Kategori</option>
-                                        <option value="Musik">Musik</option>
-                                        <option value="Pertunjukan">Pertunjukan</option>
-                                        <option value="Pameran">Pameran</option>
-                                        <option value="Seminar">Seminar</option>
+                                        <option value="">-- Pilih Kategori --</option>
                                     </select>
                                 </div>
                             </div>
@@ -184,7 +180,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <!-- <div class="col-lg-6 col-md-6">
                             <div class="card mb-0">
                                 <div class="header pt-2 pb-0">
                                     <label class="label-up">Upload Header</label>
@@ -193,12 +189,28 @@
                                     <input type="file" class="dropify" id="header" name="header">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary" id="btn-simpan">
+                        <span id="btn-text">Simpan</span>
+                        <span id="loading-icon" class="loading" style="display:none;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z" />
+                                <rect x="11" y="6" rx="1" width="2" height="7">
+                                    <animateTransform attributeName="transform" type="rotate" dur="9s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="11" y="11" rx="1" width="2" height="9">
+                                    <animateTransform attributeName="transform" type="rotate" dur="0.75s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                            </svg> Loading...
+                        </span>
+                    </button>
                 </div>
             </div>
         </form>
@@ -334,7 +346,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <!-- <div class="col-lg-6 col-md-6">
                             <div class="card mb-0">
                                 <div class="header pt-2 pb-0">
                                     <label class="label-up">Update Header</label>
@@ -347,7 +359,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class=" modal-footer">

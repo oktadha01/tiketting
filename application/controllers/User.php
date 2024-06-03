@@ -20,7 +20,7 @@ class User extends AUTH_Controller
 
     }
 
-    public function index()
+    public function user_adm()
     {
         $data['userdata']       = $this->userdata;
         $data['tittle']         = 'Halaman Kelola User';
@@ -108,7 +108,7 @@ class User extends AUTH_Controller
             'kontak'     => $this->input->post('kontak'),
             'password'   => md5($this->input->post('password')),
             'privilage'  => $this->input->post('privilage'),
-            'fot_profil' => 'default.jpg'
+            'fot_profil' => 'default.png'
         );
 
         $result = $this->User_model->save_user($data);
@@ -163,5 +163,124 @@ class User extends AUTH_Controller
         $this->output->set_output(json_encode($response));
     }
 
+
+    // user untuk scan
+
+    public function user_scan()
+    {
+        $id_user = $this->session->userdata('userdata')->id_user;
+
+        $data['userdata']       = $this->userdata;
+        $data['tittle']         = 'Halaman Kelola User';
+        $data['bread']          = 'User Scan';
+        $data['content']        = 'page_admin/user/user_scan';
+        $data['script']         = 'page_admin/user/user_scan_js';
+        $this->load->view($this->template, $data);
+    }
+
+    function get_event(){
+        $id_user = $this->session->userdata('userdata')->id_user;
+
+        $query =  $this->User_model->get_event($id_user);
+        $data = "<option value=''>- Pilih Event -</option>";
+        foreach ($query as $value) {
+            $data .= "<option value='".$value->id_event."'>".$value->nm_event."</option>";
+        }
+        echo $data;
+    }
+
+    function get_userscan() {
+        $agency = $this->session->userdata('userdata')->agency;
+
+        $list = $this->User_model->get_datatables($agency);
+        $data = array();
+        $no = @$_POST['start'];
+        foreach ($list as $usr) {
+
+            // tombol edit
+            $editButton = '<a data-toggle="modal" data-target="#ubah-userScan" class="btn btn-outline-warning btn-xs btn-editscan" title="Ubah"
+            data-id_user="'.$usr->id_user.'" data-agency="'.$usr->agency.'" data-nama="'.$usr->nm_user.'" data-id_event="'.$usr->id_event.'" data-email="'.$usr->email.'" data-password="'.$usr->password.'"><i class="fa fa-edit"></i></a>';
+
+            // tombol Hapus
+            $hapusButton = ' &nbsp; <a href="#" onclick="confirmDelete('.$usr->id_user.');"  class="btn btn-outline-danger btn-xs" title="Hapus"><i class="fa fa-trash-o"></i></a>';
+
+            $no++;
+            $row = array();
+            $row[] = $no.".";
+            $row[] = ' &nbsp; ' . '<td class="font-weight-medium"><div class="badge badge-dark shadow-lg rounded">' . $usr->nm_event . '</div></td>';
+            $row[] = $usr->nm_user;
+            $row[] = $usr->email;
+            $row[] =$editButton. $hapusButton  ;
+            $data[] = $row;
+        }
+        $output = array(
+                    "draw" => @$_POST['draw'],
+                    "recordsTotal" => $this->User_model->count_all($agency),
+                    "recordsFiltered" => $this->User_model->count_filtered($agency),
+                    "data" => $data,
+                );
+
+        echo json_encode($output);
+    }
+
+    function tambah_userscan()
+    {
+        $data = array(
+            'agency'     => $this->input->post('agency'),
+            'id_event'     => $this->input->post('id_event'),
+            'nm_user'    => $this->input->post('nama'),
+            'email'      => $this->input->post('email'),
+            'password'   => md5($this->input->post('password')),
+            'privilage'  => 'scan',
+            'fot_profil' => 'default.png'
+        );
+
+        $result = $this->User_model->save_userScan($data);
+
+        if ($result) {
+            $response = array('status' => 'success', 'message' => 'Data berhasil disimpan.');
+        } else {
+            $response = array('status' => 'error', 'message' => 'Gagal menyimpan data.');
+        }
+
+        echo json_encode($response);
+    }
+
+    public function edit_userScan() {
+        $id = $this->input->post('id_user');
+        $agency = $this->input->post('agency');
+        $nm_user = $this->input->post('nama');
+        $id_event = $this->input->post('id_event');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+            // var_dump($_POST);
+
+        if (!empty($id)) {
+            $data = array(
+                'agency' => $agency,
+                'nm_user' => $nm_user,
+                'id_event' => $id_event,
+                'email' => $email,
+                'password' => md5($this->input->post('password')),
+            );
+
+            $update_status = $this->User_model->update_data('user', $data, $id);
+
+            if ($update_status) {
+                $response['status'] = true;
+                $response['message'] = 'Data berhasil diperbarui.';
+            } else {
+                $response['status'] = false;
+                $response['message'] = 'Terjadi kesalahan saat memperbarui data di database.';
+            }
+        } else {
+            $response['status'] = false;
+            $response['message'] = 'ID tidak valid. Data tidak dapat diperbarui.';
+        }
+
+        $this->output->set_content_type('application/json');
+        $this->output->set_output(json_encode($response));
+    }
 
 }

@@ -8,12 +8,12 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	// Offline development
-	// 'username' => 'root',
-	// 'password' => '',
+	'username' => 'root',
+	'password' => '',
 
 	// Online Production
-	'username' => 'wisy2434_wisdil',
-	'password' => 'wisdil2023',
+	// 'username' => 'wisy2434_wisdil',
+	// 'password' => 'wisdil2023',
 
 	'database' => 'wisy2434_wisdil',
 	'dbdriver' => 'mysqli',
