@@ -30,6 +30,7 @@
 
     <!-- MAIN Project CSS file -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/main.css">
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/blog.css">
 
     <!-- add plugin -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" />

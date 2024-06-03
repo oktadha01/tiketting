@@ -1,35 +1,29 @@
 <script>
 $(function() {
     const swiper = new Swiper('.slider1', {
-        spaceBetween: 20, //何ピクセル画像の間隔をあけるか
-        centeredSlides: true, //見切らせたい場合メイン画像をセンターにもってくるか
-        // centerMode: true,
-        // // centerPadding: '10%',
-        slidesPerView: 1, //画像を何枚表示するか
-        breakpoints: { //レスポンシブ ※小さい幅から指定する
+        spaceBetween: 20,
+        centeredSlides: true,
+        slidesPerView: 1,
+        breakpoints: {
             600: {
                 slidesPerView: 1.5,
             },
-            // 1200px以上の場合
             1200: {
                 slidesPerView: 2.5,
             },
         },
-        //自動再生する場合
         autoplay: {
-            delay: 3000, //3秒後に次の画像に代わる
+            delay: 3000,
         },
 
-        loop: true, //最後の画像までいったらループする
+        loop: true,
 
-        //ページネーションをつける場合 ※HTMLと合わせる
         pagination: {
             el: '.swiper-pagination',
             type: 'bullets',
             clickable: true,
         },
 
-        //左右のナビゲーションをつける場合 ※HTMLと合わせる
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -96,4 +90,75 @@ const splide = new Splide(".splide", {
 });
 
 splide.mount();
+</script>
+
+<script>
+$(document).ready(function() {
+
+    var limit = 6;
+    var start = 0;
+    var action = 'inactive';
+
+    function lazy_loader() {
+        var output = '';
+        output += '<div class="post_data">';
+        output += '<p><span class="content-placeholder" style="width:100%; height: 30px;">&nbsp;</span></p>';
+        output += '<p><span class="content-placeholder" style="width:100%; height: 100px;">&nbsp;</span></p>';
+        output += '</div>';
+        $('#load_data_message').html(output);
+    }
+
+    lazy_loader();
+
+    function load_data(limit, start, search = '') {
+        $.ajax({
+            url: "<?php echo base_url(); ?>Home/berita",
+            method: "POST",
+            data: {
+                limit: limit,
+                start: start,
+                search: search
+            },
+            cache: false,
+            success: function(data) {
+                $('#load_data').append(data);
+                $('#load_data_message').html("");
+                action = 'inactive';
+            }
+        });
+    }
+
+    if (action == 'inactive') {
+        action = 'active';
+        load_data(limit, start);
+    }
+
+    function reload_data() {
+        $('#load_data').html('');
+        lazy_loader();
+        load_data(limit, start);
+    }
+});
+
+$(document).on('click', '.add-view', function() {
+    var id_article = $(this).data('id_article');
+
+    $.ajax({
+        type: 'POST',
+        url: "<?php echo site_url('Berita/add_views'); ?>",
+        data: {
+            id_article: id_article
+        },
+        success: function(data) {
+            console.log("ID Artikel:", id_article);
+            console.log(data);
+        },
+        error: function(xhr, status, error) {
+            console.log("ID Artikel:", id_article);
+            console.log("Error:", error);
+            alert("Gagal memperbarui artikel.");
+        }
+    });
+
+});
 </script>

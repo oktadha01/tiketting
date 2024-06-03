@@ -1,0 +1,73 @@
+
+.profile-header {
+    height: 82%;
+}
+
+.overlay-text-container {
+    position: absolute;
+    top: 42%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 7px;
+    text-align: left;
+    /* color: #ffffff; */
+}
+
+.overlay-text-container h4 {
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.qrcode {
+    position: absolute;
+    top: 45%;
+    left: 78%;
+    transform: translate(-50%, -50%);
+    text-align: right;
+}
+
+.logo {
+    position: absolute;
+    top: 12%;
+    left: 16%;
+    transform: translate(-50%, -50%);
+    text-align: right;
+}
+
+.logo img {
+    width: 50px;
+    height: auto;
+}
+
+.qrcode img {
+    width: 95px;
+    height: auto;
+}
+
+.kode-tiket {
+    position: absolute;
+    top: 64%;
+    left: 74%;
+    transform: translate(-50%, -50%);
+    text-align: right;
+    /* color: #fff; */
+}
+
+.email {
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.kode-tiket p {
+    font-size: 12px;
+}
+
+.kode-tiket h6 {
+    font-size: 14px;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 1024px) and (orientation: landscape) {
+    .profile-header {
+        height: 90%;
+    }
+}

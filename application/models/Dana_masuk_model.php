@@ -57,7 +57,7 @@ class Dana_masuk_model extends CI_Model
 
     public function get_event_menu($limit, $start, $id_user,$search = '')
     {
-        $this->db->select('*');
+        $this->db->select('event.*, user.id_user, user.agency');
         $this->db->from('event');
         $this->db->join('user', 'user.id_user = event.id_user');
         $this->db->where('event.id_user', $id_user);

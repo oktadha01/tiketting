@@ -141,6 +141,10 @@ $('#tambah-data').on('hidden.bs.modal', function() {
 $('#tambah-data').submit(function(event) {
     event.preventDefault();
 
+    $('#btn-text').hide();
+    $('#loading-icon').show();
+    $('#btn-simpan').attr('disabled', true);
+
     var id_event = $('#id-event').val();
     var nama_artis = $('#nama-artis').val();
     var status_perform = $('#status-perform').val();
@@ -155,6 +159,10 @@ $('#tambah-data').submit(function(event) {
         },
         dataType: 'json',
         success: function(response) {
+            $('#btn-text').hide();
+            $('#loading-icon').show();
+            $('#btn-simpan').attr('disabled', true);
+
             if (response.status) {
 
                 Swal.fire({
@@ -180,6 +188,10 @@ $('#tambah-data').submit(function(event) {
             }
         },
         error: function(xhr, status, error) {
+            $('#btn-text').hide();
+            $('#loading-icon').show();
+            $('#btn-simpan').attr('disabled', true);
+
             console.error(xhr.responseText);
 
             Swal.fire({

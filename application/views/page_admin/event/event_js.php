@@ -49,6 +49,26 @@ $('#edit-kota').on('change', function() {
     // console.log('Kota terpilih:', $(this).val());
 });
 
+// kategori event
+function ketegori_event() {
+    $.ajax({
+        url: '<?=site_url('Event/get_kategori_event')?>',
+        type: 'GET',
+        success: function(data) {
+            $('#kategori_event').html(data);
+        },
+        error: function() {
+            console.error('Error fetching data.');
+        }
+    });
+}
+
+ketegori_event();
+
+$('#kategori_event').on('change', function() {
+    // console.log('kategori terpilih:', $(this).val());
+});
+
 $(document).ready(function() {
     var table;
 
@@ -160,6 +180,10 @@ $('#tambah-data').on('hidden.bs.modal', function() {
 $('#tambah-data').submit(function(event) {
     event.preventDefault();
 
+    $('#btn-text').hide();
+    $('#loading-icon').show();
+    $('#btn-simpan').attr('disabled', true);
+
     var formData = new FormData($('#event-baru')[0]);
 
     $.ajax({
@@ -170,6 +194,10 @@ $('#tambah-data').submit(function(event) {
         processData: false,
         dataType: 'json',
         success: function(response) {
+            $('#btn-text').hide();
+            $('#loading-icon').show();
+            $('#btn-simpan').attr('disabled', true);
+
             if (response.status) {
                 Swal.fire({
                     icon: 'success',
@@ -196,6 +224,10 @@ $('#tambah-data').submit(function(event) {
             }
         },
         error: function(xhr, status, error) {
+            $('#btn-text').hide();
+            $('#loading-icon').show();
+            $('#btn-simpan').attr('disabled', true);
+
             console.error(xhr.responseText);
             Swal.fire({
                 icon: 'error',
@@ -259,7 +291,7 @@ $(document).ready(function() {
 });
 
 $('#edit-event').on('hidden.bs.modal', function() {
-    $('##ubah-event')[0].reset();
+    $('#ubah-event')[0].reset();
 
     $('.dropify-clear').trigger('click');
     $('.dropify-preview .dropify-render img').attr('src', '');
