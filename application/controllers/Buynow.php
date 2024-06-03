@@ -426,93 +426,114 @@ class Buynow extends CI_Controller
                 };
             };
         }
-        $subtotal = $nominal * 0.03 + 7850 + $nominal;
-        xendit_loaded();
-        $this->db->trans_begin();
-
-        try {
-
-            // code xendit
-            $successRedirectUrl = base_url('Transaction/CB/') . $code_bayar;
-
-            $data_faktur = [
-                "external_id"       => $code_bayar,
-                "description"       => "Pembayaran Tiket Wisdil Kode Bayar: $code_bayar Kode Tiket: $code_tiket nama:$nama",
-                "amount"            => preg_replace('/[Rp. ]/', '', $subtotal),
-                'invoice_duration'  => 3600,
-                'customer' => [
-                    'given_names'   => $nama,
-                    'surname'       => $code_tiket,
-                    'mobile_number' => $kontak,
-                ],
-
-                'success_redirect_url' => $successRedirectUrl,
-                'failure_redirect_url' => "http://localhost:8080/tiketting/Buynow/failure",
-            ];
-
-
+        if ($nominal == '0') {
+            $subtotal = '0';
             $tgl_trx = date('d-m-Y H:i:s');
-            $createInvoice  = Invoice::create($data_faktur);
-            $payment_url    = $createInvoice['invoice_url'];
-
             $data_transaksi = [
 
                 'id_customer'       => $id_customer,
                 'id_event'          => $id_event,
                 'code_bayar'        => $code_bayar,
                 'jumlah_tiket'      => $jmlh,
-                'nominal'           => preg_replace('/[Rp. ]/', '', $nominal),
-                'subtotal'          => preg_replace('/[Rp. ]/', '', $subtotal),
+                'nominal'           => preg_replace('/[Rp. ]/', '', $subtotal),
                 'tgl_transaksi'     => $tgl_trx,
-                'url_payment'       => $payment_url,
+                'tgl_byr'           => $tgl_trx,
+                'url_payment'       => 'free',
+                'status_transaksi'  => '1',
 
             ];
 
             $this->M_buynow->insert_transaksi($data_transaksi);
-            $this->db->trans_commit();
 
-            $response = [
-                'status' => true,
-                'message' => 'Success',
-                'data' => [
-                    'payment_url' => $payment_url,
-                ],
-            ];
+        } else {
+            $subtotal = $nominal * 0.03 + 7850 + $nominal;
 
-            $this->output
+            xendit_loaded();
+            $this->db->trans_begin();
+
+            try {
+
+                // code xendit
+                $successRedirectUrl = base_url('Transaction/CB/') . $code_bayar;
+
+                $data_faktur = [
+                    "external_id"       => $code_bayar,
+                    "description"       => "Pembayaran Tiket Wisdil Kode Bayar: $code_bayar Kode Tiket: $code_tiket nama:$nama",
+                    "amount"            => preg_replace('/[Rp. ]/', '', $subtotal),
+                    'invoice_duration'  => 3600,
+                    'customer' => [
+                        'given_names'   => $nama,
+                        'surname'       => $code_tiket,
+                        'mobile_number' => $kontak,
+                    ],
+
+                    'success_redirect_url' => $successRedirectUrl,
+                    'failure_redirect_url' => "http://localhost:8080/tiketting/Buynow/failure",
+                ];
+
+
+                $tgl_trx = date('d-m-Y H:i:s');
+                $createInvoice  = Invoice::create($data_faktur);
+                $payment_url    = $createInvoice['invoice_url'];
+
+                $data_transaksi = [
+
+                    'id_customer'       => $id_customer,
+                    'id_event'          => $id_event,
+                    'code_bayar'        => $code_bayar,
+                    'jumlah_tiket'      => $jmlh,
+                    'nominal'          => preg_replace('/[Rp. ]/', '', $subtotal),
+                    'tgl_transaksi'     => $tgl_trx,
+                    'url_payment'       => $payment_url,
+
+                ];
+
+                $this->M_buynow->insert_transaksi($data_transaksi);
+                $this->db->trans_commit();
+
+                $response = [
+                    'status' => true,
+                    'message' => 'Success',
+                    'data' => [
+                        'payment_url' => $payment_url,
+                    ],
+                ];
+
+                $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($response));
+
+                redirect($payment_url);
+            } catch (\Xendit\Exceptions\ApiException $e) {
+                $this->db->trans_rollback();
+
+                $response = [
+                    'status'       => false,
+                    'errors'       => [
+                        'message'  => $e->getMessage(),
+                        'type'     => 'xendit',
+                    ],
+                    'detail'       => [],
+                ];
+
+                $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($response));
+            } catch (Exception $e) {
+                $this->db->trans_rollback();
+                $response = [
+                    'status' => false,
+                    'errors' => [
+                        'message' => $e->getMessage(),
+                        'type' => 'input',
+                    ],
+                    'detail' => [],
+                ];
+            }
+            return $this->output
                 ->set_content_type('application/json')
                 ->set_output(json_encode($response));
-
-            redirect($payment_url);
-        } catch (\Xendit\Exceptions\ApiException $e) {
-            $this->db->trans_rollback();
-
-            $response = [
-                'status'       => false,
-                'errors'       => [
-                    'message'  => $e->getMessage(),
-                    'type'     => 'xendit',
-                ],
-                'detail'       => [],
-            ];
-
-            $this->output
-                ->set_content_type('application/json')
-                ->set_output(json_encode($response));
-        } catch (Exception $e) {
-            $this->db->trans_rollback();
-            $response = [
-                'status' => false,
-                'errors' => [
-                    'message' => $e->getMessage(),
-                    'type' => 'input',
-                ],
-                'detail' => [],
-            ];
         }
-        return $this->output
-            ->set_content_type('application/json')
-            ->set_output(json_encode($response));
     }
 
     public function failure()
@@ -520,7 +541,7 @@ class Buynow extends CI_Controller
         echo "Pembayaran Gagal";
 
         echo '<script>
-                setTimeout(function(){
+        setTimeout(function(){
                     window.location.href = "' . base_url('detail/event/kanpa-fest') . '";
                 }, 3000);
             </script>';

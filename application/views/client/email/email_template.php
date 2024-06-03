@@ -153,7 +153,7 @@
                                                                                     <p style="color:#737374;font-size:13px;margin:0px;padding:0px">Jumlah bayar </p>
                                                                                 </td>
                                                                                 <td align="left" style="width:50%;margin:0px;padding:0px;padding-bottom:3px" valign="top">
-                                                                                    <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : Rp. <?= number_format($transaksi['nominal'], 0, ',', '.'); ?> </p>
+                                                                                    <p style="font-size:13px;margin:0px;padding:0px; color:black;"> : <?= $transaksi['nominal']; ?> </p>
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
