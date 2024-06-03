@@ -128,7 +128,7 @@
                     <!-- form reset password -->
                     <div class="input-field form-email-rest mb-0 form-rest-pass" hidden>
                         <i class="fa fa-envelope"></i>
-                        <input type="email" class="email-rest" placeholder="Email" autofocus autocomplete="current-email" />
+                        <input type="email" class="email-rest" placeholder="Email" name="email-rest" autofocus autocomplete="current-email" />
                     </div>
                     <span class="notif-email form-rest-pass" hidden style="border: none;"></span>
                     <div class="row form-rest-pass" hidden>
