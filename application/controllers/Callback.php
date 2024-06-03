@@ -12,6 +12,7 @@ class Callback extends CI_Controller
     public $M_transaksi;
     public $M_callback;
     public $email;
+    public $uri;
 
     function __construct()
     {
@@ -118,15 +119,22 @@ class Callback extends CI_Controller
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
     }
-
+    function event_free_tiket()
+    {
+        $_externalId = $this->uri->segment(3);
+        $_paymentChannel = '-';
+        $datetime = date('d-m-Y H:i:s');
+        $_amount = 'free';
+        $this->send_email($_externalId, $_paymentChannel, $datetime, $_amount);
+    }
     // function send_email()
     function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
     {
         // CB-54020215-0006
-        // $_externalId = 'CB-54030817-0003';
+        // $_externalId = 'CB-53053117-0003';
         // $_paymentChannel = 'BCA';
         // $datetime = '10-12-2024 09:00';
-        // $_amount = '100000';
+
         // echo $_externalId;
         // echo '<br>';
         // echo $_paymentChannel;
@@ -135,6 +143,10 @@ class Callback extends CI_Controller
         // echo '<br>';
         // echo $_amount;
         // echo '<br>';
+        if ($_amount == 'free') {
+        } else {
+            $_amount = 'Rp. ' . number_format($_amount, 0, ',', '.');
+        }
 
         $data['data_tiket'] = $this->M_callback->m_data_tiket($_externalId);
         $data['transaksi'] = $this->M_callback->m_data_transaksi($_externalId);
@@ -205,6 +217,6 @@ class Callback extends CI_Controller
 
         // Assuming the email configuration is properly set up elsewhere in your code
         $this->email->send();
-        // redirect(base_url('konfrim_akun'));
+        redirect(base_url('Transaction/CB/') . $_externalId);
     }
 }
