@@ -184,7 +184,7 @@ class Auth extends CI_Controller
 	function ins_token_pass()
 	{
 		// $email = 'oktadha01@gmail.com';
-		$email = $_POST['email-rest'];
+		$email = $_POST['email'];
 		$token = md5($email . date("dmYHis"));
 		$this->M_auth->update_token_customer($email, $token);
 
