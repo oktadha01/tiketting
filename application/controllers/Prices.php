@@ -276,14 +276,14 @@ class Prices extends AUTH_Controller
         );
 
         // var_dump($data);
-
+        
         $update = array(
             'stock_tiket' => $this->input->post('tiket_reg'),
         );
 
         $result = $this->Prices_model->save_bundle($data);
         $update_status = $this->Prices_model->update_data('price', $update, $id_price);
-
+        
         if ($result && $update_status) {
             $response = array('status' => 'success', 'message' => 'Data berhasil disimpan.');
         } else {
@@ -336,18 +336,19 @@ class Prices extends AUTH_Controller
     {
         $output = '';
 
+        $privilage = $this->session->userdata('userdata')->privilage;
         $id_user = $this->session->userdata('userdata')->id_user;
         $limit = $this->input->post('limit');
         $start = $this->input->post('start');
         $search = $this->input->post('search');
-
-        $data = $this->Prices_model->get_event_menu($limit, $start, $id_user, $search);
-
+        
+        $data = $this->Prices_model->get_event_menu($limit, $start, $id_user, $search, $privilage);
+        
         if ($data->num_rows() > 0) {
             foreach ($data->result() as $event) {
                 $output .= '
-                    <div class="col-lg-3 col-md-4 col-sm-12 p-0 m-0">
-                        <div class="card product_item" style="max-width: 90%;">
+                <div class="col-lg-3 col-md-4 col-sm-12 p-0 m-0">
+                <div class="card product_item" style="max-width: 90%;">
                             <div class="body m-1 p-1">
                                 <div class="cp_img">
                                     <img src="' . base_url('upload/event/' . $event->poster) . '" alt="Product" class="img-fluid" style="max-width: 75%; height: auto; display: block; margin: 0 auto;">

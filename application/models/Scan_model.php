@@ -1,10 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Scan_model extends CI_Model
 {
     var $column_ordertrx = array(null, 'tiket.nama', 'tiket.gender', 'tiket.email', 'tiket.kontak');
-    var $column_searchtrx = array('tiket.nama', 'tiket.gender', 'tiket.email', 'tiket.kontak','tiket.code_tiket');
+    var $column_searchtrx = array('tiket.nama', 'tiket.gender', 'tiket.email', 'tiket.kontak', 'tiket.code_tiket');
     var $ordertrx = array('tiket.id_tiket' => 'asc');
 
     private function _get_datatables($id_event, $status_filter)
@@ -19,42 +19,45 @@ class Scan_model extends CI_Model
             $this->db->where('tiket.status_tiket', $status_filter);
         }
 
-            $i = 0;
-            foreach ($this->column_searchtrx as $trx) {
-                if (@$_POST['search']['value']) {
-                    if ($i === 0) {
-                        $this->db->group_start();
-                        $this->db->like($trx, $_POST['search']['value']);
-                    } else {
-                        $this->db->or_like($trx, $_POST['search']['value']);
-                    }
-                    if (count($this->column_searchtrx) - 1 == $i)
-                        $this->db->group_end();
+        $i = 0;
+        foreach ($this->column_searchtrx as $trx) {
+            if (@$_POST['search']['value']) {
+                if ($i === 0) {
+                    $this->db->group_start();
+                    $this->db->like($trx, $_POST['search']['value']);
+                } else {
+                    $this->db->or_like($trx, $_POST['search']['value']);
                 }
-                $i++;
+                if (count($this->column_searchtrx) - 1 == $i)
+                    $this->db->group_end();
             }
+            $i++;
+        }
 
-            if (isset($_POST['order'])) {
-                $this->db->order_by($this->column_ordertrx[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
-            } else if (isset($this->order)) {
-                $order = $this->order;
-                $this->db->order_by(key($order), $order[key($order)]);
-            }
+        if (isset($_POST['order'])) {
+            $this->db->order_by($this->column_ordertrx[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } else if (isset($this->order)) {
+            $order = $this->order;
+            $this->db->order_by(key($order), $order[key($order)]);
+        }
     }
 
-    function get_datatablest($id_event, $status_filter) {
+    function get_datatablest($id_event, $status_filter)
+    {
         $this->_get_datatables($id_event, $status_filter);
-        if(@$_POST['length'] != -1)
-        $this->db->limit(@$_POST['length'], @$_POST['start']);
+        if (@$_POST['length'] != -1)
+            $this->db->limit(@$_POST['length'], @$_POST['start']);
         $query = $this->db->get();
         return $query->result();
     }
-    function count_filtereds($id_event, $status_filter) {
+    function count_filtereds($id_event, $status_filter)
+    {
         $this->_get_datatables($id_event, $status_filter);
         $query = $this->db->get();
         return $query->num_rows();
     }
-    function count_all($id_event, $status_filter) {
+    function count_all($id_event, $status_filter)
+    {
         $this->_get_datatables($id_event, $status_filter);
         return $this->db->count_all_results();
     }
@@ -68,7 +71,8 @@ class Scan_model extends CI_Model
         return $query->result();
     }
 
-    public function update_status_tiket($codeTiket) {
+    public function update_status_tiket($codeTiket)
+    {
         $data = array('status_tiket' => 1);
         $this->db->where('code_tiket', $codeTiket);
         $this->db->update('tiket', $data);
@@ -76,22 +80,40 @@ class Scan_model extends CI_Model
         return array('success' => true);
     }
 
-    public function get_event_menu($limit, $start, $search = '')
+    public function get_event_menu($limit, $start, $search = '', $id_user, $privilage)
     {
-        $this->db->select('*');
-        $this->db->from('event');
-        $this->db->join('user', 'user.id_user = event.id_user');
+        if ($privilage == 'Admin') {
+            $this->db->select('*');
+            $this->db->from('event');
+            $this->db->join('user', 'user.id_user = event.id_user');
 
-        // Tambahkan kondisi pencarian jika ada
-        if (!empty($search)) {
-            $this->db->like('nm_event', $search);
+            // Tambahkan kondisi pencarian jika ada
+            if (!empty($search)) {
+                $this->db->like('event.nm_event', $search);
+            }
+
+            $this->db->order_by("event.id_event", "DESC");
+            $this->db->limit($limit, $start);
+            $query = $this->db->get();
+
+            return $query;
+        } else if ($privilage == 'User') {
+            $this->db->select('*');
+            $this->db->from('event');
+            $this->db->join('user', 'user.id_user = event.id_user');
+            $this->db->where('user.id_user', $id_user);
+
+            // Tambahkan kondisi pencarian jika ada
+            if (!empty($search)) {
+                $this->db->like('event.nm_event', $search);
+            }
+
+            $this->db->order_by("event.id_event", "DESC");
+            $this->db->limit($limit, $start);
+            $query = $this->db->get();
+
+            return $query;
         }
-
-        $this->db->order_by("id_event", "DESC");
-        $this->db->limit($limit, $start);
-        $query = $this->db->get();
-
-        return $query;
     }
 
     public function get_total_tiket($id_user)
@@ -117,5 +139,4 @@ class Scan_model extends CI_Model
         $query = $this->db->get();
         return $query->row();
     }
-
 }
