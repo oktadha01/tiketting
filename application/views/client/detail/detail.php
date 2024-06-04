@@ -152,11 +152,11 @@
                             <?php endforeach; ?>
                         </ul>
                     </div>
-                    <?php if ($data->tgl_event < date("d/m/Y")) { ?>
+                    <?php if (strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
+                    <?php } else { ?>
                         <div class="card-footer card-footer-tiket-detail">
                             <div class="row">
                                 <div class="col-6">
-
                                     <span class="small">Subtotal </span><br>
                                     <input id="in-subtotal" type="text" value="0" hidden>
                                     <span id="subtotal" class="medium font-weight-bold">Rp. 0,-</span>
@@ -172,11 +172,7 @@
                                 </div>
                             </div>
                         </div>
-                    <?php
-                    } else { ?>
-                    <?php
-                    } ?>
-
+                    <?php } ?>
                 </div>
             </div>
         </div>
