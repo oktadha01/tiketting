@@ -270,6 +270,18 @@ $('#tambah-data').submit(function(event) {
 // akhir kode simpan data
 
 $(document).ready(function() {
+    $('#ubah-harga').on('shown.bs.modal', function() {
+        perbaruiStatusedit();
+        perbaruipromokel();
+    });
+
+    $('#edit-status').change(function() {
+        perbaruiStatusedit();
+    });
+    $('#edit-promo-kel').change(function() {
+        perbaruipromokel();
+    });
+
     $(document).on('click', '.btn-edit', function() {
         var id_price = $(this).data('id_price');
         var id_event = $(this).data('id_event');
@@ -279,8 +291,8 @@ $(document).ready(function() {
         var stock_tiket = $(this).data('stock_tiket');
         var akhir_promo = $(this).data('akhir_promo');
         var status = $(this).data('status');
-        var buy = $('beli').val();
-        var free = $('gratis').val();
+        var buy = $(this).data('beli');
+        var free = $(this).data('gratis');
 
         $('#ubah-price #id-price').val(id_price);
         $('#ubah-price #edit-id-event').val(id_event);
@@ -290,29 +302,73 @@ $(document).ready(function() {
         $('#ubah-price #edit-stock-tiket').val(stock_tiket);
         $('#ubah-price #edit-akhir').val(akhir_promo);
         $('#ubah-price #edit-status').prop('checked', status == 1);
-        $('#ubah-price #edit-promo-kel').prop('checked', beli > 1);
-        $('#ubah-price #edit-buy').val(buy);
-        $('#ubah-price #edit-free').val(free);
+        $('#ubah-price #edit-promo-kel').prop('checked', buy > 1);
+        $('#ubah-price #buy-input-edit').val(buy);
+        $('#ubah-price #free-input-edit').val(free);
 
-        perbaruiStatusedit();
+        perbaruipromokel();
+
     });
 });
 
 // check status tanggal akhir pre sale untuk edit
 function perbaruiStatusedit() {
     var checkboxStatus = document.getElementById('edit-status');
+    var checkboxkelipatan = document.getElementById('edit-promo-kel');
+
     var nilaiStatus = checkboxStatus.checked ? 1 : 0;
     // console.log('Nilai Status:', nilaiStatus);
 
-    var dueKategoriContainer = document.getElementById('due-kategori-edit');
+    var dueKategoriContainer = document.getElementById('due-kategori-container-edit');
+    var promo_kelipatan = document.getElementById('edit-promo-kelipatan');
 
     if (nilaiStatus === 1) {
         dueKategoriContainer.style.display = 'block';
+        promo_kelipatan.style.display = 'block';
     } else {
         dueKategoriContainer.style.display = 'none';
+        promo_kelipatan.style.display = 'none';
     }
     return nilaiStatus;
 }
+
+function perbaruipromokel() {
+    var checkboxkelipatan = document.getElementById('edit-promo-kel');
+    var buy = document.getElementById('buy-input-edit').value;
+
+    var nilaikelipatan;
+    if (checkboxkelipatan.checked) {
+        if (buy == 2) {
+            nilaikelipatan = 2;
+        } else if (buy == 3) {
+            nilaikelipatan = 3;
+        } else if (buy == 4) {
+            nilaikelipatan = 4;
+        } else {
+            nilaikelipatan = 0;
+        }
+    } else {
+        nilaikelipatan = 0;
+    }
+
+    // console.log('Nilai promo:', nilaikelipatan);
+
+    var buy_edit = document.getElementById('buy-edit');
+    var free_edit = document.getElementById('free-edit');
+    var warning_edit = document.getElementById('warning-edit');
+
+    if (nilaikelipatan > 1) {
+        buy_edit.style.display = 'block';
+        free_edit.style.display = 'block';
+        warning_edit.style.display = 'block';
+    } else {
+        buy_edit.style.display = 'none';
+        free_edit.style.display = 'none';
+        warning_edit.style.display = 'none';
+    }
+    return nilaikelipatan;
+}
+
 
 $('#ubah-price').submit(function(e) {
     e.preventDefault();
@@ -544,14 +600,14 @@ $('#buat-bundling').submit(function(event) {
 $(document).ready(function() {
     $(document).on('click', '.btn-edit-bundling', function() {
         var id_price = $(this).data('id_price');
-        var id_event = $(this).data('id_event');
+        // var id_event = $(this).data('id_event');
         var kategori_price = $(this).data('kategori_price');
         var harga_bundling = $(this).data('tiket');
         var stock_bundling = $(this).data('stock_tiket');
         var isi_bundling = $(this).data('tiket_bundle');
 
         $('#edit-bundling #edit-id-price-bundle').val(id_price);
-        $('#edit-bundling #id-event-bundle').val(id_event);
+        // $('#edit-bundling #id-event-bundle').val(id_event);
         $('#edit-bundling #edit-nm-bundling').val(kategori_price);
         $('#edit-bundling #edit-harga-bundling').val(harga_bundling);
         $('#edit-bundling #edit-isi-bundle').val(isi_bundling);
@@ -614,7 +670,7 @@ $('#edit-bundling').submit(function(e) {
 
     var formData = {
         id_price: $('#edit-id-price-bundle').val(),
-        id_event: $('#id-event-bundle').val(),
+        // id_event: $('#id-event-bundle').val(),
         kategori_price: $('#edit-nm-bundling').val(),
         harga: $('#edit-harga-bundling').val(),
         stock_tiket: $('#edit-stock-bundle').val(),
