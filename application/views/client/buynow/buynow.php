@@ -91,7 +91,7 @@
                                 <p class="small mb-0"><i class="fa fa-calendar"></i> <?= $data->tgl_event; ?> |
                                     <?= $data->jam_event; ?></p>
                                 <p class="small "><i class="fa fa-map-marker"></i> <?= $data->lokasi; ?> |
-                                    <?= $data->kota; ?></p>
+                                    <?= $data->nama; ?></p>
                             <?php endforeach; ?>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
@@ -357,27 +357,42 @@
                             $tiket = "(SELECT * FROM price WHERE id_price = $kategori)";
                             $query = $this->db->query($tiket);
                             foreach ($query->result() as $rows) {
-                                $total = $rows->harga * $count + $total;
-                                $fee = $total * 0.03 + 7850;
+                                if ($rows->harga == '0') {
+                                    $total = '0';
+                                    $fee = '0';
+                                } else {
+                                    $total = $rows->harga * $count + $total;
+                                    $fee = $total * 0.03 + 7850;
+                                }
 
                     ?>
 
                                 <div class="row bg-white">
                                     <div class="col-6">
                                         <span class="medium font-weight-bold"><?= $rows->kategori_price; ?></span><br>
-                                        <span class="small ">
-                                            Rp. <?= number_format($rows->harga, 0, ',', '.'); ?>
-                                            x<?= $count; ?>
+                                        <?php if ($fee == '0') { ?>
 
-                                            <?php
-                                            if ($rows->status_bundling == '0' and $count >= $rows->beli and $rows->gratis > '0') { ?>
-                                                <sup> Free x<?= $rows->gratis; ?></sup>
-                                            <?php } ?>
-                                        </span>
+                                        <?php } else { ?>
+                                            <span class="small ">
+                                                Rp. <?= number_format($rows->harga, 0, ',', '.'); ?>
+                                                x<?= $count; ?>
+
+                                                <?php
+                                                if ($rows->status_bundling == '0' and $count >= $rows->beli and $rows->gratis > '0') { ?>
+                                                    <sup> Free x<?= $rows->gratis; ?></sup>
+                                                <?php } ?>
+                                            </span>
+                                        <?php } ?>
+
                                     </div>
                                     <div class="col-6">
-                                        <span class="medium font-weight-bold float-right">Rp.
-                                            <?= number_format($rows->harga * $count, 0, ',', '.'); ?></span><br>
+                                        <?php if ($fee == '0') { ?>
+                                            <span class="medium font-weight-bold float-right"><?= $count; ?> x</span><br>
+                                        <?php } else { ?>
+                                            <span class="medium font-weight-bold float-right">Rp.
+                                                <?= number_format($rows->harga * $count, 0, ',', '.'); ?></span><br>
+                                        <?php } ?>
+
                                     </div>
                                 </div>
                     <?php
@@ -385,28 +400,37 @@
                         }
                     }
                     ?>
-                    <div class="row bg-white">
-                        <div class="col-6">
-                            <span class="medium font-weight-bold">Total Tiket</span>
+                    <?php if ($fee == '0') { ?>
+
+                    <?php } else { ?>
+                        <div class="row bg-white">
+                            <div class="col-6">
+                                <span class="medium font-weight-bold">Total Tiket</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="medium font-weight-bold float-right">Rp. <?= number_format($total, 0, ',', '.'); ?></span>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <span class="medium font-weight-bold float-right">Rp. <?= number_format($total, 0, ',', '.'); ?></span>
+                        <div class="row bg-white">
+                            <div class="col-6">
+                                <span class="medium font-weight-bold">Internet fee</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="medium font-weight-bold float-right">Rp. <?= number_format($fee, 0, ',', '.'); ?></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row bg-white">
-                        <div class="col-6">
-                            <span class="medium font-weight-bold">Internet fee</span>
-                        </div>
-                        <div class="col-6">
-                            <span class="medium font-weight-bold float-right">Rp. <?= number_format($fee, 0, ',', '.'); ?></span>
-                        </div>
-                    </div>
+                    <?php } ?>
+
                     <div class="row bg-white">
                         <div class="col-6">
                             <span class="medium font-weight-bold">Total Pembayaran</span>
                         </div>
                         <div class="col-6">
-                            <span class="medium font-weight-bold float-right">Rp. <?= number_format($total + $fee, 0, ',', '.'); ?></span>
+                            <?php if ($fee == '0') { ?>
+                                <span class="medium font-weight-bold float-right">Free</span>
+                            <?php } else { ?>
+                                <span class="medium font-weight-bold float-right">Rp. <?= number_format($total + $fee, 0, ',', '.'); ?></span>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="row">

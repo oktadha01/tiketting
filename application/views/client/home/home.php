@@ -2,9 +2,9 @@
     <div class="swiper slider1 container-fluid" style=" padding: 0px 5px;">
         <div class="swiper-wrapper">
             <?php foreach ($banner as $data) { ?>
-            <div class="swiper-slide">
-                <img src="<?= base_url('upload'); ?>/banner/<?= $data->header ?>" class="slide-item" alt="">
-            </div>
+                <div class="swiper-slide">
+                    <img src="<?= base_url('upload'); ?>/banner/<?= $data->header ?>" class="slide-item" alt="">
+                </div>
             <?php } ?>
         </div>
         <div class="swiper-pagination"></div>
@@ -27,8 +27,7 @@
                 <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/seminar.png" alt="">
             </div>
             <div class="kategori-event p-0 mt-2">
-                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/pertunjukan.png" alt=""
-                    style="width: inherit;">
+                <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/pertunjukan.png" alt="" style="width: inherit;">
             </div>
             <div class="kategori-event p-0 mt-2">
                 <img class="img-fluid" src="<?= base_url('assets'); ?>/images/kat_menu/wisata.png" alt="">
@@ -47,66 +46,67 @@
             $hargaRP = 'Rp ' . number_format($data->min_price, 0, ',', '.') . ',-';
             // echo date("d/m/Y");
         ?>
-        <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-lg-4 col-md-6 col-12">
 
-            <?php
+                <?php
 
                 // Memeriksa apakah tanggal saat ini lebih besar dari tanggal target
                 if (strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
-            <div class="card border-event min-h-reko-event"
-                style="background: #cfcdcd; -webkit-filter: grayscale(100%); filter: grayscale(100%);">
-                <?php
+                    <div class="card border-event min-h-reko-event" style="background: #cfcdcd; -webkit-filter: grayscale(100%); filter: grayscale(100%);">
+                    <?php
                 } else { ?>
-                <div class="card border-event box-shadow">
-                    <?php } ?>
-                    <div class="card-body p-card">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-6">
-                                <div class="img-poster">
-                                    <img src="<?= base_url('upload'); ?>/event/<?= $data->poster ?>" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-6">
-                                <h5 class="font-size-post font-weight-bold mt-3"><?= $data->nm_event; ?></h5>
-                                <p class="font-size-det mb-1 small"><i class="fa fa-calendar"></i>
-                                    <?= $data->tgl_event; ?> |
-                                    <?= $data->jam_event; ?></p>
-                                <p class="font-size-det small"><i class="fa fa-map-marker"></i> <?= $data->lokasi; ?> |
-                                    <?= $data->nama; ?></p>
-                                <div class="row" style=" align-items: center;">
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <?php
-                                            // Memeriksa apakah tanggal saat ini lebih besar dari tanggal target
-                                            if (strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
-                                        <span class="font-weight-bold" style="font-size: larger;">Sold Out</span>
-                                        <?php
-                                            } else { ?>
-                                        <span class="small">Start Form</span><br>
-                                        <span class="medium font-weight-bold"><?= $hargaRP; ?> </span>
-                                        <?php } ?>
-
+                        <div class="card border-event box-shadow">
+                        <?php } ?>
+                        <div class="card-body p-card">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-6">
+                                    <div class="img-poster">
+                                        <img src="<?= base_url('upload'); ?>/event/<?= $data->poster ?>" alt="">
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-12">
-                                        <?php
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-6">
+                                    <h5 class="font-size-post font-weight-bold mt-3"><?= $data->nm_event; ?></h5>
+                                    <p class="font-size-det mb-1 small"><i class="fa fa-calendar"></i>
+                                        <?= $data->tgl_event; ?> |
+                                        <?= $data->jam_event; ?></p>
+                                    <p class="font-size-det small"><i class="fa fa-map-marker"></i> <?= $data->lokasi; ?> |
+                                        <?= $data->nama; ?></p>
+                                    <div class="row" style=" align-items: center;">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <?php
                                             // Memeriksa apakah tanggal saat ini lebih besar dari tanggal target
                                             if (strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
-                                        <a class="bg-dark btn col-12 float-right text-light"
-                                            href="<?= site_url('detail/event/') . $event ?>">Berakhir</a>
-                                        <?php
+                                                <span class="font-weight-bold" style="font-size: larger;">Sold Out</span>
+                                            <?php
                                             } else { ?>
-                                        <a class="btn bg-w-orange float-right col-12"
-                                            href="<?= site_url('detail/event/') . $event ?>">Beli Tiket</a>
-                                        <?php } ?>
+                                                <?php if ($data->min_price == '0') { ?>
+                                                    <span class="font-weight-bold" style="font-size:x-large;">FREE</span>
+                                                <?php } else { ?>
+                                                    <span class="small">Start Form</span><br>
+                                                    <span class="medium font-weight-bold"><?= $hargaRP; ?> </span>
+                                                <?php } ?>
+                                            <?php } ?>
+
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <?php
+                                            // Memeriksa apakah tanggal saat ini lebih besar dari tanggal target
+                                            if (strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
+                                                <a class="bg-dark btn col-12 float-right text-light" href="<?= site_url('detail/event/') . $event ?>">Berakhir</a>
+                                            <?php
+                                            } else { ?>
+                                                <a class="btn bg-w-orange float-right col-12" href="<?= site_url('detail/event/') . $event ?>">Beli Tiket</a>
+                                            <?php } ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
-            <?php } ?>
-        </div>
-        <hr>
+            <hr>
 </section>
 
 
@@ -247,8 +247,7 @@
     </div>
     <div id="load_data_message"></div>
     <div class="align-center">
-        <a href="<?= base_url('Berita'); ?>" class=" btn btn-warning btn-custom"><i
-                class="fa fa-pied-piper-alt text-light"></i> &nbsp;Berita
+        <a href="<?= base_url('Berita'); ?>" class=" btn btn-warning btn-custom"><i class="fa fa-pied-piper-alt text-light"></i> &nbsp;Berita
             Lainnya</a>
     </div>
 </section>

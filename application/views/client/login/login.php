@@ -81,7 +81,7 @@
     <div class="container" style="max-width: 100%;">
         <div class="forms-container">
             <div class="signin-signup">
-                <form class="sign-in-form" action="<?= site_url('Auth/login_client') ?>" method="post" method="POST">
+                <form class="sign-in-form" action="<?= base_url('Auth/login_client') ?>" method="POST">
 
                     <!-- Alert -->
                     <?php
@@ -128,7 +128,7 @@
                     <!-- form reset password -->
                     <div class="input-field form-email-rest mb-0 form-rest-pass" hidden>
                         <i class="fa fa-envelope"></i>
-                        <input type="email" class="email-rest" placeholder="Email" name="email" required autofocus autocomplete="current-email" />
+                        <input type="email" class="email-rest" placeholder="Email" autofocus autocomplete="current-email" />
                     </div>
                     <span class="notif-email form-rest-pass" hidden style="border: none;"></span>
                     <div class="row form-rest-pass" hidden>

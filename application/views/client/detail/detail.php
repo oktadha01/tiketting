@@ -112,21 +112,34 @@
                                                 <?= number_format($data->harga, 0, ',', '.'); ?>,-</span>
                                         </div>
                                         <div class="col-6 pt-2">
-                                            <?php if ($data->stock_tiket < $data->beli + $data->gratis + $data->tiket_bundling or $data->tgl_event > date("d/m/Y")) { ?>
+                                            <?php if ($data->stock_tiket < $data->beli + $data->gratis + $data->tiket_bundling or strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
                                                 <button class="btn btn-dark float-right">Sold Out</button>
                                                 <input hidden type="text" class="form-control input-count" name="count_tiket[]" placeholder="" aria-label="" aria-describedby="basic-addon1" value="0" readonly>
-                                            <?php
-                                            } else { ?>
-                                                <button id="btn-add-tiket<?= $data->id_price; ?>" class="btn bg-w-blue text-light float-right btn-add-tiket plus" data-tiket="<?= $data->id_price; ?>" data-harga="<?= $data->harga; ?>">Add</button>
-                                                <div id="count-tiket<?= $data->id_price; ?>" class="input-group mb-3" hidden>
-                                                    <div class="input-group-prepend minus" data-harga="<?= $data->harga; ?>" data-tiket="<?= $data->id_price; ?>">
-                                                        <i class="fa fa-minus btn btn-outline-secondary" style="padding-top: 11px; border: 1px solid #dce9f4;"></i>
+                                                <?php
+                                            } else {
+                                                if ($data->harga == '0') { ?>
+                                                    <button id="btn-add-tiket<?= $data->id_price; ?>" class="btn bg-w-blue text-light float-right btn-add-tiket plus" data-tiket="<?= $data->id_price; ?>" data-harga="<?= $data->harga; ?>">Free</button>
+                                                    <div id="count-tiket<?= $data->id_price; ?>" class="input-group mb-3" hidden>
+                                                        <div class="input-group-prepend minus" data-harga="<?= $data->harga; ?>" data-tiket="<?= $data->id_price; ?>">
+                                                            <i class="fa fa-minus btn btn-outline-secondary" style="padding-top: 11px; border: 1px solid #dce9f4;"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control input-count" name="count_tiket[]" placeholder="" aria-label="" aria-describedby="basic-addon1" value="0" readonly>
+                                                        <div class="input-group-prepend plus" data-harga="<?= $data->harga; ?>" data-status="<?= $data->status_bundling; ?>" data-tiket="<?= $data->id_price; ?>">
+                                                            <i class="fa fa-plus btn btn-outline-secondary" style="padding-top: 11px; border: 1px solid #dce9f4;"></i>
+                                                        </div>
                                                     </div>
-                                                    <input type="text" class="form-control input-count" name="count_tiket[]" placeholder="" aria-label="" aria-describedby="basic-addon1" value="0" readonly>
-                                                    <div class="input-group-prepend plus" data-harga="<?= $data->harga; ?>" data-status="<?= $data->status_bundling; ?>" data-tiket="<?= $data->id_price; ?>">
-                                                        <i class="fa fa-plus btn btn-outline-secondary" style="padding-top: 11px; border: 1px solid #dce9f4;"></i>
+                                                <?php } else { ?>
+                                                    <button id="btn-add-tiket<?= $data->id_price; ?>" class="btn bg-w-blue text-light float-right btn-add-tiket plus" data-tiket="<?= $data->id_price; ?>" data-harga="<?= $data->harga; ?>">Add</button>
+                                                    <div id="count-tiket<?= $data->id_price; ?>" class="input-group mb-3" hidden>
+                                                        <div class="input-group-prepend minus" data-harga="<?= $data->harga; ?>" data-tiket="<?= $data->id_price; ?>">
+                                                            <i class="fa fa-minus btn btn-outline-secondary" style="padding-top: 11px; border: 1px solid #dce9f4;"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control input-count" name="count_tiket[]" placeholder="" aria-label="" aria-describedby="basic-addon1" value="0" readonly>
+                                                        <div class="input-group-prepend plus" data-harga="<?= $data->harga; ?>" data-status="<?= $data->status_bundling; ?>" data-tiket="<?= $data->id_price; ?>">
+                                                            <i class="fa fa-plus btn btn-outline-secondary" style="padding-top: 11px; border: 1px solid #dce9f4;"></i>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                <?php } ?>
                                             <?php
                                             } ?>
                                         </div>
@@ -139,11 +152,11 @@
                             <?php endforeach; ?>
                         </ul>
                     </div>
-                    <?php if ($data->tgl_event < date("d/m/Y")) { ?>
+                    <?php if (strtotime(str_replace('/', '-', date('d/m/Y'))) > strtotime(str_replace('/', '-', $data->tgl_event))) { ?>
+                    <?php } else { ?>
                         <div class="card-footer card-footer-tiket-detail">
                             <div class="row">
                                 <div class="col-6">
-
                                     <span class="small">Subtotal </span><br>
                                     <input id="in-subtotal" type="text" value="0" hidden>
                                     <span id="subtotal" class="medium font-weight-bold">Rp. 0,-</span>
@@ -159,11 +172,7 @@
                                 </div>
                             </div>
                         </div>
-                    <?php
-                    } else { ?>
-                    <?php
-                    } ?>
-                    
+                    <?php } ?>
                 </div>
             </div>
         </div>
