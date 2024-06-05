@@ -23,29 +23,13 @@ class Article extends AUTH_Controller
         $this->load->view($this->template, $data);
     }
 
-    public function get_data_gambar() {
-
-        $id_content = $this->input->post('id_content');
-        $gambar_content = $this->Article_model->get_gbr_content($id_content);
-
-        $image_urls = array();
-        foreach ($gambar_content as $foto) {
-            $image_urls[] = array(
-                'id_gambar' => $foto->id_foto_content,
-                'url' => base_url('upload/artikel/content/') . $foto->gambar_content
-            );
-        }
-
-        echo json_encode($image_urls);
-    }
-
-    public function get_data_article() {
-        // $id_article = 39;
-
+    public function get_content_by_article_id() {
+        // $id_article = '41';
         $id_article = $this->input->post('id_article');
-        $article = $this->Article_model->get_article($id_article);
+        $content = $this->Article_model->get_article_by_id($id_article);
 
-        echo json_encode($article);
+        header('Content-Type: application/json');
+        echo json_encode($content);
     }
 
     public function fetch()
@@ -60,6 +44,9 @@ class Article extends AUTH_Controller
 
         if ($data->num_rows() > 0) {
             foreach ($data->result() as $artikel) {
+
+                $tittle_news = preg_replace("![^a-z0-9]+!i", "+", $artikel->judul_article);
+
                 $output .= '
                 <li class="row clearfix pt-1">
                     <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail"
@@ -69,14 +56,15 @@ class Article extends AUTH_Controller
                             <p class="mb-1"><small>' . $artikel->meta_desc . ' </small></p>
                             <ul class="list-inline">
                                 <li class="font-weight-medium badge badge-dark shadow l-parpl text-white rounded">' . $artikel->tgl_article . '</a></li>
-                                <li class="pr-1"><a class=" ml-3 fa fa-google btn-sm btn-outline-info" href="" > Lihat</a></li>
+                                <li class="pr-1"><a class=" ml-3 fa fa-google btn-sm btn-outline-info" href="http://www.google.com/search?q=' . $tittle_news . '" target="_blank"> Lihat</a></li>
                                 <li class="pr-1"><a data-toggle="modal" data-target="#ubah-artikel" class=" fa fa-pencil-square btn-sm btn-outline-primary pl-1 btn-edit" href="" data-id_article="'.$artikel->id_article.'" data-judul_article="'.$artikel->judul_article.'" data-tgl_article="'.$artikel->tgl_article.'" data-meta_desc="'.$artikel->meta_desc.'" data-tags="'.$artikel->tags.'" data-gambar="'.$artikel->gambar.'"> Edit Judul</a></li>';
 
                                 if (empty($artikel->id_content_article)) {
                                     $output .= '<li class="pr-1"><a class="fa fa-pencil-square-o btn-sm btn-outline-success btn-content" data-toggle="modal" data-target="#tambah-content" href="" data-id_article="'.$artikel->id_article.'"> Isi Konten</a></li>';
                                 } else {
                                     $output .= '<li class="p-1"><a class="fa fa-pencil-square-o btn-sm btn-outline-warning btn-edit-content" data-toggle="modal" data-target="#ubah-content" href="" data-id_content="'.$artikel->id_content.'" data-id_article="'.$artikel->id_content_article.'" data-content="'.htmlspecialchars($artikel->content, ENT_QUOTES, 'UTF-8').'"> Edit Konten</a></li>
-                                                <li"><a class="pl-1 fa fa-plus-circle btn-sm btn-outline-success btn-content" data-toggle="modal" data-target="#tambah-content" href="" data-id_article="'.$artikel->id_article.'" data-id_content="'.$artikel->id_content.'"> Tambah Konten</a></li>';
+                                                ';
+                                                // <li"><a class="pl-1 fa fa-plus-circle btn-sm btn-outline-success btn-content" data-toggle="modal" data-target="#tambah-content" href="" data-id_article="'.$artikel->id_article.'" data-id_content="'.$artikel->id_content.'"> Tambah Konten</a></li>
                                 }
                         $output .= '</ul>
                         </div>
