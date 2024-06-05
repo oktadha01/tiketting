@@ -34,9 +34,19 @@
             $('#in-subtotal').val(subtotal);
             let rupiahFormat = subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
             $('#subtotal').text('Rp.' + rupiahFormat + ',-');
-            if ($('#in-subtotal').val() <= '0') {
-                $('.btn-checkout').attr('disabled', true);
+            if (harga == 0) {
+                if (count == 0) {
+                    $('.btn-checkout').attr('disabled', true);
+                } else {
+                    $('.btn-checkout').removeAttr('disabled', true);
+                }
+
+            } else {
+                if ($('#in-subtotal').val() <= '0') {
+                    $('.btn-checkout').attr('disabled', true);
+                }
             }
+
             return false;
         });
         $('.plus').click(function() {
