@@ -133,7 +133,7 @@
             } ?>
             <?php foreach ($event as $data) : ?>
 
-                <input type="text" name="id_event" value="<?= $data->id_event; ?>" hidden>
+                <input type="text" name="id_event" value="<?= $data->id_event; ?>">
             <?php endforeach; ?>
             <div class="card box-shadow">
                 <div class="card-header bg-w-blue text-light">
