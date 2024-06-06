@@ -26,6 +26,10 @@
         border: 2px solid #4CAF50;
         color: #4CAF50;
     }
+
+    iframe {
+        width: -webkit-fill-available;
+    }
 </style>
 <section class="container">
     <?php foreach ($event as $data) : ?>
@@ -83,15 +87,24 @@
         </div>
         <div class="col-lg-4">
             <div id="navi-tiket" class="nav-tiket nav right">
-                <div class="info-tgl-event-t">
+                <div class="info-tgl-event-t" style="width: -webkit-fill-available;">
                     <div class="card mb-0">
-                        <?php foreach ($event as $data) : ?>
-                            <div class="card-body p-0 pl-3 pr-3">
-                                <p class="mb-0"><?= $data->tgl_event; ?> | <?= $data->jam_event; ?></p>
-                                <p class="mb-0"><?= $data->lokasi; ?> | <?= $data->nama; ?></p>
-                                <!-- <p class="mb-0 font-weight-bold">Batas Pembelian : <?= $data->batas_pesan; ?></p> -->
-                            </div>
-                        <?php endforeach; ?>
+                        <div class="card-body">
+                            <?php foreach ($event as $data) : ?>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding-right: 15px;padding-left: 3px;"><i class="fa-regular fa-clock"></i> </td>
+                                            <td> <?= $data->tgl_event; ?> | <?= $data->jam_event; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-right: 15px;padding-left: 4px;"><i class="fa-solid fa-location-dot"></i></td>
+                                            <td><?= $data->lokasi; ?> | <?= $data->nama; ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
                 <div class="card mb-0">
@@ -175,6 +188,16 @@
                     <?php } ?>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <?= $data->alamat; ?>
+               </div>
         </div>
     </div>
 </section>
