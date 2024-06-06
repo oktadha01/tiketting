@@ -69,6 +69,26 @@ $('#kategori_event').on('change', function() {
     // console.log('kategori terpilih:', $(this).val());
 });
 
+function edit_ketegori_event() {
+    $.ajax({
+        url: '<?=site_url('Event/get_kategori_event')?>',
+        type: 'GET',
+        success: function(data) {
+            $('#edit-kategori-event').html(data);
+        },
+        error: function() {
+            console.error('Error fetching data.');
+        }
+    });
+}
+
+edit_ketegori_event();
+
+$('#edit-kategori-event').on('change', function() {
+    // console.log('kategori terpilih:', $(this).val());
+});
+
+
 $(document).ready(function() {
     var table;
 
@@ -251,13 +271,15 @@ $(document).ready(function() {
         var lokasi = $(this).data('lokasi');
         var kota = $(this).data('kota');
         var alamat = $(this).data('alamat');
-        var kategori_event = $(this).data('kategori_event');
+        var kategori_event = $(this).data('nm_kategori_event');
         var desc_event = $(this).data('desc_event');
         var mc_by = $(this).data('mc_by');
         var poster = $(this).data('poster');
         var header = $(this).data('header');
         var defaultPosterValue = 'upload/event/' + poster;
         var defaultHeaderValue = 'upload/event/' + header;
+
+        alert(kategori_event);
 
         $('#ubah-event #edit-id-event').val(id_event);
         $('#ubah-event #edit-id-user').val(id_user);

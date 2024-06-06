@@ -31,6 +31,7 @@ class M_detail extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
     function m_event($nm_event)
     {
         $this->db->select('*');

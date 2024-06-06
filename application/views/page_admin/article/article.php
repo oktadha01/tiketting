@@ -227,7 +227,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Isi Content</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Content</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -260,8 +260,8 @@
                                 </div>
                                 <form id="artikel-content" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
-                                        <input type="text" id="id-content-article" name="id_article"
-                                            class="form-control" hidden />
+                                        <input type="text" id="id-addcontent-article" name="id_article"
+                                            class="form-control" />
                                     </div>
                                     <div class="form-group">
                                         <textarea id="content-article" name="content_article"
@@ -304,7 +304,7 @@
 
 <!-- akhir model tambah konten -->
 <!-- model ubah konten -->
-<div class="modal fade" id="ubah-content" tabindex="-1" role="dialog" aria-labelledby="tambah-content"
+<!-- <div class="modal fade" id="ubah-content" tabindex="-1" role="dialog" aria-labelledby="tambah-content"
     aria-hidden="true" data-modal-parent="tambah-data">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -318,7 +318,7 @@
                 <div class="row clearfix">
                     <div class="col-lg-12">
                         <div class="card m-b-2" id="data-artikel">
-                            <div class="body">
+                            <div class="body" id="body">
                                 <div id="gambar-content-container" class="list-unstyled row clearfix">
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12 m-b-10 pl-0">
@@ -371,5 +371,36 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<div class="modal fade" id="ubah-content" tabindex="-1" role="dialog" aria-labelledby="tambah-content"
+    aria-hidden="true" data-modal-parent="tambah-data">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Ubah Content</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row clearfix">
+                    <div class="col-lg-12" id="data-artikel">
+                        <!-- tampilan gambar -->
+                        <div id="gambar-content-container" class="list-unstyled row clearfix">
+                        </div>
+                        <!-- tampilan content -->
+                        <div class="form-group content">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Keluar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <!-- akhir model ubah konten -->

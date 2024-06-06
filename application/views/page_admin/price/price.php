@@ -97,7 +97,7 @@
                                 <label class="label-in">Stock Tiket</label>
                             </div>
                         </div>
-                        <div class="col-md-3 mb-2 pr-2 pl-2 mr-0 pr-0">
+                        <div class="col-md-3 mb-2 pr-2 pl-2 mr-0 pr-0" id="promo-status" style="display: none;">
                             <label class="fancy-checkbox ml-1 mt-2">
                                 <input type="checkbox" name="checkbox" id="status" onchange="perbaruiStatus()">
                                 <span>Promo</span>
@@ -219,7 +219,7 @@
                                 <label class="label-in">Stock Tiket</label>
                             </div>
                         </div>
-                        <div class="col-md-3 mb-2 pr-2 pl-2 mr-0 pr-0">
+                        <div class="col-md-3 mb-2 pr-2 pl-2 mr-0 pr-0" id="promo-status-edit" style="display: none;">
                             <label class="fancy-checkbox ml-1 mt-2">
                                 <input type="checkbox" name="checkbox" id="edit-status" onchange="perbaruiStatusedit()">
                                 <span>Promo</span>
@@ -228,40 +228,39 @@
                         <div class="col-md-4 mb-2 pl-0 pr-0" id="edit-promo-kelipatan" style="display: none;">
                             <label class="fancy-checkbox ml-1 mt-2">
                                 <input type="checkbox" name="checkbox" id="edit-promo-kel"
-                                    onchange="togglePromoFields()">
+                                    onchange="perbaruipromokel()">
                                 <span>Promo Kelipatan</span>
                             </label>
                         </div>
                     </div>
-                    <ul class="list-unstyled feeds_widget" id="due-kategori-container" style="display: none;">
+                    <ul class="list-unstyled feeds_widget" id="due-kategori-container-edit">
                         <li>
                             <div class="row mt-1">
                                 <div class="col-md-6 mb-2">
-                                    <div class="input-wrapper" id="due-kategori">
+                                    <div class="input-wrapper" id="due-kategori-edit">
                                         <input data-provide="datepicker" data-date-autoclose="true" type="text"
-                                            id="akhir-promo" name="akhir_promo" class="col-lg-12">
+                                            id="edit-akhir" name="akhir_promo" class="col-lg-12">
                                         <label class="label-in">Akhir Promo</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3 pr-0">
-                                    <div class="input-wrapper" id="buy" style="display: none;">
+                                    <div class="input-wrapper" id="buy-edit" style="display: none;">
                                         <label for=" buy-input" class="label-in">Buy</label>
-                                        <input type="number" id="buy-input" class="col-lg-12" min="1" max="5"
+                                        <input type="number" id="buy-input-edit" class="col-lg-12" min="1" max="5"
                                             oninput="checkInput()">
                                     </div>
                                 </div>
-
                                 <div class="col-md-3 pl-0">
-                                    <div class="input-wrapper" id="free" style="display: none;">
-                                        <input type="number" id="free-input" class="col-lg-12" min="1" max="3"
-                                            oninput="checkInput()">
-                                        <label class="label-in" for="free-input">Free</label>
+                                    <div class="input-wrapper" id="free-edit" style="display: none;">
+                                        <input type="number" id="free-input-edit" name="free_input" class="col-lg-12"
+                                            min="1" max="3" oninput="checkInput()">
+                                        <label class="label-in" for="free-input-edit">Free</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                 </div>
-                                <div class="col-md-6 text-danger pl=0 pr=0 text-center" id="warning"
+                                <div class="col-md-6 text-danger pl=0 pr=0 text-center" id="warning-edit"
                                     style="display: none;">
                                     <span style="font-size: 10px; font-weight: bold;">Promo kelipatan max
                                         buy= 5 & free= 3 </span>
@@ -295,7 +294,7 @@
             <form id="edit-bundling">
                 <div class="modal-body pb-1">
                     <input type="number" id="edit-id-price-bundle" class="col-lg-12" hidden>
-                    <input type="text" id="id-event-bundle" class="col-lg-12" hidden>
+                    <!-- <input type="text" id="id-event-bundle-edit" class="col-lg-12"> -->
                     <div class=" row mb-3">
                         <div class="col-md-6 mr-0 pr-0">
                             <div class="input-wrapper">
