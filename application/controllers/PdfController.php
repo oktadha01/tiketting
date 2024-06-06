@@ -19,7 +19,7 @@ class PdfController extends CI_Controller
         // create new PDF document
         $pdf = new TCPDF('L', 'mm', 'A6');
         $pdf->AddPage();
-        $id_event= '54';
+        $id_event= '56';
         $warna = "(SELECT * FROM custom_tiket WHERE id_event = $id_event)";
             $query = $this->db->query($warna);
             foreach ($query->result() as $rows) {
@@ -28,25 +28,27 @@ class PdfController extends CI_Controller
                 $kategori_warna = $rows->color_kategori;
                 $code_warna = $rows->color_code_tiket;
                 $background = $rows->background;
-            };
+
+                // var_dump($background);
+                // exit;
 
 
-        // get the current page break margin
-        $bMargin = $pdf->getBreakMargin();
-        // get current auto-page-break mode
-        $auto_page_break = $pdf->getAutoPageBreak();
-        // disable auto-page-break
-        $pdf->setAutoPageBreak(false, 0);
-        // set bacground image
-        $img_file = FCPATH . 'upload/e-tiket.jpg';
-        $pdf->Image($img_file, null, 0, 148, 105, '', '', '', false, 300, 'C', false, false, 0);
-        // restore auto-page-break status
-        $pdf->setAutoPageBreak($auto_page_break, $bMargin);
-        // set the starting point for the page content
-        $pdf->setPageMark();
-        // Add background color
+                // get the current page break margin
+                $bMargin = $pdf->getBreakMargin();
+                // get current auto-page-break mode
+                $auto_page_break = $pdf->getAutoPageBreak();
+                // disable auto-page-break
+                $pdf->setAutoPageBreak(false, 0);
+                // set bacground image
+                $img_file = base_url('upload/backround_tiket/' . $background);
+                $pdf->Image($img_file, null, 0, 148, 105, '', '', '', false, 300, 'C', false, false, 0);
+                // restore auto-page-break status
+                $pdf->setAutoPageBreak($auto_page_break, $bMargin);
+                // set the starting point for the page content
+                $pdf->setPageMark();
+                // Add background color
 
-        // Add header text
+                // Add header text
         $pdf->SetY(1); // Set the Y position for the header text
         $headerText = 'WWW.Musickanpa.com';
         $headerText = strtoupper($headerText); // Convert the header text to uppercase
@@ -154,5 +156,6 @@ class PdfController extends CI_Controller
         // $this->M_pdf->saveToDatabase($pdfFilePath);
 
         // echo 'PDF generated and saved to the database.';
+    };
     }
 }

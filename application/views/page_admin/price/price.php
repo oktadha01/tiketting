@@ -97,7 +97,7 @@
                                 <label class="label-in">Stock Tiket</label>
                             </div>
                         </div>
-                        <div class="col-md-3 mb-2 pr-2 pl-2 mr-0 pr-0">
+                        <div class="col-md-3 mb-2 pr-2 pl-2 mr-0 pr-0" id="promo-status" style="display: none;">
                             <label class="fancy-checkbox ml-1 mt-2">
                                 <input type="checkbox" name="checkbox" id="status" onchange="perbaruiStatus()">
                                 <span>Promo</span>
@@ -219,7 +219,7 @@
                                 <label class="label-in">Stock Tiket</label>
                             </div>
                         </div>
-                        <div class="col-md-3 mb-2 pr-2 pl-2 mr-0 pr-0">
+                        <div class="col-md-3 mb-2 pr-2 pl-2 mr-0 pr-0" id="promo-status-edit" style="display: none;">
                             <label class="fancy-checkbox ml-1 mt-2">
                                 <input type="checkbox" name="checkbox" id="edit-status" onchange="perbaruiStatusedit()">
                                 <span>Promo</span>
@@ -251,12 +251,11 @@
                                             oninput="checkInput()">
                                     </div>
                                 </div>
-
                                 <div class="col-md-3 pl-0">
                                     <div class="input-wrapper" id="free-edit" style="display: none;">
-                                        <input type="number" id="free-input-edit" class="col-lg-12" min="1" max="3"
-                                            oninput="checkInput()">
-                                        <label class="label-in" for="free-input">Free</label>
+                                        <input type="number" id="free-input-edit" name="free_input" class="col-lg-12"
+                                            min="1" max="3" oninput="checkInput()">
+                                        <label class="label-in" for="free-input-edit">Free</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -362,7 +361,8 @@
             <form id="buat-bundling">
                 <div class="modal-body">
                     <input type="number" id="id-price-bundle" class="col-lg-12" hidden>
-                    <input type="text" value="<?= $this->uri->segment(3); ?>" id="id-event-bundle" class="col-lg-12">
+                    <input type="text" value="<?= $this->uri->segment(3); ?>" id="id-event-bundle" class="col-lg-12"
+                        hidden>
                     <div class=" row mb-3">
                         <div class="col-md-6 mr-0 pr-0">
                             <div class="input-wrapper">

@@ -68,6 +68,9 @@ class Buynow extends CI_Controller
         $status = $_POST['status'];
         $data_in = array();
 
+        // var_dump($id_event);
+        // exit;
+
         $index = 0; // Set index array awal dengan 0
         foreach ($email as $dataemail) { // Kita buat perulangan berdasarkan email sampai data terakhir
             $tiket = "(SELECT * FROM price WHERE id_price = '$id_price[$index]')";
@@ -283,6 +286,9 @@ class Buynow extends CI_Controller
                 $kategori_warna = $rows->color_kategori;
                 $code_warna = $rows->color_code_tiket;
                 $background = $rows->background;
+
+                // var_dump($background);
+                // exit;
             };
 
             // get the current page break margin
@@ -292,7 +298,7 @@ class Buynow extends CI_Controller
             // disable auto-page-break
             $pdf->setAutoPageBreak(false, 0);
             // set bacground image
-            $img_file = base_url('upload/e-tiket.jpg');
+            $img_file = base_url('upload/backround_tiket/' . $background);
             $pdf->Image($img_file, null, 3, 148, 102, '', '', '', false, 300, 'C', false, false, 0);
             // restore auto-page-break status
             $pdf->setAutoPageBreak($auto_page_break, $bMargin);
@@ -300,7 +306,7 @@ class Buynow extends CI_Controller
             $pdf->setPageMark();
             // Add background color
             // $pdf->Rect(0, 0, $pdf->GetPageWidth(), 6, 'F'); // Adjust the height (10 in this example) as needed
-
+            // <?php echo $userdata->fot_profil;
             // Add header text
             $pdf->SetY(1); // Set the Y position for the header text
             $headerText = 'WWW.WISDIL.COM';
@@ -339,7 +345,7 @@ class Buynow extends CI_Controller
             $pdf->setFontSpacing(1);
             $pdf->setFont('dejavusans', '', 7);
             $pdf->SetFillColor(59, 78, 135);
-            list($r, $g, $b) = sscanf($kategori_warna, '#%02x%02x%02x');
+            list($r, $g, $b) = sscanf($email_warna, '#%02x%02x%02x');
             $pdf->SetTextColor($r, $g, $b);
             $pdf->Cell(50, 1, $textemail, 0, 1, 'L'); // Print the header text
 
@@ -351,7 +357,8 @@ class Buynow extends CI_Controller
             $pdf->setFontSpacing(2);
             $pdf->setFont('dejavusans', '', 20);
             $pdf->SetFillColor(59, 78, 135);
-            $pdf->SetTextColor(14, 88, 114);
+            list($r, $g, $b) = sscanf($kategori_warna, '#%02x%02x%02x');
+            $pdf->SetTextColor($r, $g, $b);
             $pdf->Cell(50, 1, $textkategoritiket, 0, 1, 'L'); // Print the header text
 
             $pdf->Image(base_url('upload/qr/qr-' . $code_tiket . '.png'), 101, 37, 28);

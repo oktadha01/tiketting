@@ -83,7 +83,7 @@ class Scan_model extends CI_Model
     public function get_event_menu($limit, $start, $search = '', $id_user, $privilage)
     {
         if ($privilage == 'Admin') {
-            $this->db->select('*');
+            $this->db->select('event.*, user.id_user, user.agency');
             $this->db->from('event');
             $this->db->join('user', 'user.id_user = event.id_user');
 
@@ -98,12 +98,12 @@ class Scan_model extends CI_Model
 
             return $query;
         } else if ($privilage == 'User') {
-            $this->db->select('*');
+
+            $this->db->select('event.*, user.id_user, user.agency');
             $this->db->from('event');
             $this->db->join('user', 'user.id_user = event.id_user');
-            $this->db->where('user.id_user', $id_user);
+            $this->db->where('event.id_user', $id_user);
 
-            // Tambahkan kondisi pencarian jika ada
             if (!empty($search)) {
                 $this->db->like('event.nm_event', $search);
             }
