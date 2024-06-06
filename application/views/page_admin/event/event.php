@@ -306,11 +306,6 @@
                                     <label class="label-select">Kategori Event</label>
                                     <select type="text" id="edit-kategori-event" name="kategori_event"
                                         class="col-lg-12">
-                                        <option value="">Pilih Kategori</option>
-                                        <option value="Musik">Musik</option>
-                                        <option value="Pertunjukan">Pertunjukan</option>
-                                        <option value="Pameran">Pameran</option>
-                                        <option value="Seminar">Seminar</option>
                                     </select>
                                 </div>
                             </div>

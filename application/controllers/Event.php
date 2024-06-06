@@ -45,7 +45,7 @@ class Event extends AUTH_Controller
 
             // tombol edit
             $editButton = '<a data-toggle="modal" data-target="#ubah-event" class="btn btn-outline-warning btn-xs btn-edit" title="Ubah"
-            data-id_event="'.$evn->id_event.'" data-id_user="'.$evn->id_user.'" data-nm_event="'.$evn->nm_event.'" data-tgl_event="'.$evn->tgl_event.'" data-jam_event="'.$evn->jam_event.'" data-batas_pesan="'.$evn->batas_pesan.'" data-lokasi="'.$evn->lokasi.'" data-kota="'.$evn->kota.'" data-alamat="'.$evn->alamat.'" data-kategori_event="'.$evn->nm_kategori_event.'" data-desc_event="'.$evn->desc_event.'" data-mc_by="'.$evn->mc_by.'" data-poster="'.$evn->poster.'" data-header="'.$evn->header.'"><i class="fa fa-edit"></i></a>';
+            data-id_event="'.$evn->id_event.'" data-id_user="'.$evn->id_user.'" data-nm_event="'.$evn->nm_event.'" data-tgl_event="'.$evn->tgl_event.'" data-jam_event="'.$evn->jam_event.'" data-batas_pesan="'.$evn->batas_pesan.'" data-lokasi="'.$evn->lokasi.'" data-kota="'.$evn->kota.'" data-alamat="'.$evn->alamat.'" data-nm_kategori_event="'.$evn->nm_kategori_event.'" data-desc_event="'.$evn->desc_event.'" data-mc_by="'.$evn->mc_by.'" data-poster="'.$evn->poster.'" data-header="'.$evn->header.'"><i class="fa fa-edit"></i></a>';
 
             // tombol Hapus
             $hapusButton = ' &nbsp; <a href="#" onclick="confirmDelete('.$evn->id_event.');"  class="btn btn-outline-danger btn-xs" title="Hapus"><i class="fa fa-trash-o"></i></a>';
@@ -220,16 +220,16 @@ class Event extends AUTH_Controller
 
         // Data untuk diupdate
         $data = array(
-            'id_user'        => $this->input->post('id_user'),
-            'nm_event'       => $this->input->post('nm_event'),
-            'tgl_event'      => $this->input->post('tgl_event'),
-            'batas_pesan'    => $this->input->post('batas_pesan'),
-            'lokasi'         => $this->input->post('lokasi'),
-            'kota'           => $this->input->post('kota'),
-            'alamat'         => $this->input->post('alamat'),
-            'kategori_event' => $this->input->post('kategori_event'),
-            'mc_by'          => $this->input->post('mc'),
-            'desc_event'     => $this->input->post('desc_event'),
+            'id_user'           => $this->input->post('id_user'),
+            'nm_event'          => $this->input->post('nm_event'),
+            'tgl_event'         => $this->input->post('tgl_event'),
+            'batas_pesan'       => $this->input->post('batas_pesan'),
+            'lokasi'            => $this->input->post('lokasi'),
+            'kota'              => $this->input->post('kota'),
+            'alamat'            => $this->input->post('alamat'),
+            'id_kategori_event' => $this->input->post('kategori_event'),
+            'mc_by'             => $this->input->post('mc'),
+            'desc_event'        => $this->input->post('desc_event'),
         );
 
         // Tambahkan gambar baru ke dalam data jika diunggah

@@ -29,9 +29,9 @@ class Detail extends CI_Controller
     function detail()
     {
 
-        $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
+        $nm_event             = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
         $data['event']        = $this->M_detail->m_event($nm_event);
-        $data['perform']        = $this->M_detail->m_perform($nm_event);
+        $data['perform']      = $this->M_detail->m_perform($nm_event);
         $data['tiket']        = $this->M_detail->m_tiket($nm_event);
         $this->load->view('client/detail/detail', $data);
         $this->load->view('client/detail/detail_js');
@@ -73,7 +73,7 @@ class Detail extends CI_Controller
             $email = $this->input->cookie('session');
             $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
             $this->to_page_buynow($nm_event, $email);
-            
+
         }
     }
 

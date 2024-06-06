@@ -61,7 +61,7 @@
                         <span>Total Pembayaran</span>
                     </div>
                     <div class="col-6">
-                        <span class="float-right">Rp. <?= number_format($data->subtotal, 0, ',', '.'); ?></span>
+                        <span class="float-right">Rp. <?= number_format($data->nominal, 0, ',', '.'); ?></span>
                     </div>
                 </div>
                 <?php if ($data->status_transaksi == 1) : ?>
