@@ -296,7 +296,7 @@ class Prices extends AUTH_Controller
     public function edit_bundling() {
 
         $id_price = $this->input->post('id_price');
-        $id_event = $this->input->post('id_event');
+        // $id_event = $this->input->post('id_event');
         $kategori_price = $this->input->post('kategori_price');
         $harga = $this->input->post('harga');
         $stock_tiket = $this->input->post('stock_tiket');
@@ -307,7 +307,7 @@ class Prices extends AUTH_Controller
             if (!empty($id_price)) {
                 $data = array(
                     'id_price' => $id_price,
-                    'id_event' => $id_event,
+                    // 'id_event' => $id_event,
                     'kategori_price' => $kategori_price,
                     'harga' => $harga,
                     'stock_tiket' => $stock_tiket,

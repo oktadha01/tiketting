@@ -59,16 +59,6 @@ class Article_model extends CI_Model
         return $query->row_array();
     }
 
-    function get_gbr_content($id_content)
-    {
-        $this->db->select('*');
-        $this->db->from('foto_content');
-        $this->db->where('id_content', $id_content);
-        $query = $this->db->get();
-
-        return $query->result();
-    }
-
     function tambah_gambar($data) {
         return $this->db->insert('foto_content', $data);
     }
@@ -86,10 +76,49 @@ class Article_model extends CI_Model
         return $query->row_array();
     }
 
-    public function get_article($id_article) {
+    public function get_article_by_id($id_article) {
+        if (!is_numeric($id_article)) {
+            return false;
+        }
+
         $query = $this->db->get_where('content_article', array('id_article' => $id_article));
-        return $query->row_array();
+
+        if ($query->num_rows() > 0) {
+            $articles = $query->result_array();
+
+            foreach ($articles as &$article) {
+                $article['photos'] = $this->get_photos_by_content_id($article['id_content']);
+            }
+
+            return $articles;
+        } else {
+            return NULL;
+        }
     }
+
+    public function get_photos_by_content_id($id_content) {
+        if (!is_numeric($id_content)) {
+            return false;
+        }
+
+        $this->db->select('id_foto_content, gambar_content');
+        $this->db->where('id_content', $id_content);
+        $query = $this->db->get('foto_content');
+
+        if ($query->num_rows() > 0) {
+            $photos = [];
+            foreach ($query->result_array() as $photo) {
+                $photos[] = [
+                    'id_foto_content' => $photo['id_foto_content'],
+                    'gambar_content' => $photo['gambar_content']
+                ];
+            }
+            return $photos;
+        } else {
+            return NULL;
+        }
+    }
+
 
     // data popular post
     public function get_popular_post($limit, $start)
