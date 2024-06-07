@@ -27,7 +27,7 @@
 
                 $('.kontak-2').val('<?= $data->kontak; ?>');
                 <?php if ($data->no_identitas == '0' && $this->input->cookie('session') == '') { ?>
-                    // $('.no-identitas-2').val('');
+                    $('.no-identitas-2').val('0');
                 <?php
                 } else { ?>
                     $('.no-identitas-2').val('<?= $data->no_identitas; ?>');
