@@ -237,7 +237,7 @@ hr {
                             <div class="col-lg-4" hidden>
                                 <div class="form-group">
                                     <label class="label-nik">NIK/Paspor<sup class="text-danger">*</sup></label>
-                                    <input type="text" name="no_identitas[]" id="no-identitas" required class="form-control no-identitas-<?= $no; ?>" value="0">
+                                    <input type="text" name="no_identitas[]" id="no-identitas" class="form-control no-identitas-<?= $no; ?>" value="0">
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -338,7 +338,7 @@ hr {
                             <div class="col-lg-4" hidden>
                                 <div class="form-group">
                                     <label class="label-nik">NIK/Paspor<sup class="text-danger">*</sup></label>
-                                    <input type="text" name="no_identitas[]" id="no-identitas" required class="form-control no-identitas-<?= $no; ?>" value="0">
+                                    <input type="text" name="no_identitas[]" id="no-identitas" class="form-control no-identitas-<?= $no; ?>" value="0">
                                 </div>
                             </div>
                             <div class="col-lg-4">
