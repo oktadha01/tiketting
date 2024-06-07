@@ -47,7 +47,7 @@
                                     <th>Due Booked</th>
                                     <th>Lokasi</th>
                                     <th>Kota</th>
-                                    <th>Alamat</th>
+                                    <!-- <th>Alamat</th> -->
                                     <th>Kategori</th>
                                     <th>Deskripsi</th>
                                     <th>MC</th>

@@ -10,6 +10,7 @@ class Detail extends CI_Controller
     public $uri;
     public $session;
     public $input;
+    public $image_lib;
     var $template = 'tmpt_client/index';
 
     public function __construct()
@@ -20,49 +21,25 @@ class Detail extends CI_Controller
     }
     function event()
     {
-        $nm_event             = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
+
+        $nm_event = preg_replace("![^a-z0-9]+!i", " ", $this->uri->segment(3));
         $this->db->select("*");
         $this->db->where("nm_event", $nm_event);
         $query_ = $this->db->get('event');
+
         if ($query_->num_rows() > 0) {
             foreach ($query_->result() as $event) {
                 $desc_event = substr($event->desc_event, 0, 160);
-                // $img = resize_image('/path/to/some/image.jpg', 200, 200);
             }
+        } else {
+            echo 'No event found.';
         }
-
         $data['tittle']          = $nm_event;
         $data['description']     = $desc_event;
         $data['script1']         = 'Detail Event';
         $data['content']         = 'client/page_detail/page_detail';
         $data['script']          = 'client/page_detail/page_detail_js';
         $this->load->view($this->template, $data);
-    }
-    function resize_image($file, $w, $h, $crop=FALSE) {
-        list($width, $height) = getimagesize($file);
-        $r = $width / $height;
-        if ($crop) {
-            if ($width > $height) {
-                $width = ceil($width-($width*abs($r-$w/$h)));
-            } else {
-                $height = ceil($height-($height*abs($r-$w/$h)));
-            }
-            $newwidth = $w;
-            $newheight = $h;
-        } else {
-            if ($w/$h > $r) {
-                $newwidth = $h*$r;
-                $newheight = $h;
-            } else {
-                $newheight = $w/$r;
-                $newwidth = $w;
-            }
-        }
-        $src = imagecreatefromjpeg($file);
-        $dst = imagecreatetruecolor($newwidth, $newheight);
-        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-    
-        return $dst;
     }
     function detail()
     {

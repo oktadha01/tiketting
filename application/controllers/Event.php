@@ -17,7 +17,6 @@ class Event extends AUTH_Controller
     {
         parent::__construct();
         $this->load->model('Event_model');
-
     }
 
     public function index()
@@ -34,7 +33,8 @@ class Event extends AUTH_Controller
         $this->load->view($this->template, $data);
     }
 
-    function get_dataevent() {
+    function get_dataevent()
+    {
         $id_user = $this->session->userdata('userdata')->id_user;
         $privilage = $this->session->userdata('userdata')->privilage;
 
@@ -45,14 +45,14 @@ class Event extends AUTH_Controller
 
             // tombol edit
             $editButton = '<a data-toggle="modal" data-target="#ubah-event" class="btn btn-outline-warning btn-xs btn-edit" title="Ubah"
-            data-id_event="'.$evn->id_event.'" data-id_user="'.$evn->id_user.'" data-nm_event="'.$evn->nm_event.'" data-tgl_event="'.$evn->tgl_event.'" data-jam_event="'.$evn->jam_event.'" data-batas_pesan="'.$evn->batas_pesan.'" data-lokasi="'.$evn->lokasi.'" data-kota="'.$evn->kota.'" data-alamat="'.$evn->alamat.'" data-nm_kategori_event="'.$evn->nm_kategori_event.'" data-desc_event="'.$evn->desc_event.'" data-mc_by="'.$evn->mc_by.'" data-poster="'.$evn->poster.'" data-header="'.$evn->header.'"><i class="fa fa-edit"></i></a>';
+            data-id_event="' . $evn->id_event . '" data-id_user="' . $evn->id_user . '" data-nm_event="' . $evn->nm_event . '" data-tgl_event="' . $evn->tgl_event . '" data-jam_event="' . $evn->jam_event . '" data-batas_pesan="' . $evn->batas_pesan . '" data-lokasi="' . $evn->lokasi . '" data-kota="' . $evn->kota . '" data-alamat="" data-nm_kategori_event="' . $evn->nm_kategori_event . '" data-desc_event="' . $evn->desc_event . '" data-mc_by="' . $evn->mc_by . '" data-poster="' . $evn->poster . '" data-header="' . $evn->header . '"><i class="fa fa-edit"></i></a>';
 
             // tombol Hapus
-            $hapusButton = ' &nbsp; <a href="#" onclick="confirmDelete('.$evn->id_event.');"  class="btn btn-outline-danger btn-xs" title="Hapus"><i class="fa fa-trash-o"></i></a>';
+            $hapusButton = ' &nbsp; <a href="#" onclick="confirmDelete(' . $evn->id_event . ');"  class="btn btn-outline-danger btn-xs" title="Hapus"><i class="fa fa-trash-o"></i></a>';
 
             $no++;
             $row = array();
-            $row[] = $no.".";
+            $row[] = $no . ".";
             $row[] = '<td class="poster-column"><img src="' . base_url('upload/event/') . $evn->poster . '" alt="Poster Acara" class="border border-primary m-0 p-0 img-thumbnail max-height-7rem img-fluid"></td>';
             // $row[] = '<td class="header-column"><img src="' . base_url('upload/event/') . $evn->header . '" alt="Header Acara" class="border border-success m-0 p-0 img-thumbnail max-height-7rem img-fluid"></td>';
             $row[] = ' &nbsp; ' . '<td class="font-weight-medium"><div class="badge badge-info shadow l-khaki text-dark rounded">' . $evn->agency . '</div></td>';
@@ -62,37 +62,39 @@ class Event extends AUTH_Controller
             $row[] = $evn->batas_pesan;
             $row[] = $evn->lokasi;
             $row[] = $evn->nama;
-            $row[] = $evn->alamat;
+            // $row[] = $evn->alamat;
             $row[] = $evn->nm_kategori_event;
             $row[] = $evn->desc_event;
             $row[] = $evn->mc_by;
-            $row[] = $editButton. $hapusButton  ;
+            $row[] = $editButton . $hapusButton;
             $data[] = $row;
         }
         $output = array(
-                    "draw" => @$_POST['draw'],
-                    "recordsTotal" => $this->Event_model->count_all_trx($privilage, $id_user),
-                    "recordsFiltered" => $this->Event_model->count_filtereds($privilage, $id_user),
-                    "data" => $data,
-                );
+            "draw" => @$_POST['draw'],
+            "recordsTotal" => $this->Event_model->count_all_trx($privilage, $id_user),
+            "recordsFiltered" => $this->Event_model->count_filtereds($privilage, $id_user),
+            "data" => $data,
+        );
 
         echo json_encode($output);
     }
 
-    function get_ajax_kab(){
+    function get_ajax_kab()
+    {
         $query = $this->Event_model->get_kabupaten();
         $data = "<option value=''>- Pilih Kota -</option>";
         foreach ($query as $value) {
-            $data .= "<option value='".$value->id."'>".$value->nama."</option>";
+            $data .= "<option value='" . $value->id . "'>" . $value->nama . "</option>";
         }
         echo $data;
     }
 
-    function get_kategori_event(){
+    function get_kategori_event()
+    {
         $query = $this->Event_model->get_kategori();
         $data = "<option value=''>- Pilih Kategori -</option>";
         foreach ($query as $value) {
-            $data .= "<option value='".$value->id_kategori_event."'>".$value->nm_kategori_event."</option>";
+            $data .= "<option value='" . $value->id_kategori_event . "'>" . $value->nm_kategori_event . "</option>";
         }
         echo $data;
     }
@@ -146,7 +148,8 @@ class Event extends AUTH_Controller
         echo json_encode($response);
     }
 
-    function delete_event($event_id) {
+    function delete_event($event_id)
+    {
         $response = array('status' => false, 'message' => '');
         $event_data = $this->Event_model->get_event_data($event_id);
 
@@ -247,6 +250,39 @@ class Event extends AUTH_Controller
         if ($update_status) {
             $response['status'] = true;
             $response['message'] = 'Data berhasil diperbarui.';
+            // $this->load->library('image_lib');
+            // // Path to the image
+            // $imagePath = 'upload/event/' . $edit_poster;
+
+            // // Desired dimensions
+            // $config['image_library'] = 'gd2';
+            // $config['source_image'] = $imagePath;
+            // $config['create_thumb'] = FALSE;
+            // $config['maintain_ratio'] = TRUE;
+            // $config['width'] = 200;
+            // $config['height'] = 200;
+
+            // $this->image_lib->initialize($config);
+
+            // if (!$this->image_lib->resize()) {
+            //     echo $this->image_lib->display_errors();
+            // } else {
+            //     echo 'Image resized successfully!';
+
+            //     // Path for the resized image
+            //     $resizedImagePath = 'upload/event/resized_' . $edit_poster;
+            //     $config['new_image'] = $resizedImagePath;
+
+            //     // Reinitialize the library to save the resized image
+            //     $this->image_lib->initialize($config);
+            //     $this->image_lib->resize();
+            //     $this->image_lib->clear();
+
+            //     // Output the resized image to the browser
+            //     // header('Content-Type: image/jpeg');
+            //     // readfile($resizedImagePath);
+            //     // echo '<img src="' . base_url($resizedImagePath) . '" alt="Resized Image">';
+            // }
         } else {
             $response['status'] = false;
             $response['message'] = 'Terjadi kesalahan saat memperbarui data di database.';
@@ -267,9 +303,11 @@ class Event extends AUTH_Controller
                 if (file_exists($path_gambar)) {
                     unlink($path_gambar);
                 }
+                $path_gambar_resized = "./upload/event/resized_" . $gambar_lama;
+                if (file_exists($path_gambar)) {
+                    unlink($path_gambar);
+                }
             }
         }
     }
-
-
 }
