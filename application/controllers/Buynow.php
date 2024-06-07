@@ -289,104 +289,105 @@ class Buynow extends CI_Controller
 
                 // var_dump($background);
                 // exit;
+                // };
+
+                // get the current page break margin
+                $bMargin = $pdf->getBreakMargin();
+                // get current auto-page-break mode
+                $auto_page_break = $pdf->getAutoPageBreak();
+                // disable auto-page-break
+                $pdf->setAutoPageBreak(false, 0);
+                // set bacground image
+                $img_file = base_url('upload/backround_tiket/' . $background);
+                $pdf->Image($img_file, null, 3, 148, 102, '', '', '', false, 300, 'C', false, false, 0);
+                // restore auto-page-break status
+                $pdf->setAutoPageBreak($auto_page_break, $bMargin);
+                // set the starting point for the page content
+                $pdf->setPageMark();
+                // Add background color
+                // $pdf->Rect(0, 0, $pdf->GetPageWidth(), 6, 'F'); // Adjust the height (10 in this example) as needed
+                // <?php echo $userdata->fot_profil;
+                // Add header text
+                $pdf->SetY(1); // Set the Y position for the header text
+                $headerText = 'WWW.WISDIL.COM';
+                $headerText = strtoupper($headerText); // Convert the header text to uppercase
+                $pdf->setFont('dejavusans', '', 6); // Set font for the header text
+                $pdf->setFontSpacing(2);
+                $pdf->SetFillColor(255, 255, 255);
+                $pdf->SetTextColor('Black');
+                $pdf->Rect(0, 0, $pdf->GetPageWidth(), 4, 'F'); // Adjust the height (10 in this example) as needed
+                $pdf->Cell(0, 0, $headerText, 0, 0, 'C', true); // Print the header text
+                // Print a text
+                $pdf->setFont('times', '', 18);
+                $pdf->Cell(10, 7, '', 0, 1);
+                $pdf->Cell(10, 7, '', 0, 1);
+                $pdf->Cell(10, 7, '', 0, 0);
+
+                $pdf->Image(base_url('assets/images/LOGO-WISDIL.png'), 16, 10, 15);
+
+                $textnama = $nama;
+                $textnama = strtoupper($textnama); // Convert the header text to uppercase
+                $jumlah = "1";
+                $nama = implode(" ", array_slice(explode(" ", $textnama), 0, $jumlah));
+                $pdf->SetY(35); // Set the Y position for the header text
+                $pdf->SetX(15); // Set the Y position for the header text
+                $pdf->setFontSpacing(2);
+                $pdf->setFont('dejavusans', 'B', 25);
+                $pdf->SetFillColor(59, 78, 135);
+                list($r, $g, $b) = sscanf($nama_warna, '#%02x%02x%02x');
+                $pdf->SetTextColor($r, $g, $b);
+                $pdf->Cell(50, 1, $nama, 0, 1, 'L'); // Print the header text
+
+                $textemail = $email;
+                // $textemail = strtoupper($textemail); // Convert the header text to uppercase
+                $pdf->SetY(46); // Set the Y position for the header text
+                $pdf->SetX(16); // Set the Y position for the header text
+                $pdf->setFontSpacing(1);
+                $pdf->setFont('dejavusans', '', 7);
+                $pdf->SetFillColor(59, 78, 135);
+                list($r, $g, $b) = sscanf($email_warna, '#%02x%02x%02x');
+                $pdf->SetTextColor($r, $g, $b);
+                $pdf->Cell(50, 1, $textemail, 0, 1, 'L'); // Print the header text
+
+
+                $textkategoritiket = $kategori_price;
+                $textkategoritiket = strtoupper($textkategoritiket); // Convert the header text to uppercase
+                $pdf->SetY(50); // Set the Y position for the header text
+                $pdf->SetX(16); // Set the Y position for the header text
+                $pdf->setFontSpacing(2);
+                $pdf->setFont('dejavusans', '', 20);
+                $pdf->SetFillColor(59, 78, 135);
+                list($r, $g, $b) = sscanf($kategori_warna, '#%02x%02x%02x');
+                $pdf->SetTextColor($r, $g, $b);
+                $pdf->Cell(50, 1, $textkategoritiket, 0, 1, 'L'); // Print the header text
+
+                $pdf->Image(base_url('upload/qr/qr-' . $code_tiket . '.png'), 101, 37, 28);
+
+                $headerText = 'Kode Tiket';
+                $headerText = strtoupper($headerText); // Convert the header text to uppercase
+                $pdf->SetY(66); // Set the Y position for the header text
+                $pdf->SetX(80); // Set the Y position for the header text
+                $pdf->setFontSpacing(0);
+                $pdf->setFont('dejavusans', '', 5);
+                $pdf->SetFillColor(59, 78, 135);
+                list($r, $g, $b) = sscanf($code_warna, '#%02x%02x%02x');
+                $pdf->SetTextColor($r, $g, $b);
+                $pdf->Cell(50, 1, $headerText, 0, 1, 'R'); // Print the header text
+
+                $textcodetiket = $code_tiket;
+                $textcodetiket = strtoupper($textcodetiket); // Convert the header text to uppercase
+                $pdf->SetY(68); // Set the Y position for the header text
+                $pdf->SetX(80); // Set the Y position for the header text
+                $pdf->setFontSpacing(0);
+                $pdf->setFont('dejavusans', '', 10);
+                $pdf->SetFillColor(59, 78, 135);
+                list($r, $g, $b) = sscanf($code_warna, '#%02x%02x%02x');
+                $pdf->SetTextColor($r, $g, $b);
+                $pdf->Cell(50, 1, $textcodetiket, 0, 1, 'R'); // Print the header text
+
+                $pdfFilePath = FCPATH . 'upload/pdf' . '/pdf-' . $code_tiket . '.pdf';
+                $pdf->Output($pdfFilePath, 'F');
             };
-
-            // get the current page break margin
-            $bMargin = $pdf->getBreakMargin();
-            // get current auto-page-break mode
-            $auto_page_break = $pdf->getAutoPageBreak();
-            // disable auto-page-break
-            $pdf->setAutoPageBreak(false, 0);
-            // set bacground image
-            $img_file = base_url('upload/backround_tiket/' . $background);
-            $pdf->Image($img_file, null, 3, 148, 102, '', '', '', false, 300, 'C', false, false, 0);
-            // restore auto-page-break status
-            $pdf->setAutoPageBreak($auto_page_break, $bMargin);
-            // set the starting point for the page content
-            $pdf->setPageMark();
-            // Add background color
-            // $pdf->Rect(0, 0, $pdf->GetPageWidth(), 6, 'F'); // Adjust the height (10 in this example) as needed
-            // <?php echo $userdata->fot_profil;
-            // Add header text
-            $pdf->SetY(1); // Set the Y position for the header text
-            $headerText = 'WWW.WISDIL.COM';
-            $headerText = strtoupper($headerText); // Convert the header text to uppercase
-            $pdf->setFont('dejavusans', '', 6); // Set font for the header text
-            $pdf->setFontSpacing(2);
-            $pdf->SetFillColor(255, 255, 255);
-            $pdf->SetTextColor('Black');
-            $pdf->Rect(0, 0, $pdf->GetPageWidth(), 4, 'F'); // Adjust the height (10 in this example) as needed
-            $pdf->Cell(0, 0, $headerText, 0, 0, 'C', true); // Print the header text
-            // Print a text
-            $pdf->setFont('times', '', 18);
-            $pdf->Cell(10, 7, '', 0, 1);
-            $pdf->Cell(10, 7, '', 0, 1);
-            $pdf->Cell(10, 7, '', 0, 0);
-
-            $pdf->Image(base_url('assets/images/LOGO-WISDIL.png'), 16, 10, 15);
-
-            $textnama = $nama;
-            $textnama = strtoupper($textnama); // Convert the header text to uppercase
-            $jumlah = "1";
-            $nama = implode(" ", array_slice(explode(" ", $textnama), 0, $jumlah));
-            $pdf->SetY(35); // Set the Y position for the header text
-            $pdf->SetX(15); // Set the Y position for the header text
-            $pdf->setFontSpacing(2);
-            $pdf->setFont('dejavusans', 'B', 25);
-            $pdf->SetFillColor(59, 78, 135);
-            list($r, $g, $b) = sscanf($nama_warna, '#%02x%02x%02x');
-            $pdf->SetTextColor($r, $g, $b);
-            $pdf->Cell(50, 1, $nama, 0, 1, 'L'); // Print the header text
-
-            $textemail = $email;
-            // $textemail = strtoupper($textemail); // Convert the header text to uppercase
-            $pdf->SetY(46); // Set the Y position for the header text
-            $pdf->SetX(16); // Set the Y position for the header text
-            $pdf->setFontSpacing(1);
-            $pdf->setFont('dejavusans', '', 7);
-            $pdf->SetFillColor(59, 78, 135);
-            list($r, $g, $b) = sscanf($email_warna, '#%02x%02x%02x');
-            $pdf->SetTextColor($r, $g, $b);
-            $pdf->Cell(50, 1, $textemail, 0, 1, 'L'); // Print the header text
-
-
-            $textkategoritiket = $kategori_price;
-            $textkategoritiket = strtoupper($textkategoritiket); // Convert the header text to uppercase
-            $pdf->SetY(50); // Set the Y position for the header text
-            $pdf->SetX(16); // Set the Y position for the header text
-            $pdf->setFontSpacing(2);
-            $pdf->setFont('dejavusans', '', 20);
-            $pdf->SetFillColor(59, 78, 135);
-            list($r, $g, $b) = sscanf($kategori_warna, '#%02x%02x%02x');
-            $pdf->SetTextColor($r, $g, $b);
-            $pdf->Cell(50, 1, $textkategoritiket, 0, 1, 'L'); // Print the header text
-
-            $pdf->Image(base_url('upload/qr/qr-' . $code_tiket . '.png'), 101, 37, 28);
-
-            $headerText = 'Kode Tiket';
-            $headerText = strtoupper($headerText); // Convert the header text to uppercase
-            $pdf->SetY(66); // Set the Y position for the header text
-            $pdf->SetX(80); // Set the Y position for the header text
-            $pdf->setFontSpacing(0);
-            $pdf->setFont('dejavusans', '', 5);
-            $pdf->SetFillColor(59, 78, 135);
-            list($r, $g, $b) = sscanf($code_warna, '#%02x%02x%02x');
-            $pdf->SetTextColor($r, $g, $b);
-            $pdf->Cell(50, 1, $headerText, 0, 1, 'R'); // Print the header text
-
-            $textcodetiket = $code_tiket;
-            $textcodetiket = strtoupper($textcodetiket); // Convert the header text to uppercase
-            $pdf->SetY(68); // Set the Y position for the header text
-            $pdf->SetX(80); // Set the Y position for the header text
-            $pdf->setFontSpacing(0);
-            $pdf->setFont('dejavusans', '', 10);
-            $pdf->SetFillColor(59, 78, 135);
-            list($r, $g, $b) = sscanf($code_warna, '#%02x%02x%02x');
-            $pdf->SetTextColor($r, $g, $b);
-            $pdf->Cell(50, 1, $textcodetiket, 0, 1, 'R'); // Print the header text
-
-            $pdfFilePath = FCPATH . 'upload/pdf' . '/pdf-' . $code_tiket . '.pdf';
-            $pdf->Output($pdfFilePath, 'F');
         }
     }
 
@@ -464,7 +465,6 @@ class Buynow extends CI_Controller
             ];
 
             $this->M_buynow->insert_transaksi($data_transaksi);
-
         } else {
             $subtotal = $nominal * 0.03 + 7850 + $nominal;
 
