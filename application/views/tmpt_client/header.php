@@ -24,10 +24,9 @@
     <meta content="@wisdil" name="twitter:site">
     <meta content="@Kanpa" name="twitter:creator">
     <meta content="wisdil" property="og:site_name">
-    <?php if (isset($_metafoto)) { ?>
+    <?php if (isset($metafoto)) { ?>
         <meta property="og:image" content="<?php echo base_url('upload'); ?>/<?php echo $_metafoto; ?>">
     <?php } else { ?>
-        <link href="<?php echo base_url('assets'); ?>/images/LOGO-WISDIL.jpg" rel="icon">
     <?php } ?>
     <?php if (isset($tittle)) { ?>
         <meta content="<?= $tittle; ?>" name="twitter:title" class="">
@@ -35,6 +34,7 @@
     <?php } else { ?>
         <title>Wisdil.com</title>
     <?php } ?>
+    <link href="<?php echo base_url('assets'); ?>/images/LOGO-WISDIL.jpg" rel="icon">
     <!-- select2 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- daterange -->
