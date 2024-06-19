@@ -460,7 +460,6 @@ class Buynow extends CI_Controller
             ]);
 
             $this->M_buynow->insert_transaksi($data_transaksi);
-
         } else {
             $subtotal = $nominal * 0.03 + 7850 + $nominal;
 
