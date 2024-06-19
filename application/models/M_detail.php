@@ -40,7 +40,6 @@ class M_detail extends CI_Model
         $this->db->Join('user', 'user.id_user = event.id_user');
         $this->db->where('event.nm_event', $nm_event);
         $query = $this->db->get();
-
         return $query->result();
     }
 

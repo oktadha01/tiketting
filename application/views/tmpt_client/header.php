@@ -8,12 +8,33 @@
     <!-- <title>:: Iconic :: Home</title> -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Iconic Bootstrap 4.5.0 Admin Template">
     <meta name="author" content="WrapTheme, design by: ThemeMakker.com">
     <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <!-- Meta untuk SEO -->
+    <meta content="index, follow" name="robots">
+    <meta content="website" property="og:type">
+
+    <?php if (isset($description)) { ?>
+        <meta content="<?php echo $description; ?>" name="description">
+        <meta content="<?php echo $description; ?>" name="twitter:description">
+    <?php } else { ?>
+        <meta content="Wisdil.com" name="description">
+        <meta content="Wisdil.com" name="twitter:description">
+    <?php } ?>
+    <meta content="@wisdil" name="twitter:site">
+    <meta content="@Kanpa" name="twitter:creator">
+    <meta content="wisdil" property="og:site_name">
+    <?php if (isset($metafoto)) { ?>
+        <meta property="og:image" content="<?php echo base_url('upload'); ?>/<?php echo $_metafoto; ?>">
+    <?php } else { ?>
+    <?php } ?>
+    <?php if (isset($tittle)) { ?>
+        <meta content="<?= $tittle; ?>" name="twitter:title" class="">
+        <title><?= $tittle; ?></title>
+    <?php } else { ?>
+        <title>Wisdil.com</title>
+    <?php } ?>
     <link href="<?php echo base_url('assets'); ?>/images/LOGO-WISDIL.jpg" rel="icon">
-
-
     <!-- select2 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- daterange -->
@@ -25,8 +46,6 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/multi-select/css/multi-select.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/toastr/toastr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
 
     <!-- MAIN Project CSS file -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/main.css">
