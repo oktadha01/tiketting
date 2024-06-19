@@ -36,7 +36,7 @@
         <div class="col-lg-3 col-md-6 col-sm-6 mr-0 pr-0">
             <div class="card top_widget primary-bg">
                 <div class="body p-1 m-1">
-                    <!-- <div class="icon bg-light "><i class="fa fa-money"></i> </div> -->
+                    <div class="icon bg-light "><i class="fa fa-money"></i> </div>
                     <div class="content text-light ">
                         <div class="text mb-2 text-uppercase">Saldo</div>
                         <h4 class="number mb-0"><span class="font-12">

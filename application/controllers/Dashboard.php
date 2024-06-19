@@ -24,8 +24,6 @@ class Dashboard extends AUTH_Controller
     {
         $data['userdata']        = $this->userdata;
         $data['tittle']          = 'Dashboard';
-        $data['content']         = 'page_admin/dashboard/dashboard_v';
-        $data['script']          = 'page_admin/dashboard/dashboard_js';
 
         // saldo Xendit
         xendit_loaded();
@@ -52,7 +50,8 @@ class Dashboard extends AUTH_Controller
         $data['terjual_tiket'] = $terjual_format;
         $data['tiket_belum']   = $belum;
         $data['tiket_diambil'] = $diambil;
-
+        $data['content']         = 'page_admin/dashboard/dashboard_v';
+        $data['script']          = 'page_admin/dashboard/dashboard_js';
         $this->load->view($this->template, $data);
     }
 

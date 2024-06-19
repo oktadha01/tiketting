@@ -1,4 +1,6 @@
 <script>
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
 $(document).ready(function() {
     var table;
 
@@ -114,9 +116,9 @@ $('#tambah-data').submit(function(event) {
         },
         dataType: 'json',
         success: function(response) {
-            $('#btn-text').hide();
-            $('#loading-icon').show();
-            $('#btn-simpan').attr('disabled', true);
+            $('#btn-text').show();
+            $('#loading-icon').hide();
+            $('#btn-simpan').attr('disabled', false);
 
             if (response.status) {
 
@@ -124,7 +126,7 @@ $('#tambah-data').submit(function(event) {
                     icon: 'success',
                     title: 'Berhasil!',
                     text: 'User Berhasil Dibuat.',
-                    timer: 1500,
+                    timer: 950,
                 });
 
                 var table = $('#user-scan').DataTable();
@@ -209,9 +211,9 @@ $('#ubah-scan').submit(function(e) {
             form.data('requestRunning', true);
         },
         success: function(response) {
-            $('#btn-ubah').attr('disabled', true);
-            $('#btn-text-edit').hide();
-            $('#loading-icon-edit').show();
+            $('#btn-ubah').attr('disabled', false);
+            $('#btn-text-edit').show();
+            $('#loading-icon-edit').hide();
 
             if (response.status) {
                 console.log(response);
@@ -220,7 +222,7 @@ $('#ubah-scan').submit(function(e) {
                     icon: 'success',
                     title: 'Berhasil!',
                     text: 'Data Survey Berhasil Diubah.',
-                    timer: 1500,
+                    timer: 950,
                 });
 
                 var table = $('#user-scan').DataTable();

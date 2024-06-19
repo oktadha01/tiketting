@@ -46,43 +46,70 @@ class Custom_tiket extends AUTH_Controller
         $config['max_size'] = 1024 * 1;
         $config['encrypt_name'] = TRUE;
 
-        $this->load->library('upload', $config);
-
-        if ($this->upload->do_upload('filePhoto')) {
-            $upload_data = $this->upload->data();
-            $background = $upload_data['file_name'];
-        } else {
-            $background = 'default_upload.png';
+        if (!is_dir($config['upload_path'])) {
+            mkdir($config['upload_path'], 0755, true);
         }
 
-        $id_event = $this->input->post('id_event');
+        $this->load->library('upload', $config);
+        $default_background = 'default_upload.png';
 
+        $id_event = $this->input->post('id_event');
         $existing_data = $this->Custom_tiket_model->get_datacustom($id_event);
 
-        if ($existing_data) {
+        // var_dump($existing_data);
 
-            $data = array(
-                'color_nama'        => $this->input->post('color_nama'),
-                'color_email'       => $this->input->post('color_email'),
-                'color_kategori'    => $this->input->post('color_kategori'),
-                'color_code_tiket'  => $this->input->post('color_code_tiket'),
-                'background'        => $background
-            );
+        $background = null;
 
-            $result = $this->Custom_tiket_model->update_design($id_event, $data);
+        if (!empty($_FILES['filePhoto']['name'])) {
+            if (!empty($existing_data) && is_array($existing_data) && isset($existing_data[0]) && is_object($existing_data[0]) && property_exists($existing_data[0], 'background')) {
+                $old_background = $existing_data[0]->background;
+                $old_file_path = $config['upload_path'] . '/' . $old_background;
 
+                if (file_exists($old_file_path)) {
+                    unlink($old_file_path);
+                }
+            }
+
+            if ($this->upload->do_upload('filePhoto')) {
+                $upload_data = $this->upload->data();
+                $background = $upload_data['file_name'];
+            } else {
+                $response = array('status' => 'error', 'message' => $this->upload->display_errors());
+                echo json_encode($response);
+                return;
+            }
         } else {
+            if (!empty($existing_data) && is_array($existing_data) && isset($existing_data[0]) && is_object($existing_data[0]) && property_exists($existing_data[0], 'background')) {
+                $background = $existing_data[0]->background;
+            } else {
+                $background = $default_background;
+            }
+        }
 
-            $data = array(
-                'id_event'          => $id_event,
-                'color_nama'        => $this->input->post('color_nama'),
-                'color_email'       => $this->input->post('color_email'),
-                'color_kategori'    => $this->input->post('color_kategori'),
-                'color_code_tiket'  => $this->input->post('color_code_tiket'),
-                'background'        => $background
-            );
+        // var_dump($background);
+        // exit;
 
-            $result = $this->Custom_tiket_model->save_design($data);
+        $update = array(
+            'color_nama'        => $this->input->post('color_nama'),
+            'color_email'       => $this->input->post('color_email'),
+            'color_kategori'    => $this->input->post('color_kategori'),
+            'color_code_tiket'  => $this->input->post('color_code_tiket'),
+            'background'        => $background
+        );
+
+        $input = array(
+            'color_nama'        => $this->input->post('color_nama'),
+            'color_email'       => $this->input->post('color_email'),
+            'color_kategori'    => $this->input->post('color_kategori'),
+            'color_code_tiket'  => $this->input->post('color_code_tiket'),
+            'background'        => $background
+        );
+
+        if ($existing_data) {
+            $result = $this->Custom_tiket_model->update_design($id_event, $update);
+        } else {
+            $input['id_event'] = $id_event;
+            $result = $this->Custom_tiket_model->save_design($input);
         }
 
         if ($result) {
@@ -93,6 +120,5 @@ class Custom_tiket extends AUTH_Controller
 
         echo json_encode($response);
     }
-
 
 }
