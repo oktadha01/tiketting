@@ -96,11 +96,11 @@
                             <a href="<?= site_url('User/user_scan'); ?>" class="">
                                 <i class="fa fa-users"></i><span>User Scan</span></a>
                         </li>
-                        <li class="menu">
+                        <!-- <li class="menu">
                             <a href="<?= site_url('Scan_tiket'); ?>" id="scanTiketButton" class=""><i
                                     class="fa fa-qrcode"></i><span>Scan Tiket</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </nav>
             </div>
