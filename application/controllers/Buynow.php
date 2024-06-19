@@ -435,6 +435,7 @@ class Buynow extends CI_Controller
                 };
             };
         }
+
         if ($nominal == '0') {
             $subtotal = '0';
             $tgl_trx = date('d-m-Y H:i:s');
@@ -451,6 +452,12 @@ class Buynow extends CI_Controller
                 'status_transaksi'  => '1',
 
             ];
+
+            $this->db->insert('saldo', [
+                'code_bayar'   => $code_bayar,
+                'tanggal'      => $tgl_trx,
+                'nominal'      => $subtotal,
+            ]);
 
             $this->M_buynow->insert_transaksi($data_transaksi);
 

@@ -37,7 +37,7 @@ class M_home extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('banner');
-        $this->db->order_by('id_banner', 'ASC');
+        $this->db->order_by('id_banner', 'DESC');
         $query = $this->db->get();
 
         return $query->result();

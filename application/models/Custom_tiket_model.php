@@ -14,6 +14,16 @@ class Custom_tiket_model extends CI_Model
         return $query->result();
     }
 
+    public function get_data_backround($id_event)
+    {
+        $this->db->select('id_event, background');
+        $this->db->from('custom_tiket');
+        $this->db->where('id_event', $id_event);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
     public function get_color_by_id_event($id_event) {
         $this->db->select('id_event, color_nama, color_email, color_kategori, color_code_tiket');
         $this->db->where('id_event', $id_event);

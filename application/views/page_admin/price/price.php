@@ -243,22 +243,19 @@
                                         <label class="label-in">Akhir Promo</label>
                                     </div>
                                 </div>
-
                                 <div class="col-md-3 pr-0">
                                     <div class="input-wrapper" id="buy-edit" style="display: none;">
-                                        <label for=" buy-input" class="label-in">Buy</label>
-                                        <input type="number" id="buy-input-edit" class="col-lg-12" min="1" max="5"
+                                        <label for="buy-input" class="label-in">Buy</label>
+                                        <input type="number" id="buy-input-edit" name="buy_input" class="col-lg-12"
                                             oninput="checkInput()">
                                     </div>
                                 </div>
                                 <div class="col-md-3 pl-0">
                                     <div class="input-wrapper" id="free-edit" style="display: none;">
                                         <input type="number" id="free-input-edit" name="free_input" class="col-lg-12"
-                                            min="1" max="3" oninput="checkInput()">
+                                            oninput="checkInput()">
                                         <label class="label-in" for="free-input-edit">Free</label>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
                                 </div>
                                 <div class="col-md-6 text-danger pl=0 pr=0 text-center" id="warning-edit"
                                     style="display: none;">
@@ -272,7 +269,23 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Ubah</button>
+                    <button type="submit" class="btn btn-primary" id="btn-ubah">
+                        <span id="btn-text-ubah">Ubah</span>
+                        <span id="loading-icon-ubah" class="loading" style="display:none;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z" />
+                                <rect x="11" y="6" rx="1" width="2" height="7">
+                                    <animateTransform attributeName="transform" type="rotate" dur="9s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="11" y="11" rx="1" width="2" height="9">
+                                    <animateTransform attributeName="transform" type="rotate" dur="0.75s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                            </svg> Loading...
+                        </span>
+                    </button>
                 </div>
             </form>
         </div>
@@ -339,7 +352,23 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
-                    <button type="submit" id="ubah-button" class="btn btn-primary" disabled>Ubah</button>
+                    <button type="submit" class="btn btn-primary" id="btn-ubh-bundling">
+                        <span id="btn-text-bundling-ubah">Simpan</span>
+                        <span id="loading-icon-bundling-ubah" class="loading" style="display:none;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z" />
+                                <rect x="11" y="6" rx="1" width="2" height="7">
+                                    <animateTransform attributeName="transform" type="rotate" dur="9s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="11" y="11" rx="1" width="2" height="9">
+                                    <animateTransform attributeName="transform" type="rotate" dur="0.75s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                            </svg> Loading...
+                        </span>
+                    </button>
                 </div>
             </form>
         </div>
@@ -421,9 +450,26 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Keluar</button>
-                    <button type="submit" class="btn btn-primary" disabled>Simpan</button>
+                    <button type="submit" class="btn btn-primary" id="btn-smpn-bundling">
+                        <span id="btn-text-bundling">Simpan</span>
+                        <span id="loading-icon-bundling" class="loading" style="display:none;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,12,21Z" />
+                                <rect x="11" y="6" rx="1" width="2" height="7">
+                                    <animateTransform attributeName="transform" type="rotate" dur="9s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                                <rect x="11" y="11" rx="1" width="2" height="9">
+                                    <animateTransform attributeName="transform" type="rotate" dur="0.75s"
+                                        values="0 12 12;360 12 12" repeatCount="indefinite" />
+                                </rect>
+                            </svg> Loading...
+                        </span>
+                    </button>
                 </div>
             </form>
         </div>

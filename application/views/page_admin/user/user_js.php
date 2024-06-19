@@ -1,4 +1,7 @@
 <script>
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
+
 $(document).ready(function() {
     var table;
 
@@ -65,7 +68,7 @@ function confirmDelete(id_user) {
                             title: 'Berhasil!',
                             text: 'Data berhasil dihapus.',
                             icon: 'success',
-                            timer: 1500,
+                            timer: 950,
                             showConfirmButton: false,
                         });
 

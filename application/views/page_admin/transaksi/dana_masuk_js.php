@@ -1,4 +1,6 @@
 <script>
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
 $(document).ready(function() {
     var table;
 

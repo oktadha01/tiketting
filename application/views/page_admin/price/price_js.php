@@ -1,4 +1,7 @@
 <script>
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
+
 function checkInput() {
     var buyInput = document.getElementById('buy-input');
     var freeInput = document.getElementById('free-input');
@@ -384,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nilaikelipatan = 0;
         }
 
-        console.log('Nilai promo:', nilaikelipatan);
+        // console.log('Nilai promo:', nilaikelipatan);
 
         var buy_edit = document.getElementById('buy-edit');
         var free_edit = document.getElementById('free-edit');
@@ -406,9 +409,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
 $('#ubah-price').submit(function(e) {
     e.preventDefault();
+    $('#btn-text-ubah').hide();
+    $('#loading-icon-ubah').show();
+    $('#btn-ubah').attr('disabled', true);
+
     var form = $(this);
 
     if (form.data('requestRunning')) {
+        return;
+    }
+
+    var buyInput = document.getElementById('buy-input-edit');
+    var freeInput = document.getElementById('free-input-edit');
+
+    if (buyInput.parentElement.style.display === 'none') {
+        buyInput.disabled = true;
+    } else {
+        buyInput.disabled = false;
+    }
+
+    if (freeInput.parentElement.style.display === 'none') {
+        freeInput.disabled = true;
+    } else {
+        freeInput.disabled = false;
+    }
+
+    if (!buyInput.disabled && (buyInput.value < 1 || buyInput.value > 3)) {
+        buyInput.focus();
+        alert('Masukkan nilai antara 1 dan 3 untuk Buy.');
+        return;
+    }
+
+    if (!freeInput.disabled && (freeInput.value < 1 || freeInput.value > 3)) {
+        freeInput.focus();
+        alert('Masukkan nilai antara 1 dan 3 untuk Free.');
         return;
     }
 
@@ -431,6 +465,10 @@ $('#ubah-price').submit(function(e) {
             form.data('requestRunning', true);
         },
         success: function(response) {
+            $('#btn-text-ubah').show();
+            $('#loading-icon-ubah').hide();
+            $('#btn-ubah').attr('disabled', false);
+
             if (response.status) {
                 console.log(response);
 
@@ -438,6 +476,14 @@ $('#ubah-price').submit(function(e) {
                     icon: 'success',
                     title: 'Berhasil!',
                     text: 'Data Prices Berhasil Diubah.',
+                });
+
+                Swal.fire({
+                    position: "top-center",
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Data Prices Berhasil Diubah.',
+                    timer: 980
                 });
 
                 var table = $('#data-price').DataTable();
@@ -454,6 +500,10 @@ $('#ubah-price').submit(function(e) {
             }
         },
         error: function(xhr, status, error) {
+            $('#btn-text-ubah').show();
+            $('#loading-icon-ubah').hide();
+            $('#btn-ubah').attr('disabled', false);
+
             console.error(xhr.responseText);
             Swal.fire({
                 icon: 'error',
@@ -571,6 +621,10 @@ $('#bundling').on('hidden.bs.modal', function() {
 $('#buat-bundling').submit(function(event) {
     event.preventDefault();
 
+    $('#btn-text-bundling').hide();
+    $('#loading-icon-bundling').show();
+    $('#btn-smpn-bundling').attr('disabled', true);
+
     var id_event = $('#id-event-bundle').val();
     var id_price = $('#id-price-bundle').val();
     var kategori_price = $('#nm-bundling').val();
@@ -596,11 +650,16 @@ $('#buat-bundling').submit(function(event) {
         dataType: 'json',
         success: function(response) {
             if (response.status) {
+                $('#btn-text-bundling').show();
+                $('#loading-icon-bundling').hide();
+                $('#btn-smpn-bundling').attr('disabled', false);
 
                 Swal.fire({
+                    position: "top-center",
                     icon: 'success',
                     title: 'Berhasil!',
-                    text: 'Price Berhasil Dibuat.',
+                    text: 'Data Bundling Berhasil Dibuat.',
+                    timer: 980
                 });
 
                 var table = $('#data-price').DataTable();
@@ -618,8 +677,11 @@ $('#buat-bundling').submit(function(event) {
             }
         },
         error: function(xhr, status, error) {
-            console.error(xhr.responseText);
+            $('#btn-text-bundling').show();
+            $('#loading-icon-bundling').hide();
+            $('#btn-smpn-bundling').attr('disabled', false);
 
+            console.error(xhr.responseText);
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal!',
@@ -696,6 +758,10 @@ function hitungJumlahBundle() {
 
 $('#edit-bundling').submit(function(e) {
     e.preventDefault();
+    $('#btn-text-bundling-ubah').hide();
+    $('#loading-icon-bundling-ubah').show();
+    $('#btn-ubh-bundling').attr('disabled', true);
+
     var form = $(this);
 
     if (form.data('requestRunning')) {
@@ -720,12 +786,18 @@ $('#edit-bundling').submit(function(e) {
         },
         success: function(response) {
             if (response.status) {
+                $('#btn-text-bundling-ubah').show();
+                $('#loading-icon-bundling-ubah').hide();
+                $('#btn-ubh-bundling').attr('disabled', false);
+
                 console.log(response);
 
                 Swal.fire({
+                    position: "top-center",
                     icon: 'success',
                     title: 'Berhasil!',
-                    text: 'Data Bundling Berhasil Diubah.',
+                    text: 'Data Bundling Berhasil DiUbah.',
+                    timer: 980
                 });
 
                 var table = $('#data-price').DataTable();
@@ -742,6 +814,10 @@ $('#edit-bundling').submit(function(e) {
             }
         },
         error: function(xhr, status, error) {
+            $('#btn-text-bundling-ubah').show();
+            $('#loading-icon-bundling-ubah').hide();
+            $('#btn-ubh-bundling').attr('disabled', false);
+
             console.error(xhr.responseText);
             Swal.fire({
                 icon: 'error',

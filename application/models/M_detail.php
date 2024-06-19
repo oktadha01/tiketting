@@ -34,15 +34,16 @@ class M_detail extends CI_Model
 
     function m_event($nm_event)
     {
-        $this->db->select('*');
+        $this->db->select('event.*, wilayah_kabupaten.id,wilayah_kabupaten.nama, user.id_user, user.agency, user.alamat');
         $this->db->from('event');
         $this->db->join('wilayah_kabupaten', 'wilayah_kabupaten.id = event.kota');
         $this->db->Join('user', 'user.id_user = event.id_user');
-        $this->db->where('nm_event', $nm_event);
+        $this->db->where('event.nm_event', $nm_event);
         $query = $this->db->get();
 
         return $query->result();
     }
+
     function m_tiket($nm_event)
     {
         $this->db->select('*');

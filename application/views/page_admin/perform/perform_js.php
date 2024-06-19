@@ -1,4 +1,6 @@
 <script>
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
 $('#tambah-data, #ubah-perform').on('shown.bs.modal', function() {
     $(function() {
         $('.select2').each(function() {
@@ -159,9 +161,9 @@ $('#tambah-data').submit(function(event) {
         },
         dataType: 'json',
         success: function(response) {
-            $('#btn-text').hide();
-            $('#loading-icon').show();
-            $('#btn-simpan').attr('disabled', true);
+            $('#btn-text').show();
+            $('#loading-icon').hide();
+            $('#btn-simpan').attr('disabled', false);
 
             if (response.status) {
 
@@ -176,6 +178,7 @@ $('#tambah-data').submit(function(event) {
                 var table = $('#data-perform').DataTable();
                 table.ajax.reload(null, false);
                 $('#tambah-data').modal('hide');
+                $('#tambah-data')[0].reset();
 
             } else {
                 console.error('Terjadi kesalahan saat validasi data di server.');
@@ -221,6 +224,10 @@ $(document).ready(function() {
 
 $('#ubah-perform').submit(function(e) {
     e.preventDefault();
+    $('#btn-text-ubah').hide();
+    $('#loading-icon-ubah').show();
+    $('#btn-ubah').attr('disabled', true);
+
     var form = $(this);
 
     if (form.data('requestRunning')) {
@@ -243,7 +250,10 @@ $('#ubah-perform').submit(function(e) {
         },
         success: function(response) {
             if (response.status) {
-                console.log(response);
+                $('#btn-text-ubah').show();
+                $('#loading-icon-ubah').hide();
+                $('#btn-ubah').attr('disabled', false);
+                // console.log(response);
 
                 Swal.fire({
                     icon: 'success',
@@ -266,6 +276,9 @@ $('#ubah-perform').submit(function(e) {
             }
         },
         error: function(xhr, status, error) {
+            $('#btn-text-ubah').show();
+            $('#loading-icon-ubah').hide();
+            $('#btn-ubah').attr('disabled', false);
             console.error(xhr.responseText);
             Swal.fire({
                 icon: 'error',

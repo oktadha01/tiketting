@@ -22,8 +22,8 @@
                         <th style="font-weight: normal;color: white;font-size: x-large;"><i
                                 class="fa-brands fa-whatsapp"></i></th>
                         <th class="pl-3" style="font-weight: normal;">
-                            <a href="https://wa.me/6285876208194?text=Hallo%20Wisdil%20..." target="_blank"
-                                style="color: white;">0858-7620-8194</a>
+                            <a href="https://wa.me/6285864900443?text=Hallo%20Wisdil%20..." target="_blank"
+                                style="color: white;">0858-6490-0443</a>
                         </th>
                     </tr>
                     <!-- <tr>
@@ -37,7 +37,7 @@
             <div class="col-lg-6 col-12">
                 <ul style="display: flex; justify-content: space-evenly;">
                     <li class="mr-2">
-                        <a href="https://wa.me/6285876208194?text=Hallo%20Wisdil%20..." target="_blank">
+                        <a href="https://wa.me/6285864900443?text=Hallo%20Wisdil%20..." target="_blank">
                             <i class="fa-brands fa-whatsapp bg-w-orange bg-size-icon hov-wa"></i>
                         </a>
                     </li>

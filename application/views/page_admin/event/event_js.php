@@ -1,4 +1,7 @@
 <script>
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
+
 $('#tambah-data, #ubah-event').on('shown.bs.modal', function() {
     $(function() {
         $('.select2').each(function() {
@@ -279,8 +282,6 @@ $(document).ready(function() {
         var defaultPosterValue = 'upload/event/' + poster;
         var defaultHeaderValue = 'upload/event/' + header;
 
-        alert(kategori_event);
-
         $('#ubah-event #edit-id-event').val(id_event);
         $('#ubah-event #edit-id-user').val(id_user);
         $('#ubah-event #edit-nm-event').val(nm_event);
@@ -321,6 +322,10 @@ $('#edit-event').on('hidden.bs.modal', function() {
 
 $('#edit-event').submit(function(event) {
     event.preventDefault();
+
+    $('#btn-text-ubah').hide();
+    $('#loading-icon-ubah').show();
+    $('#btn-ubah').attr('disabled', true);
     var formData = new FormData(this);
 
     $.ajax({
@@ -331,6 +336,10 @@ $('#edit-event').submit(function(event) {
         processData: false,
         contentType: false,
         success: function(response) {
+            $('#btn-text').hide();
+            $('#loading-icon').show();
+            $('#btn-ubah').attr('disabled', true);
+
             if (response.status) {
                 console.log(response);
 
@@ -359,6 +368,10 @@ $('#edit-event').submit(function(event) {
             }
         },
         error: function(xhr, status, error) {
+            $('#btn-text').hide();
+            $('#loading-icon').show();
+            $('#btn-ubah').attr('disabled', true);
+
             console.error(xhr.responseText);
             Swal.fire({
                 icon: 'error',
