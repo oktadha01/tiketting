@@ -465,6 +465,13 @@ class Buynow extends CI_Controller
                 'tanggal'      => $tgl_trx,
                 'nominal'      => $subtotal,
             ]);
+<<<<<<< HEAD
+=======
+
+            $this->M_buynow->insert_transaksi($data_transaksi);
+        } else {
+            $subtotal = $nominal * 0.03 + 7850 + $nominal;
+>>>>>>> 3a8441c10a3169efcf254baf9af509afb396d0bc
 
             $this->M_buynow->insert_transaksi($data_transaksi, $status_transaksi);
         } else {

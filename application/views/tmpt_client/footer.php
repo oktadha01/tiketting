@@ -35,7 +35,11 @@
                                 class="fa-brands fa-whatsapp"></i></th>
                         <th class="pl-3" style="font-weight: normal;">
                             <a href="https://wa.me/6285864900443?text=Hallo%20Wisdil%20..." target="_blank"
+<<<<<<< HEAD
                                 style="color: white;">0858-6490-0443 (CS)</a>
+=======
+                                style="color: white;">0858-6490-0443</a>
+>>>>>>> 3a8441c10a3169efcf254baf9af509afb396d0bc
                         </th>
                     </tr>
                 </table>

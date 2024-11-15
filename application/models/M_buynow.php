@@ -46,8 +46,11 @@ class M_buynow extends CI_Model
             redirect(base_url('Callback/event_free_tiket/') . $data_transaksi['code_bayar']);
         } else {
             return false;
+<<<<<<< HEAD
         }
         
+=======
+>>>>>>> 3a8441c10a3169efcf254baf9af509afb396d0bc
         }
     }
 
