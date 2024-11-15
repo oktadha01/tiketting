@@ -1,4 +1,6 @@
 <script>
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
 $(document).ready(function() {
     var table;
 
@@ -13,6 +15,7 @@ $(document).ready(function() {
             "url": "<?=site_url('Dana_masuk/get_datasaldo/')?><?= $this->uri->segment(3);?>",
             "type": "POST",
         },
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]], // Tambahkan opsi 'All'
 
         "footerCallback": function(row, data, start, end, display) {
             var api = this.api(),
@@ -26,7 +29,6 @@ $(document).ready(function() {
                     return a + parseFloat(b.replace(/[^\d.-]/g, ''));
                 }, 0);
 
-            // Ambil totalNominal dari objek output
             var totalNominalObj = api.ajax.json().totalNominal;
 
             $(api.column(5, {

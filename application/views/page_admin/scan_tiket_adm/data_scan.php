@@ -18,18 +18,26 @@
                 <div class="header mb-1 pb-1">
                     <h2>Data Tiket</h2>
                 </div>
-                <div class="input-group pb-0 col-lg-3 col-md-3 col-sm-12 mr-0 pr-0">
-                    <div class="form-group">
+                <div class="input-group pb-0 col-lg-3 col-md-3 col-sm-12 mr-0 pr-0"
+                    style="display: flex; align-items: center;">
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                <span class="input-group-text"><i class="fa fa-qrcode"></i></span>
                             </div>
-                            <select type="text" id="status_filter" class="form-control col-lg-12 mt-1 pt-1">
+                            <select type="text" id="status_filter" class="form-control" style="height: 38px;">
                                 <option value="">Pilih !!</option>
                                 <option value="0">Belum Diambil</option>
                                 <option value="1">Sudah Diambil</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="demo-button" style="margin-left: 10px;">
+                        <button type="button" class="btn btn-success" title="Export Excel" style="height: 38px;"
+                            id="export-excel">
+                            <span class="sr-only">Export Excel</span>
+                            <i class="fa fa-file-excel-o"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="body table-responsive mt-1 pt-1">
@@ -38,6 +46,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Code Tiket</th>
                                 <th>Nama</th>
                                 <th>Gender</th>
                                 <th>Email</th>

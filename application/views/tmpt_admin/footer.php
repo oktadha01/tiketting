@@ -11,10 +11,10 @@
 <script src="<?= base_url('assets'); ?>/vendor/nouislider/nouislider.js"></script>
 <script src="<?= base_url('assets'); ?> /js/pages/ui/dialogs.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-<!-- select2
--->
+<!-- select2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-
+<!-- sweetalert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- datatables -->
 <script src="<?= base_url('assets'); ?>/bundles/datatablescripts.bundle.js"></script>
 <script src="<?= base_url('assets'); ?>/vendor/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
@@ -35,22 +35,22 @@
 <script src="<?= base_url('assets'); ?>/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
 <script>
-$(function() {
-    var url = window.location.href;
+    $(function() {
+        var url = window.location.href;
 
-    $("#main-menu a").each(function() {
-        if (url == (this.href)) {
-            $(this).closest(".menu").addClass("active");
-        }
+        $("#main-menu a").each(function() {
+            if (url == (this.href)) {
+                $(this).closest(".menu").addClass("active");
+            }
+        });
     });
-});
 </script>
 
 <script>
-$('[data-provide="datepicker"]').datepicker({
-    format: 'dd/mm/yyyy',
-    autoclose: true
-});
+    $('[data-provide="datepicker"]').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true
+    });
 </script>
 
 <script src="https://unpkg.com/html5-qrcode"></script>

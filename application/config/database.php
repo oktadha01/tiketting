@@ -9,7 +9,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	// Offline development
 	// 'username' => 'root',
-	// 'password' => '',   
+	// 'password' => '',
 
 	// Online Production
 	'username' => 'wisy2434_wisdil',

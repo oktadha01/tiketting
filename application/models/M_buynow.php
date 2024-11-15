@@ -36,22 +36,25 @@ class M_buynow extends CI_Model
             ->update('customer');
         return $update;
     }
-    function insert_transaksi($data_transaksi)
+    
+    function insert_transaksi($data_transaksi, $status_transaksi)
     {
         $this->db->insert('transaksi', $data_transaksi);
+        if($status_transaksi =='free'){
+            
         if ($this->db->affected_rows() > 0) {
-            // Get the ID of the inserted record if needed
-            // $insert_id = $this->db->insert_id();
-
-            // Perform additional actions here, for example, logging or further database operations
-
-            // Redirect to another page upon successful insertion
-            redirect(base_url('Callback/event_free_tiket/') . $data_transaksi['code_bayar']); // Change 'path/to/success/page' to your desired URL
+            redirect(base_url('Callback/event_free_tiket/') . $data_transaksi['code_bayar']);
         } else {
-            // Handle the failure case if needed
-            return false; // Indicate that the insert failed
+            return false;
+        }
+        
         }
     }
+
+    function insert_transaksi_free($saldo) {
+        return $this->db->insert('saldo', $saldo);
+    }
+
     function update_stok_tiket($id_price, $stock_tiket)
     {
         $update = $this->db->set('stock_tiket', $stock_tiket)

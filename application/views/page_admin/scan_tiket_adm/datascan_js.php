@@ -1,4 +1,9 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
 <script>
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
+
 $(document).ready(function() {
     var table;
 
@@ -115,5 +120,119 @@ $(document).ready(function() {
         }
     });
 
+});
+
+$('#export-excel').on('click', function() {
+    $.ajax({
+        url: "<?=site_url('Scan_tiket/get_datatiket/')?><?= $this->uri->segment(3);?>",
+        type: "POST",
+        data: {
+            status_filter: $('#status_filter').val(),
+            length: -1
+        },
+        success: function(response) {
+            console.log("Full response from server:",
+                response);
+
+            if (!response) {
+                console.error("Tidak ada respons dari server.");
+                return;
+            }
+
+            if (typeof response === 'string') {
+                response = JSON.parse(response);
+            }
+
+            if (!response.data) {
+                console.error("Respons tidak memiliki properti 'data'.");
+                console.log("Respons yang diterima:", response);
+                return;
+            }
+
+            if (!Array.isArray(response.data)) {
+                console.error("Data tidak dalam format array.");
+                console.log("Tipe data:", typeof response.data);
+                return;
+            }
+
+            var tableData = [];
+            var headers = ['No', 'Nama', 'Gender', 'Email', 'Kontak', 'No. Identitas', 'Status'];
+
+            // Tambahkan header ke tableData
+            tableData.push(headers);
+
+            // Tambahkan baris data ke tableData
+            response.data.forEach(function(row, index) {
+                var rowData = [];
+                rowData.push(row[0]);
+                rowData.push(row[1]);
+                rowData.push(row[2]);
+                rowData.push(row[3]);
+                rowData.push(row[4]);
+                rowData.push(row[5]);
+                rowData.push($(row[6]).text().trim());
+                tableData.push(rowData);
+            });
+
+            // Buat worksheet dan workbook
+            var ws = XLSX.utils.aoa_to_sheet(tableData);
+            var wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Data Tiket");
+
+            // Header style using xlsx-style
+            var headerStyle = {
+                fill: {
+                    patternType: "solid",
+                    fgColor: {
+                        rgb: "0000FF"
+                    }
+                },
+                font: {
+                    color: {
+                        rgb: "FFFFFF"
+                    },
+                    bold: true
+                }
+            };
+
+            headers.forEach(function(header, index) {
+                var cell_address = {
+                    c: index,
+                    r: 0
+                };
+                var cell_ref = XLSX.utils.encode_cell(cell_address);
+                if (!ws[cell_ref]) return;
+                Object.assign(ws[cell_ref], headerStyle);
+            });
+
+            var colWidths = headers.map(header => ({
+                wpx: header.length * 10
+            }));
+            ws['!cols'] = colWidths;
+
+            var wbout = XLSX.write(wb, {
+                bookType: 'xlsx',
+                type: 'binary'
+            });
+
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) {
+                    view[i] = s.charCodeAt(i) & 0xFF;
+                }
+                return buf;
+            }
+
+            // simpan file dengan nama event
+            var filename = 'data_tiket_' + response.nm_event + '.xlsx';
+            saveAs(new Blob([s2ab(wbout)], {
+                type: "application/octet-stream"
+            }), filename);
+        },
+        error: function(error) {
+            console.error("Kesalahan dalam mengambil data: ", error);
+        }
+    });
 });
 </script>

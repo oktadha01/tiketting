@@ -47,25 +47,45 @@ class Dana_masuk extends AUTH_Controller
         $no = @$_POST['start'];
         $saldo = 0;
         $totalNominal = 0;
+        $biayaVA = 5000;
+
+        $previlage = $this->session->userdata('privilage');
 
         foreach ($list as $sal) {
             $Rp_nominal = 'Rp. ' . number_format($sal->nominal, 0, ',', '.');
 
+            if ($previlage === 'user') {
+                $Rp_nominal = 'Rp. ' . number_format($sal->nominal - $biayaVA, 0, ',', '.');
+            }
+
+            else if ($previlage === 'admin') {
+                $Rp_nominal = 'Rp. ' . number_format($sal->nominal, 0, ',', '.');
+            }
+
             $no++;
             $row = array();
-            $row[]  = $no.".";
+            $row[]  = $no . ".";
             $row[]  = $sal->tanggal;
             $row[]  = $sal->code_bayar;
             $row[]  = $sal->bank;
             $row[]  = $Rp_nominal;
 
-            $saldo += $sal->nominal;
+            if ($previlage === 'user') {
+                $saldo += $sal->nominal - $biayaVA;
+            } else if ($previlage === 'admin') {
+                $saldo += $sal->nominal;
+            }
+
             $saldoFormatted = 'Rp. ' . number_format($saldo, 0, ',', '.');
             $row[] = $saldoFormatted;
 
             $data[] = $row;
 
-            $totalNominal += $sal->nominal;
+            if ($previlage === 'user') {
+                $totalNominal += $sal->nominal - $biayaVA;
+            } else if ($previlage === 'admin') {
+                $totalNominal += $sal->nominal;
+            }
         }
 
         $totalNominalFormatted = 'Rp. ' . number_format($totalNominal, 0, ',', '.');
@@ -80,7 +100,6 @@ class Dana_masuk extends AUTH_Controller
 
         echo json_encode($output);
     }
-
 
     public function fetch()
     {

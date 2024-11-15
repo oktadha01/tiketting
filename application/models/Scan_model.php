@@ -7,12 +7,14 @@ class Scan_model extends CI_Model
     var $column_searchtrx = array('tiket.nama', 'tiket.gender', 'tiket.email', 'tiket.kontak', 'tiket.code_tiket');
     var $ordertrx = array('tiket.id_tiket' => 'asc');
 
-    private function _get_datatables($id_event, $status_filter)
+    private function _get_datatables($id_event, $status_filter, $status='1')
     {
         $this->db->select('*');
         $this->db->from('tiket');
         $this->db->join('event', 'event.id_event = tiket.id_event');
+        $this->db->join('transaksi', 'transaksi.code_bayar = tiket.code_bayar');
         $this->db->where('tiket.id_event', $id_event);
+        $this->db->where('transaksi.status_transaksi', $status);
         $this->db->order_by('tiket.id_tiket', 'DESC');
 
         if ($status_filter !== '') {
@@ -127,16 +129,27 @@ class Scan_model extends CI_Model
         return $query->row()->stock_tiket;
     }
 
-    public function get_tiket_status($id_user)
+    public function get_tiket_status($id_event)
     {
         $this->db->select('SUM(CASE WHEN status_tiket = 1 THEN 1 ELSE 0 END) as jumlah_tiket_1');
         $this->db->select('SUM(CASE WHEN status_tiket = 0 THEN 1 ELSE 0 END) as jumlah_tiket_0');
         $this->db->select('SUM(1) as jumlah_total_tiket');
         $this->db->from('tiket');
         $this->db->join('event', 'event.id_event = tiket.id_event');
-        $this->db->where('event.id_user', $id_user);
+        $this->db->where('event.id_event', $id_event);
 
         $query = $this->db->get();
         return $query->row();
+    }
+
+    public function get_nama_event($id_event) {
+        $this->db->select('nm_event');
+        $this->db->from('event');
+        $this->db->where('id_event', $id_event);
+
+        $query = $this->db->get();
+        $result = $query->row();
+
+        return ($result) ? $result->nm_event : 'default_event';
     }
 }

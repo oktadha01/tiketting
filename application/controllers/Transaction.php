@@ -27,6 +27,7 @@ class Transaction extends CI_Controller
         $data['script']         = 'client/transaction/transaction_js';
         $this->load->view($this->template, $data);
     }
+    
     function data()
     {
 
@@ -41,17 +42,31 @@ class Transaction extends CI_Controller
 
                 if (date('d-m-Y H:i:s') >= $newDateTime && $data_transaksi->status_transaksi == '0') {
                     // echo 'delete';
-                    $sql = "SELECT * FROM tiket WHERE code_bayar = '$data_transaksi->code_bayar'";
-                    $query = $this->db->query($sql);
-                    if ($query->num_rows() > 0) {
-                        foreach ($query->result() as $file) {
+                    // $count = 0; // Initialize a counter
+                    // $sql = "SELECT * FROM tiket WHERE code_bayar = '$data_transaksi->code_bayar'";
+                    // $query = $this->db->query($sql);
+                    // if ($query->num_rows() > 0) {
+                    //     foreach ($query->result() as $file) {
+                    //         $id_price = $file->id_price;
+                    //         unlink('./upload/pdf/pdf-' . $file->code_tiket . '.pdf');
+                    //         unlink('./upload/qr/qr-' . $file->code_tiket . '.png');
+                    //         $count++; // Increment counter for each file processed
+                    //     }
+                    // }
+                    // $code_bayar = $data_transaksi->code_bayar;
+                    // $this->M_transaksi->m_delete_transaksi_tiket($code_bayar);
+                    
+                    // $this->db->select("*");
+                    // $this->db->where('id_price', $id_price);
+                    // $query_ = $this->db->get('price');
+                    // if ($query_->num_rows() <> 0) {
+                    //     $data_ = $query_->row();
+                    //     $id_price = $data_->id_price;
+                    //     $stock_tiket = $data_->stock_tiket + $count;
+                    //     // echo 'id:' . $data_->id_price . 'count :' . $stock_tiket;
+                    //     $this->M_transaksi->m_update_stock_tiket($id_price, $stock_tiket);
+                    // }
 
-                            unlink('./upload/pdf/pdf-' . $file->code_tiket . '.pdf');
-                            unlink('./upload/qr/qr-' . $file->code_tiket . '.png');
-                        }
-                    }
-                    $code_bayar = $data_transaksi->code_bayar;
-                    $this->M_transaksi->m_delete_transaksi_tiket($code_bayar);
                     echo '<span>No transactions</span>';
                 } else {
                     // code status

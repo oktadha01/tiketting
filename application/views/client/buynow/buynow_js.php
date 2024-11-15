@@ -1,5 +1,26 @@
 <script>
     $(document).ready(function() {
+            $(function() {
+        var tglLahirInput = $('.tgl-lahir');
+
+        tglLahirInput.daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            autoclose: true,
+        }, function(start, end, label) {
+            var years = moment().diff(start, 'years');
+            // alert("You are " + years + " years old!");
+            if (years > 10) {
+                tglLahirInput.removeClass('invalid-input');
+            }
+             $('.applyBtn').addClass('btn-primary');
+        });
+    });
+        
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -283,25 +304,7 @@
         }, 7000);
     }
 
-    $(function() {
-        var tglLahirInput = $('.tgl-lahir');
 
-        tglLahirInput.daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            minYear: 1901,
-            locale: {
-                format: 'DD-MM-YYYY'
-            },
-            autoclose: true,
-        }, function(start, end, label) {
-            var years = moment().diff(start, 'years');
-            // alert("You are " + years + " years old!");
-            if (years > 10) {
-                tglLahirInput.removeClass('invalid-input');
-            }
-        });
-    });
     document.getElementById("myForm").addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             event.preventDefault();

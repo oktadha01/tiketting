@@ -16,8 +16,8 @@
     <link rel="stylesheet"
         href="<?= base_url('assets'); ?>/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/font-awesome/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendor/toastr/toastr.min.css">
 
     <!-- MAIN Project CSS file -->

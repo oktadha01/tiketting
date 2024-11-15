@@ -38,6 +38,9 @@ hr {
 .mt-5rem {
     margin-top: 5rem;
 }
+button.applyBtn.btn.btn-sm.btn-primary {
+    background: #0047ba !important;
+}
 </style>
 <section class="container mt-4">
     <div class="mt-5rem">
@@ -383,7 +386,10 @@ hr {
                                     $fee = '0';
                                 } else {
                                     $total = $rows->harga * $count + $total;
-                                    $fee = $total * 0.03 + 7850;
+                                    // default
+                                    // $fee = $total * 0.03 + 7850;
+                                    // custom
+                                    $fee = 5000;
                                 }
 
                     ?>

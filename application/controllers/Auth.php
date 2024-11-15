@@ -130,6 +130,8 @@ class Auth extends CI_Controller
 		} else {
 			if ($session_privilege == 'scan') {
 				redirect('Scan_tiket');
+			} else if ($session_privilege == 'sales') {
+				redirect('Dash_sales');
 			} else {
 				redirect('Dashboard');
 			}
@@ -142,35 +144,43 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if ($this->form_validation->run() == TRUE) {
-			$email = trim($_POST['email']);
-			$password = trim($_POST['password']);
+			$email = trim($this->input->post('email'));
+			$password = trim($this->input->post('password'));
 
-			$data = $this->M_auth->login($email, $password);
+			// Check login in both models
+			$data_admin = $this->M_auth->login($email, $password);
+			$data_sales = $this->M_auth->login_sales($email, $password);
 
-			if ($data == false) {
+			if ($data_admin) {
+				// Admin user session setup
+				$session = [
+					'userdata' => $data_admin,
+					'status' => "Logged in",
+					'privilage' => strtolower($data_admin->privilage)
+				];
+				$this->session->set_userdata($session);
+				redirect($session['privilage'] == 'scan' ? 'Scan_tiket' : 'Dashboard');
+			} elseif ($data_sales) {
+				// Sales user session setup
+				// $data_sales->agency = $data_sales->agency ?? 'Default Agency';
+				$session = [
+					'userdata' => $data_sales,
+					'status' => "Logged in",
+					'privilage' => 'sales' // Assuming 'sales' privilege is set for sales users
+				];
+				$this->session->set_userdata($session);
+				redirect('Dash_sales'); // Redirect to sales dashboard or desired page
+			} else {
+				// Login failed
 				$this->session->set_flashdata('result_login', '<br>Email atau Password yang anda masukkan salah.');
 				redirect('Auth/login');
-			} else {
-				$session = [
-					'userdata' => $data,
-					'status' => "Loged in"
-				];
-
-				$session['privilage'] = strtolower($data->privilage);
-
-				$this->session->set_userdata($session);
-
-				if ($session['privilage'] == 'scan') {
-					redirect('Scan_tiket');
-				} else {
-					redirect('Dashboard');
-				}
 			}
 		} else {
-			$this->session->set_flashdata('result_login', '<br>email Dan Password Harus Diisi.');
+			$this->session->set_flashdata('result_login', '<br>Email dan Password harus diisi.');
 			redirect('Auth/login');
 		}
 	}
+
 	function cek_email_rest_pass()
 	{
 		$email = $_POST['email'];

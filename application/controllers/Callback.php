@@ -27,7 +27,7 @@ class Callback extends CI_Controller
         xendit_loaded();
         $this->db->trans_begin();
 
-        $xenditXCallbackToken = 'xIgnYLs9PRcUYjZzYJc1EZUP5Aj3W7dTrCH6AHJOBJ67g7Zl';
+        // $xenditXCallbackToken = 'xIgnYLs9PRcUYjZzYJc1EZUP5Aj3W7dTrCH6AHJOBJ67g7Zl';
 
         try {
             $rawRequestInput = file_get_contents("php://input");
@@ -119,6 +119,7 @@ class Callback extends CI_Controller
             ->set_content_type('application/json')
             ->set_output(json_encode($response));
     }
+
     function event_free_tiket()
     {
         $_externalId = $this->uri->segment(3);
@@ -127,41 +128,31 @@ class Callback extends CI_Controller
         $_amount = 'free';
         $this->send_email($_externalId, $_paymentChannel, $datetime, $_amount);
     }
+    
     // function send_email()
     function send_email($_externalId, $_paymentChannel, $datetime, $_amount)
     {
-        // CB-54020215-0006
-        // $_externalId = 'CB-53053117-0003';
-        // $_paymentChannel = 'BCA';
-        // $datetime = '10-12-2024 09:00';
-
-        // echo $_externalId;
-        // echo '<br>';
-        // echo $_paymentChannel;
-        // echo '<br>';
-        // echo $datetime;
-        // echo '<br>';
-        // echo $_amount;
-        // echo '<br>';
         if ($_amount == 'free') {
+            $_amount = 'Gratis';
         } else {
             $_amount = 'Rp. ' . number_format($_amount, 0, ',', '.');
         }
-
+    
         $data['data_tiket'] = $this->M_callback->m_data_tiket($_externalId);
         $data['transaksi'] = $this->M_callback->m_data_transaksi($_externalId);
         $data['data_e_tiket'] = $this->M_callback->m_data_e_tiket($_externalId);
-
+    
         $data_transaksi = [];
         foreach ($data['transaksi'] as $trans) {
-            $email = $trans->email;
-            $nm_customer = $trans->nm_customer;
-            $nm_kategori_event = $trans->nm_kategori_event;
-            $nm_event = $trans->nm_event;
-            $lokasi = $trans->lokasi;
-            $tgl_event = $trans->tgl_event;
-            $jam_event = $trans->jam_event;
-            $kota_event = $trans->nama;
+            $email = isset($trans->email) ? $trans->email : ''; // Pastikan variabel $email terdefinisi
+            $nm_customer = isset($trans->nm_customer) ? $trans->nm_customer : ''; 
+            $nm_kategori_event = isset($trans->nm_kategori_event) ? $trans->nm_kategori_event : ''; // Pastikan variabel $nm_kategori_event terdefinisi
+            $nm_event = isset($trans->nm_event) ? $trans->nm_event : ''; 
+            $lokasi = isset($trans->lokasi) ? $trans->lokasi : ''; 
+            $tgl_event = isset($trans->tgl_event) ? $trans->tgl_event : ''; 
+            $jam_event = isset($trans->jam_event) ? $trans->jam_event : ''; 
+            $kota_event = isset($trans->nama) ? $trans->nama : '';
+    
             $data_transaksi[] = [
                 'nm_customer' => $nm_customer,
                 'nm_kategori_event' => $nm_kategori_event,
@@ -177,46 +168,49 @@ class Callback extends CI_Controller
             ];
         }
         $data['data_transaksi'] = $data_transaksi;
+    
+        // Setup konfigurasi email
         $config = [
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
-            'smtp_host' => 'mail.wisdil.com',
-            'smtp_user' => 'tiket@wisdil.com',  // Email gmail
-            'smtp_pass'   => 'tiket123!',  // Password gmail
-            // 'smtp_host' => 'smtp.gmail.com',
-            // 'smtp_user' => 'Oktadha01@gmail.com',  // Email gmail
-            // 'smtp_pass'   => 'rvcw cvny ibav czbh',  // Password gmail
+            'smtp_host' => 'talang.iixcp.rumahweb.net',
+            'smtp_user' => 'tiket@wisdil.com',
+            'smtp_pass' => 'tiket123!',
             'smtp_crypto' => 'ssl',
             'smtp_port'   => 465,
             'crlf'    => "\r\n",
             'newline' => "\r\n"
         ];
-        // $email_to_user = $this->session->userdata('gmail');
-        $email_to_user = $email;
+    
+        $email_to_user = $email; // Pastikan variabel $email sudah memiliki nilai
+    
         $this->load->library('email', $config);
         $this->email->from('tiket@wisdil.com', 'Wisdil.com');
         $this->email->to($email_to_user);
         $this->email->subject('Tiket ' . $nm_kategori_event . ' anda - Invoice #' . $_externalId);
-
+    
+        // Load email template
         $body = $this->load->view('client/email/email_template.php', $data, true);
-
         $this->email->message($body);
-        // Array to store dynamic PDF file paths
-        $pdfFilepaths = array();
+    
+        // Lampirkan file PDF
+        
+       // CUSTOM ADD PDF
+        $pdfFilePath = FCPATH . 'upload/pdf/DOS&DONT.pdf'; // Assuming FCPATH is defined and points to the root of your project
+        $this->email->attach($pdfFilePath);
+        // END CUSTOM ADD PDF
 
         foreach ($data['data_e_tiket'] as $tiket) {
-            $pdfFilePath = FCPATH . 'upload/pdf/pdf-' . $tiket->code_tiket . '.pdf'; // Assuming FCPATH is defined and points to the root of your project
-            if (file_exists($pdfFilePath)) { // Check if the file exists before adding it to the array
-                $pdfFilepaths[] = $pdfFilePath;
-            } else {
-                echo 'Error! PDF file not found for code_tiket: ' . $tiket->code_tiket;
+            $pdfFilePath = FCPATH . 'upload/pdf/pdf-' . $tiket->code_tiket . '.pdf';
+            if (file_exists($pdfFilePath)) {
+                $this->email->attach($pdfFilePath);
             }
-            $this->email->attach($pdfFilePath);
         }
-
-        // Assuming the email configuration is properly set up elsewhere in your code
-        $this->email->send();
-        redirect(base_url('Transaction/CB/') . $_externalId);
+    
+        if (!$this->email->send()) {
+            log_message('error', 'Email gagal dikirim: ' . $this->email->print_debugger());
+        }
     }
+
 }

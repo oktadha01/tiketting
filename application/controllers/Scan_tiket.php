@@ -25,8 +25,8 @@ class Scan_tiket extends AUTH_Controller
         $data['tittle']         = 'Menu Scan Tiket';
         $data['bread']          = 'Scan Tiket';
 
-        $id_user                = $this->session->userdata('userdata')->id_user;
-        $tiket_status           = $this->Scan_model->get_tiket_status($id_user);
+        $id_event               = $this->session->userdata('userdata')->id_event;
+        $tiket_status           = $this->Scan_model->get_tiket_status($id_event);
         $diambil                = number_format($tiket_status->jumlah_tiket_1, 0, ',', '.');
         $belum                  = number_format($tiket_status->jumlah_tiket_0, 0, ',', '.');
         $tiket                  = number_format($tiket_status->jumlah_total_tiket, 0, ',', '.');
@@ -93,8 +93,10 @@ class Scan_tiket extends AUTH_Controller
         $status_filter = $this->input->post('status_filter');
 
         $list = $this->Scan_model->get_datatablest($id_event, $status_filter);
+        $nm_event = $this->Scan_model->get_nama_event($id_event);
         $data = array();
         $no = @$_POST['start'];
+
         foreach ($list as $tkt) {
 
             // label status
@@ -108,6 +110,7 @@ class Scan_tiket extends AUTH_Controller
             $no++;
             $row    = array();
             $row[]  = $no . ".";
+            $row[]  = $tkt->code_tiket;
             $row[]  = $tkt->nama;
             $row[]  = $tkt->gender;
             $row[]  = $tkt->email;
@@ -116,11 +119,13 @@ class Scan_tiket extends AUTH_Controller
             $row[]  = $status_tiket;
             $data[] = $row;
         }
+
         $output = array(
             "draw" => @$_POST['draw'],
             "recordsTotal" => $this->Scan_model->count_all($id_event, $status_filter),
             "recordsFiltered" => $this->Scan_model->count_filtereds($id_event, $status_filter),
             "data" => $data,
+            "nm_event" => $nm_event,
         );
 
         echo json_encode($output);

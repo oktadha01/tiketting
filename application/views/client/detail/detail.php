@@ -61,25 +61,53 @@
                     </div>
                     <hr>
 
-                    <span class="span-tit medium">Special Perfomence By :</span>
-                    <?php foreach ($perform as $data) : ?>
-                        <?php if ($data->status_perform == '1') { ?>
-                            <h6 class="font-weight-bold"><?= $data->nama_artis; ?></h6>
-                        <?php }  ?>
-                    <?php endforeach; ?>
+                    <?php
+                    $special_performance_shown = false;
+                    $also_performing_shown = false;
+                    $mc_by_shown = true;
 
-                    <span class="span-tit medium">Also Perfoming :</span>
-                    <ul class="font-weight-bold" style="margin-left: 1rem;">
-                        <?php foreach ($perform as $data) : ?>
-                            <?php if ($data->status_perform == '2') { ?>
-                                <li style="list-style: decimal;">
-                                    <h6 class="font-weight-bold"><?= $data->nama_artis; ?></h6>
-                                </li>
-                            <?php } ?>
-                        <?php endforeach; ?>
-                    </ul>
-                    <span class="span-tit medium">MC By : </span>
-                    <h6 class="font-weight-bold"> <?= $data->mc_by; ?></h6>
+                    // Check if there is any artist with a status of '1' and non-empty name
+                    foreach ($perform as $data) {
+                        if ($data->status_perform == '1' && !empty($data->nama_artis)) {
+                            $special_performance_shown = true;
+                        }
+                        if ($data->status_perform == '2' && !empty($data->nama_artis)) {
+                            $also_performing_shown = true;
+                        }
+                        if ($data->mc_by == '' || $data->mc_by == '-') {
+                            $mc_by_shown = false;
+                        }
+                    }
+                    ?>
+
+                   <?php if ($special_performance_shown) : ?>
+                        <span class="span-tit medium">Special Performance By :</span>
+                        <ul class="ml-4">
+                            <?php foreach ($perform as $data) : ?>
+                                <?php if ($data->status_perform == '1' && !empty($data->nama_artis)) { ?>
+                                    <li class="font-weight-bold" style="list-style:decimal;"><?= $data->nama_artis; ?></li>
+                                <?php } ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+
+                    <?php if ($also_performing_shown) : ?>
+                        <span class="span-tit medium">Also Performing :</span>
+                        <ul class="font-weight-bold" style="margin-left: 1rem;">
+                            <?php foreach ($perform as $data) : ?>
+                                <?php if ($data->status_perform == '2' && !empty($data->nama_artis)) { ?>
+                                    <li style="list-style: decimal;">
+                                        <h6 class="font-weight-bold"><?= $data->nama_artis; ?></h6>
+                                    </li>
+                                <?php } ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+
+                    <?php if ($mc_by_shown) : ?>
+                        <span class="span-tit medium">MC By : </span>
+                        <h6 class="font-weight-bold"> <?= $data->mc_by; ?></h6>
+                    <?php endif; ?>
                     <span class="span-tit medium">Description :</span>
                     <p class="desc-evnt"><?= $data->desc_event; ?></p>
                 </div>

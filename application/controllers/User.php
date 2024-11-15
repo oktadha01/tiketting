@@ -227,7 +227,7 @@ class User extends AUTH_Controller
     {
         $data = array(
             'agency'     => $this->input->post('agency'),
-            'id_event'     => $this->input->post('id_event'),
+            'id_event'   => $this->input->post('id_event'),
             'nm_user'    => $this->input->post('nama'),
             'email'      => $this->input->post('email'),
             'password'   => md5($this->input->post('password')),
@@ -254,7 +254,8 @@ class User extends AUTH_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
-            // var_dump($_POST);
+            // var_dump($password);
+            // exit;
 
         if (!empty($id)) {
             $data = array(

@@ -26,7 +26,7 @@
                                     <th width='8%'>No</th>
                                     <th width='20%'>Tanggal</th>
                                     <th width='30%'>Code Bayar</th>
-                                    <th width='15%'>BanK</th>
+                                    <th width='15%'>Bank</th>
                                     <th width='15%'>Pemasukan</th>
                                     <th width='20%'>Saldo</th>
                                 </tr>

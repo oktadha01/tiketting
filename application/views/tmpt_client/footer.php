@@ -19,25 +19,31 @@
             <div class="col-lg-6 col-12">
                 <table>
                     <tr>
+                        <th style="font-weight: normal;color: white;font-size: x-large;"><i class="fa-regular fa-building"></i></th>
+                        <th class="pl-3 pt-4" style="font-weight: normal;">
+                            <p style="color: white;">CV. Mitra Best Solution</p>
+                        </th>
+                    </tr>
+                     <tr>
+                        <th style="font-weight: normal;color: white;font-size: x-large;"><i class="fa-regular fa-building"></i></th>
+                        <th class="pl-3" style="font-weight: normal;">
+                            <p style="color: white;">Jl. Ismaya Raya , RT 008 RW 004, Kel/Desa : Lerep, Kec. Ungaran Barat, Kab. Semarang</p>
+                        </th>
+                    </tr>
+                    <tr>
                         <th style="font-weight: normal;color: white;font-size: x-large;"><i
                                 class="fa-brands fa-whatsapp"></i></th>
                         <th class="pl-3" style="font-weight: normal;">
-                            <a href="https://wa.me/6285876208194?text=Hallo%20Wisdil%20..." target="_blank"
-                                style="color: white;">0858-7620-8194</a>
+                            <a href="https://wa.me/6285864900443?text=Hallo%20Wisdil%20..." target="_blank"
+                                style="color: white;">0858-6490-0443 (CS)</a>
                         </th>
                     </tr>
-                    <!-- <tr>
-                        <th style="font-weight: normal;color: white;font-size: x-large;"><i class="fa-regular fa-building"></i></th>
-                        <th class="pl-3" style="font-weight: normal;">
-                            <p style="color: white;">Perumahan Bukit Asri 4 No. 15, Jl. Ismaya Raya , RT 008 RW 004, Kel/Desa : Lerep, Kec. Ungaran Barat, Kab. Semarang</p>
-                        </th>
-                    </tr> -->
                 </table>
             </div>
             <div class="col-lg-6 col-12">
                 <ul style="display: flex; justify-content: space-evenly;">
                     <li class="mr-2">
-                        <a href="https://wa.me/6285876208194?text=Hallo%20Wisdil%20..." target="_blank">
+                        <a href="https://wa.me/6285864900443?text=Hallo%20Wisdil%20..." target="_blank">
                             <i class="fa-brands fa-whatsapp bg-w-orange bg-size-icon hov-wa"></i>
                         </a>
                     </li>

@@ -73,15 +73,15 @@ class Dana_masuk_model extends CI_Model
         return $query;
     }
 
-    public function get_total_nominal($id_event)
+   public function get_total_nominal($id_event)
     {
-        $this->db->select_sum('saldo.nominal');
+        $this->db->select('SUM(saldo.nominal) - (COUNT(saldo.nominal) * 5000) as total_nominal');
         $this->db->from('saldo');
         $this->db->join('transaksi', 'transaksi.code_bayar = saldo.code_bayar');
         $this->db->where('transaksi.id_event', $id_event);
 
         $query = $this->db->get();
-        return $query->row()->nominal;
+        return $query->row()->total_nominal;
     }
 
 }

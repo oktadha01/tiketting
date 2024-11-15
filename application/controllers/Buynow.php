@@ -294,8 +294,13 @@ class Buynow extends CI_Controller
             $bMargin = $pdf->getBreakMargin();
             $auto_page_break = $pdf->getAutoPageBreak();
             $pdf->setAutoPageBreak(false, 0);
-            $img_file = base_url('upload/backround_tiket/' . $background);
-            $pdf->Image($img_file, null, 3, 148, 102, '', '', '', false, 300, 'C', false, false, 0);
+            $img_file = FCPATH . 'upload/backround_tiket/' . $background;
+            if (file_exists($img_file)) {
+                $pdf->Image($img_file, null, 3, 148, 102, '', '', '', false, 300, 'C', false, false, 0);
+            } else {
+                $pdf->Cell(50, 1, 'Background image not found', 0, 1, 'C');
+            }
+            
             $pdf->setAutoPageBreak($auto_page_break, $bMargin);
             $pdf->setPageMark();
             $pdf->SetY(1);
@@ -313,7 +318,7 @@ class Buynow extends CI_Controller
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->Cell(10, 7, '', 0, 0);
 
-            $pdf->Image(base_url('assets/images/LOGO-WISDIL.png'), 16, 10, 15);
+            $pdf->Image(FCPATH . 'assets/images/logo_wisdil.png', 16, 10, 15);
 
             $textnama = $nama;
             $textnama = strtoupper($textnama);
@@ -350,7 +355,8 @@ class Buynow extends CI_Controller
             $pdf->SetTextColor($r, $g, $b);
             $pdf->Cell(50, 1, $textkategoritiket, 0, 1, 'L');
 
-            $pdf->Image(base_url('upload/qr/qr-' . $code_tiket . '.png'), 101, 37, 28);
+            $pdf->Image(FCPATH . 'upload/qr/qr-' . $code_tiket . '.png', 101, 37, 28);
+
 
             $headerText = 'Kode Tiket';
             $headerText = strtoupper($headerText);
@@ -435,8 +441,10 @@ class Buynow extends CI_Controller
                 };
             };
         }
+
         if ($nominal == '0') {
             $subtotal = '0';
+            $status_transaksi= 'free';
             $tgl_trx = date('d-m-Y H:i:s');
             $data_transaksi = [
 
@@ -452,10 +460,20 @@ class Buynow extends CI_Controller
 
             ];
 
-            $this->M_buynow->insert_transaksi($data_transaksi);
-        } else {
-            $subtotal = $nominal * 0.03 + 7850 + $nominal;
+            $this->db->insert('saldo', [
+                'code_bayar'   => $code_bayar,
+                'tanggal'      => $tgl_trx,
+                'nominal'      => $subtotal,
+            ]);
 
+            $this->M_buynow->insert_transaksi($data_transaksi, $status_transaksi);
+        } else {
+            // default
+            // $subtotal = $nominal * 0.03 + 7850 + $nominal;
+
+            // custom
+            $subtotal = $nominal + 5000 ;
+            $status_transaksi= 'xendit';
             xendit_loaded();
             $this->db->trans_begin();
 
@@ -469,6 +487,7 @@ class Buynow extends CI_Controller
                     "description"       => "Pembayaran Tiket Wisdil Kode Bayar: $code_bayar Kode Tiket: $code_tiket nama:$nama",
                     "amount"            => preg_replace('/[Rp. ]/', '', $subtotal),
                     'invoice_duration'  => 3600,
+                    // 'invoice_duration'  => 60,
                     'customer' => [
                         'given_names'   => $nama,
                         'surname'       => $code_tiket,
@@ -496,7 +515,7 @@ class Buynow extends CI_Controller
 
                 ];
 
-                $this->M_buynow->insert_transaksi($data_transaksi);
+                $this->M_buynow->insert_transaksi($data_transaksi, $status_transaksi);
                 $this->db->trans_commit();
 
                 $response = [

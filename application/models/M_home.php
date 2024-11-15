@@ -21,7 +21,7 @@ class M_home extends CI_Model
                         GROUP BY event.id_event
                         ) AS combined_query');
         $this->db->group_by('combined_query.id_event');
-        $this->db->order_by('combined_query.tgl_event', 'DESC');
+        $this->db->order_by('combined_query.id_event', 'DESC');
         $this->db->limit(6);
 
         $query = $this->db->get();
@@ -37,7 +37,7 @@ class M_home extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('banner');
-        $this->db->order_by('id_banner', 'ASC');
+        $this->db->order_by('id_banner', 'DESC');
         $query = $this->db->get();
 
         return $query->result();

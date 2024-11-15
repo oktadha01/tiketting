@@ -42,6 +42,7 @@ class M_detail extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
     function m_tiket($nm_event)
     {
         $this->db->select('*');

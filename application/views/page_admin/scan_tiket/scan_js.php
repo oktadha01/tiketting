@@ -1,29 +1,4 @@
 <script>
-// Suara notifikasi
-var successSound = new Audio('assets/suara/scanner-beep.mp3');
-
-// manipulasi data sceneQR
-function onScanSuccess(qrCodeMessage) {
-    $.ajax({
-        url: '<?php echo base_url('Scan_tiket/get_data_from_qr'); ?>',
-        method: 'GET',
-        data: {
-            qrCodeMessage: qrCodeMessage
-        },
-        success: function(data) {
-            updateResult(data);
-
-            successSound.play();
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching data:', error);
-            console.log('Status XHR:', status);
-            console.log('Respon XHR:', xhr.responseText);
-        }
-
-    });
-}
-
 // kode manual input
 function submitManualCode() {
     event.preventDefault();
@@ -95,7 +70,7 @@ function updateResult(data) {
             }
 
 
-        }, 4000);
+        }, 1000);
 
     } else {
         resultElement.innerHTML =
@@ -118,6 +93,30 @@ function updateResult(data) {
             }
         }, 10000);
     }
+}
+// Suara notifikasi
+var successSound = new Audio('assets/suara/scanner-beep.mp3');
+
+// manipulasi data sceneQR
+function onScanSuccess(qrCodeMessage) {
+    $.ajax({
+        url: '<?php echo base_url('Scan_tiket/get_data_from_qr'); ?>',
+        method: 'GET',
+        data: {
+            qrCodeMessage: qrCodeMessage
+        },
+        success: function(data) {
+            updateResult(data);
+
+            successSound.play();
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching data:', error);
+            console.log('Status XHR:', status);
+            console.log('Respon XHR:', xhr.responseText);
+        }
+
+    });
 }
 
 // update status tiket

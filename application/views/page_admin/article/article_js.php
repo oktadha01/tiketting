@@ -301,189 +301,189 @@ $(document).ready(function() {
     // akhir kode edit judul
 
     // tambah content
-    // $(document).on('click', '.btn-content', function() {
-    //     var id_content = $(this).data('id_content');
-    //     var id_article = $(this).data('id_article');
-    //     // console.log("ID content:", id_content);
+    $(document).on('click', '.btn-content', function() {
+        var id_content = $(this).data('id_content');
+        var id_article = $(this).data('id_article');
+        // console.log("ID content:", id_content);
 
-    //     $('#tambah-content #id-addcontent-article').val(id_article);
-    //     $('#tambah-content #id-content-gbr-add').val(id_content);
+        $('#tambah-content #id-addcontent-article').val(id_article);
+        $('#tambah-content #id-content-gbr-add').val(id_content);
 
-    //     $.ajax({
-    //         url: '<?php echo base_url("Article/get_data_gambar"); ?>',
-    //         method: 'POST',
-    //         data: {
-    //             id_content: id_content
-    //         },
-    //         dataType: 'json',
-    //         success: function(response) {
-    //             $('#gambar-content-container').empty();
-    //             response.forEach(function(imageData) {
-    //                 var imgElement =
-    //                     '<div class="col-lg-4 col-md-6 col-sm-12 m-b-10 image-container">' +
-    //                     '<img class="img-fluid img-thumbnail" src="' + imageData
-    //                     .url +
-    //                     '" alt="' + imageData.alt + '">' +
-    //                     '<button type="button" class="btn btn-danger delete-button" data-id="' +
-    //                     imageData.id_gambar +
-    //                     '" title="Delete"><span class="sr-only">Delete</span> <i class="fa fa-trash-o"></i></button>' +
-    //                     '</div>';
-    //                 $('#gambar-content-container').append(imgElement);
-    //             });
-    //         },
-    //         error: function(xhr, status, error) {
-    //             console.error(error);
-    //         }
-    //     });
-    // });
+        $.ajax({
+            url: '<?php echo base_url("Article/get_data_gambar"); ?>',
+            method: 'POST',
+            data: {
+                id_content: id_content
+            },
+            dataType: 'json',
+            success: function(response) {
+                $('#gambar-content-container').empty();
+                response.forEach(function(imageData) {
+                    var imgElement =
+                        '<div class="col-lg-4 col-md-6 col-sm-12 m-b-10 image-container">' +
+                        '<img class="img-fluid img-thumbnail" src="' + imageData
+                        .url +
+                        '" alt="' + imageData.alt + '">' +
+                        '<button type="button" class="btn btn-danger delete-button" data-id="' +
+                        imageData.id_gambar +
+                        '" title="Delete"><span class="sr-only">Delete</span> <i class="fa fa-trash-o"></i></button>' +
+                        '</div>';
+                    $('#gambar-content-container').append(imgElement);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
 
-    // function reloadGambaradd(id_content) {
-    //     $.ajax({
-    //         url: '<?php echo base_url("Article/get_data_gambar"); ?>',
-    //         method: 'POST',
-    //         data: {
-    //             id_content: id_content
-    //         },
-    //         dataType: 'json',
-    //         success: function(response) {
-    //             $('#gambar-content-add').empty();
-    //             response.forEach(function(imageData) {
-    //                 var imgElement =
-    //                     '<div class="col-lg-4 col-md-6 col-sm-12 m-b-10 image-container">' +
-    //                     '<img class="img-fluid img-thumbnail" src="' + imageData
-    //                     .url +
-    //                     '" alt="' + imageData.alt + '">' +
-    //                     '<button type="button" class="btn btn-danger delete-button" data-id="' +
-    //                     imageData.id_gambar +
-    //                     '" title="Delete"><span class="sr-only">Delete</span> <i class="fa fa-trash-o"></i></button>' +
-    //                     '</div>';
-    //                 $('#gambar-content-add').append(imgElement);
-    //             });
-    //         },
-    //         error: function(xhr, status, error) {
-    //             console.error(error);
-    //         }
-    //     });
-    // }
+    function reloadGambaradd(id_content) {
+        $.ajax({
+            url: '<?php echo base_url("Article/get_data_gambar"); ?>',
+            method: 'POST',
+            data: {
+                id_content: id_content
+            },
+            dataType: 'json',
+            success: function(response) {
+                $('#gambar-content-add').empty();
+                response.forEach(function(imageData) {
+                    var imgElement =
+                        '<div class="col-lg-4 col-md-6 col-sm-12 m-b-10 image-container">' +
+                        '<img class="img-fluid img-thumbnail" src="' + imageData
+                        .url +
+                        '" alt="' + imageData.alt + '">' +
+                        '<button type="button" class="btn btn-danger delete-button" data-id="' +
+                        imageData.id_gambar +
+                        '" title="Delete"><span class="sr-only">Delete</span> <i class="fa fa-trash-o"></i></button>' +
+                        '</div>';
+                    $('#gambar-content-add').append(imgElement);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
 
-    // // tambah gambar
-    // $(function() {
-    //     // photo upload
-    //     $('#btn-upload-add').on('click', function() {
-    //         $('#filePhoto-add').trigger('click');
-    //     });
+    // tambah gambar
+    $(function() {
+        // photo upload
+        $('#btn-upload-add').on('click', function() {
+            $('#filePhoto-add').trigger('click');
+        });
 
-    //     $('#filePhoto-add').change(function() {
-    //         var input = this;
-    //         if (input.files && input.files[0]) {
-    //             var reader = new FileReader();
+        $('#filePhoto-add').change(function() {
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-    //             reader.onload = function(e) {
-    //                 $('#previewImage-add').attr('src', e.target.result).show();
-    //                 $('#btn-upload-add').hide();
-    //                 $('#btn-upload-photo-add').show();
-    //             }
+                reader.onload = function(e) {
+                    $('#previewImage-add').attr('src', e.target.result).show();
+                    $('#btn-upload-add').hide();
+                    $('#btn-upload-photo-add').show();
+                }
 
-    //             reader.readAsDataURL(input.files[0]);
-    //         }
-    //     });
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
 
-    //     // Simpan gambar
-    //     $('#btn-upload-photo-add').click(function() {
-    //         var formData = new FormData();
-    //         formData.append('id_content', $('#id-content-gbr-add').val());
-    //         formData.append('gambar', $('#filePhoto-add')[0].files[0]);
+        // Simpan gambar
+        $('#btn-upload-photo-add').click(function() {
+            var formData = new FormData();
+            formData.append('id_content', $('#id-content-gbr-add').val());
+            formData.append('gambar', $('#filePhoto-add')[0].files[0]);
 
-    //         $.ajax({
-    //             url: '<?= base_url('Article/tambah_gambar') ?>',
-    //             method: 'POST',
-    //             data: formData,
-    //             contentType: false,
-    //             processData: false,
-    //             success: function(response) {
-    //                 var id_content = $('#id-content-gbr-add').val();
-    //                 reloadGambaradd(id_content);
-    //                 $('#btn-upload-add').hide();
-    //                 $('#btn-upload-photo-add').show();
-    //                 $('#previewImage-add').hide();
-    //                 alert('Gambar berhasil disimpan:', response);
-    //             },
-    //             error: function(xhr, status, error) {
-    //                 console.error('Terjadi kesalahan:', error);
-    //             }
-    //         });
-    //     });
+            $.ajax({
+                url: '<?= base_url('Article/tambah_gambar') ?>',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    var id_content = $('#id-content-gbr-add').val();
+                    reloadGambaradd(id_content);
+                    $('#btn-upload-add').hide();
+                    $('#btn-upload-photo-add').show();
+                    $('#previewImage-add').hide();
+                    alert('Gambar berhasil disimpan:', response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Terjadi kesalahan:', error);
+                }
+            });
+        });
 
-    //     // plans
-    //     $('.btn-choose-plan').on('click', function() {
-    //         $('.plan').removeClass('selected-plan');
-    //         $('.plan-title span').find('i').remove();
+        // plans
+        $('.btn-choose-plan').on('click', function() {
+            $('.plan').removeClass('selected-plan');
+            $('.plan-title span').find('i').remove();
 
-    //         $(this).parent().addClass('selected-plan');
-    //         $(this).parent().find('.plan-title').append(
-    //             '<span><i class="fa fa-check-circle"></i></span>');
-    //     });
-    // });
+            $(this).parent().addClass('selected-plan');
+            $(this).parent().find('.plan-title').append(
+                '<span><i class="fa fa-check-circle"></i></span>');
+        });
+    });
 
-    // $('#tambah-content').submit(function(event) {
-    //     event.preventDefault();
+    $('#tambah-content').submit(function(event) {
+        event.preventDefault();
 
-    //     $('#btn-text-content').hide();
-    //     $('#loading-icon').show();
-    //     $('#btn-simpan-content').attr('disabled', true);
+        $('#btn-text-content').hide();
+        $('#loading-icon').show();
+        $('#btn-simpan-content').attr('disabled', true);
 
-    //     var formData = new FormData($('#artikel-content')[0]);
+        var formData = new FormData($('#artikel-content')[0]);
 
-    //     var content = $('.summernote').summernote('code');
-    //     formData.append('content_article', content);
+        var content = $('.summernote').summernote('code');
+        formData.append('content_article', content);
 
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: '<?php echo base_url('Article/isi_content') ?>',
-    //         data: formData,
-    //         contentType: false,
-    //         processData: false,
-    //         dataType: 'json',
-    //         success: function(response) {
-    //             $('#btn-text-content').show();
-    //             $('#loading-icon').hide();
-    //             $('#btn-simpan-content').attr('disabled', false);
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url('Article/isi_content') ?>',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function(response) {
+                $('#btn-text-content').show();
+                $('#loading-icon').hide();
+                $('#btn-simpan-content').attr('disabled', false);
 
-    //             if (response.status) {
-    //                 Swal.fire({
-    //                     icon: 'success',
-    //                     title: 'Berhasil!',
-    //                     text: 'Artikel berhasil ditambahkan.',
-    //                     timer: 1500
-    //                 });
+                if (response.status) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: 'Artikel berhasil ditambahkan.',
+                        timer: 1500
+                    });
 
-    //                 reload_data();
-    //                 $('#tambah-content').modal('hide');
-    //                 $('#artikel-content')[0].reset();
+                    reload_data();
+                    $('#tambah-content').modal('hide');
+                    $('#artikel-content')[0].reset();
 
-    //             } else {
-    //                 console.error('Terjadi kesalahan saat validasi data di server.');
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: 'Gagal!',
-    //                     text: 'Terjadi kesalahan saat validasi data di server.',
-    //                 });
-    //             }
-    //         },
-    //         error: function(xhr, status, error) {
-    //             $('#btn-text-content').show();
-    //             $('#loading-icon').hide();
-    //             $('#btn-simpan-content').attr('disabled', false);
+                } else {
+                    console.error('Terjadi kesalahan saat validasi data di server.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: 'Terjadi kesalahan saat validasi data di server.',
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                $('#btn-text-content').show();
+                $('#loading-icon').hide();
+                $('#btn-simpan-content').attr('disabled', false);
 
-    //             console.error(xhr.responseText);
-    //             Swal.fire({
-    //                 icon: 'error',
-    //                 title: 'Gagal!',
-    //                 text: 'Terjadi kesalahan saat mengirim data ke server.',
-    //             });
-    //         }
-    //     });
-    // });
+                console.error(xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Terjadi kesalahan saat mengirim data ke server.',
+                });
+            }
+        });
+    });
 
     // akhir tambah content
 

@@ -21,6 +21,26 @@ class M_auth extends CI_Model
 			return false;
 		}
 	}
+
+	public function login_sales($email, $password)
+	{
+		$this->db->select('*, nama AS agency');
+		$this->db->from('sales');
+		$this->db->where('email', $email);
+		$this->db->where(
+			'password',
+			md5($password)
+		);
+
+		$data = $this->db->get();
+
+		if ($data->num_rows() == 1) {
+			return $data->row();
+		} else {
+			return false;
+		}
+	}
+
 	function login_customer($post_email, $post_pass)
 	{
 		$this->db->select('*');

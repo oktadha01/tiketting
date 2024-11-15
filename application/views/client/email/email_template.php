@@ -53,29 +53,29 @@
                                                 <tr>
                                                     <td align="center" valign="top">
                                                         <div>
-
                                                             <div style="padding-top:38px;background:#ffffff">
                                                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td align="center" valign="top">
-                                                                                <h1 style="font-weight:normal;font-size:30px;color:#434343;margin:0px;padding:0px 16px"> Tiket <?= $transaksi['nm_kategori_event']; ?> Anda telah terbit! </h1>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
                                                                             <td align="left" valign="top" style="padding:0px 16px">
                                                                                 <div style="width:100%;height:38px;display:block"></div>
-                                                                                <h3 style="font-size:16px;margin:0px;padding:0px;color:#434343;font-weight:bold"><strong>Yth. <?= $transaksi['nm_customer']; ?>,</strong></h3>
+                                                                                <h3 style="font-size:16px;margin:0px;padding:0px;color:#434343;font-weight:bold"><strong>Hi, <?= $transaksi['nm_customer']; ?>.</strong></h3>
                                                                                 <div style="width:100%;height:28px;display:block"></div>
-                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black;">Pembelian tiket <?= $transaksi['nm_kategori_event']; ?> Anda telah sukses dikonfirmasi.</p><br>
-                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black;">Tiket <?= $transaksi['nm_kategori_event']; ?> dan bukti pembelian Anda terdapat dalam lampiran.</p>
+                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black;">Thank you for getting a ticket to our event! We're really excited to have you join us for an amazing experience. Below, you'll find all the ticket details and event information. Just a quick reminder, please keep your ticket code safe and private.</p>
+                                                                                <br>
+                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black; font-weight:bold;">Venue: Studio 8, SMI Building, Semarang</p>
+                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black;">Gates open at 15:00, so come early! For Reguler ticket holders, please make sure to exchange your ticket at the venue before 20:00.</p>
+                                                                                <br>
+                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black;">We can't wait to see you there. It's going to be awesome!</p>
+                                                                                <br>
+                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black;">Cheers,</p>
+                                                                                <p style="line-height:25px;font-size:16px;padding:0px;margin:0px; color:black;">Hibernation Crew</p>
                                                                                 <div style="width:100%;height:32px;display:block"></div>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-
                                                             <div style="background:#ffffff;margin-bottom:16px;border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:2px solid #dadada">
                                                                 <div style="padding:0 16px;margin-bottom:10px">
                                                                     <table border="0" cellpadding="0" cellspacing="0" style="margin:0px;width:100%">
